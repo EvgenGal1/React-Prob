@@ -1,7 +1,9 @@
 {
   "name": "react.prob",
   "version": "0.1.0",
+  "author": "EvGen Gal",
   "private": true,
+  "license": "ISC",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
