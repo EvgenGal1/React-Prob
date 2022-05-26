@@ -1,89 +1,43 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+// React 17
+// import ReactDOM from "react-dom";
+// React 18
+import { createRoot } from "react-dom/client";
+// все JS/JSX файлы подкл в App.js
 import App from "./baseComponents/App.js";
-import Plan from "./Plan/js/Plan.js";
+// все SCSS файлы стилей подкл в App.scss
+import "./index.css";
 
-const startRoot0 = () => {
-  ReactDOM.render(
-    <div className="root0__content">
-      <React.StrictMode>
-        <Plan />
-      </React.StrictMode>
-    </div>,
-    document.getElementById("root0")
-  );
-};
-
-ReactDOM.render(
-  <div className="root0__body">
-    <div className="root0__arrow"></div>
-    <div className="root0__content">
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </div>
-    <div className="root0__arrow"></div>
-  </div>,
-  document.getElementById("root0")
-);
-
-// function Welcome(props) {
-//   return <h1>Привет, {props.name}</h1>;
+// class GeneralComponents extends React.Component {
+//   // constructor(props) {
+//   //   super(props);
+//   // }
+//   // state = {  }
+//   render() {
+//     return (
+//       <div className="root-body">
+//         {/* <div> */}
+//         {/* <div className="container"> */}
+//         {/* 00000 */}
+//         {/* <App /> */}
+//         {/* <Plan /> */}
+//         <Vid />
+//         {/* <ConditionalRendering /> */}
+//         {/* <ListComponent /> */}
+//         <hr />
+//         <ReactDoc />
+//         {/* 11111 */}
+//       </div>
+//     );
+//   }
 // }
 
-// function App() {
-//   return (
-//     <div>
-//       <Welcome name="Алиса" />
-//       <Welcome name="Базилио" />
-//       <Welcome name="Буратино" />
-//     </div>
-//   );
-// }
+// для проб не раб кода (подкл напрямую) ----------------------------------------------------------------------------------
 
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('root')
-// );
+// для проб не раб кода (подкл напрямую) ----------------------------------------------------------------------------------
 
-// ReactDOM.render(
-//   <div className="root0__body">
-//     <React.StrictMode>
-//       <App />
-//     </React.StrictMode>
-//   </div>,
-//   document.getElementById("root0__content")
-// );
-// const startPlan = () => {
-//   ReactDOM.render(
-//     <div className="root0__body">
-//       <React.StrictMode>
-//         <Plan />
-//       </React.StrictMode>
-//     </div>,
-//     document.getElementById("root0")
-//   );
-// };
-// ReactDOM.render(
-//   <div className="root0__body">
-//     <React.StrictMode>
-//       <App />
-//     </React.StrictMode>
-//   </div>,
-//   document.getElementById("root0")
-// );
-
-ReactDOM.render(
-  <div className="root1__body">
-    <button className="button__app" onClick={startRoot0}>
-      План изучения React
-    </button>
-  </div>,
-  document.getElementById("root1")
-);
-
-// Если вы хотите начать измерение производительности в вашем приложении, пропустите функцию
-// Для результатов журнала (например: ReportWebVitals (Console.log))
-// или отправить на конечную точку аналитики.Узнать больше: https://bit.ly/cra-vitals
-// reportWebVitals();
+// React 17
+// ReactDOM.render(<GeneralGovponents />, document.getElementById("root"));
+// React 18
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);

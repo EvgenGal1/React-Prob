@@ -1,0 +1,601 @@
+// МОЁ НАЧАЛО ДЛЯ REACT.PROB
+
+// Все стили подкл в App.scss
+
+// @import "../scss/mixins.scss";
+// @import "../scss/null.scss";
+
+// @import "../probComponents/VidYT/Vid.scss";
+// @import "../baseComponents/ReactDoc/ReactDoc.scss";
+// @import "../probComponents/CommonTrifles/CommonTrifles.scss";
+
+// высоты пока разные
+.Vid {
+  height: 100vh;
+  // скореевсего приду к height:auto для .Vid
+  height: auto;
+  width: auto;
+  width: 100%;
+}
+.ReactDocComponents,
+.CommonTrifles {
+  height: auto;
+  // height: 100vh;
+}
+// 1ая влж (Компоненты Темы)  ----------------------------------------------------------------------------------
+.Vid,
+.ReactDocComponents,
+.CommonTrifles,
+.HooksComponents,
+.PersistState {
+  font-size: inherit;
+  // ^ Шрифт меняем ч/з свойство Адаптивный шрифт в @mixin adaptiv-font
+  @include adaptiv-font(24, 12);
+  position: relative;
+  height: auto;
+  line-height: 1.5;
+  // 2ая влж (блоки Темы (descript, content и frame))  ----------------------------------------------------------------------------------
+  & > div {
+    // общий нижний отступ для h3
+    h3 {
+      padding: 0px 0px 10px;
+      @include adaptiv-value("padding-bottom", 10, 0, 3);
+    }
+    // отступы для descript
+    &:nth-child(1) {
+      text-align: center;
+      @include adaptiv-value-all("padding", 30, 10, 60, 25);
+    }
+    // отступы для вложенных descript
+    [class*="descript"]:nth-child(1) {
+      // времмено убрал padding. попробую решить через padding на общий блок
+      // @include adaptiv-value("padding-bottom", 15, 0, 3);
+      // background: #5ff !important;
+    }
+    // отступы для div кросме последнего
+    // [class$="__descript--"],
+    // [class$="__content--"] {
+    [class*="__descript---"],
+    [class*="__content---"] {
+      width: 100%;
+      padding: 10px 0px 0px;
+      // border-radius: 15px;
+      // box-shadow: 0 0 5px 5px rgb(34 60 80 / 20%);
+      // margin-bottom: 2px;
+      // padding: 0px 0px 10px;
+      & > div:not(:last-child) {
+        // padding: 0px 0px 10px;
+      }
+    }
+    [class*="__descript---"]:first-child,
+    [class*="__content---"]:first-child {
+      // padding: 0px 0px 0px;
+    }
+    [class*="__descript---"]:last-child,
+    [class*="__content---"]:last-child {
+      padding: 0px 0px 10px;
+    }
+
+    .Lists__content--- > div {
+      padding: 10px 0px;
+    }
+
+    // 3я влж (разделы Темы (content > дочки(vidinput, fnComp))) + Заголовок Темы ------------------------------------------------------------------------------
+    & > div {
+      position: relative;
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      justify-content: space-around;
+      justify-content: space-between;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+      // ^ 5 вариантов передачи размеров с 4мя сторонами(padding, margin, )
+      // ^ 1 вар. Простой
+      padding: 10px 50px;
+      // ^ 2 вар. ч/з @media запрос
+      // @media (max-width: $md2NoErr) {
+      //   padding: 10px 40px;
+      // }
+      // ^ 3 вар. ч/з @mixin padding с @media запросами
+      // @include padding;
+      // ^ 4 вар. ч/з Адаптивное св-во в @mixin adaptiv-value
+      // @include adaptiv-value("padding-right", 32, 15, 1);
+      // ^ 5 вар. ч/з Адаптивное св-во для Всех в @mixin adaptiv-value-all
+      @include adaptiv-value-all("padding", 10, 0, 60, 25);
+    }
+    // общие бл. 2ой влж (вложенности). vid-input, greeting__content,
+    & > div {
+      // общие бл. 3ей влж. vid-input-1, greeting__content-1,
+      & > div {
+        // font-size: 18px;
+        // font-size: inherit;
+        @media (max-width: $md3NoErr) {
+          // font-size: 14px;
+          // font-size: inherit;
+        }
+      }
+    }
+
+    // именнованые бл. 2ой влж(Цв.Поле 2ой влж). vid-input, greeting__content,  ----------------------------------------------------------------------------------
+    // & [class^="vid-input__content"],
+    .vid-input__content--,
+    .vid-button__content--,
+    .greeting__content--- {
+      @include size(350px, 150px);
+      margin: 0 auto;
+      // width: 350px;
+      // height: 150px;
+      // @include size(350px, 150px);
+      border: 4px solid $red;
+      padding: 3px !important;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      align-items: stretch;
+      justify-content: center;
+      text-align: center;
+      @media (max-width: $md3NoErr) {
+        @include size(250px, 100px);
+      }
+      @media (max-width: $md4NoErr) {
+        @include size(150px, 100px);
+        span.spmdnon {
+          display: none;
+        }
+      }
+      // именнованые бл. 3ей влж (Цв.Поле 2ой влж). vid-input__oneexp, greeting__twoexp,
+      [class*="oneexp"],
+      [class*="twoexp"] {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        align-content: center;
+        padding: 5px !important;
+        font-size: inherit;
+        @include adaptiv-font(16, 10);
+        // именнованые бл. 4ой влж (Цв.Поле 2ой влж). vid-input-11, greeting__content-11,
+        [class*="descript"],
+        [class*="content"] {
+          // height: 100%;
+          // line-height: 1.7;
+          display: flex;
+          flex-direction: row;
+          align-content: center;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    // Именнованые бл. 4ой влж (Цв.Поле 4ой влж) ----------------------------------------------------------------------------------
+    & > div > div {
+      .countryflags__oneexp_content---,
+      .countryflags__twoexp_content--- {
+        display: block;
+        // width: 350px;
+        min-height: 14px;
+        // background: #1ff;
+        margin: 0 auto;
+        background: #fff2dd;
+        text-align: center;
+      }
+      .countryflags {
+        &-12,
+        &-22 {
+          @media (max-width: $md3NoErr) {
+            @include size(250px, auto);
+          }
+          @media (max-width: $md4NoErr) {
+            @include size(auto, auto);
+            max-width: 250px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Боковые Рамки (ныне __frame, ранее before/after) + Цвета | 1ая влж (Компоненты Темы) ----------------------------------------------------------------------------------
+.Vid,
+.ReactDocComponents,
+.CommonTrifles,
+.HooksComponents,
+.PersistState {
+  // РАМКА С ЛЕВА (ныне __frame, ранее before(без hover)) ----------------------------------------------------------------------------------
+  // &::before {
+  &__frame {
+    @include afterbefore;
+    @include before;
+  }
+  // 2ая влж. Блоки Темы (descript, content и frame) ---------------------------------------------------------------------------------
+  & > div {
+    // 3я влж. Разделы Темы (vid-input, state-lifecycle, clComp, )-------------------------------------------------------------------------------
+    & > div {
+      // РАМКА С ПРАВА (ныне __frame, ранее after(без hover)) -----------------------------------------------------------------------------
+      // &::after {
+      & [class$="__frame--"] {
+        @include afterbefore;
+        @include after;
+      }
+    }
+  }
+  //  ----------------------------------------------------------------------------------
+
+  // ЦВЕТА. 2ая влж. Блоки Темы (descript, content и frame) ----------------------------------------------------------------------------------
+  & > div {
+    // 3я влж. Именновыные Многовложенные (сложные) Разделы Темы
+    // .conditional-rendering,
+    // .state-lifecycle,
+    // .countryflags {
+    //   & [class$="__content"] > div {
+    //     // & .conditional-rendering__content > div {
+    //     &:nth-child(odd) {
+    //       background-color: #838383;
+    //       padding: 10px 0 0;
+    //       // background: yellow;
+    //     }
+    //     &:nth-child(even) {
+    //       background-color: #cccccc;
+    //       padding: 10px 0 0;
+    //       // background: coral;
+    //     }
+    //   }
+    // }
+    .conditional-rendering__content,
+    .state-lifecycle__content,
+    .countryflags__content {
+      & > div {
+        // & .conditional-rendering__content > div {
+        &:nth-child(odd) {
+          background-color: #838383;
+          // padding: 10px 0 0;
+          // background: yellow;
+        }
+        &:nth-child(even) {
+          background-color: #cccccc;
+          // padding: 10px 0 0;
+          // background: coral;
+        }
+      }
+    }
+    // цвета бл. 2ой влж (бл. Темы (для content, кроме descript)) ----------------------------------------------------------------------------------
+    &:not([class*="descript"]) > div {
+      &:nth-child(odd) {
+        background-color: #cccccc;
+      }
+      &:nth-child(even) {
+        background-color: #838383;
+      }
+    }
+    // именнованые блоки 2ой влж (Рамки). vid-input, greeting__content
+    //  --------------------------------------------------------------------
+    // [class*="descript"],
+    // [class*="content"]
+    // [class*="oneexp"],
+    // [class*="twoexp"]
+    //  --------------------------------------------------------------------
+    // div.greeting--- > div.greeting__content--- > div.greeting__oneexp---- > div.greeting__oneexp_descript----
+    & .vid-input__content--,
+    .vid-button__content--,
+    .greeting__content--- {
+      // общие цвета Рамок
+      [class*="oneexp"] {
+        background: $orange;
+        // vid-input-11,
+        [class*="descript"] {
+          background: $yellow;
+        }
+        [class*="content"] {
+          width: 100%;
+          background: $green;
+        }
+      }
+      // vid-input-2,
+      [class*="twoexp"] {
+        background: $golub;
+        // vid-input-21,
+        [class*="descript"] {
+          background: $blue;
+        }
+        [class*="content"] {
+          width: 100%;
+          background: $fiol;
+        }
+      }
+    }
+  }
+}
+
+// стили тега PrevRend
+.PrevRend--- {
+  .warning,
+  .warning3 {
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: $WetAsphalt;
+    font-size: 14pt;
+    text-align: center;
+    // border-radius: 10px;
+  }
+  .warning {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 3px 3px 10px -2px rgb(0 0 0 / 50%) inset,
+      -3px 3px 10px 2px rgb(0 0 0 / 50%) inset;
+  }
+  .warning3 {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 3px -3px 10px -2px rgb(0 0 0 / 50%) inset,
+      -3px -3px 10px 2px rgb(0 0 0 / 50%) inset;
+  }
+  .warning2 {
+    // border: 1px solid $WetAsphalt;
+    border-left: 3px solid #333333;
+    border-right: 3px solid #333333;
+  }
+}
+// обводка тень блоков
+// .vid-input--,
+// .state-lifecycle__content--,
+.greeting---,
+.PrevRend---,
+.IfAnd---,
+.IfCondOper---,
+.Lists--- [class*="content"] > div,
+.Keys--- [class*="content"] > div {
+  // [class$="__descript--"] > div,
+  // [class$="__content--"] > div {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 5px 5px rgb(63 63 63 / 20%);
+  margin-bottom: 2px;
+  // }
+}
+.PrevRend__content---,
+.IfAnd-content---,
+.IfCondOper-content--- {
+}
+// стили, цвета, размеры в теге code
+code,
+pre {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+}
+// [class*="descript"] code {
+code:not(pre code) {
+  padding: 0 3px;
+  color: #1a1a1a;
+  background: rgba(255, 229, 100, 0.2);
+  background: rgba(77, 77, 77, 0.5);
+  border-radius: 5px;
+  // font-size: 0.94em;
+  word-break: break-word;
+}
+pre {
+  @include adaptiv-value("line-height", 33, 20, 3);
+  // отображает все пробелы
+  white-space: pre-wrap;
+  // перенос строк внутри слов
+  word-break: break-word;
+  height: auto !important;
+  @include adaptiv-font(24, 12);
+  background: rgb(40, 44, 52);
+  background: #272822;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  overflow: auto;
+  tab-size: 1.5em;
+  padding-top: calc(0px + 5 * ((100vw - 320px) / 1600));
+  padding-bottom: calc(0px + 5 * ((100vw - 320px) / 1600));
+  padding-left: calc(-150px + 580 * ((100vw - 320px) / 1600));
+  padding-right: calc(-150px + 580 * ((100vw - 320px) / 1600));
+  margin-top: calc(5px + 5 * ((100vw - 320px) / 1600));
+  margin-bottom: calc(5px + 5 * ((100vw - 320px) / 1600));
+  margin-left: calc(0px + 0 * ((100vw - 320px) / 1600));
+  margin-right: calc(0px + 0 * ((100vw - 320px) / 1600));
+  text-align: left;
+}
+plaintext {
+  display: none;
+}
+.token {
+  &.keyword {
+    color: rgb(197, 165, 197);
+    color: #58d7ea;
+  }
+  &.function {
+    color: rgb(121, 182, 242);
+    color: #aedb36;
+  }
+  &.punctuation {
+    color: rgb(136, 198, 190);
+    color: #f1d51c;
+  }
+  &.punctuationhtml {
+    color: #eeeeee;
+  }
+  &.parameter {
+    color: #ff8a1f;
+  }
+  &.tag {
+    color: rgb(252, 146, 158);
+    color: #e93565;
+  }
+  &.boolean {
+    color: rgb(255, 139, 80);
+    color: #a67fdc;
+    color: #ad82f6;
+  }
+  &.operator {
+    color: #f12a61;
+  }
+  &.atrule {
+    color: rgb(250, 200, 99);
+  }
+  &.attr-name {
+    color: rgb(197, 165, 197);
+    color: #aedb36;
+  }
+  &.attr-value {
+    color: rgb(141, 200, 145);
+    color: #d1df7d;
+    color: #e7e086;
+  }
+  &.class-name {
+    color: rgb(250, 200, 99);
+    color: #aedb36;
+    text-decoration: underline;
+    font-style: italic;
+    color: darkred;
+    color: $DarkRed;
+    color: $CrimsonBrown;
+    color: #d50000;
+  }
+  &.string {
+    color: rgb(141, 200, 145);
+  }
+  &.number,
+  &.function-name,
+  &.constant,
+  &.symbol,
+  &.deleted {
+    color: rgb(90, 155, 207);
+    color: #5a9bcf;
+  }
+
+  &.entity,
+  &.url,
+  &.variable {
+    color: rgb(215, 222, 234);
+  }
+  &.property {
+    color: rgb(90, 155, 207);
+  }
+
+  &.language-javascript {
+    // color: #a3c770;
+    // color: #7ab0d2;
+    // color: #e79e67;
+    // color: #c685af;
+    // color: #b45575;
+    // color: #8071b4;
+    // color: #bfbd50;
+    // color: #e2356b;
+
+    color: #74deee;
+    color: #58d7ea;
+    color: #85daf7;
+    color: #aedb36;
+
+    color: #2595e7;
+    color: #2595e7;
+
+    color: #fc9433;
+    color: #ff8a1f;
+
+    color: #ef3773;
+    color: #e93565;
+
+    color: #ebdd36;
+    color: #f1d51c;
+
+    color: #a67fdc;
+    color: #ad82f6;
+
+    color: #d1df7d;
+    color: #e7e086;
+
+    // color: ;
+    // color: ;
+
+    // color: ;
+    // color: ;
+
+    // color: ;
+    // color: ;
+
+    // color: ;
+    // color: ;
+
+    // color: ;
+    // color: ;
+  }
+}
+// стили кнопки закруг с тенью
+button.btmShowHide {
+  height: 40px;
+  width: 200px;
+  // @include size(40, 200);
+  @include adaptiv-value("width", 200, 100, 3);
+  margin: 10px 0 0;
+  background: #a3a3a3;
+  font-size: larger;
+  cursor: pointer;
+  border-radius: 10px;
+  display: inline-block;
+  color: white;
+  box-shadow: 0px 0px 3px 3px rgb(0 0 0 / 50%),
+    0px 0px 10px 3px rgb(63 63 63 / 70%) inset;
+  transition: 0.1s linear;
+  transform: scale(1);
+  line-height: 37px;
+  @include adaptiv-value("line-height", 37, 15, 3);
+  &:hover {
+    box-shadow: 0px 0px 1px 1px rgb(0 0 0 / 80%),
+      0px 0px 10px 2px rgb(63 63 63 / 70%) inset;
+    // box-shadow: 0 0 1px 1px rgb(63 63 63/ 70%);
+    transform: scale(1.2);
+  }
+  &:active {
+    box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 50%) inset;
+    // попытки сместить текст при нажатии.
+    // line-height: 35px;
+    // height: 80%;
+    // padding-top: 2px;
+  }
+  height: 100%;
+  div {
+    border-radius: 10px;
+    transition: 0.2s linear;
+    &:hover {
+      box-shadow: 200px 0 0 0 rgb(0 0 0 / 30%) inset;
+    }
+    @media (max-width: $md1NoErr) {
+      &:hover {
+        box-shadow: 155px 0 0 0 rgb(0 0 0 / 30%) inset;
+      }
+    }
+    @media (max-width: $md2NoErr) {
+      &:hover {
+        box-shadow: 145px 0 0 0 rgb(0 0 0 / 30%) inset;
+      }
+    }
+    @media (max-width: $md3NoErr) {
+      &:hover {
+        box-shadow: 130px 0 0 0 rgb(0 0 0 / 30%) inset;
+      }
+    }
+    @media (max-width: $md4NoErr) {
+      &:hover {
+        box-shadow: 110px 0 0 0 rgb(0 0 0 / 30%) inset;
+      }
+    }
+    &:active {
+    }
+  }
+}
+// !!! ДОРАБОТАТЬ !!! !времменой стиль
+.temporary {
+  color: red;
+  text-shadow: 2px 2px 2px black, 2px 2px 2px darkred;
+  text-shadow: 1px 1px 1px black, 1px 1px 1px darkred;
+  code {
+    color: inherit;
+  }
+}

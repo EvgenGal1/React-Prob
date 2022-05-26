@@ -1,0 +1,68 @@
+// @import "../../baseComponents/App.scss";
+
+.Vid {
+  &::before {
+    // content: "Vid.js";
+  }
+}
+.vid__content {
+  &::after {
+    // content: "vid content";
+  }
+}
+
+.vid-input {
+  position: relative;
+  &::after {
+    // content: "Vid Input";
+  }
+}
+.vid-button {
+  position: relative;
+  &::after {
+    // content: "Vid Button";
+  }
+}
+// Общие стили для .vid-input и .vid-button  ----------------------------------------------------------------------------------
+.vid-input,
+.vid-button {
+  // height: 50% !important;
+
+  // пока только для .vid-input ----------------------------------------------------------------------------------
+  h3 {
+    // margin: 3px;
+  }
+  p {
+    // margin: 5px;
+  }
+  span {
+    border-radius: 5px;
+    padding: 0 2px;
+    @media (max-width: $md3NoErr) {
+      padding: 0;
+      border-radius: 1px;
+    }
+    &.kra {
+      // border: 1px solid red;
+      background: $red;
+    }
+    &.ryz {
+      background: $orange;
+    }
+    &.gol {
+      background: $golub;
+    }
+    &.zhe {
+      background: $yellow;
+    }
+    &.zel {
+      background: $green;
+    }
+    &.sin {
+      background: $blue;
+    }
+    &.fiol {
+      background: $fiol;
+    }
+  }
+}

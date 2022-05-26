@@ -1,0 +1,22 @@
+.rendering {
+  & span.rendering-span {
+    animation: rendering 0.5s linear infinite;
+  }
+  & span.rendering-span:hover {
+    animation-play-state: paused;
+  }
+  @keyframes rendering {
+    0% {
+      transform: translate(200%, 0);
+    }
+    100% {
+      transform: translate(5%, 0);
+    }
+  }
+  @media only screen and (max-width: 440px) {
+    .rendering span.rendering-span {
+      animation: none;
+      padding-left: 0;
+    }
+  }
+}

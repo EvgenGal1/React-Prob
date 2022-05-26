@@ -1,0 +1,16 @@
+.PersistState {
+  &::before {
+    // content: "PersistState.js";
+  }
+
+  .clComp {
+    &::after {
+      // content: "clComp";
+    }
+  }
+  .fnComp {
+    &::after {
+      // content: "fnComp";
+    }
+  }
+}

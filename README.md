@@ -2,11 +2,14 @@
 
 ## Этот проект был создан с помощью:
 
-[Создать приложение React. Док](https://create-react-app.dev/docs/documentation-intro), [Создать приложение React. GitHub](https://github.com/facebook/create-react-app),
-[Начало работы. React](https://ru.reactjs.org/docs/getting-started.html), [Крестики-Нолики. React](https://ru.reactjs.org/docs/getting-started.html),
+[Создать приложение React. Док](https://create-react-app.dev/docs/documentation-intro),
+[Создать приложение React. GitHub](https://github.com/facebook/create-react-app),
+[Начало работы. React](https://ru.reactjs.org/docs/getting-started.html),
+[Крестики-Нолики. React](https://ru.reactjs.org/docs/getting-started.html),
 
 ## Типо сборки и учебники
 
+[Справочник React. Create React App](https://reactdev.ru/libs/cra/)
 [Изучение React.js разработки. Gurufy](https://gurufy.dev/document/5f7a0dff8fb7091e0cf61ff0/5f79390297e9f566a79b399f),
 [Создание приложения React с нуля. Jedai Saboteur](https://medium.com/@JedaiSaboteur/creating-a-react-app-from-scratch-f3c693b84658),
 [Учебник по React. Tania Rascia](https://www.taniarascia.com/getting-started-with-react/),
@@ -40,7 +43,7 @@ npx create-react-app имя-проекта
 <script src="my_cod.js"></script>
 ```
 
-3. Создаем файл my_cod.js
+3. Создаем файл my_file.js
    [Совет по минификации кода](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)
 
 ## Добавить JSX в React (Node.js и npm)
@@ -64,6 +67,18 @@ Cинтаксис JSX доступен внутри каждого <script>-те
 ```
 
 <h2 align="center">Структура и Иерархия Проекта</h2>
+
+## Новый проект Create React App с TypeScript
+
+```js
+npx create-react-app my-app --template typescript
+```
+
+### Добавить TypeScript в готовый проект Create React App
+
+```js
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+```
 
 ## Структура и Иерархия Проекта
 
@@ -109,7 +124,13 @@ my-app
 
 ### `npm install react-scripts@latest`
 
-Обновление инструментов сборки
+Обновление инструментов сборки. webpack, babel, кофиг.
+
+Обновление инструментов сборки. webpack, babel, кофиг.
+
+```js
+npm install react-scripts@latest
+```
 
 ## Настройки перед работой
 
@@ -117,6 +138,7 @@ my-app
 [Разработка компонентов изолированно](https://create-react-app.dev/docs/developing-components-in-isolationhttps://create-react-app.dev/docs/developing-components-in-isolation)
 [Анализ размера пакета](https://create-react-app.dev/docs/analyzing-the-bundle-sizehttps://create-react-app.dev/docs/analyzing-the-bundle-size)
 [Использование HTTPS в разработке](https://create-react-app.dev/docs/using-https-in-development)
+ctrl + пробел = подсказка в VSC
 
 ### Некотторые допы для Добавление стилей и активов
 
@@ -187,8 +209,42 @@ state - Состояние подразумевает собой данные, �
 Хуки — это функции, которые позволяют нам «подключаться» к состоянию и функциям жизненного цикла в функциональных компонентах. повторно использовать логику состояния между компонентами. упростите и организуйте наш код, чтобы разделить задачи, вместо того, чтобы позволить несвязанным данным запутаться вместе. избежать путаницы в поведении thisключевого слова. избегайте конструкторов классов, методов привязки и связанных с ними передовых методов JavaScript. два основных правила: 1. Вызывайте хуки только из функций React. 2. Вызывайте хуки только на верхнем уровне, чтобы гарантировать, что хуки вызываются в одном и том же порядке каждый раз, когда компонент рендерится. Распространенные ошибки, которых следует избегать, — вызов хуков внутри циклов, условий или вложенных функций.
 const [currentState, stateSetter] = useState(initialState); Хук useState()позволяет добавлять состояние React к функциональным компонентам. Его следует вызывать на верхнем уровне определения функции React для управления его состоянием. initialState — это необязательное значение, которое можно использовать для установки значения currentStateдля первого рендеринга. Функция stateSetterиспользуется для обновления значения currentStateи повторного рендеринга нашего компонента со следующим значением состояния.
 
-<!-- !!! СТАНДАРТННОЕ ВВЕДЕНИЕ. КАК НИТЬ ПОСМОТРЕТЬ ВЫВОД В GITHUB -->
+## React 18
 
+1. Установка React 18 - $$ npm i react@18 react-dom@18
+
+```node
+npm i react@18 react-dom@18
+```
+
+`npm i react@18 react-dom@18`
+
+2. Изменение import
+
+```js
+// import React from "react";
+// import ReactDOM from "react-dom";
+// ReactDOM.render(<App />, document.getElementById("root"));
+import React from "react";
+import { createRoot } from "react-dom/client";
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
+```
+
+## Дальнейшее изучение. Router, Redux, Recoil, Styled Components и прочее
+
+[Справочник React. Дальнейшее узучение](https://reactdev.ru/libs/)
+[FRONTEND - что учить](https://www.youtube.com/watch?v=5Dm0qaY9HSw)
+TypeScript
+JetBrains IDE vs VSCode
+Vue vs React / Vue и TypeScript
+Nuxt, Node и SSR
+GrathQL / WebSocket
+Webpack vs Rollup мы Parsel
+Angular?
+
+<!-- !!! СТАНДАРТННОЕ ВВЕДЕНИЕ. КАК НИТЬ ПОСМОТРЕТЬ ВЫВОД В GITHUB -->
+<!--
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -259,3 +315,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+$$
+$$ -->

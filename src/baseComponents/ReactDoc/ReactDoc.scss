@@ -1,0 +1,69 @@
+.ReactDocComponents {
+  &__frame {
+    background: #000;
+    &::before {
+      width: 15px;
+      // content: "123";
+    }
+  }
+  &__frame::before {
+    background: #0f0;
+    // content: "456";
+    width: 15px;
+  }
+
+  &::before {
+    // content: "ReactDoc.js";
+  }
+
+  .ReactDocComponents__content {
+    &::after {
+      // content: "ReactDocComponents content";
+    }
+  }
+  .state-lifecycle {
+    position: relative;
+    &::after {
+      // content: "stateLifecycle";
+      // @include afterbefore;
+      // @include after;
+      // top: 0;
+      // right: 0;
+    }
+  }
+  .conditional-rendering {
+    position: relative;
+    &::after {
+      // content: "ReactDocComponents content";
+      // top: 0;
+      // right: 0;
+    }
+  }
+  .greeting {
+    &::after {
+      // content: "greeting";
+    }
+  }
+  .IfAnd {
+    &::after {
+      // content: "IfAnd";
+    }
+  }
+  .IfCondOper {
+    &::after {
+      // content: "IfCondOper";
+    }
+  }
+  .PrevRend {
+    &::after {
+      // content: "PrevRend";
+    }
+  }
+  .conditional-rendering {
+    &::after {
+      // content: "ConditionalRendering";
+    }
+  }
+  .ListsAndKeys {
+  }
+}

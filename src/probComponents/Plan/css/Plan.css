@@ -1,13 +1,13 @@
-.Plan {
+.plan {
   text-align: center;
 }
-.Plan-logo {
+.plan__logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .Plan-logo {
+  .plan__logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }

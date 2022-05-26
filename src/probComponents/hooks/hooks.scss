@@ -1,0 +1,72 @@
+.toggleCl {
+  color: red;
+  background: #000;
+}
+.yellowCl {
+  color: green;
+  background: yellow;
+}
+.menuActive {
+  display: none;
+  overflow: hidden;
+}
+//  ----------------------------------------------------------------------------------
+
+.HooksComponents {
+  &::before {
+    // content: "HooksComponents.js";
+  }
+
+  .suspense {
+    &::after {
+      // content: "Suspense";
+    }
+  }
+  .suspenselist {
+    &::after {
+      // content: "SuspenseList";
+    }
+  }
+  .transitiondefrred {
+    &::after {
+      // content: "TransitionDefrred";
+    }
+  }
+
+  .transitiondefrred {
+    .transitiondefrred__input {
+      display: block;
+      width: 300px;
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
+    }
+
+    li:hover {
+      color: red;
+      cursor: pointer;
+      background-color: #eeeeee;
+    }
+  }
+}
+// .rendering {
+//   & span.rendering-span {
+//     animation: rendering 0.5s linear infinite;
+//   }
+//   & span.rendering-span:hover {
+//     animation-play-state: paused;
+//   }
+//   @keyframes rendering {
+//     0% {
+//       transform: translate(200%, 0);
+//     }
+//     100% {
+//       transform: translate(5%, 0);
+//     }
+//   }
+//   @media only screen and (max-width: 440px) {
+//     .rendering span.rendering-span {
+//       animation: none;
+//       padding-left: 0;
+//     }
+//   }
+// }
