@@ -456,6 +456,7 @@ plaintext {
     color: $DarkRed;
     color: $CrimsonBrown;
     color: #d50000;
+    font-weight: bold;
   }
   &.string {
     color: rgb(141, 200, 145);
@@ -476,6 +477,9 @@ plaintext {
   }
   &.property {
     color: rgb(90, 155, 207);
+  }
+  &.comment {
+    color: rgb(178, 178, 178);
   }
 
   &.language-javascript {

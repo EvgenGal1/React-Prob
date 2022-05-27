@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 // теперь все Общие SCSS файлы собранны в один по пути в "./baseComponents/App.scss". В компонент подкл стили относящиеся только к нему
 import "./ReactDoc.scss";
@@ -317,9 +318,9 @@ class IfAnd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name2: "Mailbox",
+      // name2: "Mailbox",
       nameRoot: <span className="token class-name">Mailbox</span>,
-      nameFn1: "Mailbox",
+      // nameFn1: "Mailbox",
     };
   }
   render() {
@@ -372,7 +373,7 @@ class IfAnd extends React.Component {
               <span className="token parameter">props</span>
               <span className="token punctuation">)</span>
               <span className="token punctuation">&#123;</span> */}
-              <FuncNameProps nameFn1={this.state.nameFn1} />
+              <FuncNameProps nameFn={"Mailbox"} />
               <br />
               {"  "}
               <span className="token keyword">const</span> unreadMessages{" "}
@@ -615,7 +616,7 @@ class PrevRend extends React.Component {
         <code className="code-jsx">
           <div className="warning">Warning!</div>
           <div className="warning2">
-            <FuncNameProps nameFn1={this.state.nameFn1} />
+            <FuncNameProps nameFn={"WarningBanner"} />
             <br />
             {"  "}
             <span className="token tag">if</span>{" "}
@@ -930,7 +931,7 @@ class Lists extends React.Component {
     super(props);
     this.state = {
       showKey: false,
-      nameFn1: "NumberList",
+      // nameFn1: "NumberList",
     };
     // попытка преобразования в общую fn для кнп knpToggleClick
     // knpToggleClick = knpToggleClick.bind(this);
@@ -977,7 +978,7 @@ class Lists extends React.Component {
           <div className="Transformation__content----">
             <pre className="code-jsx">
               <code className="code-jsx">
-                <ConstNum num={" "} />
+                <ConstNum num={" "} name1={"numbers"} />
                 <br />
                 <ConstNameMetdParam
                   name={"listItems"}
@@ -1026,7 +1027,7 @@ class Lists extends React.Component {
           <div className="RenderingMultiple__content----">
             <pre className="code-jsx">
               <code className="code-jsx">
-                <ConstNum num={" "} />
+                <ConstNum num={" "} name1={"numbers"} />
                 <br />
                 <ConstNameMetdParam
                   name={"listItems"}
@@ -1097,10 +1098,10 @@ class Lists extends React.Component {
           <div className="BasicListComponent__content----">
             <pre>
               <code>
-                <FuncNameProps nameFn1={this.state.nameFn1} />
+                <FuncNameProps nameFn={"NumberList"} />
                 <br />
                 {"  "}
-                <ConstNum />
+                <ConstNum name1={"numbers"} />
                 <br />
                 {"  "}
                 <ConstNameMetdParam
@@ -1145,7 +1146,7 @@ class Lists extends React.Component {
                 <span className="token punctuation">);</span>
                 <br />
                 <br />
-                <ConstNum num={" "} />
+                <ConstNum num={" "} name1={"numbers"} />
                 <br />
                 <ConstRoot nameRoot={this.Num()} />
               </code>
@@ -1178,48 +1179,361 @@ class Lists extends React.Component {
     );
   }
 }
+// Ключи
 class Keys extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showErr: true,
+    };
+    this.knpToggleClick = this.knpToggleClick.bind(this);
+  }
+  knpToggleClick() {
+    this.setState((state) => ({
+      showErr: !state.showErr,
+      // show: !state.show,
+    }));
   }
   render() {
+    // Ключ по id и index
     const KeyByIdAndIndex = () => {
       return (
         <div className="KeyByIdAndIndex">
           <div className="KeyByIdAndIndex__description">
             <h3>Ключ по id и index</h3>
-            <div></div>
+            <div>
+              Ключи помогают React определить, какие элементы были изменены,
+              добавлены или удалены. Ключи должны быть переданы элементам внутри
+              массива, чтобы придать элементам стабильную идентичность:
+            </div>
             <div></div>
           </div>
-          <div className="KeyByIdAndIndex__content">2</div>
+          <div className="KeyByIdAndIndex__content">
+            <pre>
+              <code>
+                <ConstNum num={" "} name1={"numbers"} />
+                <br />
+                <ConstNameMetdParam
+                  name={"listItems"}
+                  name2={"numbers"}
+                  metd={"map"}
+                  param={"number"}
+                />
+                <BrSp sp={"  "} />
+                <TagAttrValJSX
+                  show={true}
+                  // попытка преобразования в общую fn для кнп knpToggleClick
+                  // show={this.state.show}
+                  tag={"li"}
+                  attr={"key"}
+                  val={
+                    <>
+                      number<span className="token operator">.</span>
+                      <span className="token attr-name">toString</span>
+                      <span className="token punctuation">()</span>
+                    </>
+                  }
+                  exp={"number"}
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                />
+                <br />
+                <span className="token punctuation">);</span>
+              </code>
+            </pre>
+          </div>
+          <div className="KeyByIdAndIndex__description">
+            <div>
+              Лучший способ выбрать ключ — использовать строку, которая
+              однозначно идентифицирует элемент списка среди его братьев и
+              сестер. Чаще всего вы будете использовать идентификаторы из ваших
+              данных в качестве ключей:
+            </div>
+          </div>
+          <div className="KeyByIdAndIndex__content">
+            <pre>
+              <code>
+                <ConstNameMetdParam
+                  name={"todoItems"}
+                  name2={"todos"}
+                  metd={"map"}
+                  param={"todo"}
+                />
+                <BrSp sp={"  "} />
+                <TagAttrValJSX
+                  show={true}
+                  // попытка преобразования в общую fn для кнп knpToggleClick
+                  // show={this.state.show}
+                  tag={"li"}
+                  attr={"key"}
+                  val={
+                    <>
+                      todo<span className="token operator">.</span>
+                      <span className="token attr-name">id</span>
+                    </>
+                  }
+                  exp={"todo"}
+                  exp2={
+                    <>
+                      <span className="token operator">.</span>
+                      <span className="token attr-name">text</span>
+                    </>
+                  }
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                />
+                <BrSp />
+                <span className="token punctuation">);</span>
+              </code>
+            </pre>
+          </div>
+          <div className="KeyByIdAndIndex__description">
+            <div>
+              Если у вас нет стабильных идентификаторов для отображаемых
+              элементов, вы можете использовать индекс элемента в качестве ключа
+              в крайнем случае:
+            </div>
+          </div>
+          <div className="KeyByIdAndIndex__content">
+            <pre>
+              <code>
+                <ConstNameMetdParam
+                  name={"todoItems"}
+                  name2={"todos"}
+                  metd={"map"}
+                  param={"todo"}
+                  param2={
+                    <>
+                      <span className="token punctuation">,</span>{" "}
+                      <span className="token parameter">index</span>
+                    </>
+                  }
+                />
+                <br />
+                {"  "}
+                <span className="token comment">
+                  // для редких случаев, когда нет стабильных id
+                </span>
+                <br />
+                {"  "}
+                <TagAttrValJSX
+                  show={true}
+                  // попытка преобразования в общую fn для кнп knpToggleClick
+                  // show={this.state.show}
+                  tag={"li"}
+                  attr={"key"}
+                  val={<>todo</>}
+                  exp={"todo"}
+                  exp2={
+                    <>
+                      <span className="token operator">.</span>
+                      <span className="token attr-name">text</span>
+                    </>
+                  }
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                />
+                <br />
+                <span className="token punctuation">);</span>
+              </code>
+            </pre>
+          </div>
+          <div className="KeyByIdAndIndex__description">
+            <div>
+              Не рекомендуется использовать индексы для ключей, если порядок
+              элементов может измениться. Это может негативно сказаться на
+              производительности и вызвать проблемы с состоянием компонентов.
+              Если вы решите не назначать явный ключ элементам списка, React по
+              умолчанию будет использовать индексы в качестве ключей.
+            </div>
+          </div>
         </div>
       );
     };
+    // Извлечение компонентов с ключами
     const ExtractComponentKeys = () => {
       return (
         <div className="ExtractComponentKeys">
           <div className="ExtractComponentKeys__description">
             <h3>Извлечение компонентов с ключами</h3>
-            <div></div>
-            <div></div>
+            <div>
+              Например, если вы извлекаете компонент <code>ListItem</code>, вы
+              должны хранить ключ в <code>&lt;ListItem /&gt;</code> элементах
+              массива, а не в самом <code>&lt;li&gt;</code> элементе{" "}
+              <code>ListItem</code>. Элементам внутри <code>map()</code> вызова
+              нужны ключи.
+            </div>
+            <div>
+              <button className="btmShowHide" onClick={this.knpToggleClick}>
+                <div>{this.state.showErr ? "Hide" : "Show"}</div>
+              </button>
+            </div>
           </div>
-          <div className="ExtractComponentKeys__content">2</div>
+          <div className="ExtractComponentKeys__content">
+            <pre>
+              <code>
+                <FuncNameProps nameFn={"ListItem"} />
+                <BrSp sp={"  "} />
+                <ConstNum name1={"value"} show={!this.state.showErr} />
+                <BrSp sp={"  "} />
+                <ReturnTagExp
+                  show={this.state.showErr}
+                  tag={"li"}
+                  attr={"key"}
+                  val1={"value"}
+                  metd={
+                    <>
+                      <span className="token operator">.</span>
+                      <span className="token attr-name">toString</span>
+                      <span className="token punctuation">()</span>
+                    </>
+                  }
+                  exp={"value"}
+                  expDop={
+                    <CondRender
+                      show={this.state.showErr}
+                      value1={<></>}
+                      value2={
+                        <>
+                          <span className="token parameter">props</span>
+                          <span className="token operator">.</span>
+                        </>
+                      }
+                    />
+                  }
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                  comment={
+                    <CondRender
+                      show={this.state.showErr}
+                      value1={
+                        <>
+                          <br />
+                          {"    "}
+                          <span className="token comment">
+                            // Неправильно! Здесь нет необходимости указывать
+                            ключ:
+                          </span>
+                        </>
+                      }
+                      value2={
+                        <>
+                          <br />
+                          {"    "}
+                          <span className="token comment">
+                            // Верно! Здесь нет необходимости указывать ключ:
+                          </span>
+                        </>
+                      }
+                    />
+                  }
+                />
+                <BrSp />
+                <span className="token punctuation">&#125;</span>
+                <BrSp />
+                <BrSp />
+                <FuncNameProps nameFn={"NumberList"} />
+                <BrSp sp={"  "} />
+                <ConstNum name1={"numbers"} />
+                <BrSp sp={"  "} />
+                <ConstNameMetdParam
+                  name={"listItems"}
+                  name2={"numbers"}
+                  metd={"map"}
+                  param={"number"}
+                />
+                <BrSp sp={"    "} />
+                <CondRender
+                  show={this.state.showErr}
+                  value1={
+                    <>
+                      <span className="token comment">
+                        // Неправильно! Ключ должен был быть указан здесь:
+                      </span>
+                    </>
+                  }
+                  value2={
+                    <>
+                      <span className="token comment">
+                        // Верно! Ключ должен быть указан внутри массива:
+                      </span>
+                    </>
+                  }
+                />
+                <BrSp sp={"    "} />
+                <CompLet
+                  name={"ListItem"}
+                  prop1={"value"}
+                  val1={"number"}
+                  prop2={
+                    <CondRender
+                      show={this.state.showErr}
+                      value1={<></>}
+                      value2={
+                        <>
+                          <AttrValMetd
+                            attr={"key"}
+                            val1={
+                              <span className="token parameter">number</span>
+                            }
+                            metd={
+                              <>
+                                <span className="token operator">.</span>
+                                <span className="token attr-name">
+                                  toString
+                                </span>
+                                <span className="token punctuation">()</span>
+                              </>
+                            }
+                          />
+                        </>
+                      }
+                    />
+                  }
+                />
+                <BrSp sp={"  "} />
+                <span className="token punctuation">);</span>
+                <BrSp sp={"  "} />
+                <ReturnTagExp
+                  tag={"ul"}
+                  exp={"listItems"}
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                />
+                <br />
+                <span className="token punctuation">&#125;</span>
+              </code>
+            </pre>
+          </div>
         </div>
       );
     };
+    // value = Number
+    // <ListItem value={number} key={number.toString()}/>
+    // уникальность ключей среди братьев
     const UniqKeyForBrothers = () => {
       return (
         <div className="UniqKeyForBrothers">
           <div className="UniqKeyForBrothers__description">
             <h3>Ключи должны быть уникальными только среди братьев и сестер</h3>
-            <div></div>
+            <div>
+              Ключи, используемые в массивах, должны быть уникальными среди
+              своих братьев и сестер. Однако они не обязательно должны быть
+              глобально уникальными. Мы можем использовать одни и те же ключи
+              при создании двух разных массивов:
+            </div>
             <div></div>
           </div>
           <div className="UniqKeyForBrothers__content">2</div>
         </div>
       );
     };
+    // Встраивание map() в JSX
     const BuildMapInJSX = () => {
       return (
         <div className="BuildMapInJSX">
@@ -1269,8 +1583,33 @@ class ListsAndKeys extends React.Component {
 }
 
 // ОБЩИЕ ПЕРЕМЕННЫЕ стиль/код/элементы ----------------------------------------------------------------------------------
-// const numbers = [1, 2, 3, 4, 5];
-const ConstNum = ({ num }) => {
+// тег <br/> + отступ
+const BrSp = ({ sp }) => {
+  return (
+    <>
+      <br />
+      {sp}
+    </>
+  );
+};
+// переменная Component | <Name prop={val} />
+const CompLet = ({ name, prop1, prop2, val1, val2 }) => {
+  return (
+    <>
+      <span className="token punctuationhtml">&lt;</span>
+      <span className="token class-name">{name}</span>{" "}
+      <span className="token attr-name">{prop1}</span>
+      <span className="token punctuation">=&#123;</span>
+      <span className="token parameter">{val1}</span>
+      {val2}
+      <span className="token punctuation">&#125;</span>
+      {prop2}
+      <span className="token punctuationhtml">/&gt;</span>
+    </>
+  );
+};
+// const name1 = props.name1 || [1, 2, 3, 4, 5] | show - null
+const ConstNum = ({ name1, name2, num, show }) => {
   // const numbers = num.numbers;
   let num1;
   // let num1 = num;
@@ -1297,45 +1636,72 @@ const ConstNum = ({ num }) => {
     num1 = (
       <>
         <span className="token parameter">props</span>
-        <span className="token operator">.</span>numbers
+        <span className="token operator">.</span>
+        {name1}
       </>
     );
   }
+  if (show) {
+    return null;
+  }
   return (
     <>
-      <span className="token keyword">const</span> numbers{" "}
+      <span className="token keyword">const</span> {name1}{" "}
       <span className="token operator">=</span> {num1}
       {/* {num2} */}
     </>
   );
 };
-// return (<tag(1)>{exp}</tag>) | 1 - attr={val} | br, sp1(пробел), sp2(пробел)
-const ReturnTagExp = ({ tag, attr, val, exp, br, sp1, sp2 }) => {
+// attr={val1,val2}
+const AttrValMetd = ({ attr, val1, metd }) => {
+  return (
+    <>
+      {" "}
+      <span className="token attr-name">{attr}</span>
+      {/* <span className="token  punctuation">=</span> */}
+      <span className="token punctuation">=&#123;</span>
+      {val1}
+      {metd}
+      <span className="token punctuation">&#125;</span>
+    </>
+  );
+};
+// return (<tag(1)>{exp}</tag>) | 1 -  | br, sp1(пробел), sp2(пробел), comment
+const ReturnTagExp = ({
+  tag,
+  attr,
+  val1,
+  metd,
+  exp,
+  expDop,
+  show,
+  br,
+  sp1,
+  sp2,
+  comment,
+}) => {
   let letAttr;
-  if (attr) {
+  // при передаче show показать атрибут и значение
+  if (show) {
     letAttr = (
       <>
-        {" "}
-        <span className="token attr-name">{attr}</span>
-        <span className="token script-punctuation punctuation">=</span>
-        <span className="token punctuation">&#123;</span>
-        {val}
-        <span className="token punctuation">&#125;</span>
+        <AttrValMetd attr={attr} val1={val1} metd={metd} />
       </>
     );
-  } else if (attr) {
-    letAttr = null;
   }
   return (
     <>
       <span className="token tag">return</span>{" "}
       <span className="token punctuation">(</span>
+      {comment}
       {br}
       {sp1}
       <span className="token punctuationhtml">&lt;</span>
       <span className="token tag">{tag}</span>
+      {letAttr}
       <span className="token punctuationhtml">&gt;</span>
       <span className="token punctuation">&#123;</span>
+      {expDop}
       {exp}
       <span className="token punctuation">&#125;</span>
       <span className="token punctuationhtml">&lt;/</span>
@@ -1348,7 +1714,7 @@ const ReturnTagExp = ({ tag, attr, val, exp, br, sp1, sp2 }) => {
   );
 };
 // const name = name2.metd((param) => | const listItems = numbers.map((number) =>
-const ConstNameMetdParam = ({ name, name2, metd, param }) => {
+const ConstNameMetdParam = ({ name, name2, metd, param, param2 }) => {
   return (
     <>
       <span className="token keyword">const</span> {name}{" "}
@@ -1358,13 +1724,14 @@ const ConstNameMetdParam = ({ name, name2, metd, param }) => {
       <span className="token punctuation">(</span>
       <span className="token punctuation">(</span>
       <span className="token parameter">{param}</span>
+      {param2}
       <span className="token punctuation">)</span>{" "}
       <span className="token operator">=&gt;</span>
     </>
   );
 };
 // <tag(1)>{exp}</tag> | 1 - attr={val} | show(boolean), br, sp1(пробел), sp2(пробел)
-const TagAttrValJSX = ({ show, tag, attr, val, exp, br, sp1, sp2 }) => {
+const TagAttrValJSX = ({ tag, attr, val, exp, exp2, show, br, sp1, sp2 }) => {
   let letAttr;
   // if (!props.warn) {
   // if (attr) {
@@ -1375,7 +1742,7 @@ const TagAttrValJSX = ({ show, tag, attr, val, exp, br, sp1, sp2 }) => {
         <span className="token attr-name">{attr}</span>
         <span className="token script-punctuation punctuation">=</span>
         <span className="token punctuation">&#123;</span>
-        {val}
+        <span className="token parameter">{val}</span>
         <span className="token punctuation">&#125;</span>
       </>
     );
@@ -1392,6 +1759,7 @@ const TagAttrValJSX = ({ show, tag, attr, val, exp, br, sp1, sp2 }) => {
       {sp1}
       <span className="token punctuation">&#123;</span>
       <span className="token parameter">{exp}</span>
+      {exp2}
       <span className="token punctuation">&#125;</span>
       {br}
       {sp2}
@@ -1402,25 +1770,33 @@ const TagAttrValJSX = ({ show, tag, attr, val, exp, br, sp1, sp2 }) => {
   );
   // }
 };
+// коментарии - show(state|props), com1, com2 - комментарии 1ый(по умолчанию),2ой(замена)
+const CondRender = ({ show, value1, value2 }) => {
+  // на условии if else
+  // if (show) {
+  //   return <>{value1}</>;
+  // } else {
+  //   return <>{value2}</>;
+  // }
+  // на условном операторе
+  return <>{show ? value1 : value2}</>;
+};
 // начало fn + имя функции + props
-class FuncNameProps extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = "";
-  }
-  render() {
-    return (
-      <>
-        <span className="token keyword">function</span>{" "}
-        <span className="token class-name">{this.props.nameFn1}</span>
-        <span className="token punctuation">(</span>
-        <span className="token parameter">props</span>
-        <span className="token punctuation">)</span>{" "}
-        <span className="token punctuation">&#123;</span>
-      </>
-    );
-  }
-}
+// function nameFn(props) {
+const FuncNameProps = ({ nameFn, param1, param2 }) => {
+  return (
+    <>
+      <span className="token keyword">function</span>{" "}
+      <span className="token class-name">{nameFn}</span>
+      <span className="token punctuation">(</span>
+      <span className="token parameter">props</span>
+      {/* <span className="token parameter">{param1}</span> */}
+      <span className="token parameter">{param2}</span>
+      <span className="token punctuation">)</span>{" "}
+      <span className="token punctuation">&#123;</span>
+    </>
+  );
+};
 // покдл и отрисовка id root
 class ConstRoot extends React.Component {
   constructor(props) {
