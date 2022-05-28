@@ -252,6 +252,10 @@ class Greeting extends React.Component {
             Во второй используем переменные для хранения эл-ов. Помошь в
             визуале, логика такая же.
           </div>
+          <div className="IfAnd__descript--- temporary">
+            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+            <code style={{ color: "red" }}>!!!</code> НАПИСАТЬ КОД | ПЕРЕБРАТЬ
+          </div>
         </div>
         <div className="greeting__content---">
           <div className="greeting__oneexp----">
@@ -930,7 +934,7 @@ class Lists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showKey: false,
+      showKey: true,
       // nameFn1: "NumberList",
     };
     // попытка преобразования в общую fn для кнп knpToggleClick
@@ -938,7 +942,7 @@ class Lists extends React.Component {
     this.knpToggleClick = this.knpToggleClick.bind(this);
   }
   // переменные вставки когда
-  Num = () => {
+  nameRoot = () => {
     return (
       <>
         {/* <span className="token punctuation">&lt;</span> */}
@@ -978,13 +982,13 @@ class Lists extends React.Component {
           <div className="Transformation__content----">
             <pre className="code-jsx">
               <code className="code-jsx">
-                <ConstNum num={" "} name1={"numbers"} />
+                <ConstNamePlus num={" "} name1={"numbers"} />
                 <br />
-                <ConstNameMetdParam
-                  name={"listItems"}
+                <ConstNamePlus
+                  name1={"listItems"}
                   name2={"numbers"}
                   metd={"map"}
-                  param={"number"}
+                  param1={"number"}
                 />{" "}
                 <span className="token parameter">number</span>{" "}
                 <span className="token operator">*</span>{" "}
@@ -1027,19 +1031,19 @@ class Lists extends React.Component {
           <div className="RenderingMultiple__content----">
             <pre className="code-jsx">
               <code className="code-jsx">
-                <ConstNum num={" "} name1={"numbers"} />
+                <ConstNamePlus num={" "} name1={"numbers"} />
                 <br />
-                <ConstNameMetdParam
-                  name={"listItems"}
+                <ConstNamePlus
+                  name1={"listItems"}
                   name2={"numbers"}
                   metd={"map"}
-                  param={"number"}
+                  param1={"number"}
                 />
                 <br />
                 {"  "}
                 <TagAttrValJSX
                   tag={"li"}
-                  exp={"number"}
+                  exp1={"number"}
                   // br={<br />}
                   // sp1={"    "}
                   // sp2={"  "}
@@ -1051,7 +1055,7 @@ class Lists extends React.Component {
                 <br />
                 <ReturnTagExp
                   tag={"ul"}
-                  exp={"listItems"}
+                  exp1={"listItems"}
                   br={<br />}
                   sp1={"  "}
                 />
@@ -1101,31 +1105,31 @@ class Lists extends React.Component {
                 <FuncNameProps nameFn={"NumberList"} />
                 <br />
                 {"  "}
-                <ConstNum name1={"numbers"} />
+                <ConstNamePlus name1={"numbers"} />
                 <br />
                 {"  "}
-                <ConstNameMetdParam
-                  name={"listItems"}
+                <ConstNamePlus
+                  name1={"listItems"}
                   name2={"numbers"}
                   metd={"map"}
-                  param={"number"}
+                  param1={"number"}
                 />
                 <br />
                 {"    "}
                 <TagAttrValJSX
-                  show={this.state.showKey}
+                  hide={this.state.showKey}
                   // попытка преобразования в общую fn для кнп knpToggleClick
                   // show={this.state.show}
                   tag={"li"}
                   attr={"key"}
-                  val={
+                  val1={
                     <>
                       number<span className="token punctuation">.</span>
                       <span className="token attr-name">toString</span>
                       <span className="token punctuation">()</span>
                     </>
                   }
-                  exp={"number"}
+                  exp1={"number"}
                   // br={<br />}
                   // sp1={"      "}
                   // sp2={"    "}
@@ -1137,7 +1141,7 @@ class Lists extends React.Component {
                 {"  "}
                 <ReturnTagExp
                   tag={"ul"}
-                  exp={"listItems"}
+                  exp1={"listItems"}
                   sp1={"    "}
                   sp2={"  "}
                   br={<br />}
@@ -1146,9 +1150,9 @@ class Lists extends React.Component {
                 <span className="token punctuation">);</span>
                 <br />
                 <br />
-                <ConstNum num={" "} name1={"numbers"} />
+                <ConstNamePlus num={" "} name1={"numbers"} />
                 <br />
-                <ConstRoot nameRoot={this.Num()} />
+                <ConstRoot nameRoot={this.nameRoot()} />
               </code>
             </pre>
           </div>
@@ -1185,6 +1189,7 @@ class Keys extends React.Component {
     super(props);
     this.state = {
       showErr: true,
+      // nameRoot: <span className="token class-name">Page</span>,
     };
     this.knpToggleClick = this.knpToggleClick.bind(this);
   }
@@ -1194,6 +1199,22 @@ class Keys extends React.Component {
       // show: !state.show,
     }));
   }
+  nameRoot = () => {
+    return (
+      <>
+        {/* Blog posts={posts}  */}
+        {/* <span className="token punctuation">&lt;</span> */}
+        <span className="token class-name">Blog</span>{" "}
+        <span className="token attr-name">posts</span>
+        <span className="token operator">=</span>
+        <span className="token punctuation">&#123;</span>
+        <span className="token punctuationhtml">posts</span>
+        <span className="token punctuation">&#125;</span>
+        {/* <span className="token punctuation">/&gt;</span> */}
+        {/* "NumberList numbers=&#123;numbers2&#125;" */}
+      </>
+    );
+  };
   render() {
     // Ключ по id и index
     const KeyByIdAndIndex = () => {
@@ -1211,29 +1232,29 @@ class Keys extends React.Component {
           <div className="KeyByIdAndIndex__content">
             <pre>
               <code>
-                <ConstNum num={" "} name1={"numbers"} />
+                <ConstNamePlus num={" "} name1={"numbers"} />
                 <br />
-                <ConstNameMetdParam
-                  name={"listItems"}
+                <ConstNamePlus
+                  name1={"listItems"}
                   name2={"numbers"}
                   metd={"map"}
-                  param={"number"}
+                  param1={"number"}
                 />
                 <BrSp sp={"  "} />
                 <TagAttrValJSX
-                  show={true}
+                  // hide={true}
                   // попытка преобразования в общую fn для кнп knpToggleClick
                   // show={this.state.show}
                   tag={"li"}
                   attr={"key"}
-                  val={
+                  val1={
                     <>
                       number<span className="token operator">.</span>
                       <span className="token attr-name">toString</span>
                       <span className="token punctuation">()</span>
                     </>
                   }
-                  exp={"number"}
+                  exp1={"number"}
                   br={<br />}
                   sp1={"    "}
                   sp2={"  "}
@@ -1254,26 +1275,26 @@ class Keys extends React.Component {
           <div className="KeyByIdAndIndex__content">
             <pre>
               <code>
-                <ConstNameMetdParam
-                  name={"todoItems"}
+                <ConstNamePlus
+                  name1={"todoItems"}
                   name2={"todos"}
                   metd={"map"}
-                  param={"todo"}
+                  param1={"todo"}
                 />
                 <BrSp sp={"  "} />
                 <TagAttrValJSX
-                  show={true}
+                  // hide={true}
                   // попытка преобразования в общую fn для кнп knpToggleClick
                   // show={this.state.show}
                   tag={"li"}
                   attr={"key"}
-                  val={
+                  val1={
                     <>
                       todo<span className="token operator">.</span>
                       <span className="token attr-name">id</span>
                     </>
                   }
-                  exp={"todo"}
+                  exp1={"todo"}
                   exp2={
                     <>
                       <span className="token operator">.</span>
@@ -1299,11 +1320,11 @@ class Keys extends React.Component {
           <div className="KeyByIdAndIndex__content">
             <pre>
               <code>
-                <ConstNameMetdParam
-                  name={"todoItems"}
+                <ConstNamePlus
+                  name1={"todoItems"}
                   name2={"todos"}
                   metd={"map"}
-                  param={"todo"}
+                  param1={"todo"}
                   param2={
                     <>
                       <span className="token punctuation">,</span>{" "}
@@ -1319,13 +1340,13 @@ class Keys extends React.Component {
                 <br />
                 {"  "}
                 <TagAttrValJSX
-                  show={true}
+                  // show={true}
                   // попытка преобразования в общую fn для кнп knpToggleClick
                   // show={this.state.show}
                   tag={"li"}
                   attr={"key"}
-                  val={<>todo</>}
-                  exp={"todo"}
+                  val1={<>todo</>}
+                  exp1={"todo"}
                   exp2={
                     <>
                       <span className="token operator">.</span>
@@ -1363,8 +1384,8 @@ class Keys extends React.Component {
               Например, если вы извлекаете компонент <code>ListItem</code>, вы
               должны хранить ключ в <code>&lt;ListItem /&gt;</code> элементах
               массива, а не в самом <code>&lt;li&gt;</code> элементе{" "}
-              <code>ListItem</code>. Элементам внутри <code>map()</code> вызова
-              нужны ключи.
+              <code>ListItem</code>. Известно по опыту что элементам внутри{" "}
+              <code>map()</code> вызова нужны ключи.
             </div>
             <div>
               <button className="btmShowHide" onClick={this.knpToggleClick}>
@@ -1377,22 +1398,22 @@ class Keys extends React.Component {
               <code>
                 <FuncNameProps nameFn={"ListItem"} />
                 <BrSp sp={"  "} />
-                <ConstNum name1={"value"} show={!this.state.showErr} />
+                <ConstNamePlus name1={"value"} hide={!this.state.showErr} />
                 <BrSp sp={"  "} />
                 <ReturnTagExp
-                  show={this.state.showErr}
+                  show={!this.state.showErr}
                   tag={"li"}
                   attr={"key"}
                   val1={"value"}
-                  metd={
+                  val2={
                     <>
                       <span className="token operator">.</span>
                       <span className="token attr-name">toString</span>
                       <span className="token punctuation">()</span>
                     </>
                   }
-                  exp={"value"}
-                  expDop={
+                  exp2={"value"}
+                  exp1={
                     <CondRender
                       show={this.state.showErr}
                       value1={<></>}
@@ -1438,13 +1459,13 @@ class Keys extends React.Component {
                 <BrSp />
                 <FuncNameProps nameFn={"NumberList"} />
                 <BrSp sp={"  "} />
-                <ConstNum name1={"numbers"} />
+                <ConstNamePlus name1={"numbers"} />
                 <BrSp sp={"  "} />
-                <ConstNameMetdParam
-                  name={"listItems"}
+                <ConstNamePlus
+                  name1={"listItems"}
                   name2={"numbers"}
                   metd={"map"}
-                  param={"number"}
+                  param1={"number"}
                 />
                 <BrSp sp={"    "} />
                 <CondRender
@@ -1480,7 +1501,7 @@ class Keys extends React.Component {
                             val1={
                               <span className="token parameter">number</span>
                             }
-                            metd={
+                            val2={
                               <>
                                 <span className="token operator">.</span>
                                 <span className="token attr-name">
@@ -1500,7 +1521,7 @@ class Keys extends React.Component {
                 <BrSp sp={"  "} />
                 <ReturnTagExp
                   tag={"ul"}
-                  exp={"listItems"}
+                  exp1={"listItems"}
                   br={<br />}
                   sp1={"    "}
                   sp2={"  "}
@@ -1529,7 +1550,203 @@ class Keys extends React.Component {
             </div>
             <div></div>
           </div>
-          <div className="UniqKeyForBrothers__content">2</div>
+          <div className="UniqKeyForBrothers__content">
+            <pre>
+              <code>
+                <FuncNameProps nameFn={"Blog"} />
+                <BrSp sp={"  "} />
+                <ConstNamePlus name1={"sidebar"} empty={true} />
+                <BrSp sp={"    "} />
+                {/* <tag(1)>{exp exp2}</tag> | 1 - attr={val} | show(boolean), br, sp1(пробел), sp2(пробел) */}
+                <TagAttrValJSX
+                  tag={"ul"}
+                  attr={""}
+                  val1={""}
+                  exp1={
+                    <NameMetdPearam
+                      // props.posts.map((post) =>
+                      name2={
+                        <>
+                          <span className="token parametr">props</span>
+                          <span className="token operator">.</span>
+                          <span className="token constName">posts</span>
+                        </>
+                      }
+                      metd={"map"}
+                      param1={"post"}
+                    />
+                  }
+                  exp2={
+                    <TagAttrValJSX
+                      tag={"li"}
+                      attr={"key"}
+                      val1={
+                        <>
+                          <span className="token parametr">post</span>
+                          <span className="token operator">.</span>
+                          <span className="token attr-name">id</span>
+                        </>
+                      }
+                      // hide={true}
+                      exp1={"post"}
+                      exp2={
+                        <>
+                          <span className="token operator">.</span>
+                          <span className="token attr-name">title</span>
+                        </>
+                      }
+                      br={<br />}
+                      sp1={"          "}
+                      sp2={"        "}
+                      dop1={<BrSp sp={"        "} />}
+                      dop2={
+                        <>
+                          <br />
+                          {"      "}
+                          <span className="token punctuation">)</span>
+                        </>
+                      }
+                    />
+                  }
+                  br={<br />}
+                  sp1={"      "}
+                  sp2={"    "}
+                />
+                <BrSp sp={"  "} />
+                <span className="token punctuation">);</span>
+                <BrSp sp={"  "} />
+                <ConstNamePlus
+                  name1={"content"}
+                  name2={
+                    <>
+                      <span className="token parameter">props</span>
+                      <span className="token operator">.</span>
+                      <span className="token constName">posts</span>
+                    </>
+                  }
+                  metd={"map"}
+                  param1={"post"}
+                />
+                <BrSp sp={"    "} />
+                <TagAttrValJSX
+                  tag={"div"}
+                  attr={"key"}
+                  val1={"post"}
+                  val2={
+                    <>
+                      <span className="token operator">.</span>
+                      <span className="token attr-name">id</span>
+                    </>
+                  }
+                  dop3={true}
+                  exp1={
+                    <TagAttrValJSX
+                      tag={"h3"}
+                      exp1={
+                        <>
+                          <span className="token parameter">post</span>
+                          <span className="token operator">.</span>
+                          <span className="token attr-name">title</span>
+                        </>
+                      }
+                    />
+                  }
+                  dop4={<BrSp sp={"      "} />}
+                  exp2={
+                    <TagAttrValJSX
+                      tag={"p"}
+                      exp1={
+                        <>
+                          <span className="token parameter">post</span>
+                          <span className="token operator">.</span>
+                          <span className="token attr-name">content</span>
+                        </>
+                      }
+                    />
+                  }
+                  show={""}
+                  br={<br />}
+                  sp1={"      "}
+                  sp2={"    "}
+                />
+                <BrSp sp={"  "} />
+                <span className="token punctuation">);</span>
+                <BrSp sp={"  "} />
+                <ReturnTagExp
+                  tag={"div"}
+                  attr={""}
+                  val1={""}
+                  val2={""}
+                  dop3={true}
+                  dop5={<BrSp sp={"      "} />}
+                  dop6={<BrSp sp={"    "} />}
+                  exp1={
+                    <>
+                      <span className="token punctuation">&#123;</span>
+                      <span className="token constName">sidebar</span>
+                      <span className="token punctuation">&#125;</span>
+                    </>
+                  }
+                  exp2={
+                    <>
+                      <BrSp sp={"      "} />
+                      <span className="token punctuationhtml">&lt;</span>
+                      <span className="token tag">hr</span>
+                      <span className="token punctuationhtml">/&gt;</span>
+                      <BrSp sp={"      "} />
+                      <span className="token punctuation">&#123;</span>
+                      <span className="token constName">content</span>
+                      <span className="token punctuation">&#125;</span>
+                    </>
+                  }
+                  show={""}
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                  // dop4={<BrSp sp={"  "} />}
+                />
+                <BrSp sp={""} />
+                <span className="token punctuation">)</span>
+                <BrSp sp={""} />
+                <BrSp sp={""} />
+                <ConstNamePlus
+                  name1={"posts"}
+                  exp={
+                    <>
+                      <span className="token punctuation">[</span>
+                      <BrSp sp={"      "} />
+                      <span className="token punctuation">&#123;</span>id:{" "}
+                      <span className="token number">1</span>, title:{" "}
+                      <span className="token atrule">'Hello'</span>, content:{" "}
+                      <span className="token atrule">
+                        'Приветствую в React!'
+                      </span>
+                      <span className="token punctuation">&#125;</span>
+                      <span className="token punctuation">,</span>
+                      <BrSp sp={"      "} />
+                      <span className="token punctuation">&#123;</span>id:{" "}
+                      <span className="token number">2</span>, title:{" "}
+                      <span className="token atrule">'Instal'</span>, content:{" "}
+                      <span className="token atrule">
+                        'Установка React ч/з NPM.'
+                      </span>
+                      <span className="token punctuation">&#125;</span>
+                      <BrSp sp={""} />
+                      <span className="token punctuation">];</span>
+                    </>
+                  }
+                />
+                <BrSp sp={""} />
+                <BrSp sp={""} />
+                <ConstRoot nameRoot={this.nameRoot()} />
+              </code>
+            </pre>
+            {/* 
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<Blog posts={posts} />); 
+            */}
+          </div>
         </div>
       );
     };
@@ -1608,15 +1825,42 @@ const CompLet = ({ name, prop1, prop2, val1, val2 }) => {
     </>
   );
 };
-// const name1 = props.name1 || [1, 2, 3, 4, 5] | show - null
-const ConstNum = ({ name1, name2, num, show }) => {
-  // const numbers = num.numbers;
-  let num1;
-  // let num1 = num;
-  // let num2;
+// name2.metd((param param2) =>
+const NameMetdPearam = ({ name2, metd, param1, param2 }) => {
+  return (
+    <>
+      {name2}
+      <span className="token operator">.</span>
+      <span className="token function">{metd}</span>
+      <span className="token punctuation">((</span>
+      <span className="token parameter">{param1}</span>
+      {param2}
+      <span className="token punctuation">)</span>{" "}
+      <span className="token operator">=&gt;</span>
+    </>
+  );
+};
+// const name1 = {plus} |+| props.name1 || name2.metd((param param2) => || [1, 2, 3, 4, 5] || show - null || exp - свободно
+const ConstNamePlus = ({
+  name1,
+  name2,
+  metd,
+  param1,
+  param2,
+  exp,
+  num,
+  hide,
+  empty,
+}) => {
+  // не отражать если нужно
+  if (hide) {
+    return null;
+  }
+  let plus;
+  // различные условия
   if (num) {
     // num2 = (
-    num1 = (
+    plus = (
       <>
         <span className="token punctuation">[</span>
         <span className="token number">1</span>
@@ -1632,8 +1876,26 @@ const ConstNum = ({ name1, name2, num, show }) => {
         <span className="token punctuation">;</span>
       </>
     );
+  } else if (name2 && metd) {
+    // } else if (name2 || metd || param1) {
+    plus = (
+      <NameMetdPearam
+        name2={name2}
+        metd={metd}
+        param1={param1}
+        param2={param2}
+      />
+    );
+  } else if (empty) {
+    plus = (
+      <>
+        <span className="token punctuation">(</span>
+      </>
+    );
+  } else if (exp) {
+    plus = <>{exp}</>;
   } else {
-    num1 = (
+    plus = (
       <>
         <span className="token parameter">props</span>
         <span className="token operator">.</span>
@@ -1641,27 +1903,24 @@ const ConstNum = ({ name1, name2, num, show }) => {
       </>
     );
   }
-  if (show) {
-    return null;
-  }
   return (
     <>
       <span className="token keyword">const</span> {name1}{" "}
-      <span className="token operator">=</span> {num1}
+      <span className="token operator">=</span> {plus}
       {/* {num2} */}
     </>
   );
 };
 // attr={val1,val2}
-const AttrValMetd = ({ attr, val1, metd }) => {
+const AttrValMetd = ({ attr, val1, val2 }) => {
   return (
     <>
       {" "}
       <span className="token attr-name">{attr}</span>
       {/* <span className="token  punctuation">=</span> */}
       <span className="token punctuation">=&#123;</span>
-      {val1}
-      {metd}
+      <span className="token parameter">{val1}</span>
+      {val2}
       <span className="token punctuation">&#125;</span>
     </>
   );
@@ -1671,23 +1930,41 @@ const ReturnTagExp = ({
   tag,
   attr,
   val1,
-  metd,
-  exp,
-  expDop,
+  val2,
+  exp1,
+  exp2,
   show,
   br,
   sp1,
   sp2,
   comment,
+  dop3,
+  dop4,
+  dop5,
+  dop6,
 }) => {
   let letAttr;
   // при передаче show показать атрибут и значение
+  // if ((attr || val1) && show) {
+
   if (show) {
+    letAttr = null;
+  } else if (attr && val1) {
     letAttr = (
       <>
-        <AttrValMetd attr={attr} val1={val1} metd={metd} />
+        <AttrValMetd attr={attr} val1={val1} val2={val2} />
       </>
     );
+  }
+  // прятать фигурные ковычки если передали dop3
+  let BracesOpen;
+  let BracesClose;
+  if (dop3) {
+    BracesOpen = null;
+    BracesClose = null;
+  } else {
+    BracesOpen = <span className="token punctuation">&#123;</span>;
+    BracesClose = <span className="token punctuation">&#125;</span>;
   }
   return (
     <>
@@ -1700,10 +1977,13 @@ const ReturnTagExp = ({
       <span className="token tag">{tag}</span>
       {letAttr}
       <span className="token punctuationhtml">&gt;</span>
-      <span className="token punctuation">&#123;</span>
-      {expDop}
-      {exp}
-      <span className="token punctuation">&#125;</span>
+      {dop5}
+      {BracesOpen}
+      {exp1}
+      {dop4}
+      {exp2}
+      {BracesClose}
+      {dop6}
       <span className="token punctuationhtml">&lt;/</span>
       <span className="token tag">{tag}</span>
       <span className="token punctuationhtml">&gt;</span>
@@ -1713,59 +1993,63 @@ const ReturnTagExp = ({
     </>
   );
 };
-// const name = name2.metd((param) => | const listItems = numbers.map((number) =>
-const ConstNameMetdParam = ({ name, name2, metd, param, param2 }) => {
-  return (
-    <>
-      <span className="token keyword">const</span> {name}{" "}
-      <span className="token operator">=</span> {name2}
-      <span className="token operator">.</span>
-      <span className="token function">{metd}</span>
-      <span className="token punctuation">(</span>
-      <span className="token punctuation">(</span>
-      <span className="token parameter">{param}</span>
-      {param2}
-      <span className="token punctuation">)</span>{" "}
-      <span className="token operator">=&gt;</span>
-    </>
-  );
-};
-// <tag(1)>{exp}</tag> | 1 - attr={val} | show(boolean), br, sp1(пробел), sp2(пробел)
-const TagAttrValJSX = ({ tag, attr, val, exp, exp2, show, br, sp1, sp2 }) => {
+// <tag(1)>{exp exp2}</tag> | 1 - attr={val} | show(boolean), br, sp1(пробел), sp2(пробел)
+const TagAttrValJSX = ({
+  tag,
+  attr,
+  val1,
+  val2,
+  exp1,
+  exp2,
+  hide,
+  br,
+  sp1,
+  sp2,
+  dop1,
+  dop2,
+  dop3,
+  dop4,
+}) => {
   let letAttr;
-  // if (!props.warn) {
-  // if (attr) {
-  if (show) {
+  if (hide) {
+    letAttr = null;
+  } else if (attr && val1) {
     letAttr = (
       <>
-        {" "}
-        <span className="token attr-name">{attr}</span>
-        <span className="token script-punctuation punctuation">=</span>
-        <span className="token punctuation">&#123;</span>
-        <span className="token parameter">{val}</span>
-        <span className="token punctuation">&#125;</span>
+        <AttrValMetd attr={attr} val1={val1} val2={val2} />
       </>
     );
-  } else if (show) {
-    letAttr = null;
+  }
+  // прятать фигурные ковычки если передали dop3
+  let BracesOpen;
+  let BracesClose;
+  if (dop3) {
+    BracesOpen = null;
+    BracesClose = null;
+  } else {
+    BracesOpen = <span className="token punctuation">&#123;</span>;
+    BracesClose = <span className="token punctuation">&#125;</span>;
   }
   return (
     <>
+      {dop1}
       <span className="token punctuationhtml">&lt;</span>
       <span className="token tag">{tag}</span>
       {letAttr}
       <span className="token punctuationhtml">&gt;</span>
       {br}
       {sp1}
-      <span className="token punctuation">&#123;</span>
-      <span className="token parameter">{exp}</span>
+      {BracesOpen}
+      <span className="token parameter">{exp1}</span>
+      {dop4}
       {exp2}
-      <span className="token punctuation">&#125;</span>
+      {BracesClose}
       {br}
       {sp2}
       <span className="token punctuationhtml">&lt;/</span>
       <span className="token tag">{tag}</span>
       <span className="token punctuationhtml">&gt;</span>
+      {dop2}
     </>
   );
   // }
@@ -1781,7 +2065,6 @@ const CondRender = ({ show, value1, value2 }) => {
   // на условном операторе
   return <>{show ? value1 : value2}</>;
 };
-// начало fn + имя функции + props
 // function nameFn(props) {
 const FuncNameProps = ({ nameFn, param1, param2 }) => {
   return (
@@ -1824,10 +2107,10 @@ class ConstRoot extends React.Component {
         <span className="token operator">.</span>
         <span className="token function">render</span>
         <span className="token punctuation">(</span>
-        <span className="token punctuation">&lt;</span>
+        <span className="token punctuationhtml">&lt;</span>
         {/* <span className="token class-name">{this.props.name}</span> */}
         {this.props.nameRoot}
-        <span className="token punctuation">/&gt;</span>
+        <span className="token punctuationhtml">/&gt;</span>
         <span className="token punctuation">)</span>
         <span className="token punctuation">;</span>
       </>

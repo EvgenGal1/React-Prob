@@ -405,6 +405,9 @@ plaintext {
   display: none;
 }
 .token {
+  &.constName {
+    color: #ffffff;
+  }
   &.keyword {
     color: rgb(197, 165, 197);
     color: #58d7ea;
@@ -437,6 +440,7 @@ plaintext {
   }
   &.atrule {
     color: rgb(250, 200, 99);
+    color: #e7e086;
   }
   &.attr-name {
     color: rgb(197, 165, 197);
