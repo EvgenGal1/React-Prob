@@ -1126,7 +1126,7 @@ class Lists extends React.Component {
                     <>
                       number<span className="token punctuation">.</span>
                       <span className="token attr-name">toString</span>
-                      <span className="token punctuation">()</span>
+                      <span className="token number">()</span>
                     </>
                   }
                   exp1={"number"}
@@ -1188,17 +1188,32 @@ class Keys extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showErr: true,
-      // nameRoot: <span className="token class-name">Page</span>,
+      showTrue: true,
+      showJSX: true,
     };
     this.knpToggleClick = this.knpToggleClick.bind(this);
   }
   knpToggleClick() {
     this.setState((state) => ({
-      showErr: !state.showErr,
+      showTrue: !state.showTrue,
+      showJSX: !state.showJSX,
       // show: !state.show,
     }));
   }
+  //  ----------------------------------------------------------------------------------
+  // попытка преобразования в общую fn для кнп knpToggleClick
+  knpToggleClick2 = (props) => {
+    // this.setState((state) => ({
+    //   // showTrue: !state.showTrue,
+    //   this.props.showJSX: !state.showJSX,
+    //   // this.props: !state.props,
+    //   // show: !state.show,
+    // }));
+    this.setState((prevState) => ({
+      showJSX: !prevState.showJSX,
+    }));
+  };
+  //  ----------------------------------------------------------------------------------
   nameRoot = () => {
     return (
       <>
@@ -1251,7 +1266,7 @@ class Keys extends React.Component {
                     <>
                       number<span className="token operator">.</span>
                       <span className="token attr-name">toString</span>
-                      <span className="token punctuation">()</span>
+                      <span className="token number">()</span>
                     </>
                   }
                   exp1={"number"}
@@ -1384,12 +1399,15 @@ class Keys extends React.Component {
               Например, если вы извлекаете компонент <code>ListItem</code>, вы
               должны хранить ключ в <code>&lt;ListItem /&gt;</code> элементах
               массива, а не в самом <code>&lt;li&gt;</code> элементе{" "}
-              <code>ListItem</code>. Известно по опыту что элементам внутри{" "}
-              <code>map()</code> вызова нужны ключи.
+              <code>ListItem</code>.{" "}
+              <div>
+                Известно по опыту что элементам внутри <code>map()</code> вызова
+                нужны ключи. Клик по кнп покажет верный вариант:
+              </div>
             </div>
             <div>
               <button className="btmShowHide" onClick={this.knpToggleClick}>
-                <div>{this.state.showErr ? "Hide" : "Show"}</div>
+                <div> {this.state.showTrue ? "Hide" : "Show"}</div>
               </button>
             </div>
           </div>
@@ -1398,24 +1416,23 @@ class Keys extends React.Component {
               <code>
                 <FuncNameProps nameFn={"ListItem"} />
                 <BrSp sp={"  "} />
-                <ConstNamePlus name1={"value"} hide={!this.state.showErr} />
+                <ConstNamePlus name1={"value"} hide={!this.state.showTrue} />
                 <BrSp sp={"  "} />
                 <ReturnTagExp
-                  show={!this.state.showErr}
+                  show={!this.state.showTrue}
                   tag={"li"}
                   attr={"key"}
                   val1={"value"}
                   val2={
                     <>
-                      <span className="token operator">.</span>
-                      <span className="token attr-name">toString</span>
-                      <span className="token punctuation">()</span>
+                      toString
+                      <span className="token number">()</span>
                     </>
                   }
                   exp2={"value"}
                   exp1={
                     <CondRender
-                      show={this.state.showErr}
+                      show={this.state.showTrue}
                       value1={<></>}
                       value2={
                         <>
@@ -1430,7 +1447,7 @@ class Keys extends React.Component {
                   sp2={"  "}
                   comment={
                     <CondRender
-                      show={this.state.showErr}
+                      show={this.state.showTrue}
                       value1={
                         <>
                           <br />
@@ -1469,7 +1486,7 @@ class Keys extends React.Component {
                 />
                 <BrSp sp={"    "} />
                 <CondRender
-                  show={this.state.showErr}
+                  show={this.state.showTrue}
                   value1={
                     <>
                       <span className="token comment">
@@ -1492,22 +1509,17 @@ class Keys extends React.Component {
                   val1={"number"}
                   prop2={
                     <CondRender
-                      show={this.state.showErr}
+                      show={this.state.showTrue}
                       value1={<></>}
                       value2={
                         <>
                           <AttrValMetd
                             attr={"key"}
-                            val1={
-                              <span className="token parameter">number</span>
-                            }
+                            val1={"number"}
                             val2={
                               <>
-                                <span className="token operator">.</span>
-                                <span className="token attr-name">
-                                  toString
-                                </span>
-                                <span className="token punctuation">()</span>
+                                toString
+                                <span className="token number">()</span>
                               </>
                             }
                           />
@@ -1534,8 +1546,6 @@ class Keys extends React.Component {
         </div>
       );
     };
-    // value = Number
-    // <ListItem value={number} key={number.toString()}/>
     // уникальность ключей среди братьев
     const UniqKeyForBrothers = () => {
       return (
@@ -1557,7 +1567,6 @@ class Keys extends React.Component {
                 <BrSp sp={"  "} />
                 <ConstNamePlus name1={"sidebar"} empty={true} />
                 <BrSp sp={"    "} />
-                {/* <tag(1)>{exp exp2}</tag> | 1 - attr={val} | show(boolean), br, sp1(пробел), sp2(пробел) */}
                 <TagAttrValJSX
                   tag={"ul"}
                   attr={""}
@@ -1632,12 +1641,7 @@ class Keys extends React.Component {
                   tag={"div"}
                   attr={"key"}
                   val1={"post"}
-                  val2={
-                    <>
-                      <span className="token operator">.</span>
-                      <span className="token attr-name">id</span>
-                    </>
-                  }
+                  val2={"id"}
                   dop3={true}
                   exp1={
                     <TagAttrValJSX
@@ -1741,11 +1745,60 @@ class Keys extends React.Component {
                 <ConstRoot nameRoot={this.nameRoot()} />
               </code>
             </pre>
-            {/* 
-
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(<Blog posts={posts} />); 
-            */}
+          </div>
+          <div className="UniqKeyForBrothers__description">
+            <div>
+              Ключи служат подсказкой для React, но они не передаются вашим
+              компонентам. Если вам нужно такое же значение в вашем компоненте,
+              передайте его явно как свойство с другим именем:
+            </div>
+            <div>
+              В приведенном примере в <code>Post</code> компонент может читать{" "}
+              <code>props.id</code>, но не <code>props.key</code>.
+            </div>
+          </div>
+          <div className="UniqKeyForBrothers__content">
+            <pre>
+              <code>
+                <ConstNamePlus
+                  name1={"content"}
+                  name2={"posts"}
+                  metd={"map"}
+                  param1={"post"}
+                />
+                <BrSp sp={"  "} />
+                <CompLet
+                  name={"Post"}
+                  prop1={
+                    <>
+                      <BrSp sp={"    "} />
+                      key
+                    </>
+                  }
+                  val1={"post"}
+                  val2={"id"}
+                  prop2={
+                    <>
+                      <BrSp sp={"   "} />
+                      <AttrValMetd attr={"id"} val1={"post"} val2={"id"} />
+                    </>
+                  }
+                  prop3={
+                    <>
+                      <BrSp sp={"   "} />
+                      <AttrValMetd
+                        attr={"title"}
+                        val1={"post"}
+                        val2={"title"}
+                      />
+                      <BrSp sp={"  "} />
+                    </>
+                  }
+                />
+                <BrSp sp={""} />
+                <span className="token punctuation">);</span>
+              </code>
+            </pre>
           </div>
         </div>
       );
@@ -1756,10 +1809,204 @@ class Keys extends React.Component {
         <div className="BuildMapInJSX">
           <div className="BuildMapInJSX__description">
             <h3>Встраивание map() в JSX</h3>
-            <div></div>
-            <div></div>
+            <div>
+              В приведеном примере объявили отдельную переменную{" "}
+              <code>listItems</code> и включили ее в JSX
+            </div>
+            <div>
+              JSX позволяет вставлять любое выражение в фигурные скобки, чтобы
+              мы могли встроить <code>map()</code> результат:
+            </div>
+            <div>
+              <button className="btmShowHide" onClick={this.knpToggleClick}>
+                <div>{this.state.showJSX ? "Hide" : "Show"}</div>
+              </button>
+            </div>
           </div>
-          <div className="BuildMapInJSX__content">2</div>
+          <div className="BuildMapInJSX__content">
+            <pre>
+              <code>
+                <FuncNameProps nameFn={"NumberList"} />
+                <BrSp sp={"  "} />
+                <ConstNamePlus name1={"numbers"} name2={"numbers"} />
+                <BrSp sp={"  "} />
+                {/* <CondRender
+                  show={this.state.showJSX}
+                  value1={<></>}
+                  value2={""}
+                /> */}
+                <CondRender
+                  show={this.state.showJSX}
+                  value1={
+                    <>
+                      <ConstNamePlus
+                        name1="listItems"
+                        name2={"numbers"}
+                        metd={"map"}
+                        param1={"number"}
+                      />
+                      <BrSp sp={"    "} />
+                      <CompLet
+                        name={"ListItem"}
+                        prop1={
+                          <>
+                            <BrSp sp={"      "} />
+                            key
+                          </>
+                        }
+                        val1={"number"}
+                        val2={
+                          <>
+                            toString
+                            <span className="token number">()</span>
+                          </>
+                        }
+                        prop2={
+                          <>
+                            <BrSp sp={"     "} />
+                            <AttrValMetd
+                              attr={"value"}
+                              val1={"number"}
+                              val2={""}
+                            />
+                            <BrSp sp={"    "} />
+                          </>
+                        }
+                      />
+                      <BrSp sp={"  "} />
+                      <span className="token punctuation">&#125;;</span>
+                      <BrSp sp={"  "} />
+                    </>
+                  }
+                  value2={""}
+                />
+                {/* 
+
+                  return (
+                    <ul>
+                      {numbers.map((number) =>
+                        <ListItem key={number.toString()}
+                                  value={number} />
+                      )}
+                    </ul>
+                  );
+                }
+                */}
+                <ReturnTagExp
+                  tag={"ul"}
+                  exp1={
+                    <CondRender
+                      show={this.state.showJSX}
+                      value1={"listItems"}
+                      value2={
+                        <>
+                          <NameMetdPearam
+                            name2={"numbers"}
+                            metd={"map"}
+                            param1={"number"}
+                          />
+                          <BrSp sp={"        "} />
+                          <CompLet
+                            name={"ListItem"}
+                            prop1={
+                              <>
+                                <BrSp sp={"          "} />
+                                key
+                              </>
+                            }
+                            val1={"number"}
+                            val2={
+                              <>
+                                toString
+                                <span className="token number">()</span>
+                              </>
+                            }
+                            prop2={
+                              <>
+                                <BrSp sp={"         "} />
+                                <AttrValMetd
+                                  attr={"value"}
+                                  val1={"number"}
+                                  val2={""}
+                                />
+                                <BrSp sp={"        "} />
+                              </>
+                            }
+                          />
+                          <BrSp sp={"      "} />
+                        </>
+                      }
+                    />
+                  }
+                  exp2={
+                    <CondRender
+                      show={this.state.showJSX}
+                      value1={""}
+                      value2={
+                        <>
+                          {/* <BrSp sp={"    "} /> */}
+                          <span className="token punctuation">)</span>
+                        </>
+                      }
+                    />
+                  }
+                  br={<br />}
+                  sp1={"    "}
+                  sp2={"  "}
+                  dop3={""}
+                  dop4={""}
+                  dop5={
+                    <CondRender
+                      show={this.state.showJSX}
+                      value1={""}
+                      value2={
+                        <>
+                          <BrSp sp={"      "} />
+                        </>
+                      }
+                    />
+                  }
+                  dop6={
+                    <CondRender
+                      show={this.state.showJSX}
+                      value1={""}
+                      value2={
+                        <>
+                          <BrSp sp={"    "} />
+                        </>
+                      }
+                    />
+                  }
+                />
+                <BrSp sp={""} />
+                <span className="token punctuation">&#125;</span>
+              </code>
+            </pre>
+          </div>
+          <div className="BuildMapInJSX__description">
+            Иногда это приводит к более четкому коду, но этим стилем также можно
+            злоупотреблять. Как и в JavaScript, вам решать, стоит ли извлекать
+            переменную для удобочитаемости. Имейте в виду, что если{" "}
+            <code>map()</code> тело слишком вложенное, самое время извлечь
+            компонент
+          </div>
+          <div className="BasicListComponent__descript--- temporary">
+            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+            <code style={{ color: "red" }}>!!!</code>
+            сделать <code>fn()knpToggleClick</code> общей для всех. пока
+            отрабатывает только <code>PrevRend</code> (предовращение рендера).
+            Если более глубокая вложенность, как в{" "}
+            <code>BasicListComponent</code>, то fn() не раб на этом Компоненте.
+            Нужно продумать как передавать <code>props/state</code>, при этом
+            чтоб др кнп не срабатывали.
+            <div>
+              Продумать изменение разных <code>state</code>. Здесь{" "}
+              <code>stats</code> showTrue и showJSX изменяются оба, при клике на
+              разные клавиши, послольку в <code>fn()knpToggleClick</code>{" "}
+              заложены оба <code>state</code>. Надо как то передавая один, чтоб
+              он и изменялся не затрагивая второй.
+            </div>
+          </div>
         </div>
       );
     };
@@ -1809,8 +2056,19 @@ const BrSp = ({ sp }) => {
     </>
   );
 };
-// переменная Component | <Name prop={val} />
-const CompLet = ({ name, prop1, prop2, val1, val2 }) => {
+// const Name prop1={val1 val2} prop2
+const CompLet = ({ name, prop1, val1, val2, prop2, prop3, dop4 }) => {
+  let value2;
+  if (val2) {
+    value2 = (
+      <>
+        <span className="token operator">.</span>
+        <span className="token attr-name">{val2}</span>
+      </>
+    );
+  } else {
+    value2 = <>{val2}</>;
+  }
   return (
     <>
       <span className="token punctuationhtml">&lt;</span>
@@ -1818,9 +2076,12 @@ const CompLet = ({ name, prop1, prop2, val1, val2 }) => {
       <span className="token attr-name">{prop1}</span>
       <span className="token punctuation">=&#123;</span>
       <span className="token parameter">{val1}</span>
-      {val2}
+      {value2}
       <span className="token punctuation">&#125;</span>
+      {dop4}
       {prop2}
+      {/* <AttrValMetd attr={prop2} val1={val3} val2={val4} /> */}
+      {prop3}
       <span className="token punctuationhtml">/&gt;</span>
     </>
   );
@@ -1913,6 +2174,17 @@ const ConstNamePlus = ({
 };
 // attr={val1,val2}
 const AttrValMetd = ({ attr, val1, val2 }) => {
+  let value2;
+  if (val2) {
+    value2 = (
+      <>
+        <span className="token operator">.</span>
+        <span className="token attr-name">{val2}</span>
+      </>
+    );
+  } else {
+    value2 = <>{val2}</>;
+  }
   return (
     <>
       {" "}
@@ -1920,7 +2192,15 @@ const AttrValMetd = ({ attr, val1, val2 }) => {
       {/* <span className="token  punctuation">=</span> */}
       <span className="token punctuation">=&#123;</span>
       <span className="token parameter">{val1}</span>
-      {val2}
+      {/* {
+        (val2 = (
+          <>
+            <span className="token operator">.</span>
+            <span className="token attr-name">{val2}</span>
+          </>
+        ))
+      } */}
+      {value2}
       <span className="token punctuation">&#125;</span>
     </>
   );
