@@ -1837,6 +1837,11 @@ class Keys extends React.Component {
                 /> */}
                 <CondRender
                   show={this.state.showJSX}
+                  value1={""}
+                  value2={<BrSp sp={"  "} />}
+                />
+                <CondRender
+                  show={this.state.showJSX}
                   value1={
                     <>
                       <ConstNamePlus
@@ -1946,7 +1951,12 @@ class Keys extends React.Component {
                   dop5={
                     <CondRender
                       show={this.state.showJSX}
-                      value1={""}
+                      value1={
+                        // ""
+                        <>
+                          <BrSp sp={"      "} />
+                        </>
+                      }
                       value2={
                         <>
                           <BrSp sp={"      "} />
@@ -1957,7 +1967,12 @@ class Keys extends React.Component {
                   dop6={
                     <CondRender
                       show={this.state.showJSX}
-                      value1={""}
+                      value1={
+                        // ""
+                        <>
+                          <BrSp sp={"    "} />
+                        </>
+                      }
                       value2={
                         <>
                           <BrSp sp={"    "} />
