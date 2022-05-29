@@ -349,7 +349,8 @@
 .IfAnd---,
 .IfCondOper---,
 .Lists--- [class*="content"] > div,
-.Keys--- [class*="content"] > div {
+.Keys--- [class*="content"] > div,
+.Forms-- > [class*="content--"] > div {
   // [class$="__descript--"] > div,
   // [class$="__content--"] > div {
   width: 100%;
