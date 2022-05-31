@@ -4,7 +4,7 @@ import React from "react";
 // React 18
 import { createRoot } from "react-dom/client";
 // все JS/JSX файлы подкл в App.js
-import App from "./baseComponents/App.js";
+import App from "./Components/App.js";
 // все SCSS файлы стилей подкл в App.scss
 import "./index.css";
 

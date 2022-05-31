@@ -227,6 +227,22 @@ class CommonTrifles extends React.Component {
     return (
       <div className="CommonTrifles">
         <div className="CommonTrifles__descript">
+          <div className="countryflags__descript--- temporary">
+            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+            <code style={{ color: "red" }}>!!!</code>
+            Написать код по считыванию нажатий на клавиши. Разные комбинации для
+            разных раскладок, экранов, свет.тем, доступов, активности и пр.
+            <p>Примеры комбин. наж. на клвш.:</p>
+            <p>
+              при EN расклд. - ",jkmit", + доб. цв.схема разных раскладок,
+              экранов, свет.тем, доступов, активности и пр.{" "}
+            </p>
+            <p>доступ в альбом при наборе имени альбома во вкладке альбомов</p>
+            <p>
+              запись в localStorage при наборе "localStorage+" и своего имени в
+              CamelCase(верблюжьем стиле)
+            </p>
+          </div>
           <h3>хук useKeyPress (+ fn()useMultiKeyPress) + отладка</h3>
         </div>
         <div className="CommonTrifles__content">

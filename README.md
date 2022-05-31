@@ -86,15 +86,15 @@ npm install --save typescript @types/node @types/react @types/react-dom @types/j
 
 ```
 my-app
-├── README.md               - общее описание
-├── node_modules            - установленные модули
-├── package.json            - файл настроек
 ├── .gitignore              - отключённые от заливка на GitHub
-├── public                  - публичная папка
+├── README.md               - общее описание
+├── package.json            - файл настроек
+├── node_modules/           - установленные модули
+├── public/                 - публичная папка
 │   ├── favicon.ico         - иконка страницы
 │   ├── index.html          - шаблон страницы (использ. файлы только из public/)
 │   └── manifest.json       - базовые метаданные расширений
-└── src                     - папка исходников (обраб. WebPack)
+└── src/                    - папка исходников (обраб. WebPack)
     ├── App.css             -
     ├── App.js
     ├── App.test.js

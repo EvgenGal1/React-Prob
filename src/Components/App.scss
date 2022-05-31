@@ -229,4 +229,4 @@ $md4NoErr: 479.98px;
 // @import "../probComponents/CommonTrifles/CommonTrifles.scss";
 // @import "../probComponents/hooks/hooks.scss";
 // ??? не раб - при подкл стилей в Vid.js, не распознаёт переменные из App.scss ($md3NoErr 40стр.), даже если App.scss подкл в index.js
-@import "../probComponents/VidYT/Vid.scss";
+@import "./probComponents/VidYT/Vid.scss";

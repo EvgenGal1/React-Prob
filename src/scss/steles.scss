@@ -350,7 +350,9 @@
 .IfCondOper---,
 .Lists--- [class*="content"] > div,
 .Keys--- [class*="content"] > div,
-.Forms-- > [class*="content--"] > div {
+// .Forms-- [class$="content---"] > div,
+.Forms-- [class$="content--"] > div> div> div,
+.LiftingStateUp--  [class*="content--"] > div > div > div {
   // [class$="__descript--"] > div,
   // [class$="__content--"] > div {
   width: 100%;

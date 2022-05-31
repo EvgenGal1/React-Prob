@@ -3,13 +3,33 @@ import React from "react";
 // теперь все Общие SCSS файлы собранны в один по пути в "./baseComponents/App.scss". В компонент подкл стили относящиеся только к нему
 import "./ReactDoc.scss";
 
+// подкл. Блоков из ComponentsReactDoc для Архитектуры
+// Forms
+import FormsClComp from "./ComponentsReactDoc/clCompReactDoc/FormsClComp/FormsСlComp.js";
+// SteteUp
+import StateUpClComp from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
+
+// подкл. переменных ExpPreCode (компоненты/переменные для общих стилей <pre><code>)
+import {
+  BrSp,
+  AttrValMetd,
+  FormLabInpLet,
+  NameMetdPearam,
+  ConstNamePlus,
+  ReturnTagExp,
+  TagAttrValJSX,
+  ComponLet,
+  CondRender,
+  FuncNameProps,
+  ConstRoot,
+} from "../../../examples/ExpPreCode.js";
+
 // !!! https://ru.reactjs.org/docs/components-and-props.
 // Компоненты и пропсы `Components and Props`=============================================================================
-{
-  //   Компоненты позволяют разбить интерфейс на независимые части, про которые легко думать в отдельности.
-  // Их можно складывать вместе и использовать несколько раз.
-  // Во многом компоненты ведут себя как обычные функции JavaScript. Они принимают произвольные входные данные (так называемые «пропсы») и возвращают React-элементы, описывающие, что мы хотим увидеть на экране.
-}
+
+/* Компоненты позволяют разбить интерфейс на независимые части, про которые легко думать в отдельности.
+  Их можно складывать вместе и использовать несколько раз.
+  Во многом компоненты ведут себя как обычные функции JavaScript. Они принимают произвольные входные данные (так называемые «пропсы») и возвращают React-элементы, описывающие, что мы хотим увидеть на экране. */
 
 // !!! https://ru.reactjs.org/docs/state-and-lifecycle.html
 // Состояние и жизненный цикл `State and Lifecycle`=============================================================================
@@ -90,6 +110,7 @@ class StateLifecycle extends React.Component {
         </div>
         <div className="state-lifecycle__content--">
           <Clock />
+          <BrSp />
         </div>
         <div className="state-lifecycle__frame--">StateLifecycle</div>
       </div>
@@ -317,7 +338,6 @@ class Greeting extends React.Component {
   }
 }
 // Встроенный оператор If с логическим оператором &&
-// const IfAnd = () => {
 class IfAnd extends React.Component {
   constructor(props) {
     super(props);
@@ -2051,158 +2071,13 @@ class ListsAndKeys extends React.Component {
 
 // !!! https://reactjs.org/docs/forms.html
 // Формы =======================================================================================
+// Ошибка анализа: идентификатор «формы» уже была объявлена.
 class Forms extends React.Component {
   //constructor(props) {
   //super(props);
   //this.state = {  }
   //}
   render() {
-    const ManagedComponents = () => {
-      return (
-        <div className="ManagedComponents---">
-          <div className="ManagedComponents__description---">
-            <h3>Управляемые компоненты</h3>
-            <div>
-              В HTML элементы формы, такие как <code>&lt;input&gt;</code>,{" "}
-              <code>textaea&gt;</code>, <code>&lt;select&gt;</code> бычно
-              поддерживают свое собственное состояние и обновляют его на основе
-              пользовательского ввода. В React изменяемое состояние обычно
-              сохраняется в свойстве состояния компонентов и обновляется только
-              с помощью setState().
-            </div>
-            <div>3</div>
-          </div>
-          <div className="ManagedComponents__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
-    const TagTextarea = () => {
-      return (
-        <div className="TagTextarea---">
-          <div className="TagTextarea__description---">
-            <h3>Тег textarea</h3>
-            <div>
-              В HTML <code>&lt;textarea&gt;</code> элемент определяет свой текст
-              своими дочерними элементами:
-            </div>
-            <div>3</div>
-          </div>
-          <div className="TagTextarea__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
-    const TagSelect = () => {
-      return (
-        <div className=" TagSelect---">
-          <div className="TagSelect__description---">
-            <h3>Тег select</h3>
-            <div>
-              В HTML <code>&lt;select&gt;</code> создает раскрывающийся список.
-              Например, этот HTML-код создает раскрывающийся список вкусов:
-            </div>
-            <div>3</div>
-          </div>
-          <div className="TagSelect__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
-    const TagInpFile = () => {
-      return (
-        <div className="TagInpFile---">
-          <div className="TagInpFile__description---">
-            <h3>Тег input file</h3>
-            <div>
-              В HTML <code>&lt;input type="file"&g t;</code>элемент позволяет
-              пользователю выбрать один или несколько файлов из хранилища своего
-              устройства для загрузки на сервер или обработки с помощью
-              JavaScript через File API .
-            </div>
-            <div>3</div>
-          </div>
-          <div className="TagInpFile__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
-    const InputsMultiple = () => {
-      return (
-        <div className="MInputsMultiple---">
-          <div className="MInputsMultiple__description---">
-            <h3>Обработка нескольких входов</h3>
-            <div>
-              Когда вам нужно обработать несколько контролируемых{" "}
-              <code>input</code> элементов, вы можете добавить <code>name</code>{" "}
-              атрибут к каждому элементу и позволить функции обработчика
-              выбирать, что делать на основе значения{" "}
-              <code>event.target.name</code>.
-            </div>
-            <div>3</div>
-          </div>
-          <div className="MInputsMultiple__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
-    const InputNullValue = () => {
-      return (
-        <div className="InputNullValue---">
-          <div className="InputNullValue__description---">
-            <h3>Контролируемое входное нулевое значение</h3>
-            <div>
-              Указание <code>value</code> реквизита на контролируемом компоненте
-              не позволяет пользователю изменять ввод, если вы этого не хотите.
-              Если вы указали a, <code>value</code> но ввод по-прежнему доступен
-              для редактирования, возможно, вы случайно установили{" "}
-              <code>value</code> значение <code>undefined</code> или{" "}
-              <code>null</code>.
-            </div>
-            <div>3</div>
-          </div>
-          <div className="InputNullValue__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
-    const ManagedComponents7 = () => {
-      return (
-        <div className="ManagedComponents---">
-          <div className="ManagedComponents__description---">
-            <h3>Альтернативы управляемым компонентам</h3>
-            <div>
-              Иногда использование контролируемых компонентов может быть
-              утомительным, потому что вам нужно написать обработчик событий для
-              каждого способа изменения ваших данных и передать все входное
-              состояние через компонент React. Это может стать особенно
-              раздражающим, когда вы конвертируете уже существующую кодовую базу
-              в React или интегрируете приложение React с библиотекой, отличной
-              от React. В таких ситуациях вы можете захотеть проверить
-              неуправляемые компоненты , альтернативный метод реализации форм
-              ввода.
-            </div>
-            <h3>Полноценные решения</h3>
-            <div>
-              Если вы ищете комплексное решение, включающее проверку,
-              отслеживание посещенных полей и обработку отправки форм, Formik —
-              один из популярных вариантов. Однако он построен на тех же
-              принципах управляемых компонентов и управления состоянием — так
-              что не пренебрегайте их изучением.
-            </div>
-          </div>
-          <div className="ManagedComponents__content---">
-            <div>44</div>
-          </div>
-        </div>
-      );
-    };
     return (
       <div className="Forms--">
         <div className="Forms__description--">
@@ -2213,631 +2088,43 @@ class Forms extends React.Component {
             некоторое внутреннее состояние. Например, эта форма в простом HTML
             принимает одно имя:
           </p>
-          <form>
-            <label>
-              Name:
-              <input type="text" name="name" />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-          <pre>
-            <code>
-              <FormLabInpLet
-                form1={"form"}
-                sp1={<BrSp sp={"  "} />}
-                label1={"label"}
-                sp2={<BrSp sp={"    "} />}
-                name1={
-                  <>
-                    Name:
-                    <BrSp sp={"    "} />
-                  </>
-                }
-                input1={"input"}
-                attr1={"type"}
-                val1={"text"}
-                val2={""}
-                attr2={"name"}
-                val3={"name"}
-                val4={""}
-                sp3={<BrSp sp={"  "} />}
-                dop4={<BrSp sp={"  "} />}
-                label2={""}
-                name2={""}
-                input2={"input"}
-                attr3={"type"}
-                val5={"submit"}
-                val6={""}
-                attr4={"value"}
-                val7={"Submit"}
-                val8={""}
-                sp4={<BrSp sp={""} />}
-              />
-              {/* 
-            <form>
-              <label>
-                Name:
-                <input type="text" name="name" />
-              </label>
-              <input type="submit" value="Submit" />
-            </form> 
-            */}
-            </code>
-          </pre>
-
-          <p>
-            Эта форма имеет поведение HTML-формы по умолчанию при переходе на
-            новую страницу, когда пользователь отправляет форму. Если вы хотите
-            такое поведение в React, оно просто работает. Но в большинстве
-            случаев удобно иметь функцию JavaScript, которая обрабатывает
-            отправку формы и имеет доступ к данным, которые пользователь ввел в
-            форму. Стандартный способ добиться этого — использовать технику,
-            называемую «управляемые компоненты».
-          </p>
         </div>
         <div className="Forms__content--">
-          <ManagedComponents />
-          <TagTextarea />
-          <TagSelect />
-          <TagInpFile />
-          <InputsMultiple />
-          <InputNullValue />
-          <ManagedComponents7 />
+          <br />
+          <FormsClComp />
         </div>
-        <div className="Forms__description--"></div>
+        <div className="Forms__frame--">FormsClComp</div>
       </div>
     );
   }
 }
 
-// ОБЩИЕ ПЕРЕМЕННЫЕ стиль/код/элементы ----------------------------------------------------------------------------------
-// тег <br/> + отступ
-const BrSp = ({ sp }) => {
-  return (
-    <>
-      <br />
-      {sp}
-    </>
-  );
-};
-{
-  /* <form>
-  <label>
-    Name:
-    <input type="text" name="name" />
-  </label>
-  <input type="submit" value="Submit" />
-</form> */
-}
-// form
-const FormLabInpLet = ({
-  form1,
-  sp1,
-  label1,
-  sp2,
-  name1,
-  input1,
-  attr1,
-  val1,
-  val2,
-  attr2,
-  val3,
-  val4,
-  sp3,
-  dop4,
-  label2,
-  name2,
-  input2,
-  attr3,
-  val5,
-  val6,
-  attr4,
-  val7,
-  val8,
-  sp4,
-}) => {
-  return (
-    <>
-      <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{form1}</span>
-      <span className="token punctuationhtml">&gt;</span>
-      {sp1}
-      <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{label1}</span>
-      <span className="token punctuationhtml">&gt;</span>
-      {sp2}
-      {name1}
-      <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{input1}</span>
-      {
-        <>
-          <AttrValMetd
-            attr1={attr1}
-            val1={val1}
-            val2={val2}
-            attr2={attr2}
-            val3={val3}
-            val4={val4}
-          />
-        </>
-      }
-      <span className="token punctuationhtml">/&gt;</span>
-      {sp3}
-      <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{label1}</span>
-      <span className="token punctuationhtml">/&gt;</span>
-      {dop4}
-      <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{input2}</span>
-      {
-        <>
-          <AttrValMetd
-            attr1={attr3}
-            val1={val5}
-            val2={val6}
-            attr2={attr4}
-            val3={val7}
-            val4={val8}
-          />
-        </>
-      }
-
-      <span className="token punctuationhtml">/&gt;</span>
-      {sp4}
-      <span className="token punctuationhtml">
-        &lt;/<span className="token tag">{form1}</span>&gt;
-      </span>
-
-      {/* {prop2} */}
-      {/* <AttrValMetd attr1={prop2} val1={val3} val2={val4} /> */}
-      {/* {prop3} */}
-    </>
-  );
-};
-// name2.metd((param param2) =>
-const NameMetdPearam = ({ name2, metd, param1, param2 }) => {
-  return (
-    <>
-      {name2}
-      <span className="token operator">.</span>
-      <span className="token function">{metd}</span>
-      <span className="token punctuation">((</span>
-      <span className="token parameter">{param1}</span>
-      {param2}
-      <span className="token punctuation">)</span>{" "}
-      <span className="token operator">=&gt;</span>
-    </>
-  );
-};
-// const name1 = {plus} |+| props.name1 || name2.metd((param param2) => || [1, 2, 3, 4, 5] || show - null || exp - свободно
-const ConstNamePlus = ({
-  name1,
-  name2,
-  metd,
-  param1,
-  param2,
-  exp,
-  num,
-  hide,
-  empty,
-}) => {
-  // не отражать если нужно
-  if (hide) {
-    return null;
-  }
-  let plus;
-  // различные условия
-  if (num) {
-    // num2 = (
-    plus = (
-      <>
-        <span className="token punctuation">[</span>
-        <span className="token number">1</span>
-        <span className="token punctuation">,</span>{" "}
-        <span className="token number">2</span>
-        <span className="token punctuation">,</span>{" "}
-        <span className="token number">3</span>
-        <span className="token punctuation">,</span>{" "}
-        <span className="token number">4</span>
-        <span className="token punctuation">,</span>{" "}
-        <span className="token number">5</span>
-        <span className="token punctuation">]</span>
-        <span className="token punctuation">;</span>
-      </>
-    );
-  } else if (name2 && metd) {
-    // } else if (name2 || metd || param1) {
-    plus = (
-      <NameMetdPearam
-        name2={name2}
-        metd={metd}
-        param1={param1}
-        param2={param2}
-      />
-    );
-  } else if (empty) {
-    plus = (
-      <>
-        <span className="token punctuation">(</span>
-      </>
-    );
-  } else if (exp) {
-    plus = <>{exp}</>;
-  } else {
-    plus = (
-      <>
-        <span className="token parameter">props</span>
-        <span className="token operator">.</span>
-        {name1}
-      </>
-    );
-  }
-  return (
-    <>
-      <span className="token keyword">const</span> {name1}{" "}
-      <span className="token operator">=</span> {plus}
-      {/* {num2} */}
-    </>
-  );
-};
-// attr1={val1,val2}
-const AttrValMetd = ({ attr1, val1, val2, dop4, attr2, val3, val4 }) => {
-  let letValue2;
-  let letValue4;
-  if (val2) {
-    letValue2 = (
-      <>
-        <span className="token operator">.</span>
-        <span className="token attr-name">{val2}</span>
-      </>
-    );
-    letValue4 = (
-      <>
-        <span className="token operator">.</span>
-        <span className="token attr-name">{val4}</span>
-      </>
-    );
-  } else {
-    letValue2 = <>{val2}</>;
-    letValue4 = <>{val4}</>;
-  }
-  let letAttr2;
-  if (attr2) {
-    letAttr2 = (
-      <>
-        {" "}
-        <span className="token attr-name">{attr2}</span>
-        <span className="token  operator">=</span>
-        <span className="token punctuation">&#123;</span>
-        <span className="token parameter">{val3}</span>
-        {letValue4}
-        <span className="token punctuation">&#125;</span>
-      </>
-    );
-  }
-  return (
-    <>
-      {" "}
-      <span className="token attr-name">{attr1}</span>
-      <span className="token  operator">=</span>
-      <span className="token punctuation">&#123;</span>
-      <span className="token parameter">{val1}</span>
-      {letValue2}
-      <span className="token punctuation">&#125;</span>
-      {letAttr2}
-    </>
-  );
-};
-// return (<tag(1)>{exp}</tag>) | 1 -  | br, sp1(пробел), sp2(пробел), comment
-const ReturnTagExp = ({
-  tag,
-  attr1,
-  val1,
-  val2,
-  exp1,
-  exp2,
-  show,
-  br,
-  sp1,
-  sp2,
-  comment,
-  dop3,
-  dop4,
-  dop5,
-  dop6,
-}) => {
-  let letAttr;
-  // при передаче show не показать атрибут и значение
-  // if ((attr1 || val1) && show) {
-  if (show) {
-    letAttr = null;
-  } else if (attr1 && val1) {
-    letAttr = (
-      <>
-        <AttrValMetd attr1={attr1} val1={val1} val2={val2} />
-      </>
-    );
-  }
-  // прятать фигурные ковычки если передали dop3
-  let BracesOpen;
-  let BracesClose;
-  if (dop3) {
-    BracesOpen = null;
-    BracesClose = null;
-  } else {
-    BracesOpen = <span className="token punctuation">&#123;</span>;
-    BracesClose = <span className="token punctuation">&#125;</span>;
-  }
-  return (
-    <>
-      <span className="token tag">return</span>{" "}
-      <span className="token punctuation">(</span>
-      {comment}
-      {br}
-      {sp1}
-      <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{tag}</span>
-      {letAttr}
-      <span className="token punctuationhtml">&gt;</span>
-      {dop5}
-      {BracesOpen}
-      {exp1}
-      {dop4}
-      {exp2}
-      {BracesClose}
-      {dop6}
-      <span className="token punctuationhtml">&lt;/</span>
-      <span className="token tag">{tag}</span>
-      <span className="token punctuationhtml">&gt;</span>
-      {br}
-      {sp2}
-      <span className="token punctuation">);</span>
-    </>
-  );
-};
-// <tag(1)(2)>(dop3) exp dop4 exp2 (dop3)</tag> | 1,2 - attr1|2={val1|3.val2|4} | show(boolean), br, sp1(пробел), sp2(пробел)
-const TagAttrValJSX = ({
-  tag,
-  Name,
-  name1,
-  attr1,
-  val1,
-  val2,
-  attr2,
-  val3,
-  val4,
-  exp1,
-  exp2,
-  hide,
-  br,
-  sp1,
-  sp2,
-  dop1,
-  dop2,
-  dop3,
-  dop4,
-}) => {
-  let letAttr1;
-  let letAttr2;
-  if (hide) {
-    letAttr1 = null;
-  } else if (attr1 && val1) {
-    letAttr1 = (
-      <>
-        <AttrValMetd attr1={attr1} val1={val1} val2={val2} />
-      </>
-    );
-    letAttr2 = (
-      <>
-        <AttrValMetd attr1={attr2} val1={val3} val2={val4} />
-      </>
-    );
-  }
-  // перем для тег/Compon/закрытТег
-  let letTagName;
-  let letOfTag;
-  let letTagOf;
-  if (tag) {
-    letTagName = <span className="token tag">{tag}</span>;
-    letOfTag = <span className="token punctuationhtml">&gt;</span>;
-    letTagOf = (
-      <>
-        <span className="token punctuationhtml">&lt;/</span>
-        <span className="token tag">{tag}</span>
-        <span className="token punctuationhtml">&gt;</span>
-      </>
-    );
-  } else if (Name) {
-    letTagName = <span className="token class-name">{Name}</span>;
-    letOfTag = null;
-    letTagOf = (
-      <>
-        <span className="token punctuationhtml">/&gt;</span>
-      </>
-    );
-  } else if (name1) {
-    letTagName = <span className="token constName">{name1}</span>;
-    letOfTag = null;
-    letTagOf = (
-      <>
-        <span className="token punctuationhtml">/&gt;</span>
-      </>
-    );
-  }
-  // прятать фигурные ковычки если передали dop3 и стиль exp1
-  let BracesOpen;
-  let BracesClose;
-  let LetExp1;
-  if (dop3) {
-    BracesOpen = null;
-    BracesClose = null;
-    LetExp1 = <span className="token constName ">{exp1}</span>;
-  } else {
-    BracesOpen = <span className="token punctuation">&#123;</span>;
-    BracesClose = <span className="token punctuation">&#125;</span>;
-    LetExp1 = <span className="token parameter">{exp1}</span>;
-  }
-  return (
-    <>
-      {dop1}
-      <span className="token punctuationhtml">&lt;</span>
-      {letTagName}
-      {letAttr1}
-      {letAttr2}
-      {letOfTag}
-      {br}
-      {sp1}
-      {BracesOpen}
-      {LetExp1}
-      {dop4}
-      {exp2}
-      {BracesClose}
-      {br}
-      {sp2}
-      {/* {letName1} */}
-      {letTagOf}
-      {dop2}
-    </>
-  );
-  // }
-};
-
-// <Name|name2 prop1=(3)val1 val2(3) dop4 prop2 prop3 />
-const ComponLet = ({
-  name,
-  name2,
-  prop1,
-  dop3,
-  val1,
-  val2,
-  dop4,
-  prop2,
-  prop3,
-}) => {
-  let letValue2;
-  if (val2) {
-    letValue2 = (
-      <>
-        <span className="token operator">.</span>
-        <span className="token attr-name">{val2}</span>
-      </>
-    );
-  } else {
-    letValue2 = <>{val2}</>;
-  }
-
-  let letName2;
-  if (name2) {
-    letName2 = (
-      <>
-        <span className="token class-name">{name2}</span>{" "}
-      </>
-    );
-  } else {
-    letName2 = (
-      <>
-        {
-          <>
-            <span className="token class-name">{name}</span>{" "}
-          </>
-        }
-      </>
-    );
-  }
-
-  // прятать фигурные ковычки если передали dop3
-  let BracesOpen;
-  let BracesClose;
-  if (dop3) {
-    BracesOpen = null;
-    BracesClose = null;
-  } else {
-    BracesOpen = <span className="token punctuation">&#123;</span>;
-    BracesClose = <span className="token punctuation">&#125;</span>;
-  }
-
-  return (
-    <>
-      <span className="token punctuationhtml">&lt;</span>
-      {letName2}
-      <span className="token attr-name">{prop1}</span>
-      <span className="token operator">=</span>
-      {BracesOpen}
-      <span className="token parameter">{val1}</span>
-      {letValue2}
-      {BracesClose}
-      {}
-      {dop4}
-      {prop2}
-      {/* <AttrValMetd attr1={prop2} val1={val3} val2={val4} /> */}
-      {prop3}
-      <span className="token punctuationhtml">/&gt;</span>
-    </>
-  );
-};
-// коментарии - show(state|props), com1, com2 - комментарии 1ый(по умолчанию),2ой(замена)
-const CondRender = ({ show, value1, value2 }) => {
-  // на условии if else
-  // if (show) {
-  //   return <>{value1}</>;
-  // } else {
-  //   return <>{value2}</>;
-  // }
-  // на условном операторе
-  return <>{show ? value1 : value2}</>;
-};
-// function nameFn(props) {
-const FuncNameProps = ({ nameFn, param1, param2 }) => {
-  return (
-    <>
-      <span className="token keyword">function</span>{" "}
-      <span className="token class-name">{nameFn}</span>
-      <span className="token punctuation">(</span>
-      <span className="token parameter">props</span>
-      {/* <span className="token parameter">{param1}</span> */}
-      <span className="token parameter">{param2}</span>
-      <span className="token punctuation">)</span>{" "}
-      <span className="token punctuation">&#123;</span>
-    </>
-  );
-};
-// покдл и отрисовка id root
-class ConstRoot extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = "";
-  }
+class LiftingStateUp extends React.Component {
+  //constructor(props) {
+  //super(props);
+  //this.state = {  }
+  //}
   render() {
     return (
-      <>
-        <span className="token keyword">const</span> root{" "}
-        <span className="token operator">=</span> ReactDOM
-        <span className="token operator">.</span>
-        <span className="token function">createRoot</span>
-        <span className="token punctuation">(</span>document
-        <span className="token operator">.</span>
-        <span className="token function">getElementById</span>
-        <span className="token punctuation">(</span>
-        <span className="token parameter">"root"</span>
-        {/* <span className="token atrule">root</span> */}
-        <span className="token punctuation">)</span>
-        <span className="token punctuation">)</span>
-        <span className="token punctuation">;</span>
-        <br />
-        root
-        <span className="token operator">.</span>
-        <span className="token function">render</span>
-        <span className="token punctuation">(</span>
-        <span className="token punctuationhtml">&lt;</span>
-        {/* <span className="token class-name">{this.props.name}</span> */}
-        {this.props.nameRoot}
-        <span className="token punctuationhtml">/&gt;</span>
-        <span className="token punctuation">)</span>
-        <span className="token punctuation">;</span>
-      </>
+      <div className="LiftingStateUp--">
+        <div className="LiftingStateUp__description--">
+          <h3>StateUpClComp</h3>
+          <p>
+            Часто несколько компонентов должны отражать одни и те же
+            изменяющиеся данные. Мы рекомендуем поднимать общее состояние до их
+            ближайшего общего предка. Давайте посмотрим, как это работает в
+            действии
+          </p>
+        </div>
+        <div className="LiftingStateUp__content--">
+          <StateUpClComp />
+        </div>
+        <div className="LiftingStateUp__frame--">StateUpClComp</div>
+      </div>
     );
   }
 }
+
 // ОБЩИЕ FN для всех Компонентов ----------------------------------------------------------------------------------
 // переключение кнп. принимает только boolen ?
 // так раб, пока ток showWarn
@@ -2872,6 +2159,7 @@ class ReactDocComponents extends React.Component {
           <ConditionalRendering />
           <ListsAndKeys />
           <Forms />
+          <LiftingStateUp />
         </div>
         <div className="ReactDocComponents__frame">ReactDoc.js</div>
       </div>

@@ -3,11 +3,11 @@ import React from "react";
 import "./App.scss";
 
 // import Plan from "./Plan/js/Plan.js";
-import Vid from "../probComponents/VidYT/Vid.js";
-import ReactDoc from "./ReactDoc/ReactDoc.js";
-import CommonTrifles from "../probComponents/CommonTrifles/CommonTrifles.js";
-import HooksComponents from "../probComponents/hooks/HooksComponents.jsx";
-import PersistState from "../probComponents/PersistState/PersistState.js";
+import Vid from "./probComponents/VidYT/Vid.js";
+import ReactDoc from "./baseComponents/ReactDoc/ReactDoc.js";
+import CommonTrifles from "./probComponents/CommonTrifles/CommonTrifles.js";
+import HooksComponents from "./probComponents/hooks/HooksComponents.jsx";
+import PersistState from "./probComponents/PersistState/PersistState.js";
 
 console.log("App 0");
 class GeneralComponents extends React.Component {
