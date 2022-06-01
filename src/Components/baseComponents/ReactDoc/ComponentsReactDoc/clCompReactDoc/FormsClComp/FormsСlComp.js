@@ -20,6 +20,7 @@ import {
   ComponLet,
   CondRender,
   FuncNameProps,
+  ClCompLet,
   ConstRoot,
 } from "../../../../../../examples/ExpPreCode.js";
 

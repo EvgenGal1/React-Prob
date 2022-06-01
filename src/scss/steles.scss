@@ -39,6 +39,7 @@
     // общий нижний отступ для h3
     h3 {
       padding: 0px 0px 10px;
+      @include adaptiv-value("padding-top", 10, 0, 3);
       @include adaptiv-value("padding-bottom", 10, 0, 3);
     }
     // отступы для descript
@@ -403,6 +404,17 @@ pre {
   margin-left: calc(0px + 0 * ((100vw - 320px) / 1600));
   margin-right: calc(0px + 0 * ((100vw - 320px) / 1600));
   text-align: left;
+}
+
+// попытка изменить div в котором есть pre? т.е. родителя
+// div.Keys__content---
+//   > div.ExtractComponentKeys
+//   > div.ExtractComponentKeys__content { - прямой selector
+// div:has(> pre > code) { - has не раб
+// div:not(pre code) { - двойное нет не раб
+// :is([class*="content"]) :is(pre) { - is не раб
+div[class*="content"]:last-child {
+  padding-bottom: 5px;
 }
 plaintext {
   display: none;
