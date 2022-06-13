@@ -226,8 +226,9 @@ class CommonTrifles extends React.Component {
   render() {
     return (
       <div className="CommonTrifles">
-        <div className="CommonTrifles__descript">
-          <div className="countryflags__descript--- temporary">
+        <div className="CommonTrifles__description">
+          <h3>хук useKeyPress (+ fn()useMultiKeyPress) + отладка</h3>
+          <div className="temporary">
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
             <code style={{ color: "red" }}>!!!</code>
             Написать код по считыванию нажатий на клавиши. Разные комбинации для
@@ -243,7 +244,6 @@ class CommonTrifles extends React.Component {
               CamelCase(верблюжьем стиле)
             </p>
           </div>
-          <h3>хук useKeyPress (+ fn()useMultiKeyPress) + отладка</h3>
         </div>
         <div className="CommonTrifles__content">
           <CountryFlags />

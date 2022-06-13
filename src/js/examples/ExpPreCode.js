@@ -1,4 +1,6 @@
 import React from "react";
+// ??? не раб - при подкл стилей сюда, не распознаёт переменные из App.scss ($maxWidth,$md3NoErr и пр..), даже если App.scss подкл в index.js
+// import "../../scss/tagPreCode.scss";
 
 // тег <br/> + отступ
 const BrSp = ({ sp }) => {

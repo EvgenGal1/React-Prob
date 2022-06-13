@@ -13,7 +13,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
-} from "../../../../../../examples/ExpPreCode.js";
+} from "../../../../../../js/examples/ExpPreCode.js";
 
 class ManagedComponents extends React.Component {
   constructor(props) {

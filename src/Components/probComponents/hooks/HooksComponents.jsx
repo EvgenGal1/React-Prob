@@ -249,7 +249,7 @@ class HooksComponents extends React.Component {
   render() {
     return (
       <div className="HooksComponents">
-        <div className="HooksComponents__descript">
+        <div className="HooksComponents__description">
           <h3>Конкурентный режим.</h3>
           <p>
             При render, до отрисовки, загрузку можно разделять на мелкие части

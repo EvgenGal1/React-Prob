@@ -191,7 +191,7 @@ class Vid extends React.Component {
   render() {
     return (
       <div className="Vid">
-        <div className="Vid__descript">
+        <div className="Vid__description">
           <h3>Общий заголовок</h3>
           <p>Общее описание</p>
         </div>

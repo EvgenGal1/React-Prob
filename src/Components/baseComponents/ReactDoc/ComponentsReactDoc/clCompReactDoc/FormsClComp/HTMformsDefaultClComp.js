@@ -13,7 +13,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
-} from "../../../../../../examples/ExpPreCode.js";
+} from "../../../../../../js/examples/ExpPreCode.js";
 
 const HTMformsDefaultClComp = () => {
   return (
@@ -32,6 +32,7 @@ const HTMformsDefaultClComp = () => {
             Name:
             <input type="text" name="name" />
           </label>
+          <br />
           <input type="submit" value="Submit" />
         </form>
         <pre>
