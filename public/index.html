@@ -24,12 +24,27 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script src="https://unpkg.com/react@latest/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+
+    <script src="https://unpkg.com/react-spoiler@latest/dist/index.umd.js"></script>
+    <!-- Spoiler/Спойлер -->
+    <script src="https://unpkg.com/react-spoiler@latest/dist/index.umd.js"></script>
     <title>Plan React</title>
   </head>
   <body>
     <noscript
       >Вам нужно включить JavaScript для запуска этого приложения.</noscript
     >
+    <div id="root0">
+      <!-- <ReactSpoiler>
+        <h1>ReactSpoiler</h1>
+        <p>Click/Hover me to the magic!</p>
+      </ReactSpoiler> -->
+    </div>
     <div id="root"></div>
     <!-- <div id="root1"></div> -->
     <!-- <div id="root3"></div> -->

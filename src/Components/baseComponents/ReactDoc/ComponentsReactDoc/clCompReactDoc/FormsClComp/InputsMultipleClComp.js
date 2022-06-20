@@ -17,8 +17,8 @@ import {
 
 const InputsMultipleClComp = () => {
   return (
-    <div className="MInputsMultipleClComp---">
-      <div className="MInputsMultipleClComp__description---">
+    <div className="MInputsMultipleClComp----">
+      <div className="MInputsMultipleClComp__descript----">
         <h3>Обработка нескольких входов</h3>
         <div>
           Когда вам нужно обработать несколько контролируемых <code>input</code>{" "}
@@ -28,7 +28,7 @@ const InputsMultipleClComp = () => {
         </div>
         <div>3</div>
       </div>
-      <div className="MInputsMultipleClComp__content---">
+      <div className="MInputsMultipleClComp__content----">
         <pre>
           <code>
             44

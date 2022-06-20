@@ -1,7 +1,7 @@
 import React from "react";
 
-import ListsClComp from "./ListsClComp.js";
-import KeysClComp from "./KeysClComp.js";
+// import ListsClComp from "./ListsClComp.js";
+import ClockClComp from "./ClockClComp.js";
 
 import {
   BrSp,
@@ -18,24 +18,24 @@ import {
   ConstRoot,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
-class ListsAndKeysClComp extends React.Component {
+class StateLifeCycleClComp extends React.Component {
   //constructor(props) {
   //super(props);
   //this.state = {  }
   //}
   render() {
     return (
-      <div className="ListsAndKeysClComp---">
+      <div className="StateLifeCycleClComp---">
         <div className="ListsAndKeysClComp__descript---">
-          {/* ListsAndKeysClComp */}
+          {/* StateLifeCycleClComp */}
         </div>
         <div className="ListsAndKeysClComp__content---">
-          <ListsClComp />
-          <KeysClComp />
+          {/* <ListsClComp /> */}
+          <ClockClComp />
         </div>
       </div>
     );
   }
 }
 
-export default ListsAndKeysClComp;
+export default StateLifeCycleClComp;

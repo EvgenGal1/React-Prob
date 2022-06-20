@@ -154,7 +154,7 @@ class VidButton extends React.Component {
         <div className="vid-button__content--">
           {/* vid__button */}
           <div className="vid-button__oneexp---">
-            <div className="vid-button__oneexp_descript---">
+            <div className="vid-button__oneexp_description---">
               {/* Вывод состояние */}
               State(name): {this.state.name}
               {/* <span></span>
@@ -167,7 +167,7 @@ class VidButton extends React.Component {
           </div>
           {/* toggle */}
           <div className="vid-button__twoexp---">
-            <div className="vid-button__twoexp_descript---">
+            <div className="vid-button__twoexp_description---">
               State(isToggleOn) - {"   "}
               {this.state.isToggleOn ? "ON" : "OFF"}
               {/* {this.state.isToggleOn ? <div>ON</div> : <div>OFF</div>} // альтернатива */}
@@ -191,7 +191,7 @@ class Vid extends React.Component {
   render() {
     return (
       <div className="Vid">
-        <div className="Vid__description">
+        <div className="Vid__descript">
           <h3>Общий заголовок</h3>
           <p>Общее описание</p>
         </div>

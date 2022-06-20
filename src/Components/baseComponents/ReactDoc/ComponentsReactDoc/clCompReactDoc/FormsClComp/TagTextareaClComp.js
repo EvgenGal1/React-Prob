@@ -37,8 +37,8 @@ class TagTextareaClComp extends React.Component {
 
   render() {
     return (
-      <div className="TagTextareaClComp---">
-        <div className="TagTextareaClComp__description---">
+      <div className="TagTextareaClComp----">
+        <div className="TagTextareaClComp__descript----">
           <h3>Тег textarea</h3>
           <p>
             В HTML <code>&lt;textarea&gt;</code> элемент определяет свой текст
@@ -51,7 +51,7 @@ class TagTextareaClComp extends React.Component {
             форму с однострочным вводом:
           </p>
         </div>
-        <div className="TagTextareaClComp__content---">
+        <div className="TagTextareaClComp__content----">
           <form onSubmit={this.handleSubmit}>
             <label>
               Essay:

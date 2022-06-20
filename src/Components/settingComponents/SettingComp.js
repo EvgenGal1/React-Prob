@@ -28,7 +28,7 @@
 //   // возврат блоков для отрисовки
 // return (
 // <div className="${2}">
-// <div className="${2}__description">${3}</div>
+// <div className="${2}__descript">${3}</div>
 // <div className="${2}__content"></div>
 // </div>
 // )

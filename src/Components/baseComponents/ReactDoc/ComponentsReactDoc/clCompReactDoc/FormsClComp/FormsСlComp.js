@@ -32,7 +32,7 @@ class FormsClComp extends React.Component {
   render() {
     return (
       <div className="FormsClComp---">
-        <div className="FormsClComp__description---">{/* FormsCompon */}</div>
+        <div className="FormsClComp__descript---">{/* FormsCompon */}</div>
         <div className="FormsClComp__content---">
           <HTMformsDefaultClComp />
           <ManagedComponentsClComp />

@@ -17,8 +17,8 @@ import {
 
 const TagSelectClComp = () => {
   return (
-    <div className=" TagSelectClComp---">
-      <div className="TagSelectClComp__description---">
+    <div className=" TagSelectClComp----">
+      <div className="TagSelectClComp__descript----">
         <h3>Тег select</h3>
         <div>
           В HTML <code>&lt;select&gt;</code> создает раскрывающийся список.
@@ -26,7 +26,7 @@ const TagSelectClComp = () => {
         </div>
         <div>3</div>
       </div>
-      <div className="TagSelectClComp__content---">
+      <div className="TagSelectClComp__content----">
         <pre>
           <code>
             <BrSp sp={"  "} />

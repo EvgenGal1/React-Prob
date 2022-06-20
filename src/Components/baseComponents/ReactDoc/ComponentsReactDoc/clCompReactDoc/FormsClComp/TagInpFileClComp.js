@@ -17,8 +17,8 @@ import {
 
 const TagInpFileClComp = () => {
   return (
-    <div className="TagInpFileClComp---">
-      <div className="TagInpFileClComp__description---">
+    <div className="TagInpFileClComp----">
+      <div className="TagInpFileClComp__descript----">
         <h3>Тег input file</h3>
         <div>
           В HTML <code>&lt;input type="file"&g t;</code>элемент позволяет
@@ -28,7 +28,7 @@ const TagInpFileClComp = () => {
         </div>
         <div>3</div>
       </div>
-      <div className="TagInpFileClComp__content---">
+      <div className="TagInpFileClComp__content----">
         <pre>
           <code>
             44

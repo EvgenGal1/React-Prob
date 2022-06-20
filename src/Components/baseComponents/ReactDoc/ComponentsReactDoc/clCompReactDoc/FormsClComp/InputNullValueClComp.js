@@ -17,8 +17,8 @@ import {
 
 const InputNullValueClComp = () => {
   return (
-    <div className="InputNullValueClComp---">
-      <div className="InputNullValueClComp__description---">
+    <div className="InputNullValueClComp----">
+      <div className="InputNullValueClComp__descript----">
         <h3>Контролируемое входное нулевое значение</h3>
         <div>
           Указание <code>value</code> реквизита на контролируемом компоненте не
@@ -29,7 +29,7 @@ const InputNullValueClComp = () => {
         </div>
         <div>3</div>
       </div>
-      <div className="InputNullValueClComp__content---">
+      <div className="InputNullValueClComp__content----">
         <pre>
           <code>
             44

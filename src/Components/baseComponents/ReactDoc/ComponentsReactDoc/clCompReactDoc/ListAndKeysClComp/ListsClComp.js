@@ -56,7 +56,7 @@ class ListsClComp extends React.Component {
     const Transformation = () => {
       return (
         <div>
-          <div className="Transformation__description----">
+          <div className="Transformation__descript----">
             <h3>Преобразование</h3>
             <div>
               Можно использовать <code>map()</code> функцию, чтобы взять массив{" "}
@@ -90,7 +90,7 @@ class ListsClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="Transformation__description----">
+          <div className="Transformation__descript----">
             Этот код записывается [2, 4, 6, 8, 10] в консоль.
           </div>
         </div>
@@ -100,7 +100,7 @@ class ListsClComp extends React.Component {
     const RenderingMultiple = () => {
       return (
         <div>
-          <div className="RenderingMultiple__description----">
+          <div className="RenderingMultiple__descript----">
             <h3>Визуализация нескольких компонентов</h3>
             <div>
               Можно создавать коллекции элементов и включать их в JSX с помощью
@@ -157,7 +157,7 @@ class ListsClComp extends React.Component {
       props = this.props.showKey;
       return (
         <div>
-          <div className="BasicListComponent__description----">
+          <div className="BasicListComponent__descript----">
             <h3>Базовый компонент списка</h3>
             <div>Обычно визуализируются списки внутри компонента</div>
             <div>
@@ -242,7 +242,7 @@ class ListsClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="BasicListComponent__description--- temporary">
+          <div className="BasicListComponent__descript--- temporary">
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
             <code style={{ color: "red" }}>!!!</code>
             сделать <code>fn()knpToggleClick</code> общей для всех. пока
@@ -257,7 +257,7 @@ class ListsClComp extends React.Component {
     };
     return (
       <div className="Lists---">
-        <div className="Lists__description---">
+        <div className="Lists__descript---">
           <h3>Списки</h3>
         </div>
         <div className="Lists__content---">

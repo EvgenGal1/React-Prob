@@ -1,0 +1,127 @@
+// скрытие блоков
+.root-body {
+  & > div {
+    // &:not([class*="__descript"] > h3) {
+    & > div[class$="__content"],
+    & > div[class$="__description"] div,
+    & > div[class$="__description"] p,
+    & .temporary {
+      // display: none;
+    }
+  }
+  // & > div h3:hover {
+  // & > div:hover { // при наведении
+  // & > div:active { // при клике
+  & > div:link {
+    // при
+    & > div[class$="__content"],
+    & > div[class$="__description"] div,
+    & > div[class$="__description"] p,
+    & .temporary {
+      // display: block;
+    }
+  }
+}
+
+div[class$="__content"] {
+  & > div {
+    & > div[class$="__content--"],
+    & > div[class$="__description--"] div,
+    & > div[class$="__description--"] p,
+    & .temporary {
+      // display: none;
+    }
+  }
+}
+div[class$="__content"] {
+  & > div:hover {
+    & > div[class$="__content--"],
+    & > div[class$="__description--"] div,
+    & > div[class$="__description--"] p,
+    & .temporary {
+      // display: block;
+    }
+  }
+}
+
+.spoiler-body {
+  display: none;
+}
+
+.LiftingStateUp__description--::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: $DarkRed;
+}
+
+.isopen {
+  display: none;
+  display: inline-block !important;
+}
+
+.spollers-block {
+  margin: 0px 0px 50px 0px;
+  // .spollers-block__item
+  &__item {
+    margin: 0px 0px 20px 0px;
+    &:last-child {
+      margin: 0px 0px 0px 0px;
+    }
+  }
+  // .spollers-block__title
+  &__title {
+    background-color: #794f45;
+    cursor: pointer;
+    padding: 20px 70px 20px 20px;
+    position: relative;
+    &::before {
+      content: "";
+      width: 20px;
+      background-color: #fff;
+      height: 2px;
+      transition: transform 0.3s ease 0s;
+      transform: translate(0, -50%) rotate(-45deg);
+      position: absolute;
+      right: 15px;
+      top: 50%;
+    }
+    &::after {
+      content: "";
+      width: 20px;
+      background-color: #fff;
+      height: 2px;
+      transition: transform 0.3s ease 0s;
+      transform: translate(0, -50%) rotate(45deg);
+      position: absolute;
+      right: 29px;
+      top: 50%;
+    }
+    &._active {
+      &::before {
+        transform: translate(0, -50%) rotate(45deg);
+      }
+      &::after {
+        transform: translate(0, -50%) rotate(-45deg);
+      }
+    }
+  }
+
+  // .spollers-block__body
+  &__body {
+    display: none;
+    padding: 20px 0px 0px 0px;
+  }
+}
+//========================================================================================================================================================
+
+.spoiler-body {
+  display: none;
+}
+.spoiler-body2 {
+  // display: none;
+  color: red;
+}

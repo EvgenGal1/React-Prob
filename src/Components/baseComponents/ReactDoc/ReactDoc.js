@@ -3,11 +3,24 @@ import React from "react";
 // теперь все Общие SCSS файлы собранны в один по пути в "./baseComponents/App.scss". В компонент подкл стили относящиеся только к нему
 import "./ReactDoc.scss";
 
+// доп хуки
+import ReactSpoiler from "react-spoiler";
+// !!! не раб - npm ERR! Не удалось разрешить зависимость: Peer React@"^16.8.6" от use spoiler@1.0.0
+// import { useSpoiler } from "use-spoiler";
+
 // подкл. Блоков из ComponentsReactDoc для Архитектуры
+// ConditionalRendering
+import ConditionalRenderingClComp from "./ComponentsReactDoc/clCompReactDoc/ConditionalRenderingClComp/ConditionalRenderingClComp.js";
+// StateLifeCycle
+import StateLifeCycleClComp from "./ComponentsReactDoc/clCompReactDoc/StateLifeCycleClComp/StateLifeCycleClCpmp.js";
+// ListsAndKeys
+import ListsAndKeysClComp from "./ComponentsReactDoc/clCompReactDoc/ListAndKeysClComp/ListsAndKeysClComp.js";
 // Forms
 import FormsClComp from "./ComponentsReactDoc/clCompReactDoc/FormsClComp/FormsСlComp.js";
 // SteteUp
 import StateUpClComp from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
+
+import ProbSpoiler from "./ProbSpoiler.js";
 
 // подкл. переменных ExpPreCode (компоненты/переменные для общих стилей <pre><code>)
 import {
@@ -23,7 +36,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
-} from "../../../examples/ExpPreCode.js";
+} from "../../../js/examples/ExpPreCode.js";
 
 // !!! https://ru.reactjs.org/docs/components-and-props.
 // Компоненты и пропсы `Components and Props`=============================================================================
@@ -35,85 +48,48 @@ import {
 // !!! https://ru.reactjs.org/docs/state-and-lifecycle.html
 // Состояние и жизненный цикл `State and Lifecycle`=============================================================================
 // понятия «состояние» (state) и «жизненный цикл» (lifecycle) React-компонентов
-class Clock extends React.Component {
-  // Классовые компоненты всегда должны вызывать базовый конструктор с аргументом props.
+class StateLifeCycle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date() };
+    this.wrapperRef = React.createRef();
   }
-
-  // Метод componentDidMount() запускается после того, как компонент отрендерился в DOM — здесь мы и установим таймер
-  // сохраняем ID таймера в this (this.timerID)
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
+  handleClick() {
+    const wrapper = this.wrapperRef.current;
+    // const wrapper = this.wrapperRef.all;
+    wrapper.classList.toggle("isopen");
   }
-
-  // сбросить таймер в методе жизненного цикла componentWillUnmount()
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  // метод tick() - Он запускается таймером каждую секунду и вызывает this.setState()
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
-  }
-
-  render() {
-    return (
-      <div className="clock---">
-        <div className="clock__descript---">
-          <h3>Понятия «состояние» и «жизненного цикла» на примере таймера </h3>
-          <div>
-            1. Когда мы передаём Сlосk / в RеасtDОМ.rеndеr ( ), React вызывает
-            компонента. Clock должен отображать текущее время, поэтому задаём
-            начальное состояние this.state объектом с текущим временем.
-          </div>
-          <div>
-            2. React вызывает метод render() компонента Clock. Таким образом
-            React узнаёт, что отобразить на экране. Далее React обновляет DOM
-            так, чтобы он соответствовал выводу рендера Clock.
-          </div>
-          <div>
-            3. Как только вывод рендера Clock вставлен в DOM, React вызывает
-            метод жизненного цикла componentDidMount(). Внутри него компонент
-            Clock указывает браузеру установить таймер, который будет вызывать
-            tick() раз в секунду.
-          </div>
-          <div>
-            4. Таймер вызывает tick() ежесекундно. Внутри tick() мы просим React
-            обновить состояние компонента, вызывая setState() с текущим
-            временем. React реагирует на изменение состояния и снова запускает
-            render(). На этот раз this.state.date в методе render() содержит
-            новое значение, поэтому React заменит DOM. Таким образом компонент
-            Clock каждую секунду обновляет UI.
-          </div>
-          <div>
-            5. Если компонент Clock когда-либо удалится из DOM, React вызовет
-            метод жизненного цикла componentWillUnmount() и сбросит таймер.
-          </div>
-        </div>
-        <div className="clock__content---">
-          <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        </div>
-      </div>
-    );
-  }
-}
-// подкл всех Компонентов Состояния и жизненный цикла
-class StateLifecycle extends React.Component {
   render() {
     return (
       <div className="state-lifecycle--">
         <div className="state-lifecycle__descriptin--">
-          <h3>Состояние (state) и жизненный цикл (lifecycle)</h3>
+          <h3 onClick={() => this.handleClick()}>
+            Состояние (state) и жизненный цикл (lifecycle)
+          </h3>
         </div>
-        <div className="state-lifecycle__content--">
-          <Clock />
-          <BrSp />
+        {/* <ReactSpoiler
+          // show="true"
+          show="false"
+          tag="span" //решает тип визуализированного элемента
+          blur="9" //Значение размытия на щелчке
+          hoverBlur="2" // blur/2	Значение размытия на парящих
+        >
+          <h1>ReactSpoiler</h1>
+          <p> Click/Hover me to the magic! </p>
+          <div>div</div>
+          <br />
+          <p>p</p>
+          <br />
+          <span>span</span>
+        </ReactSpoiler> */}
+        <div
+          ref={this.wrapperRef}
+          className="state-lifecycle__content--"
+          style={{ display: "none" }}
+        >
+          {/* <Clock /> */}
+          <StateLifeCycleClComp />
         </div>
-        <div className="state-lifecycle__frame--">StateLifecycle</div>
+        <div className="state-lifecycle__frame--">StateLifeCycle</div>
       </div>
     );
   }
@@ -177,751 +153,26 @@ class StateLifecycle extends React.Component {
   // В обоих случаях аргумент "e", представляющий событие React, будет передан как второй аргумент после идентификатора. Используя стрелочную функцию, необходимо передавать аргумент явно, но с "bind" любые последующие аргументы передаются автоматически.
 }
 
-// !!! https://ru.reactjs.org/docs/conditional-rendering.html
+// !!! https://ru.reactjs.org/docs/ConditionalRendering.html
 // Условный рендеринг `Conditional Rendering`=============================================================================
 // Бывает нужно объяснить React, как состояние влияет на то, какие компоненты требуется скрыть, а какие — отрендерить, и как именно. В таких ситуациях используйте условный оператор JavaScript или выражения подобные if.
 
-// приветствие. Условный опрератор If + Переменные
-class Greeting extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isLoggedIn: false };
-    // this.handleLoginClick = this.handleLoginClick.bind(this);
-    // this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
-  }
-  // передаём в state.isLoggedIn true
-  handleClick = () => {
-    this.setState({ isLoggedIn: true });
-  };
-  // передаём в state.isLoggedIn false
-  handleNoClick = () => {
-    this.setState({ isLoggedIn: false });
-  };
-
-  render() {
-    // сокращ. и цикл для Переменных элемента
-    const isLoggedIn = this.state.isLoggedIn;
-    let button;
-    if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleNoClick} />;
-    } else {
-      button = <LoginButton onClick={this.handleClick} />;
-    }
-
-    function UserGreeting(props) {
-      return <div>Welcome back!</div>;
-    }
-
-    function GuestGreeting(props) {
-      return <div>Please sign up.</div>;
-    }
-
-    // в зависимости от принятого prop отразит один из компонентов
-    function DefineGreeting(props) {
-      const isLoggedIn = props.isLoggedIn;
-      // const isLoggedInCnp = this.state.isLoggedInCnp;
-      // const isLoggedInCnp = this.handleClick()
-      // const isLoggedIn2 = true;
-      if (isLoggedIn) {
-        // if (isLoggedIn || isLoggedInCnp) {
-        return <UserGreeting />;
-      }
-      return <GuestGreeting />;
-    }
-
-    // Переменные элемента
-    // использ переменные для хранения элементов. Помощь в визуале, остальное как прежде.
-    // Компоненты-кнп выхода из системы и входа в систему
-    function LoginButton(props) {
-      // console.log("props : " + props);
-      return (
-        <button style={{ background: "inherit" }} onClick={props.onClick}>
-          Я Свой
-        </button>
-      );
-    }
-
-    function LogoutButton(props) {
-      return (
-        <button style={{ background: "inherit" }} onClick={props.onClick}>
-          Я Чужой
-        </button>
-      );
-    }
-
-    return (
-      <div className="greeting---">
-        <div className="greeting__descript---">
-          {/* <h3>Условный рендеринг</h3>
-          <div>
-            Бывает нужно объяснить React, как состояние влияет на то, какие
-            компоненты требуется скрыть, а какие — отрендерить, и как именно. В
-            таких ситуациях используйте операторы (if, else) JavaScript и/или
-            тернарные операторы (if...else, cond ? true : false).
-          </div> */}
-          <h3>Условный опрератор If + Переменные</h3>
-          <div>
-            Создали компонент Greeting, который отражает один из этих
-            компонентов в зависимости от того, выполнено ли условие (вход на
-            сайт)
-          </div>
-          <div>
-            В первой части передам false напрямую или изначально записываем
-            state.isLoggedIn.false
-          </div>
-          <div>
-            Во второй используем переменные для хранения эл-ов. Помошь в
-            визуале, логика такая же.
-          </div>
-          <div className="IfAnd__descript--- temporary">
-            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-            <code style={{ color: "red" }}>!!!</code> НАПИСАТЬ КОД | ПЕРЕБРАТЬ
-          </div>
-        </div>
-        <div className="greeting__content---">
-          <div className="greeting__oneexp----">
-            <div className="greeting__oneexp_descript----">
-              <span className="spmdnon">Напрямую передаём . </span>{" "}
-              <span> false </span>
-            </div>
-            <div className="greeting__oneexp_content----">
-              <DefineGreeting
-                // первоначально передавалось напрямую
-                // isLoggedIn={false}
-                // попытка передать 2 значения
-                // isLoggedIn2={this.state.isLoggedIn}
-                // передаём состояние
-                isLoggedIn={this.state.isLoggedIn}
-              />
-            </div>
-          </div>
-          <div className="greeting__twoexp----">
-            <div className="greeting__twoexp_descript----">
-              <span className="spmdnon">Передаём через переменные </span>{" "}
-              {"   "}
-              <div>кнп</div>
-            </div>
-            <div className="greeting__twoexp_content----">
-              {/* <DefineGreeting
-                  isLoggedIn={isLoggedIn}
-                  // isLoggedIn={this.state.isLoggedIn}
-                /> */}
-              {button}
-              {/* свой вариант. меняем state.isLoggedIn по кликам ч/з 2
-              fn()handleClick/handleNoClick */}
-              {/* 
-                    <>
-                      <button
-                        className="greeting__content-22"
-                        type="button"
-                        onClick={this.handleClick}
-                      >
-                        Я Свой {this.state.isLoggedIn ? "ON" : "OFF"}
-                      </button>{" "}
-                      <button
-                        className="greeting__content-22"
-                        onClick={() => {
-                          // this.handleNoClick();
-                          this.handleNoClick();
-                        }}
-                        // onClick={this.handleNoClick} // альтернатива
-                      >
-                        Я Чужой {this.state.isLoggedIn ? "OFF" : "ON"}
-                      </button>
-                    </> 
-                */}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-// Встроенный оператор If с логическим оператором &&
-class IfAnd extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // name2: "Mailbox",
-      nameRoot: <span className="token class-name">Mailbox</span>,
-      // nameFn1: "Mailbox",
-    };
-  }
-  render() {
-    // function Mailbox(props) {
-    const Mailbox = (props) => {
-      const unreadMessages = props.unreadMessages;
-      return (
-        <>
-          <div>Hello!</div>
-          {unreadMessages.length > 0 && (
-            <div>You have {unreadMessages.length} unread messages.</div>
-          )}
-        </>
-      );
-    };
-
-    const messages = ["React", "Re: React", "Re:Re: React"];
-
-    return (
-      <div className="IfAnd---">
-        <div className="IfAnd__descript---">
-          <h3>Встроенный оператор If с логическим оператором &&</h3>
-          <div>
-            Можно встраивать выражения в JSX, заключая их в фигурные скобки. Это
-            включает в себя логический <code>&&</code> оператор JavaScript. Это
-            может быть удобно для условного включения элемента
-          </div>
-          <div>
-            Это работает, потому что в JavaScript{" "}
-            <code>true && expression</code> всегда оценивается как{" "}
-            <code>expression</code>, и <code>false && expression</code> всегда
-            оценивается как <code>false</code>. Следовательно, если условие
-            равно <code>true</code>, элемент сразу после <code>&&</code>{" "}
-            появится в выводе. Если это <code>false</code>, React проигнорирует
-            и пропустит его.
-          </div>
-        </div>
-        <Mailbox unreadMessages={messages} />
-        <div className="IfAnd__descript--- temporary">
-          <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-          <code style={{ color: "red" }}>!!!</code> КОД | ПЕРЕБРАТЬ{" "}
-          <code>pre</code> и <code>code</code>
-        </div>
-        <div className="IfAnd-content---">
-          <pre className="code-jsx">
-            <code className="code-jsx">
-              {/* <span className="token keyword">function</span>{" "}
-              <span className="token function">Mailbox</span>
-              <span className="token punctuation">(</span>
-              <span className="token parameter">props</span>
-              <span className="token punctuation">)</span>
-              <span className="token punctuation">&#123;</span> */}
-              <FuncNameProps nameFn={"Mailbox"} />
-              <br />
-              {"  "}
-              <span className="token keyword">const</span> unreadMessages{" "}
-              <span className="token operator">=</span> props
-              <span className="token punctuation">.</span>unreadMessages
-              <span className="token punctuation">;</span>
-              <br />
-              {"  "}
-              <span className="token keyword">return</span>{" "}
-              <span className="token punctuation">(</span>
-              <br />
-              {"    "}
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuation">&lt;</span>div
-                </span>
-                <span className="token punctuation">&gt;</span>
-              </span>
-              <span className="token plain-text"></span>
-              <span className="token plain-text"></span>
-              <br />
-              {"      "}
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuation">&lt;</span>h1
-                </span>
-                <span className="token punctuation">&gt;</span>
-              </span>
-              <span className="token plain-text">Hello!</span>
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuation">&lt;/</span>h1
-                </span>
-                <span className="token punctuation">&gt;</span>
-              </span>
-              <br />
-              {"      "}
-              <span className="token plain-text"></span>
-              <span className="token plain-text"></span>
-              <span className="token punctuation">&#123;</span>unreadMessages
-              <span className="token punctuation">.</span>length{" "}
-              <span className="token operator">&gt;</span>{" "}
-              <span className="token number">0</span>{" "}
-              <span className="token operator">&amp;&amp;</span>
-              <br />
-              {"        "}
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuation">&lt;</span>h2
-                </span>
-                <span className="token punctuation">&gt;</span>
-              </span>
-              <span className="token plain-text"></span>
-              <br />
-              {"          "}
-              <span className="token plain-text">You have </span>
-              <span className="token punctuation">&#123;</span>unreadMessages
-              <span className="token punctuation">.</span>length
-              <span className="token punctuation">&#125;</span>
-              <span className="token plain-text"> unread messages.</span>
-              <br />
-              {"        "}
-              <span className="token plain-text"></span>
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuation">&lt;/</span>h2
-                </span>
-                <span className="token punctuation">&gt;</span>
-              </span>
-              <br />
-              {"      "}
-              <span className="token punctuation">&#125;</span>
-              <span className="token plain-text"></span>
-              <br />
-              {"    "}
-              <span className="token plain-text"></span>
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuation">&lt;/</span>div
-                </span>
-                <span className="token punctuation">&gt;</span>
-              </span>
-              <br />
-              {"  "}
-              <span className="token punctuation">)</span>
-              <span className="token punctuation">;</span>
-              <br />
-              <span className="token punctuation">&#125;</span>
-              <br />
-              <br />
-              <font></font>
-              <font></font>
-              <span className="token keyword">const</span> messages{" "}
-              <span className="token operator">=</span>{" "}
-              <span className="token punctuation">[</span>
-              <span className="token string">'React'</span>
-              <span className="token punctuation">,</span>{" "}
-              <span className="token string">'Re: React'</span>
-              <span className="token punctuation">,</span>{" "}
-              <span className="token string">'Re:Re: React'</span>
-              <span className="token punctuation">]</span>
-              <span className="token punctuation">;</span>
-              <font></font>
-              <font></font>
-              <br />
-              <br />
-              {/* <ConstRoot name={this.name} */}
-              {/* <ConstRoot name={this.Num()} /> */}
-              <ConstRoot nameRoot={this.state.nameRoot} />
-            </code>
-          </pre>
-        </div>
-        <div className="IfAnd__descript--- temporary">
-          <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-          <code style={{ color: "red" }}>!!!</code> Можно доработать
-          визуализацию чтоб по клик на кнп увелич/уменьшать список тем самым
-          меняя ввывод
-        </div>
-      </div>
-    );
-  }
-}
-// Встроенный If-Else с условным оператором
-const IfCondOper = () => {
-  return (
-    <div className="IfCondOper---">
-      <div className="IfCondOper__descript---">
-        <h3>Встроенный If-Else с условным оператором</h3>
-        <div>
-          Условный оператор JavaScript <code>condition ? true : false</code>{" "}
-          используется для условной визуализации небольшого блока текста.
-        </div>
-      </div>
-      <div className="IfAnd__descript--- temporary">
-        <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-        <code style={{ color: "red" }}>!!!</code> КОД | ПЕРЕБРАТЬ{" "}
-        <code>pre</code> и <code>code</code>
-      </div>
-      <div className="IfCondOper-content---">
-        <pre className="code-jsx">
-          <code className="code-jsx">
-            <span className="token function">render</span>
-            <span className="token punctuation">(</span>
-            <span className="token punctuation">)</span>{" "}
-            <span className="token punctuation">&#123;</span>
-            <br />
-            {"  "}
-            <span className="token keyword">const</span> isLoggedIn{" "}
-            <span className="token operator">=</span>{" "}
-            <span className="token keyword">this</span>
-            <span className="token punctuation">.</span>state
-            <span className="token punctuation">.</span>isLoggedIn
-            <span className="token punctuation">;</span>
-            <br />
-            {"  "}
-            <span className="token keyword">return</span>{" "}
-            <span className="token punctuation">(</span>
-            <br />
-            {"    "}
-            <span className="token tag">
-              <span className="token tag">
-                <span className="token punctuation">&lt;</span>div
-              </span>
-              <span className="token punctuation">&gt;</span>
-            </span>
-            <br />
-            {"      "}
-            <span className="token plain-text"></span>
-            <span className="token plain-text">The user is </span>
-            <br />
-            {"      "}
-            <span className="token punctuation">&lt;</span>
-            <span className="token tag">b</span>
-            <span className="token punctuation">&gt;</span>{" "}
-            <span className="token punctuation">&#123;</span>isLoggedIn{" "}
-            <span className="token operator">?</span>{" "}
-            <span className="token string">'currently'</span>{" "}
-            <span className="token operator">:</span>{" "}
-            <span className="token string">'not'</span>
-            <span className="token punctuation">&#125;</span>{" "}
-            <span className="token punctuation">&lt;/</span>
-            <span className="token tag">b</span>
-            <span className="token punctuation">&gt;</span>
-            <br />
-            {"      "}
-            <span className="token plain-text">logged in.</span>
-            <br />
-            {"    "}
-            <span className="token plain-text"></span>
-            <span className="token tag">
-              <span className="token tag">
-                <span className="token punctuation">&lt;/</span>div
-              </span>
-              <span className="token punctuation">&gt;</span>
-            </span>
-            <br />
-            {"  "}
-            <span className="token punctuation">)</span>
-            <span className="token punctuation">;</span>
-            <br />
-            <span className="token punctuation">&#125;</span>
-          </code>
-        </pre>
-      </div>
-      <div className="IfCondOper__descript---">
-        Можно использовать для больших выражений, но результат того что
-        происходит может быть менее очевиден
-      </div>
-    </div>
-  );
-};
-// предовращение рендера
-class PrevRend extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // showWarning: false,
-      show: false,
-      nameRoot: <span className="token class-name">Page</span>,
-      nameFn1: "WarningBanner",
-    };
-    // попытка преобразования в общую fn для кнп knpToggleClick
-    // this.handleToggleClick = this.handleToggleClick.bind(this);
-    // knpToggleClick = knpToggleClick.bind();
-    knpToggleClick = knpToggleClick.bind(this);
-  }
-  // попытка преобразования в общую fn для кнп knpToggleClick
-  // handleToggleClick() {
-  //   this.setState((state) => ({
-  //     showWarning: !state.showWarning,
-  //   }));
-  // }
-
-  render() {
-    const WarningBanner = (props) => {
-      if (!props.warn) {
-        return null;
-      }
-      return (
-        <code className="code-jsx">
-          <div className="warning">Warning!</div>
-          <div className="warning2">
-            <FuncNameProps nameFn={"WarningBanner"} />
-            <br />
-            {"  "}
-            <span className="token tag">if</span>{" "}
-            <span className="token punctuation">(</span>
-            <span className="token operator">!</span>
-            <span className="token parameter">props</span>
-            <span className="token operator">.</span>warn
-            <span className="token punctuation">)</span>{" "}
-            <span className="token punctuation">&#123;</span>
-            <br />
-            {"    "}
-            <span className="token tag">return</span>{" "}
-            <span className="token boolean">null</span>
-            <span className="token punctuation">;</span>
-            <br />
-            {"  "}
-            <span className="token punctuation">&#125;</span>
-            <br />
-            <br />
-            {"  "}
-            <span className="token tag">return</span>{" "}
-            <span className="token punctuation">(</span>
-            <br />
-            {"    "}
-            <span className="token tag">
-              <span className="token tag">
-                <span className="token punctuationhtml">&lt;</span>div
-              </span>{" "}
-              <span className="token attr-name">className</span>
-              <span className="token attr-value">
-                <span className="token operator">=</span>
-                <span className="token attr-value ">"warning"</span>
-              </span>
-              <span className="token punctuationhtml">&gt;</span>
-            </span>
-            <br />
-            {"      "}
-            <span className="token plain-text"></span>
-            <span className="token plain-text">Warning!</span>
-            <span className="token plain-text"></span>
-            <br />
-            {"    "}
-            <span className="token punctuationhtml">&lt;/</span>
-            <span className="token tag">div</span>
-            <span className="token punctuationhtml">&gt;</span>
-            <br />
-            {"  "}
-            <span className="token punctuation">)</span>
-            <span className="token punctuation">;</span>
-            <br />
-            <span className="token punctuation">&#125;</span>
-          </div>
-          <div className="warning3">Warning!</div>
-          <br />
-        </code>
-      );
-    };
-    // console.log("PrevRend : " + this.state.show);
-    return (
-      <div className="PrevRend---">
-        <div className="PrevRend__descript---">
-          <h3>Предотвращение рендеринга компонента</h3>
-          <div>
-            В редких случаях вы можете захотеть, чтобы компонент скрывал себя,
-            даже если он был визуализирован другим компонентом. Чтобы сделать
-            это, верните <code>null</code> вместо своего вывода рендеринга.
-          </div>
-          <div>
-            <code>&lt;WarningBanner/&gt;</code> визуализируется в зависимости от
-            значения реквизита под названием <code>warn</code>. Если значение
-            свойства равно
-            <code>false</code>, то компонент не отображается:
-          </div>
-          <div>
-            {/* попытка преобразования в общую fn для кнп knpToggleClick */}
-            {/* <button onClick={this.handleToggleClick}> */}
-            {/* <button onClick={knpToggleClick}> */}
-            <button className="btmShowHide" onClick={knpToggleClick}>
-              {/* <div>{this.state.showWarning ? "Show" : "Hide"}</div> */}
-              <div>{this.state.show ? "Hide" : "Show"}</div>
-            </button>
-            {/* <button onClick={(e) => this.deleteRow(id, e)}>Удалить строку</button> */}
-            {/* <button onClick={this.deleteRow.bind(this, id)}>Удалить строку</button> */}
-          </div>
-        </div>
-        <div className="PrevRend__content---">
-          <pre className="code-jsx">
-            <code className="code-jsx">
-              {/* <WarningBanner warn={this.state.showWarning} /> */}
-              <WarningBanner warn={this.state.show} />
-              <span className="token keyword">class</span>{" "}
-              <span className="token class-name">Page</span>{" "}
-              <span className="token keyword">extends</span>{" "}
-              <span className="token class-name">React</span>
-              <span className="token tag">.</span>
-              <span className="token class-name">Component</span>{" "}
-              <span className="token punctuation">&#123;</span>
-              <br />
-              {"  "}
-              <span className="token function">constructor</span>
-              <span className="token punctuation">(</span>
-              <span className="token parameter">props</span>
-              <span className="token punctuation">)</span>{" "}
-              <span className="token punctuation">&#123;</span>
-              <br />
-              {"    "}
-              <span className="token function">super</span>
-              <span className="token punctuation">(</span>
-              <span className="token parameter">props</span>
-              <span className="token punctuation">)</span>
-              <span className="token punctuation">;</span>
-              <br />
-              {"    "}
-              <span className="token parameter">this</span>
-              <span className="token operator">.</span>state{" "}
-              <span className="token operator">=</span>{" "}
-              <span className="token punctuation">&#123;</span>showWarning{" "}
-              <span className="token operator">:</span>{" "}
-              <span className="token boolean">true</span>
-              <span className="token punctuation">&#125;</span>
-              <span className="token punctuation">;</span>
-              <br />
-              {"    "}
-              <span className="token parameter">this</span>
-              <span className="token operator">.</span>handleToggleClick{" "}
-              <span className="token operator">=</span>{" "}
-              <span className="token parameter">this</span>
-              <span className="token operator">.</span>
-              <span className="token function">handleToggleClick</span>
-              <span className="token operator">.</span>
-              <span className="token function">bind</span>
-              <span className="token punctuation">(</span>
-              <span className="token parameter">this</span>
-              <span className="token punctuation">)</span>
-              <span className="token punctuation">;</span>
-              <br />
-              {"  "}
-              <span className="token punctuation">&#125;</span>
-              <br />
-              <br />
-              <font></font>
-              <font></font>
-              {"  "}
-              <span className="token function">handleToggleClick</span>
-              <span className="token punctuation">(</span>
-              <span className="token punctuation">)</span>{" "}
-              <span className="token punctuation">&#123;</span>
-              <br />
-              {"    "}
-              <span className="token parameter">this</span>
-              <span className="token operator">.</span>
-              <span className="token function">setState</span>
-              <span className="token punctuation">(</span>
-              <span className="token parameter">state</span>{" "}
-              <span className="token operator">=&gt;</span>{" "}
-              <span className="token punctuation">(</span>
-              <span className="token punctuation">&#123;</span>
-              <br />
-              {"      "}
-              showWarning
-              <span className="token operator">:</span>{" "}
-              <span className="token operator">!</span>
-              <span className="token parameter">state</span>
-              <span className="token operator">.</span>showWarning
-              <br />
-              {"    "}
-              <span className="token punctuation">&#125;</span>
-              <span className="token punctuation">)</span>
-              <span className="token punctuation">)</span>
-              <span className="token punctuation">;</span>
-              <br />
-              {"  "}
-              <span className="token punctuation">&#125;</span>
-              <br />
-              <br />
-              <font></font>
-              <font></font>
-              {"  "}
-              <span className="token function">render</span>
-              <span className="token punctuation">(</span>
-              <span className="token punctuation">)</span>{" "}
-              <span className="token punctuation">&#123;</span>
-              <br />
-              {"    "}
-              <span className="token tag">return</span>{" "}
-              <span className="token punctuation">(</span>
-              <br />
-              {"      "}
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuationhtml">&lt;</span>div
-                </span>
-                <span className="token punctuationhtml">&gt;</span>
-              </span>
-              <br />
-              {"        "}
-              <span className="token punctuationhtml">&lt;</span>
-              <span className="token class-name">WarningBanner</span>{" "}
-              <span className="token attr-name">warn</span>
-              <span className="token operator">=</span>
-              <span className="token punctuation">&#123;</span>
-              <span className="token parameter">this</span>
-              <span className="token operator">.</span>state
-              <span className="token operator">.</span>showWarning
-              <span className="token punctuation">&#125;</span>
-              <span className="token punctuationhtml">/&gt;</span>
-              <span className="token plain-text"></span>
-              <br />
-              {"        "}
-              <span className="token plain-text"></span>
-              <span className="token punctuationhtml">&lt;</span>
-              <span className="token tag">button</span>{" "}
-              <span className="token attr-name">onClick</span>
-              <span className="token operator">=</span>
-              <span className="token punctuation">&#123;</span>
-              <span className="token parameter">this</span>
-              <span className="token punctuation">.</span>
-              <span className="token function">handleToggleClick</span>
-              <span className="token punctuation">&#125;</span>
-              <span className="token punctuationhtml">&gt;</span>
-              <br />
-              {"          "}
-              <span className="token punctuation">&#123;</span>
-              <span className="token parameter">this</span>
-              <span className="token operator">.</span>state
-              <span className="token operator">.</span>showWarning{" "}
-              <span className="token operator">?</span>{" "}
-              <span className="token atrule">'Hide'</span>{" "}
-              <span className="token operator">:</span>{" "}
-              <span className="token atrule">'show'</span>
-              <span className="token punctuation">&#125;</span>
-              <span className="token plain-text"></span>
-              <span className="token plain-text"></span>
-              <br />
-              {"        "}
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuationhtml">&lt;/</span>button
-                </span>
-                <span className="token punctuationhtml">&gt;</span>
-              </span>
-              <br />
-              {"      "}
-              <span className="token tag">
-                <span className="token tag">
-                  <span className="token punctuationhtml">&lt;/</span>div
-                </span>
-                <span className="token punctuationhtml">&gt;</span>
-              </span>
-              <br />
-              {"    "}
-              <span className="token punctuation">);</span>
-              <br />
-              {"  "}
-              <span className="token punctuation">&#125;</span>
-              <br />
-              <span className="token punctuation">&#125;</span>
-              <br />
-              <br />
-              <ConstRoot nameRoot={this.state.nameRoot} />
-            </code>
-          </pre>
-        </div>
-        <div className="PrevRend__descript---">
-          Возврат <code>null</code> из <code>render</code> метода компонента не
-          влияет на запуск методов жизненного цикла компонента. Например{" "}
-          <code>componentDidUpdate</code>, все равно будут называть.
-        </div>
-      </div>
-    );
-  }
-}
-
 // подкл всех Компонентов Условного рендеринга
 class ConditionalRendering extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+  handleClick() {
+    const wrapper = this.wrapperRef.current;
+    // const wrapper = this.wrapperRef.all;
+    wrapper.classList.toggle("isopen");
+  }
   render() {
     return (
-      <div className="conditional-rendering--">
-        <div className="conditional-rendering__descript--">
-          <h3>Условный рендеринг</h3>
+      <div className="ConditionalRendering--">
+        <div className="ConditionalRendering__descript--">
+          <h3 onClick={() => this.handleClick()}>Условный рендеринг</h3>
           <div>
             Бывает нужно объяснить React, как состояние влияет на то, какие
             компоненты требуется скрыть, а какие — отрендерить, и как именно. В
@@ -930,17 +181,18 @@ class ConditionalRendering extends React.Component {
             <code>if...else</code>, <code>condition ? true : false</code>).
           </div>
         </div>
-        <div className="conditional-rendering__content--">
-          <Greeting />
-          <IfAnd />
-          <IfCondOper />
-          <PrevRend />
+        <div
+          ref={this.wrapperRef}
+          className="ConditionalRendering__content--"
+          style={{ display: "none" }}
+        >
+          <ConditionalRenderingClComp />
         </div>
-        <div className="conditional-rendering__descript--">
+        <div className="ConditionalRendering__descript--">
           Подробнее по ссылке{" "}
-          <code>https://reactjs.org/docs/conditional-rendering.html</code>
+          <code>https://reactjs.org/docs/ConditionalRendering.html</code>
         </div>
-        <div className="conditional-rendering__frame--">
+        <div className="ConditionalRendering__frame--">
           ConditionalRendering
         </div>
       </div>
@@ -950,1121 +202,59 @@ class ConditionalRendering extends React.Component {
 
 // !!! https://reactjs.org/docs/lists-and-keys.html
 // Списки и ключи `Lists and keys` =======================================================================================
-// Списки
-class Lists extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showKey: true,
-      // nameFn1: "NumberList",
-    };
-    // попытка преобразования в общую fn для кнп knpToggleClick
-    // knpToggleClick = knpToggleClick.bind(this);
-    this.knpToggleClick = this.knpToggleClick.bind(this);
-  }
-  // переменные вставки когда
-  nameRoot = () => {
-    return (
-      <>
-        {/* <span className="token punctuation">&lt;</span> */}
-        <span className="token class-name">NumberList</span>{" "}
-        <span className="token attr-name">numbers</span>
-        <span className="token operator">=</span>
-        <span className="token punctuation">&#123;</span>
-        <span className="token punctuationhtml">numbers</span>
-        <span className="token punctuation">&#125;</span>
-        {/* <span className="token punctuation">/&gt;</span> */}
-        {/* "NumberList numbers=&#123;numbers2&#125;" */}
-      </>
-    );
-  };
-  // попытка преобразования в общую fn для кнп knpToggleClick
-  knpToggleClick() {
-    this.setState((state) => ({
-      showKey: !state.showKey,
-      // show: !state.show,
-    }));
-  }
-  render() {
-    // ВЫВОД БЛОКОВ КОДА
-    // Преобразование
-    const Transformation = () => {
-      return (
-        <div>
-          <div className="Transformation__descript----">
-            <h3>Преобразование</h3>
-            <div>
-              Можно использовать <code>map()</code> функцию, чтобы взять массив{" "}
-              <code>numbers</code> и удвоить их значения. Мы присваиваем новый
-              массив, возвращаемый <code>map()</code> переменной,{" "}
-              <code>listItems</code> и регистрируем его
-            </div>
-          </div>
-          <div className="Transformation__content----">
-            <pre className="code-jsx">
-              <code className="code-jsx">
-                <ConstNamePlus num={" "} name1={"numbers"} />
-                <br />
-                <ConstNamePlus
-                  name1={"listItems"}
-                  name2={"numbers"}
-                  metd={"map"}
-                  param1={"number"}
-                />{" "}
-                <span className="token parameter">number</span>{" "}
-                <span className="token operator">*</span>{" "}
-                <span className="token number">2</span>
-                <span className="token punctuation">)</span>
-                <span className="token punctuation">;</span>
-                <br />
-                console<span className="token operator">.</span>
-                <span className="token function">log</span>
-                <span className="token punctuation">(</span>listItems
-                <span className="token punctuation">)</span>
-                <span className="token punctuation">;</span>
-              </code>
-            </pre>
-          </div>
-          <div className="Transformation__descript----">
-            Этот код записывается [2, 4, 6, 8, 10] в консоль.
-          </div>
-        </div>
-      );
-    };
-    // Визуализация нескольких компонентов
-    const RenderingMultiple = () => {
-      return (
-        <div>
-          <div className="RenderingMultiple__descript----">
-            <h3>Визуализация нескольких компонентов</h3>
-            <div>
-              Можно создавать коллекции элементов и включать их в JSX с помощью
-              фигурных скобок <code>{}</code>.
-            </div>
-            <div>
-              Например перебрать массив <code>numbers</code> с помощью функции
-              JavaScript <code>map()</code>. Возвратить <code>&lt;li&gt;</code>{" "}
-              элемент для каждого элемента. И присвоить полученный массив
-              элементов <code>listItems</code>. Затем включить весь массив{" "}
-              <code>listItems</code> внутрь <code>&lt;ul&gt;</code> элемента:
-            </div>
-          </div>
-          <div className="RenderingMultiple__content----">
-            <pre className="code-jsx">
-              <code className="code-jsx">
-                <ConstNamePlus num={" "} name1={"numbers"} />
-                <br />
-                <ConstNamePlus
-                  name1={"listItems"}
-                  name2={"numbers"}
-                  metd={"map"}
-                  param1={"number"}
-                />
-                <br />
-                {"  "}
-                <TagAttrValJSX
-                  tag={"li"}
-                  exp1={"number"}
-                  // br={<br />}
-                  // sp1={"    "}
-                  // sp2={"  "}
-                />
-                <br />
-                <span className="token punctuation">)</span>
-                <span className="token punctuation">;</span>
-                <br />
-                <br />
-                <ReturnTagExp
-                  tag={"ul"}
-                  exp1={"listItems"}
-                  br={<br />}
-                  sp1={"  "}
-                />
-              </code>
-            </pre>
-          </div>
-          Этот код отображает маркированный список чисел от 1 до 5.
-        </div>
-      );
-    };
-    // Базовый компонент списка
-    const BasicListComponent = (props) => {
-      props = this.props.showKey;
-      return (
-        <div>
-          <div className="BasicListComponent__descript----">
-            <h3>Базовый компонент списка</h3>
-            <div>Обычно визуализируются списки внутри компонента</div>
-            <div>
-              Преобразовав предыдущий пример в Компонент, который принимает
-              массив <code>numbers</code> и выводит список элементов
-            </div>
-            <div>
-              Запуск такого кода, выведет предупреждение о том, что для
-              элементов списка должен быть указан ключ. «Ключ» — это специальный
-              строковый атрибут, который необходимо включать при создании
-              списков элементов.
-            </div>
-            <div>
-              Исправим проблему с отсутствующим ключом назначив <code>key</code>{" "}
-              элементам нашего списка внутри
-              <code>numbers.map()</code> по клику на <code>кнп</code>
-            </div>
-            <div>
-              {/* попытка преобразования в общую fn для кнп knpToggleClick */}
-              <button className="btmShowHide" onClick={this.knpToggleClick}>
-                {/* <button onClick={knpToggleClick}> */}
-                {/* <div>{this.state.showKey ? "Show" : "Hide"}</div> */}
-                {/* <div>{this.state.show ? "Show" : "Hide"}</div> */}
-                <div>{this.state.showKey ? "Hide" : "Show"}</div>
-              </button>
-            </div>
-          </div>
-          <div className="BasicListComponent__content----">
-            <pre>
-              <code>
-                <FuncNameProps nameFn={"NumberList"} />
-                <br />
-                {"  "}
-                <ConstNamePlus name1={"numbers"} />
-                <br />
-                {"  "}
-                <ConstNamePlus
-                  name1={"listItems"}
-                  name2={"numbers"}
-                  metd={"map"}
-                  param1={"number"}
-                />
-                <br />
-                {"    "}
-                <TagAttrValJSX
-                  hide={this.state.showKey}
-                  // попытка преобразования в общую fn для кнп knpToggleClick
-                  // show={this.state.show}
-                  tag={"li"}
-                  attr1={"key"}
-                  val1={
-                    <>
-                      number<span className="token punctuation">.</span>
-                      <span className="token attr-name">toString</span>
-                      <span className="token number">()</span>
-                    </>
-                  }
-                  exp1={"number"}
-                  // br={<br />}
-                  // sp1={"      "}
-                  // sp2={"    "}
-                />
-                <br />
-                {"  "}
-                <span className="token punctuation">);</span>
-                <br />
-                {"  "}
-                <ReturnTagExp
-                  tag={"ul"}
-                  exp1={"listItems"}
-                  sp1={"    "}
-                  sp2={"  "}
-                  br={<br />}
-                />
-                <br />
-                <span className="token punctuation">);</span>
-                <br />
-                <br />
-                <ConstNamePlus num={" "} name1={"numbers"} />
-                <br />
-                <ConstRoot nameRoot={this.nameRoot()} />
-              </code>
-            </pre>
-          </div>
-          <div className="BasicListComponent__descript--- temporary">
-            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-            <code style={{ color: "red" }}>!!!</code>
-            сделать <code>fn()knpToggleClick</code> общей для всех. пока
-            отрабатывает только <code>PrevRend</code> (предовращение рендера).
-            Если более глубокая вложенность, как в{" "}
-            <code>BasicListComponent</code>, то fn() не раб на этом Компоненте.
-            Нужно продумать как передавать <code>props/state</code>, при этом
-            чтоб др кнп не срабатывали.
-          </div>
-        </div>
-      );
-    };
-    return (
-      <div className="Lists---">
-        <div className="Lists__description---">
-          <h3>Списки</h3>
-        </div>
-        <div className="Lists__content---">
-          <Transformation />
-          <RenderingMultiple />
-          <BasicListComponent />
-        </div>
-      </div>
-    );
-  }
-}
-// Ключи
-class Keys extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showTrue: true,
-      showJSX: true,
-    };
-    this.knpToggleClick = this.knpToggleClick.bind(this);
-  }
-  knpToggleClick() {
-    this.setState((state) => ({
-      showTrue: !state.showTrue,
-      showJSX: !state.showJSX,
-      // show: !state.show,
-    }));
-  }
-  //  ----------------------------------------------------------------------------------
-  // попытка преобразования в общую fn для кнп knpToggleClick
-  knpToggleClick2 = (props) => {
-    // this.setState((state) => ({
-    //   // showTrue: !state.showTrue,
-    //   this.props.showJSX: !state.showJSX,
-    //   // this.props: !state.props,
-    //   // show: !state.show,
-    // }));
-    this.setState((prevState) => ({
-      showJSX: !prevState.showJSX,
-    }));
-  };
-  //  ----------------------------------------------------------------------------------
-  nameRoot = () => {
-    return (
-      <>
-        {/* Blog posts={posts}  */}
-        {/* <span className="token punctuation">&lt;</span> */}
-        <span className="token class-name">Blog</span>{" "}
-        <span className="token attr-name">posts</span>
-        <span className="token operator">=</span>
-        <span className="token punctuation">&#123;</span>
-        <span className="token punctuationhtml">posts</span>
-        <span className="token punctuation">&#125;</span>
-        {/* <span className="token punctuation">/&gt;</span> */}
-        {/* "NumberList numbers=&#123;numbers2&#125;" */}
-      </>
-    );
-  };
-  render() {
-    // Ключ по id и index
-    const KeyByIdAndIndex = () => {
-      return (
-        <div className="KeyByIdAndIndex">
-          <div className="KeyByIdAndIndex__description">
-            <h3>Ключ по id и index</h3>
-            <div>
-              Ключи помогают React определить, какие элементы были изменены,
-              добавлены или удалены. Ключи должны быть переданы элементам внутри
-              массива, чтобы придать элементам стабильную идентичность:
-            </div>
-            <div></div>
-          </div>
-          <div className="KeyByIdAndIndex__content">
-            <pre>
-              <code>
-                <ConstNamePlus num={" "} name1={"numbers"} />
-                <br />
-                <ConstNamePlus
-                  name1={"listItems"}
-                  name2={"numbers"}
-                  metd={"map"}
-                  param1={"number"}
-                />
-                <BrSp sp={"  "} />
-                <TagAttrValJSX
-                  // hide={true}
-                  // попытка преобразования в общую fn для кнп knpToggleClick
-                  // show={this.state.show}
-                  tag={"li"}
-                  attr1={"key"}
-                  val1={
-                    <>
-                      number<span className="token operator">.</span>
-                      <span className="token attr-name">toString</span>
-                      <span className="token number">()</span>
-                    </>
-                  }
-                  exp1={"number"}
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                />
-                <br />
-                <span className="token punctuation">);</span>
-              </code>
-            </pre>
-          </div>
-          <div className="KeyByIdAndIndex__description">
-            <div>
-              Лучший способ выбрать ключ — использовать строку, которая
-              однозначно идентифицирует элемент списка среди его братьев и
-              сестер. Чаще всего вы будете использовать идентификаторы из ваших
-              данных в качестве ключей:
-            </div>
-          </div>
-          <div className="KeyByIdAndIndex__content">
-            <pre>
-              <code>
-                <ConstNamePlus
-                  name1={"todoItems"}
-                  name2={"todos"}
-                  metd={"map"}
-                  param1={"todo"}
-                />
-                <BrSp sp={"  "} />
-                <TagAttrValJSX
-                  // hide={true}
-                  // попытка преобразования в общую fn для кнп knpToggleClick
-                  // show={this.state.show}
-                  tag={"li"}
-                  attr1={"key"}
-                  val1={
-                    <>
-                      todo<span className="token operator">.</span>
-                      <span className="token attr-name">id</span>
-                    </>
-                  }
-                  exp1={"todo"}
-                  exp2={
-                    <>
-                      <span className="token operator">.</span>
-                      <span className="token attr-name">text</span>
-                    </>
-                  }
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                />
-                <BrSp />
-                <span className="token punctuation">);</span>
-              </code>
-            </pre>
-          </div>
-          <div className="KeyByIdAndIndex__description">
-            <div>
-              Если у вас нет стабильных идентификаторов для отображаемых
-              элементов, вы можете использовать индекс элемента в качестве ключа
-              в крайнем случае:
-            </div>
-          </div>
-          <div className="KeyByIdAndIndex__content">
-            <pre>
-              <code>
-                <ConstNamePlus
-                  name1={"todoItems"}
-                  name2={"todos"}
-                  metd={"map"}
-                  param1={"todo"}
-                  param2={
-                    <>
-                      <span className="token punctuation">,</span>{" "}
-                      <span className="token parameter">index</span>
-                    </>
-                  }
-                />
-                <br />
-                {"  "}
-                <span className="token comment">
-                  // для редких случаев, когда нет стабильных id
-                </span>
-                <br />
-                {"  "}
-                <TagAttrValJSX
-                  // show={true}
-                  // попытка преобразования в общую fn для кнп knpToggleClick
-                  // show={this.state.show}
-                  tag={"li"}
-                  attr1={"key"}
-                  val1={<>todo</>}
-                  exp1={"todo"}
-                  exp2={
-                    <>
-                      <span className="token operator">.</span>
-                      <span className="token attr-name">text</span>
-                    </>
-                  }
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                />
-                <br />
-                <span className="token punctuation">);</span>
-              </code>
-            </pre>
-          </div>
-          <div className="KeyByIdAndIndex__description">
-            <div>
-              Не рекомендуется использовать индексы для ключей, если порядок
-              элементов может измениться. Это может негативно сказаться на
-              производительности и вызвать проблемы с состоянием компонентов.
-              Если вы решите не назначать явный ключ элементам списка, React по
-              умолчанию будет использовать индексы в качестве ключей.
-            </div>
-          </div>
-        </div>
-      );
-    };
-    // Извлечение компонентов с ключами
-    const ExtractComponentKeys = () => {
-      return (
-        <div className="ExtractComponentKeys">
-          <div className="ExtractComponentKeys__description">
-            <h3>Извлечение компонентов с ключами</h3>
-            <div>
-              Например, если вы извлекаете компонент <code>ListItem</code>, вы
-              должны хранить ключ в <code>&lt;ListItem /&gt;</code> элементах
-              массива, а не в самом <code>&lt;li&gt;</code> элементе{" "}
-              <code>ListItem</code>.{" "}
-              <div>
-                Известно по опыту что элементам внутри <code>map()</code> вызова
-                нужны ключи. Клик по кнп покажет верный вариант:
-              </div>
-            </div>
-            <div>
-              <button className="btmShowHide" onClick={this.knpToggleClick}>
-                <div> {this.state.showTrue ? "Hide" : "Show"}</div>
-              </button>
-            </div>
-          </div>
-          <div className="ExtractComponentKeys__content">
-            <pre>
-              <code>
-                <FuncNameProps nameFn={"ListItem"} />
-                <BrSp sp={"  "} />
-                <ConstNamePlus name1={"value"} hide={!this.state.showTrue} />
-                <BrSp sp={"  "} />
-                <ReturnTagExp
-                  show={!this.state.showTrue}
-                  tag={"li"}
-                  attr1={"key"}
-                  val1={"value"}
-                  val2={
-                    <>
-                      toString
-                      <span className="token number">()</span>
-                    </>
-                  }
-                  exp2={"value"}
-                  exp1={
-                    <CondRender
-                      show={this.state.showTrue}
-                      value1={<></>}
-                      value2={
-                        <>
-                          <span className="token parameter">props</span>
-                          <span className="token operator">.</span>
-                        </>
-                      }
-                    />
-                  }
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                  comment={
-                    <CondRender
-                      show={this.state.showTrue}
-                      value1={
-                        <>
-                          <br />
-                          {"    "}
-                          <span className="token comment">
-                            // Неправильно! Здесь нет необходимости указывать
-                            ключ:
-                          </span>
-                        </>
-                      }
-                      value2={
-                        <>
-                          <br />
-                          {"    "}
-                          <span className="token comment">
-                            // Верно! Здесь нет необходимости указывать ключ:
-                          </span>
-                        </>
-                      }
-                    />
-                  }
-                />
-                <BrSp />
-                <span className="token punctuation">&#125;</span>
-                <BrSp />
-                <BrSp />
-                <FuncNameProps nameFn={"NumberList"} />
-                <BrSp sp={"  "} />
-                <ConstNamePlus name1={"numbers"} />
-                <BrSp sp={"  "} />
-                <ConstNamePlus
-                  name1={"listItems"}
-                  name2={"numbers"}
-                  metd={"map"}
-                  param1={"number"}
-                />
-                <BrSp sp={"    "} />
-                <CondRender
-                  show={this.state.showTrue}
-                  value1={
-                    <>
-                      <span className="token comment">
-                        // Неправильно! Ключ должен был быть указан здесь:
-                      </span>
-                    </>
-                  }
-                  value2={
-                    <>
-                      <span className="token comment">
-                        // Верно! Ключ должен быть указан внутри массива:
-                      </span>
-                    </>
-                  }
-                />
-                <BrSp sp={"    "} />
-                <ComponLet
-                  name={"ListItem"}
-                  prop1={"value"}
-                  val1={"number"}
-                  prop2={
-                    <CondRender
-                      show={this.state.showTrue}
-                      value1={<></>}
-                      value2={
-                        <>
-                          <AttrValMetd
-                            attr1={"key"}
-                            val1={"number"}
-                            val2={
-                              <>
-                                toString
-                                <span className="token number">()</span>
-                              </>
-                            }
-                          />
-                        </>
-                      }
-                    />
-                  }
-                />
-                <BrSp sp={"  "} />
-                <span className="token punctuation">);</span>
-                <BrSp sp={"  "} />
-                <ReturnTagExp
-                  tag={"ul"}
-                  exp1={"listItems"}
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                />
-                <br />
-                <span className="token punctuation">&#125;</span>
-              </code>
-            </pre>
-          </div>
-        </div>
-      );
-    };
-    // уникальность ключей среди братьев
-    const UniqKeyForBrothers = () => {
-      return (
-        <div className="UniqKeyForBrothers">
-          <div className="UniqKeyForBrothers__description">
-            <h3>Ключи должны быть уникальными только среди братьев и сестер</h3>
-            <div>
-              Ключи, используемые в массивах, должны быть уникальными среди
-              своих братьев и сестер. Однако они не обязательно должны быть
-              глобально уникальными. Мы можем использовать одни и те же ключи
-              при создании двух разных массивов:
-            </div>
-            <div></div>
-          </div>
-          <div className="UniqKeyForBrothers__content">
-            <pre>
-              <code>
-                <FuncNameProps nameFn={"Blog"} />
-                <BrSp sp={"  "} />
-                <ConstNamePlus name1={"sidebar"} empty={true} />
-                <BrSp sp={"    "} />
-                <TagAttrValJSX
-                  tag={"ul"}
-                  attr1={""}
-                  val1={""}
-                  exp1={
-                    <NameMetdPearam
-                      // props.posts.map((post) =>
-                      name2={
-                        <>
-                          <span className="token parametr">props</span>
-                          <span className="token operator">.</span>
-                          <span className="token constName">posts</span>
-                        </>
-                      }
-                      metd={"map"}
-                      param1={"post"}
-                    />
-                  }
-                  exp2={
-                    <TagAttrValJSX
-                      tag={"li"}
-                      attr1={"key"}
-                      val1={
-                        <>
-                          <span className="token parametr">post</span>
-                          <span className="token operator">.</span>
-                          <span className="token attr-name">id</span>
-                        </>
-                      }
-                      // hide={true}
-                      exp1={"post"}
-                      exp2={
-                        <>
-                          <span className="token operator">.</span>
-                          <span className="token attr-name">title</span>
-                        </>
-                      }
-                      br={<br />}
-                      sp1={"          "}
-                      sp2={"        "}
-                      dop1={<BrSp sp={"        "} />}
-                      dop2={
-                        <>
-                          <br />
-                          {"      "}
-                          <span className="token punctuation">)</span>
-                        </>
-                      }
-                    />
-                  }
-                  br={<br />}
-                  sp1={"      "}
-                  sp2={"    "}
-                />
-                <BrSp sp={"  "} />
-                <span className="token punctuation">);</span>
-                <BrSp sp={"  "} />
-                <ConstNamePlus
-                  name1={"content"}
-                  name2={
-                    <>
-                      <span className="token parameter">props</span>
-                      <span className="token operator">.</span>
-                      <span className="token constName">posts</span>
-                    </>
-                  }
-                  metd={"map"}
-                  param1={"post"}
-                />
-                <BrSp sp={"    "} />
-                <TagAttrValJSX
-                  tag={"div"}
-                  attr1={"key"}
-                  val1={"post"}
-                  val2={"id"}
-                  dop3={true}
-                  exp1={
-                    <TagAttrValJSX
-                      tag={"h3"}
-                      exp1={
-                        <>
-                          <span className="token parameter">post</span>
-                          <span className="token operator">.</span>
-                          <span className="token attr-name">title</span>
-                        </>
-                      }
-                    />
-                  }
-                  dop4={<BrSp sp={"      "} />}
-                  exp2={
-                    <TagAttrValJSX
-                      tag={"p"}
-                      exp1={
-                        <>
-                          <span className="token parameter">post</span>
-                          <span className="token operator">.</span>
-                          <span className="token attr-name">content</span>
-                        </>
-                      }
-                    />
-                  }
-                  show={""}
-                  br={<br />}
-                  sp1={"      "}
-                  sp2={"    "}
-                />
-                <BrSp sp={"  "} />
-                <span className="token punctuation">);</span>
-                <BrSp sp={"  "} />
-                <ReturnTagExp
-                  tag={"div"}
-                  attr1={""}
-                  val1={""}
-                  val2={""}
-                  dop3={true}
-                  dop5={<BrSp sp={"      "} />}
-                  dop6={<BrSp sp={"    "} />}
-                  exp1={
-                    <>
-                      <span className="token punctuation">&#123;</span>
-                      <span className="token constName">sidebar</span>
-                      <span className="token punctuation">&#125;</span>
-                    </>
-                  }
-                  exp2={
-                    <>
-                      <BrSp sp={"      "} />
-                      <span className="token punctuationhtml">&lt;</span>
-                      <span className="token tag">hr</span>
-                      <span className="token punctuationhtml">/&gt;</span>
-                      <BrSp sp={"      "} />
-                      <span className="token punctuation">&#123;</span>
-                      <span className="token constName">content</span>
-                      <span className="token punctuation">&#125;</span>
-                    </>
-                  }
-                  show={""}
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                  // dop4={<BrSp sp={"  "} />}
-                />
-                <BrSp sp={""} />
-                <span className="token punctuation">)</span>
-                <BrSp sp={""} />
-                <BrSp sp={""} />
-                <ConstNamePlus
-                  name1={"posts"}
-                  exp={
-                    <>
-                      <span className="token punctuation">[</span>
-                      <BrSp sp={"      "} />
-                      <span className="token punctuation">&#123;</span>id:{" "}
-                      <span className="token number">1</span>, title:{" "}
-                      <span className="token atrule">'Hello'</span>, content:{" "}
-                      <span className="token atrule">
-                        'Приветствую в React!'
-                      </span>
-                      <span className="token punctuation">&#125;</span>
-                      <span className="token punctuation">,</span>
-                      <BrSp sp={"      "} />
-                      <span className="token punctuation">&#123;</span>id:{" "}
-                      <span className="token number">2</span>, title:{" "}
-                      <span className="token atrule">'Instal'</span>, content:{" "}
-                      <span className="token atrule">
-                        'Установка React ч/з NPM.'
-                      </span>
-                      <span className="token punctuation">&#125;</span>
-                      <BrSp sp={""} />
-                      <span className="token punctuation">];</span>
-                    </>
-                  }
-                />
-                <BrSp sp={""} />
-                <BrSp sp={""} />
-                <ConstRoot nameRoot={this.nameRoot()} />
-              </code>
-            </pre>
-          </div>
-          <div className="UniqKeyForBrothers__description">
-            <div>
-              Ключи служат подсказкой для React, но они не передаются вашим
-              компонентам. Если вам нужно такое же значение в вашем компоненте,
-              передайте его явно как свойство с другим именем:
-            </div>
-            <div>
-              В приведенном примере в <code>Post</code> компонент может читать{" "}
-              <code>props.id</code>, но не <code>props.key</code>.
-            </div>
-          </div>
-          <div className="UniqKeyForBrothers__content">
-            <pre>
-              <code>
-                <ConstNamePlus
-                  name1={"content"}
-                  name2={"posts"}
-                  metd={"map"}
-                  param1={"post"}
-                />
-                <BrSp sp={"  "} />
-                <ComponLet
-                  name={"Post"}
-                  prop1={
-                    <>
-                      <BrSp sp={"    "} />
-                      key
-                    </>
-                  }
-                  val1={"post"}
-                  val2={"id"}
-                  prop2={
-                    <>
-                      <BrSp sp={"   "} />
-                      <AttrValMetd attr1={"id"} val1={"post"} val2={"id"} />
-                    </>
-                  }
-                  prop3={
-                    <>
-                      <BrSp sp={"   "} />
-                      <AttrValMetd
-                        attr1={"title"}
-                        val1={"post"}
-                        val2={"title"}
-                      />
-                      <BrSp sp={"  "} />
-                    </>
-                  }
-                />
-                <BrSp sp={""} />
-                <span className="token punctuation">);</span>
-              </code>
-            </pre>
-          </div>
-        </div>
-      );
-    };
-    // Встраивание map() в JSX
-    const BuildMapInJSX = () => {
-      return (
-        <div className="BuildMapInJSX">
-          <div className="BuildMapInJSX__description">
-            <h3>Встраивание map() в JSX</h3>
-            <div>
-              В приведеном примере объявили отдельную переменную{" "}
-              <code>listItems</code> и включили ее в JSX
-            </div>
-            <div>
-              JSX позволяет вставлять любое выражение в фигурные скобки, чтобы
-              мы могли встроить <code>map()</code> результат:
-            </div>
-            <div>
-              <button className="btmShowHide" onClick={this.knpToggleClick}>
-                <div>{this.state.showJSX ? "Hide" : "Show"}</div>
-              </button>
-            </div>
-          </div>
-          <div className="BuildMapInJSX__content">
-            <pre>
-              <code>
-                <FuncNameProps nameFn={"NumberList"} />
-                <BrSp sp={"  "} />
-                <ConstNamePlus name1={"numbers"} name2={"numbers"} />
-                <BrSp sp={"  "} />
-                {/* <CondRender
-                  show={this.state.showJSX}
-                  value1={<></>}
-                  value2={""}
-                /> */}
-                <CondRender
-                  show={this.state.showJSX}
-                  value1={""}
-                  value2={<BrSp sp={"  "} />}
-                />
-                <CondRender
-                  show={this.state.showJSX}
-                  value1={
-                    <>
-                      <ConstNamePlus
-                        name1="listItems"
-                        name2={"numbers"}
-                        metd={"map"}
-                        param1={"number"}
-                      />
-                      <BrSp sp={"    "} />
-                      <ComponLet
-                        name={"ListItem"}
-                        prop1={
-                          <>
-                            <BrSp sp={"      "} />
-                            key
-                          </>
-                        }
-                        val1={"number"}
-                        val2={
-                          <>
-                            toString
-                            <span className="token number">()</span>
-                          </>
-                        }
-                        prop2={
-                          <>
-                            <BrSp sp={"     "} />
-                            <AttrValMetd
-                              attr1={"value"}
-                              val1={"number"}
-                              val2={""}
-                            />
-                            <BrSp sp={"    "} />
-                          </>
-                        }
-                      />
-                      <BrSp sp={"  "} />
-                      <span className="token punctuation">&#125;;</span>
-                      <BrSp sp={"  "} />
-                    </>
-                  }
-                  value2={""}
-                />
-                <ReturnTagExp
-                  tag={"ul"}
-                  exp1={
-                    <CondRender
-                      show={this.state.showJSX}
-                      value1={"listItems"}
-                      value2={
-                        <>
-                          <NameMetdPearam
-                            name2={"numbers"}
-                            metd={"map"}
-                            param1={"number"}
-                          />
-                          <BrSp sp={"        "} />
-                          <ComponLet
-                            name={"ListItem"}
-                            prop1={
-                              <>
-                                <BrSp sp={"          "} />
-                                key
-                              </>
-                            }
-                            val1={"number"}
-                            val2={
-                              <>
-                                toString
-                                <span className="token number">()</span>
-                              </>
-                            }
-                            prop2={
-                              <>
-                                <BrSp sp={"         "} />
-                                <AttrValMetd
-                                  attr1={"value"}
-                                  val1={"number"}
-                                  val2={""}
-                                />
-                                <BrSp sp={"        "} />
-                              </>
-                            }
-                          />
-                          <BrSp sp={"      "} />
-                        </>
-                      }
-                    />
-                  }
-                  exp2={
-                    <CondRender
-                      show={this.state.showJSX}
-                      value1={""}
-                      value2={
-                        <>
-                          {/* <BrSp sp={"    "} /> */}
-                          <span className="token punctuation">)</span>
-                        </>
-                      }
-                    />
-                  }
-                  br={<br />}
-                  sp1={"    "}
-                  sp2={"  "}
-                  dop3={""}
-                  dop4={""}
-                  dop5={
-                    <CondRender
-                      show={this.state.showJSX}
-                      value1={
-                        // ""
-                        <>
-                          <BrSp sp={"      "} />
-                        </>
-                      }
-                      value2={
-                        <>
-                          <BrSp sp={"      "} />
-                        </>
-                      }
-                    />
-                  }
-                  dop6={
-                    <CondRender
-                      show={this.state.showJSX}
-                      value1={
-                        // ""
-                        <>
-                          <BrSp sp={"    "} />
-                        </>
-                      }
-                      value2={
-                        <>
-                          <BrSp sp={"    "} />
-                        </>
-                      }
-                    />
-                  }
-                />
-                <BrSp sp={""} />
-                <span className="token punctuation">&#125;</span>
-              </code>
-            </pre>
-          </div>
-          <div className="BuildMapInJSX__description">
-            Иногда это приводит к более четкому коду, но этим стилем также можно
-            злоупотреблять. Как и в JavaScript, вам решать, стоит ли извлекать
-            переменную для удобочитаемости. Имейте в виду, что если{" "}
-            <code>map()</code> тело слишком вложенное, самое время извлечь
-            компонент
-          </div>
-          <div className="BasicListComponent__descript--- temporary">
-            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-            <code style={{ color: "red" }}>!!!</code>
-            сделать <code>fn()knpToggleClick</code> общей для всех. пока
-            отрабатывает только <code>PrevRend</code> (предовращение рендера).
-            Если более глубокая вложенность, как в{" "}
-            <code>BasicListComponent</code>, то fn() не раб на этом Компоненте.
-            Нужно продумать как передавать <code>props/state</code>, при этом
-            чтоб др кнп не срабатывали.
-            <div>
-              Продумать изменение разных <code>state</code>. Здесь{" "}
-              <code>stats</code> showTrue и showJSX изменяются оба, при клике на
-              разные клавиши, послольку в <code>fn()knpToggleClick</code>{" "}
-              заложены оба <code>state</code>. Надо как то передавая один, чтоб
-              он и изменялся не затрагивая второй.
-            </div>
-          </div>
-        </div>
-      );
-    };
-
-    return (
-      <div className="Keys---">
-        <div className="Keys__description---">
-          <h3>Ключи</h3>
-        </div>
-        <div className="Keys__content---">
-          <KeyByIdAndIndex />
-          <ExtractComponentKeys />
-          <UniqKeyForBrothers />
-          <BuildMapInJSX />
-        </div>
-      </div>
-    );
-  }
-}
-// подкл всех Компонентов в "Списки и Ключи"
 class ListsAndKeys extends React.Component {
   //  constructor(props) {
   // super(props);
   //this.state = {  }
   //  }
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+  handleClick() {
+    const wrapper = this.wrapperRef.current;
+    // const wrapper = this.wrapperRef.all;
+    wrapper.classList.toggle("isopen");
+  }
+  handleClick33() {
+    const spolerCont = document.querySelectorAll("[data-name='spoiler-cont']");
+    console.log("spolerCont : " + spolerCont);
+    // const wrapper = this.wrapperRef.current;
+    spolerCont.classList.toggle("isopen");
+  }
   render() {
     return (
       <div className="ListsAndKeys--">
-        {/* <div className="ListsAndKeys__description--"></div> */}
-        <div className="ListsAndKeys__content--">
-          <Lists />
-          <Keys />
+        <div className="ListsAndKeys__descript--">
+          <h3 onClick={() => this.handleClick()}>Списки и Ключи</h3>
+          <div ref={this.wrapperRef} className="ListsAneys__coent--">
+            Общие Описание
+            <br />
+            <div className="IfCondOperClComp__descript--- temporary">
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code> СПОЙЛЕР/РАСКРЫВАШКУ ПО
+              КЛИК И С ПЕРЕБОРОМ
+            </div>
+            <div className="IfCondOperClComp__descript--- temporary">
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code> Здесь на{" "}
+              <code>ref</code> и{" "}
+              <code>this.wrapperRef = React.createRef();</code>. Но раб ток один
+              ref. Узнать как на много раб
+            </div>
+          </div>
         </div>
-        <div className="ListsAndKeys__frame--">Lists And Keys</div>
+        <div
+          data-name="spoiler-cont"
+          ref={this.wrapperRef}
+          className="ListsAndKeys__content--"
+          style={{ display: "none" }}
+        >
+          {/* <Lists />
+          <Keys /> */}
+          <ListsAndKeysClComp />
+        </div>
+        <div className="ListsAndKeys__frame--">ListsAndKeys</div>
       </div>
     );
   }
@@ -2072,55 +262,73 @@ class ListsAndKeys extends React.Component {
 
 // !!! https://reactjs.org/docs/forms.html
 // Формы =======================================================================================
-// Ошибка анализа: идентификатор «формы» уже была объявлена.
 class Forms extends React.Component {
-  //constructor(props) {
-  //super(props);
-  //this.state = {  }
-  //}
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+  handleClick() {
+    const wrapper = this.wrapperRef.current;
+    // const wrapper = this.wrapperRef.all;
+    wrapper.classList.toggle("isopen");
+  }
   render() {
     return (
       <div className="Forms--">
-        <div className="Forms__description--">
-          <h3>Формы</h3>
-          <p>
+        <div data-name="spoiler-title" className="Forms__descript-- _spollers">
+          <h3 onClick={() => this.handleClick()}>Формы</h3>
+          <p className="_spoller">
             Элементы формы HTML работают немного иначе, чем другие элементы DOM
             в React, потому что элементы формы естественным образом сохраняют
             некоторое внутреннее состояние. Например, эта форма в простом HTML
             принимает одно имя:
           </p>
+          <div className="_spoller">1212</div>
         </div>
-        <div className="Forms__content--">
+        <div
+          ref={this.wrapperRef}
+          className="Forms__content--"
+          style={{ display: "none" }}
+        >
           <br />
           <FormsClComp />
         </div>
-        <div className="Forms__frame--">FormsClComp</div>
+        <div className="Forms__frame--">Forms</div>
       </div>
     );
   }
 }
 
 class LiftingStateUp extends React.Component {
-  //constructor(props) {
-  //super(props);
-  //this.state = {  }
-  //}
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+  handleClick() {
+    const wrapper = this.wrapperRef.current;
+    // const wrapper = this.wrapperRef.all;
+    wrapper.classList.toggle("isopen");
+  }
   render() {
     return (
       <div className="LiftingStateUp--">
-        <div className="LiftingStateUp__description--">
-          <h3>StateUpClComp</h3>
-          <p>
+        <div data-name="spoiler-title" className="LiftingStateUp__descript--">
+          <h3 onClick={() => this.handleClick()}>StateUpClComp</h3>
+          <p className="spoiler-body">
             Часто несколько компонентов должны отражать одни и те же
             изменяющиеся данные. Мы рекомендуем поднимать общее состояние до их
             ближайшего общего предка. Давайте посмотрим, как это работает в
             действии
           </p>
         </div>
-        <div className="LiftingStateUp__content--">
+        <div
+          ref={this.wrapperRef}
+          className="LiftingStateUp__content--"
+          style={{ display: "none" }}
+        >
           <StateUpClComp />
         </div>
-        <div className="LiftingStateUp__frame--">StateUpClComp</div>
+        <div className="LiftingStateUp__frame--">StateUp</div>
       </div>
     );
   }
@@ -2152,10 +360,24 @@ class ReactDocComponents extends React.Component {
       <div className="ReactDocComponents">
         <div className="ReactDocComponents__descript">
           <h3>Общие понятия/концепции/методы из React документации</h3>
+
+          <div className="IfCondOperClComp__descript--- temporary">
+            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ/СДЕЛАТЬ{" "}
+            <code style={{ color: "red" }}>!!!</code> СПОЙЛЕР/РАСКРЫВАШКУ. ПО
+            КЛИК НА H3 (ЗАГОЛОВОК) И С ПЕРЕБОРОМ ВСЕХ ПОХОЖИХ,
+            СКРЫВАТЬ/ПОКАЗЫВАТЬ CONTENT БЛОКОВ
+          </div>
         </div>
 
         <div className="ReactDocComponents__content">
-          <StateLifecycle />
+          {/* <Spoiler />
+          <SpoilerProb />
+          <SpoilerTitle />
+          <ReactSpoiler />
+          <SpoilerLiftingStateUp />
+          <SpoilerMy /> */}
+          <ProbSpoiler />
+          <StateLifeCycle />
           {/* <Greeting /> */}
           <ConditionalRendering />
           <ListsAndKeys />

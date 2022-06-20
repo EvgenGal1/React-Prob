@@ -110,7 +110,7 @@ class PersistState extends React.Component {
   render() {
     return (
       <div className="PersistState">
-        <div className="PersistState__description">
+        <div className="PersistState__descript">
           <h3>Методы сохранения состояния между перезагрузками страницы</h3>
           <div>описать</div>
         </div>

@@ -1,0 +1,10 @@
+// !!! ДОРАБОТАТЬ !!! !времменой стиль
+.temporary {
+  color: red !important;
+  background: royalblue !important;
+  text-shadow: 2px 2px 2px black, 2px 2px 2px darkred !important;
+  text-shadow: 1px 1px 1px black, 1px 1px 1px darkred !important;
+  code {
+    color: inherit;
+  }
+}

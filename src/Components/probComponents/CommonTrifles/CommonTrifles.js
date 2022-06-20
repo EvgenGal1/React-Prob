@@ -158,7 +158,7 @@ function CountryFlags() {
       </div>
       <div className="countryflags__content--">
         <div className="countryflags__oneexp---">
-          <div className="countryflags__oneexp_descript---">
+          <div className="countryflags__oneexp_description---">
             <div>
               Прослушивает НАжатии опред. одиночных клвш. - вывод + шрифт к
               обозначению.
@@ -178,7 +178,7 @@ function CountryFlags() {
           </div>
         </div>
         <div className="countryflags__twoexp---">
-          <div className="countryflags__twoexp_descript---">
+          <div className="countryflags__twoexp_description---">
             <div>
               Прослушивает ЗАжатии неск-их опред. клвш. одновременно И НАжатии
               одиночных опред. клвш. - вывод + шрифт к обозначению
@@ -226,7 +226,7 @@ class CommonTrifles extends React.Component {
   render() {
     return (
       <div className="CommonTrifles">
-        <div className="CommonTrifles__description">
+        <div className="CommonTrifles__descript">
           <h3>хук useKeyPress (+ fn()useMultiKeyPress) + отладка</h3>
           <div className="temporary">
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}

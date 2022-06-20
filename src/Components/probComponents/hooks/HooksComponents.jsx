@@ -170,7 +170,7 @@ function TransitionDefrred() {
       .then(setComments);
   }, []);
 
-  console.log("menuActive 0: " + menuActive);
+  // console.log("menuActive 0: " + menuActive);
   return (
     <div className="transitiondefrred--">
       {/* ч\з не управляемый input, вызов ч/з onChange fn()handleSearch для передачи значения. срочный - сразу видем что набираем */}

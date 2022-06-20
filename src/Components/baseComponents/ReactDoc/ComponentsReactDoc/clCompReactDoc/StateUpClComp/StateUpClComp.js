@@ -14,7 +14,7 @@ class StateUpClComp extends React.Component {
       render() {
         return (
           <div className="CalcTemper">
-            <div className="CalcTemper__description">
+            <div className="CalcTemper__descript">
               <h3>Cоздадим калькулятор температуры</h3>
               <p>
                 Мы начнем с компонента под названием BoilingVerdict. Он
@@ -33,7 +33,7 @@ class StateUpClComp extends React.Component {
     }
     return (
       <div className="StateUpClComp---">
-        {/* <div className="LiftingStateUp__description"></div> */}
+        {/* <div className="LiftingStateUp__descript"></div> */}
         <div className="StateUpClComp__content---">
           <CalcTemper />
           <CalcTemper />

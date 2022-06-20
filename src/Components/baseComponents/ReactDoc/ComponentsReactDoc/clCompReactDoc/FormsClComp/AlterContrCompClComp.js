@@ -17,8 +17,8 @@ import {
 
 const AlterContrCompClComp = () => {
   return (
-    <div className="AlterContrCompClComp---">
-      <div className="AlterContrCompClComp__description---">
+    <div className="AlterContrCompClComp----">
+      <div className="AlterContrCompClComp__descript----">
         <h3>Альтернативы управляемым компонентам</h3>
         <div>
           Иногда использование контролируемых компонентов может быть
@@ -39,7 +39,7 @@ const AlterContrCompClComp = () => {
           пренебрегайте их изучением.
         </div>
       </div>
-      <div className="AlterContrCompClComp__content---">
+      <div className="AlterContrCompClComp__content----">
         <pre>
           <code>
             44

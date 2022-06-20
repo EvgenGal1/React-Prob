@@ -9,7 +9,7 @@ import CommonTrifles from "./probComponents/CommonTrifles/CommonTrifles.js";
 import HooksComponents from "./probComponents/hooks/HooksComponents.jsx";
 import PersistState from "./probComponents/PersistState/PersistState.js";
 
-console.log("App 0");
+// console.log("App 0");
 class GeneralComponents extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -18,7 +18,7 @@ class GeneralComponents extends React.Component {
   render() {
     return (
       <div className="root-body">
-        {console.log("App 1")}
+        {/* {console.log("App 1")} */}
         {/* <div> */}
         {/* <div className="container"> */}
         {/* <Plan /> */}
@@ -44,7 +44,7 @@ class GeneralComponents extends React.Component {
 
 class App extends React.Component {
   render() {
-    console.log("App 2");
+    // console.log("App 2");
     return <GeneralComponents />;
   }
 }

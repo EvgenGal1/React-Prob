@@ -10,7 +10,7 @@ class VidInput1 extends React.Component {
     return (
       <div className="vid-input__oneexp---">
         {/* просто input */}
-        <div className="vid-input__oneexp_descript---">Input</div>
+        <div className="vid-input__oneexp_description---">Input</div>
         {/* получ данные из input. value передаётся из props, + обар.событ onChange где с помошью props получ метод handleChange */}
         <input
           className="vid-input__oneexp_content---"

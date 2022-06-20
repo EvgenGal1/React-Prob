@@ -18,7 +18,7 @@ import {
 const HTMformsDefaultClComp = () => {
   return (
     <div className="HTMformsDefaultClComp----">
-      <div className="HTMformsDefaultClComp__description----">
+      <div className="HTMformsDefaultClComp__descript----">
         <h3>HTML-формы по умолчанию</h3>
         <p>
           Эта форма имеет поведение HTML-формы по умолчанию при переходе на
@@ -101,7 +101,7 @@ const HTMformsDefaultClComp = () => {
           </code>
         </pre>
       </div>
-      <div className="HTMformsDefaultClComp__description----">
+      <div className="HTMformsDefaultClComp__descript----">
         Но в большинстве случаев удобно иметь функцию JavaScript, которая
         обрабатывает отправку формы и имеет доступ к данным, которые
         пользователь ввел в форму. Стандартный способ добиться этого —

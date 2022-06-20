@@ -35,7 +35,7 @@ class ManagedComponents extends React.Component {
   render() {
     return (
       <div className="ManagedComponents----">
-        <div className="ManagedComponents__description----">
+        <div className="ManagedComponents__descript----">
           <h3>Управляемые компоненты</h3>
           <p>
             В HTML элементы формы, такие как <code>&lt;input&gt;</code>,{" "}
@@ -197,7 +197,7 @@ class ManagedComponents extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="ManagedComponents__description----">
+        <div className="ManagedComponents__descript----">
           <p>
             Поскольку <code>value</code> атрибут установлен в нашем элементе
             формы, отображаемое значение всегда будет{" "}

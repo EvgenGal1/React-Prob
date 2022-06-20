@@ -67,7 +67,7 @@ class KeysClComp extends React.Component {
     const KeyByIdAndIndex = () => {
       return (
         <div className="KeyByIdAndIndex">
-          <div className="KeyByIdAndIndex__description">
+          <div className="KeyByIdAndIndex__descript">
             <h3>Ключ по id и index</h3>
             <div>
               Ключи помогают React определить, какие элементы были изменены,
@@ -111,7 +111,7 @@ class KeysClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="KeyByIdAndIndex__description">
+          <div className="KeyByIdAndIndex__descript">
             <div>
               Лучший способ выбрать ключ — использовать строку, которая
               однозначно идентифицирует элемент списка среди его братьев и
@@ -157,7 +157,7 @@ class KeysClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="KeyByIdAndIndex__description">
+          <div className="KeyByIdAndIndex__descript">
             <div>
               Если у вас нет стабильных идентификаторов для отображаемых
               элементов, вы можете использовать индекс элемента в качестве ключа
@@ -209,7 +209,7 @@ class KeysClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="KeyByIdAndIndex__description">
+          <div className="KeyByIdAndIndex__descript">
             <div>
               Не рекомендуется использовать индексы для ключей, если порядок
               элементов может измениться. Это может негативно сказаться на
@@ -225,7 +225,7 @@ class KeysClComp extends React.Component {
     const ExtractComponentKeys = () => {
       return (
         <div className="ExtractComponentKeys">
-          <div className="ExtractComponentKeys__description">
+          <div className="ExtractComponentKeys__descript">
             <h3>Извлечение компонентов с ключами</h3>
             <div>
               Например, если вы извлекаете компонент <code>ListItem</code>, вы
@@ -382,7 +382,7 @@ class KeysClComp extends React.Component {
     const UniqKeyForBrothers = () => {
       return (
         <div className="UniqKeyForBrothers">
-          <div className="UniqKeyForBrothers__description">
+          <div className="UniqKeyForBrothers__descript">
             <h3>Ключи должны быть уникальными только среди братьев и сестер</h3>
             <div>
               Ключи, используемые в массивах, должны быть уникальными среди
@@ -578,7 +578,7 @@ class KeysClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="UniqKeyForBrothers__description">
+          <div className="UniqKeyForBrothers__descript">
             <div>
               Ключи служат подсказкой для React, но они не передаются вашим
               компонентам. Если вам нужно такое же значение в вашем компоненте,
@@ -639,7 +639,7 @@ class KeysClComp extends React.Component {
     const BuildMapInJSX = () => {
       return (
         <div className="BuildMapInJSX">
-          <div className="BuildMapInJSX__description">
+          <div className="BuildMapInJSX__descript">
             <h3>Встраивание map() в JSX</h3>
             <div>
               В приведеном примере объявили отдельную переменную{" "}
@@ -818,7 +818,7 @@ class KeysClComp extends React.Component {
               </code>
             </pre>
           </div>
-          <div className="BuildMapInJSX__description">
+          <div className="BuildMapInJSX__descript">
             Иногда это приводит к более четкому коду, но этим стилем также можно
             злоупотреблять. Как и в JavaScript, вам решать, стоит ли извлекать
             переменную для удобочитаемости. Имейте в виду, что если{" "}
@@ -847,11 +847,11 @@ class KeysClComp extends React.Component {
     };
 
     return (
-      <div className="Keys---">
-        <div className="Keys__description---">
+      <div className="Keys----">
+        <div className="Keys__descript----">
           <h3>Ключи</h3>
         </div>
-        <div className="Keys__content---">
+        <div className="Keys__content----">
           <KeyByIdAndIndex />
           <ExtractComponentKeys />
           <UniqKeyForBrothers />
