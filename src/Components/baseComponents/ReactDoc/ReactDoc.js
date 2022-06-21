@@ -51,40 +51,44 @@ import {
 class StateLifeCycle extends React.Component {
   constructor(props) {
     super(props);
-    this.wrapperRef = React.createRef();
+    this.state = {
+      opened: "",
+    };
+    this.RefOpenClCont = React.createRef();
+    this.RefActinCl = React.createRef();
+    this.RefOpenClDop = React.createRef();
   }
-  handleClick() {
-    const wrapper = this.wrapperRef.current;
-    // const wrapper = this.wrapperRef.all;
-    wrapper.classList.toggle("isopen");
+  handleClickRef() {
+    const OpenCont = this.RefOpenClCont.current;
+    const ActionArrow = this.RefActinCl.current;
+    const OpenDopEl = this.RefOpenClDop.current;
+    // const OpenCont = this.RefOpenClCont.all;
+    OpenCont.classList.toggle("isOpenRef");
+    ActionArrow.classList.toggle("_active");
+    OpenDopEl.classList.toggle("isOpenRefStyle");
   }
+  // onClick = () => {
+  //   // this.setState({ opened: !opened })
+  //   this.setState((prevState) => ({
+  //     opened: !prevState.opened,
+  //   }));
+  // };
+
   render() {
     return (
-      <div className="state-lifecycle--">
+      <div className="state-lifecycle-- accordion">
         <div className="state-lifecycle__descriptin--">
-          <h3 onClick={() => this.handleClick()}>
+          <h3 ref={this.RefActinCl} onClick={() => this.handleClickRef()}>
             Состояние (state) и жизненный цикл (lifecycle)
           </h3>
+          <p style={{ display: "none" }} ref={this.RefOpenClDop}>
+            121212
+          </p>
         </div>
-        {/* <ReactSpoiler
-          // show="true"
-          show="false"
-          tag="span" //решает тип визуализированного элемента
-          blur="9" //Значение размытия на щелчке
-          hoverBlur="2" // blur/2	Значение размытия на парящих
-        >
-          <h1>ReactSpoiler</h1>
-          <p> Click/Hover me to the magic! </p>
-          <div>div</div>
-          <br />
-          <p>p</p>
-          <br />
-          <span>span</span>
-        </ReactSpoiler> */}
         <div
-          ref={this.wrapperRef}
+          ref={this.RefOpenClCont}
           className="state-lifecycle__content--"
-          style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           {/* <Clock /> */}
           <StateLifeCycleClComp />
@@ -161,19 +165,30 @@ class StateLifeCycle extends React.Component {
 class ConditionalRendering extends React.Component {
   constructor(props) {
     super(props);
-    this.wrapperRef = React.createRef();
+    this.RefOpenClCont = React.createRef();
+    this.RefActinCl = React.createRef();
+    this.RefOpenClDop = React.createRef();
   }
-  handleClick() {
-    const wrapper = this.wrapperRef.current;
-    // const wrapper = this.wrapperRef.all;
-    wrapper.classList.toggle("isopen");
+  handleClickRef() {
+    const OpenCont = this.RefOpenClCont.current;
+    const ActionArrow = this.RefActinCl.current;
+    const OpenDopEl = this.RefOpenClDop.current;
+    // const OpenCont = this.RefOpenClCont.all;
+    OpenCont.classList.toggle("isOpenRef");
+    ActionArrow.classList.toggle("_active");
+    OpenDopEl.classList.toggle("isOpenRefStyle");
   }
+
   render() {
     return (
-      <div className="ConditionalRendering--">
+      <div
+        onClick={() => this.handleClickRef()}
+        ref={this.RefActinCl}
+        className="ConditionalRendering-- accordion"
+      >
         <div className="ConditionalRendering__descript--">
-          <h3 onClick={() => this.handleClick()}>Условный рендеринг</h3>
-          <div>
+          <h3>Условный рендеринг</h3>
+          <div ref={this.RefOpenClDop} style={{ display: "none" }}>
             Бывает нужно объяснить React, как состояние влияет на то, какие
             компоненты требуется скрыть, а какие — отрендерить, и как именно. В
             таких ситуациях используйте операторы (<code>if else</code>,{" "}
@@ -182,13 +197,17 @@ class ConditionalRendering extends React.Component {
           </div>
         </div>
         <div
-          ref={this.wrapperRef}
           className="ConditionalRendering__content--"
-          style={{ display: "none" }}
+          ref={this.RefOpenClCont}
+          // style={{ display: "none" }}
         >
           <ConditionalRenderingClComp />
         </div>
-        <div className="ConditionalRendering__descript--">
+        <div
+          className="ConditionalRendering__descript--"
+          // ref={this.RefOpenClDop}
+          style={{ display: "none" }}
+        >
           Подробнее по ссылке{" "}
           <code>https://reactjs.org/docs/ConditionalRendering.html</code>
         </div>
@@ -209,25 +228,39 @@ class ListsAndKeys extends React.Component {
   //  }
   constructor(props) {
     super(props);
-    this.wrapperRef = React.createRef();
+    this.RefOpenClCont = React.createRef();
+    this.RefActinCl = React.createRef();
+    this.RefOpenClDop = React.createRef();
   }
-  handleClick() {
-    const wrapper = this.wrapperRef.current;
-    // const wrapper = this.wrapperRef.all;
-    wrapper.classList.toggle("isopen");
+  handleClickRef() {
+    const OpenCont = this.RefOpenClCont.current;
+    const ActionArrow = this.RefActinCl.current;
+    const OpenDopEl = this.RefOpenClDop.current;
+    // const OpenCont = this.RefOpenClCont.all;
+    OpenCont.classList.toggle("isOpenRef");
+    ActionArrow.classList.toggle("_active");
+    OpenDopEl.classList.toggle("isOpenRefStyle");
   }
   handleClick33() {
     const spolerCont = document.querySelectorAll("[data-name='spoiler-cont']");
     console.log("spolerCont : " + spolerCont);
-    // const wrapper = this.wrapperRef.current;
-    spolerCont.classList.toggle("isopen");
+    // const OpenCont = this.RefOpenClCont.current;
+    spolerCont.classList.toggle("isOpenRef");
   }
   render() {
     return (
-      <div className="ListsAndKeys--">
+      <div
+        onClick={() => this.handleClickRef()}
+        ref={this.RefActinCl}
+        className="ListsAndKeys-- accordion"
+      >
         <div className="ListsAndKeys__descript--">
-          <h3 onClick={() => this.handleClick()}>Списки и Ключи</h3>
-          <div ref={this.wrapperRef} className="ListsAneys__coent--">
+          <h3>Списки и Ключи</h3>
+          <div
+            className="ListsAneys__coent--"
+            ref={this.RefOpenClDop}
+            style={{ display: "none" }}
+          >
             Общие Описание
             <br />
             <div className="IfCondOperClComp__descript--- temporary">
@@ -239,16 +272,16 @@ class ListsAndKeys extends React.Component {
               <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
               <code style={{ color: "red" }}>!!!</code> Здесь на{" "}
               <code>ref</code> и{" "}
-              <code>this.wrapperRef = React.createRef();</code>. Но раб ток один
-              ref. Узнать как на много раб
+              <code>this.RefOpenClCont = React.createRef();</code>. Но раб ток
+              один ref. Узнать как на много раб
             </div>
           </div>
         </div>
         <div
           data-name="spoiler-cont"
-          ref={this.wrapperRef}
+          ref={this.RefOpenClCont}
           className="ListsAndKeys__content--"
-          style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           {/* <Lists />
           <Keys /> */}
@@ -265,30 +298,43 @@ class ListsAndKeys extends React.Component {
 class Forms extends React.Component {
   constructor(props) {
     super(props);
-    this.wrapperRef = React.createRef();
+    this.RefOpenClCont = React.createRef();
+    this.RefActinCl = React.createRef();
+    this.RefOpenClDop = React.createRef();
   }
-  handleClick() {
-    const wrapper = this.wrapperRef.current;
-    // const wrapper = this.wrapperRef.all;
-    wrapper.classList.toggle("isopen");
+  handleClickRef() {
+    const OpenCont = this.RefOpenClCont.current;
+    const ActionArrow = this.RefActinCl.current;
+    const OpenDopEl = this.RefOpenClDop.current;
+    // const OpenCont = this.RefOpenClCont.all;
+    OpenCont.classList.toggle("isOpenRef");
+    ActionArrow.classList.toggle("_active");
+    OpenDopEl.classList.toggle("isOpenRefStyle");
   }
   render() {
     return (
-      <div className="Forms--">
+      <div
+        onClick={() => this.handleClickRef()}
+        ref={this.RefActinCl}
+        className="Forms-- accordion"
+      >
         <div data-name="spoiler-title" className="Forms__descript-- _spollers">
-          <h3 onClick={() => this.handleClick()}>Формы</h3>
-          <p className="_spoller">
+          <h3>Формы</h3>
+          <p
+            ref={this.RefOpenClDop}
+            style={{ display: "none" }}
+            className="_spoller"
+          >
             Элементы формы HTML работают немного иначе, чем другие элементы DOM
             в React, потому что элементы формы естественным образом сохраняют
             некоторое внутреннее состояние. Например, эта форма в простом HTML
             принимает одно имя:
           </p>
-          <div className="_spoller">1212</div>
         </div>
         <div
-          ref={this.wrapperRef}
+          ref={this.RefOpenClCont}
           className="Forms__content--"
-          style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           <br />
           <FormsClComp />
@@ -302,19 +348,33 @@ class Forms extends React.Component {
 class LiftingStateUp extends React.Component {
   constructor(props) {
     super(props);
-    this.wrapperRef = React.createRef();
+    this.RefOpenClCont = React.createRef();
+    this.RefActinCl = React.createRef();
+    this.RefOpenClDop = React.createRef();
   }
-  handleClick() {
-    const wrapper = this.wrapperRef.current;
-    // const wrapper = this.wrapperRef.all;
-    wrapper.classList.toggle("isopen");
+  handleClickRef() {
+    const OpenCont = this.RefOpenClCont.current;
+    const ActionArrow = this.RefActinCl.current;
+    const OpenDopEl = this.RefOpenClDop.current;
+    // const OpenCont = this.RefOpenClCont.all;
+    OpenCont.classList.toggle("isOpenRef");
+    ActionArrow.classList.toggle("_active");
+    OpenDopEl.classList.toggle("isOpenRefStyle");
   }
   render() {
     return (
-      <div className="LiftingStateUp--">
-        <div data-name="spoiler-title" className="LiftingStateUp__descript--">
-          <h3 onClick={() => this.handleClick()}>StateUpClComp</h3>
-          <p className="spoiler-body">
+      <div
+        onClick={() => this.handleClickRef()}
+        ref={this.RefActinCl}
+        className="LiftingStateUp-- accordion"
+      >
+        <div className="LiftingStateUp__descript--">
+          <h3>StateUpClComp</h3>
+          <p
+            ref={this.RefOpenClDop}
+            className="spoiler-body"
+            style={{ display: "none" }}
+          >
             Часто несколько компонентов должны отражать одни и те же
             изменяющиеся данные. Мы рекомендуем поднимать общее состояние до их
             ближайшего общего предка. Давайте посмотрим, как это работает в
@@ -322,9 +382,9 @@ class LiftingStateUp extends React.Component {
           </p>
         </div>
         <div
-          ref={this.wrapperRef}
+          ref={this.RefOpenClCont}
           className="LiftingStateUp__content--"
-          style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           <StateUpClComp />
         </div>

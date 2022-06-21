@@ -354,7 +354,7 @@
 // .Forms-- [class$="content---"] > div,
 .Forms-- [class$="content--"] > div > div > div ,
 .FormsClComp--- > div > div ,
-.Forms-- [class*="content--"] > div > div > div,
+// .Forms-- [class*="content--"] > div > div > div,
 .LiftingStateUp--  [class*="content--"] > div > div > div,
 .ConditionalRendering-- [class$="content--"] > div > div > div,
 .ConditionalRenderingClComp--- > div > div
@@ -381,3 +381,40 @@
     color: inherit;
   }
 }
+
+//  ----------------------------------------------------------------------------------
+
+// .state-lifecycle__descriptin-- h3 {
+//   &::before {
+//     content: "";
+//     width: 20px;
+//     background-color: #fff;
+//     height: 2px;
+//     transition: transform 0.3s ease 0s;
+//     transform: translate(0, -50%) rotate(-45deg);
+//     position: absolute;
+//     right: 15px;
+//     top: 50%;
+//   }
+//   &::after {
+//     content: "";
+//     width: 20px;
+//     background-color: #fff;
+//     height: 2px;
+//     transition: transform 0.3s ease 0s;
+//     transform: translate(0, -50%) rotate(45deg);
+//     position: absolute;
+//     right: 29px;
+//     top: 50%;
+//   }
+//   &._active {
+//     &::before {
+//       transform: translate(0, -50%) rotate(45deg);
+//     }
+//     &::after {
+//       transform: translate(0, -50%) rotate(-45deg);
+//     }
+//   }
+// }
+
+//  ----------------------------------------------------------------------------------

@@ -221,7 +221,6 @@ $md4NoErr: 479.98px;
 // СВОИ СТИЛИ ----------------------------------------------------------------------------------
 @import "../scss/UIwindowsAndWarrning.scss";
 @import "../scss/tagPreCode.scss";
-@import "../scss/effects.scss";
 // @import "../scss/steles.scss";
 //  ----------------------------------------------------------------------------------
 //</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ, VISUAL, GRID, jQuery И ГОТОВЫХ КЛАССОВ>====================================================================================================
@@ -236,3 +235,5 @@ $md4NoErr: 479.98px;
 // @import "../probComponents/hooks/hooks.scss";
 // ??? не раб - при подкл стилей в Vid.js, не распознаёт переменные из App.scss ($md3NoErr 40стр.), даже если App.scss подкл в index.js
 @import "./probComponents/VidYT/Vid.scss";
+
+@import "../scss/effects.scss";
