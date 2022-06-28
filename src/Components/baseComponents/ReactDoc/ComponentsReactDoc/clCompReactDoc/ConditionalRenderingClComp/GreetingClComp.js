@@ -150,14 +150,14 @@ class GreetingClComp extends React.Component {
               {/* 
                     <>
                       <button
-                        className="greeting__content-22"
+                        className="GreetingClComp__content-22"
                         type="button"
                         onClick={this.handleClick}
                       >
                         Я Свой {this.state.isLoggedIn ? "ON" : "OFF"}
                       </button>{" "}
                       <button
-                        className="greeting__content-22"
+                        className="GreetingClComp__content-22"
                         onClick={() => {
                           // this.handleNoClick();
                           this.handleNoClick();

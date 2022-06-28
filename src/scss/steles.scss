@@ -37,7 +37,7 @@
   // 2ая влж (блоки Темы (description, content и frame))  ----------------------------------------------------------------------------------
   & > div {
     // общий нижний отступ для h3
-    h3 {
+    & > h3 {
       padding: 0px 0px 10px;
       @include adaptiv-value("padding-top", 10, 0, 3);
       @include adaptiv-value("padding-bottom", 10, 0, 3);
@@ -86,13 +86,13 @@
       position: relative;
       width: 100%;
       height: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      justify-content: space-around;
-      justify-content: space-between;
-      align-content: center;
-      align-items: center;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-evenly;
+      // justify-content: space-around;
+      // justify-content: space-between;
+      // align-content: center;
+      // align-items: center;
       text-align: center;
       // ^ 5 вариантов передачи размеров с 4мя сторонами(padding, margin, )
       // ^ 1 вар. Простой
@@ -108,9 +108,9 @@
       // ^ 5 вар. ч/з Адаптивное св-во для Всех в @mixin adaptiv-value-all
       @include adaptiv-value-all("padding", 10, 0, 60, 25);
     }
-    // общие бл. 2ой влж (вложенности). vid-input, greeting__content,
+    // общие бл. 2ой влж (вложенности). vid-input, GreetingClComp__content,
     & > div {
-      // общие бл. 3ей влж. vid-input-1, greeting__content-1,
+      // общие бл. 3ей влж. vid-input-1, GreetingClComp__content-1,
       & > div {
         // font-size: 18px;
         // font-size: inherit;
@@ -121,11 +121,11 @@
       }
     }
 
-    // именнованые бл. 2ой влж(Цв.Поле 2ой влж). vid-input, greeting__content,  ----------------------------------------------------------------------------------
+    // именнованые бл. 2ой влж(Цв.Поле 2ой влж). vid-input, GreetingClComp__content,  ----------------------------------------------------------------------------------
     // & [class^="vid-input__content"],
     .vid-input__content--,
     .vid-button__content--,
-    .greeting__content--- {
+    .GreetingClComp__content--- {
       @include size(350px, 150px);
       margin: 0 auto;
       // width: 350px;
@@ -160,7 +160,7 @@
         padding: 5px !important;
         font-size: inherit;
         @include adaptiv-font(16, 10);
-        // именнованые бл. 4ой влж (Цв.Поле 2ой влж). vid-input-11, greeting__content-11,
+        // именнованые бл. 4ой влж (Цв.Поле 2ой влж). vid-input-11, GreetingClComp__content-11,
         [class*="description"],
         [class*="content"] {
           // height: 100%;
@@ -212,16 +212,26 @@
   &__frame {
     @include afterbefore;
     @include before;
+    div {
+      // position: fixed;
+    }
   }
   // 2ая влж. Блоки Темы (description, content и frame) ---------------------------------------------------------------------------------
   & > div {
-    // 3я влж. Разделы Темы (vid-input, state-lifecycle, clComp, )-------------------------------------------------------------------------------
+    // 3я влж. Разделы Темы (vid-input, StateAndLifeCycle, clComp, )-------------------------------------------------------------------------------
+    // div[class$="descriptin--"]._active ~ [class$="__frame--"] {
+    div:first-child._active ~ [class$="__frame--"] {
+      display: block;
+      @include afterbefore;
+      @include after;
+    }
     & > div {
       // РАМКА С ПРАВА (ныне __frame, ранее after(без hover)) -----------------------------------------------------------------------------
       // &::after {
       & [class$="__frame--"] {
-        @include afterbefore;
-        @include after;
+        display: none;
+        // @include afterbefore;
+        // @include after;
       }
     }
   }
@@ -231,7 +241,7 @@
   & > div {
     // 3я влж. Именновыные Многовложенные (сложные) Разделы Темы
     // .conditional-rendering,
-    // .state-lifecycle,
+    // .StateAndLifeCycle,
     // .countryflags {
     //   & [class$="__content"] > div {
     //     // & .conditional-rendering__content > div {
@@ -248,7 +258,7 @@
     //   }
     // }
     .conditional-rendering__content,
-    .state-lifecycle__content,
+    .StateAndLifeCycle__content,
     .countryflags__content {
       & > div {
         // & .conditional-rendering__content > div {
@@ -273,17 +283,17 @@
         background-color: #838383;
       }
     }
-    // именнованые блоки 2ой влж (Рамки). vid-input, greeting__content
+    // именнованые блоки 2ой влж (Рамки). vid-input, GreetingClComp__content
     //  --------------------------------------------------------------------
     // [class*="description"],
     // [class*="content"]
     // [class*="oneexp"],
     // [class*="twoexp"]
     //  --------------------------------------------------------------------
-    // div.greeting--- > div.greeting__content--- > div.greeting__oneexp---- > div.greeting__oneexp_descript----
+    // div.greeting--- > div.GreetingClComp__content--- > div.greeting__oneexp---- > div.greeting__oneexp_descript----
     & .vid-input__content--,
     .vid-button__content--,
-    .greeting__content--- {
+    .GreetingClComp__content--- {
       // общие цвета Рамок
       [class*="oneexp"] {
         background: $orange;
@@ -344,7 +354,7 @@
 // }
 // обводка тень блоков
 // .vid-input--,
-// .state-lifecycle__content--,
+// .StateAndLifeCycle__content--,
 .greeting---,
 .PrevRend---,
 .IfAnd---,
@@ -363,9 +373,10 @@
   // [class$="__description--"] > div,
   // [class$="__content--"] > div {
   width: 100%;
+  padding: 10px 0px;
+  margin-bottom: 2px;
   border-radius: 15px;
   box-shadow: 0 0 5px 5px rgb(63 63 63 / 20%);
-  margin-bottom: 2px;
   // }
 }
 .PrevRend__content---,
@@ -384,7 +395,7 @@
 
 //  ----------------------------------------------------------------------------------
 
-// .state-lifecycle__descriptin-- h3 {
+// .StateAndLifeCycle__descriptin-- h3 {
 //   &::before {
 //     content: "";
 //     width: 20px;

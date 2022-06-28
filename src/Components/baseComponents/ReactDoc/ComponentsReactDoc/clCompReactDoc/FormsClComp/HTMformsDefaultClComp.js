@@ -29,11 +29,17 @@ const HTMformsDefaultClComp = () => {
       <div className="HTMformsDefaultClComp__content----">
         <form>
           <label>
-            Name:
+            Form Name:
             <input type="text" name="name" />
+            {/* <button type="text" name="name" class="btmShowHide">
+              <div>/</div>
+            </button> */}
           </label>
-          <br />
-          <input type="submit" value="Submit" />
+          {/* <br /> */}
+          <input type="submit" value="Submit"></input>
+          {/* <button type="submit" value="Submit" class="btmShowHide">
+            <div>Submit</div>
+          </button> */}
         </form>
         <pre>
           <code>

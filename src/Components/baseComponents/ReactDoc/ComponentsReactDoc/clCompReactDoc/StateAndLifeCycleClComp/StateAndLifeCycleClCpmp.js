@@ -18,16 +18,16 @@ import {
   ConstRoot,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
-class StateLifeCycleClComp extends React.Component {
+class StateAndLifeCycleClComp extends React.Component {
   //constructor(props) {
   //super(props);
   //this.state = {  }
   //}
   render() {
     return (
-      <div className="StateLifeCycleClComp---">
+      <div className="StateAndLifeCycleClComp---">
         <div className="ListsAndKeysClComp__descript---">
-          {/* StateLifeCycleClComp */}
+          {/* StateAndLifeCycleClComp */}
         </div>
         <div className="ListsAndKeysClComp__content---">
           {/* <ListsClComp /> */}
@@ -38,4 +38,4 @@ class StateLifeCycleClComp extends React.Component {
   }
 }
 
-export default StateLifeCycleClComp;
+export default StateAndLifeCycleClComp;

@@ -57,7 +57,7 @@ class TagTextareaClComp extends React.Component {
               Essay:
               <textarea value={this.state.value} onChange={this.handleChange} />
             </label>
-            <br />
+            {/* <br /> */}
             <input type="submit" value="Submit" />
           </form>
           <pre>

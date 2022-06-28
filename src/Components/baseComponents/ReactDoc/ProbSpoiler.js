@@ -736,6 +736,11 @@ const AppAccordion = () => {
         <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
           <div>{title}</div>
           <div>{isActive ? "-" : "+"}</div>
+          {isActive ? (
+            <div style={{ backgroundColor: "red" }}>1</div>
+          ) : (
+            <div style={{ backgroundColor: "green" }}>2</div>
+          )}
         </div>
         {isActive && <div className="accordion-content">{content}</div>}
       </div>
@@ -760,12 +765,12 @@ class ProbSpoiler extends React.Component {
   constructor(props) {
     super(props);
     this.RefOpenClCont = React.createRef();
-    this.RefActinCl = React.createRef();
+    this.RefActivCl = React.createRef();
     this.RefOpenClDop = React.createRef();
   }
   handleClickRef() {
     const OpenCont = this.RefOpenClCont.current;
-    const ActionArrow = this.RefActinCl.current;
+    const ActionArrow = this.RefActivCl.current;
     const OpenDopEl = this.RefOpenClDop.current;
     // const OpenCont = this.RefOpenClCont.all;
     OpenCont.classList.toggle("isOpenRef");
@@ -774,12 +779,12 @@ class ProbSpoiler extends React.Component {
   }
   render() {
     return (
-      <div
-        onClick={() => this.handleClickRef()}
-        ref={this.RefActinCl}
-        className="ProbSpoiler-- accordion"
-      >
-        <div className="ProbSpoiler__description--">
+      <div className="ProbSpoiler-- accordion">
+        <div
+          onClick={() => this.handleClickRef()}
+          ref={this.RefActivCl}
+          className="ProbSpoiler__description--"
+        >
           Пробы различных аккордионо/спойлеров
         </div>
         <div

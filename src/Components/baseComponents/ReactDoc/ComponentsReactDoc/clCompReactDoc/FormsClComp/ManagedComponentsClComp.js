@@ -69,7 +69,7 @@ class ManagedComponents extends React.Component {
                 onChange={this.handleChange}
               />
             </label>
-            <br />
+            {/* <br /> */}
             <input type="submit" value="Submit" />
           </form>
           <pre>
