@@ -29,7 +29,14 @@ const HTMformsDefaultClComp = () => {
       <div className="HTMformsDefaultClComp__content----">
         <form>
           <label>
-            Form Name:
+            <span>
+              <span
+              // className="spmdnon"
+              >
+                Form
+              </span>{" "}
+              Name:
+            </span>
             <input type="text" name="name" />
             {/* <button type="text" name="name" class="btmShowHide">
               <div>/</div>

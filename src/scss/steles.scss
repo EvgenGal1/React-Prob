@@ -101,7 +101,7 @@
       // @media (max-width: $md2NoErr) {
       //   padding: 10px 40px;
       // }
-      // ^ 3 вар. ч/з @mixin padding с @media запросами
+      // ^ 3 вар. ч/з @mixin padding с @media запросами (прописаны в mixin)
       // @include padding;
       // ^ 4 вар. ч/з Адаптивное св-во в @mixin adaptiv-value
       // @include adaptiv-value("padding-right", 32, 15, 1);
@@ -207,18 +207,16 @@
 .CommonTrifles,
 .HooksComponents,
 .PersistState {
-  // РАМКА С ЛЕВА (ныне __frame, ранее before(без hover)) ----------------------------------------------------------------------------------
+  // РАМКА С ЛЕВА ----------------------------------------------------------------------------------
   // &::before {
   &__frame {
     @include afterbefore;
     @include before;
-    div {
-      // position: fixed;
-    }
   }
   // 2ая влж. Блоки Темы (description, content и frame) ---------------------------------------------------------------------------------
   & > div {
     // 3я влж. Разделы Темы (vid-input, StateAndLifeCycle, clComp, )-------------------------------------------------------------------------------
+    // РАМКА С ПРАВА (при .active)-----------------------------------------------------------------------------
     // div[class$="descriptin--"]._active ~ [class$="__frame--"] {
     div:first-child._active ~ [class$="__frame--"] {
       display: block;
@@ -226,7 +224,6 @@
       @include after;
     }
     & > div {
-      // РАМКА С ПРАВА (ныне __frame, ранее after(без hover)) -----------------------------------------------------------------------------
       // &::after {
       & [class$="__frame--"] {
         display: none;

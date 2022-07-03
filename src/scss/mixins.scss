@@ -271,6 +271,8 @@
 }
 
 // Для React.Prob =======================================================================================
+// Боковые Рамки (.__frame) ----------------------------------------------------------------------------------
+// Общие стили Боковых Рамок
 @mixin afterbefore {
   z-index: 1;
   height: calc(100% - 20px);
@@ -321,7 +323,7 @@
     // margin: 5px 0;
   }
 }
-
+// РАМКА С ЛЕВА
 @mixin before {
   // left: -27px;
   @include adaptiv-value("left", -27, -17, 3);
@@ -356,7 +358,7 @@
     // margin: 5px 0px;
   }
 }
-
+// РАМКА С ПРАВА
 @mixin after {
   right: -27px;
   @include adaptiv-value("right", -27, -17, 3);
@@ -393,6 +395,7 @@
   }
 }
 
+// прописанные padding. не адаптивно
 @mixin padding {
   @media (max-width: $md2NoErr) {
     padding: 10px 40px;

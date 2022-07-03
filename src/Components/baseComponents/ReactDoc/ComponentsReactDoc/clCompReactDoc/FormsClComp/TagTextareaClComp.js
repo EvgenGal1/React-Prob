@@ -31,7 +31,7 @@ class TagTextareaClComp extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("Эссе было представлено: " + this.state.value);
+    alert("Ессе было представлено: " + this.state.value);
     event.preventDefault();
   }
 
@@ -42,7 +42,7 @@ class TagTextareaClComp extends React.Component {
           <h3>Тег textarea</h3>
           <p>
             В HTML <code>&lt;textarea&gt;</code> элемент определяет свой текст
-            своими дочерними элементами:
+            своими дочерними элементам <code>&lt;textarea&gt;</code>
           </p>
           <p>
             В React вместо этого <code>&lt;textarea&gt;</code> используется{" "}
@@ -77,7 +77,7 @@ class TagTextareaClComp extends React.Component {
                     <span className="token keyword">alert</span>{" "}
                     <span className="token punctuation">(</span>
                     <span className="token atrule">
-                      "Имя было представлено: "
+                      "Ессе было представлено: "
                     </span>{" "}
                     <span className="token operator">+</span>{" "}
                     <span className="token parameter">this</span>
@@ -125,6 +125,7 @@ class TagTextareaClComp extends React.Component {
                           <BrSp sp={"           "} />
                         </>
                       }
+                      // dop3={<></>}
                       attrInLab1={
                         <>
                           <AttrValMetd
@@ -175,6 +176,13 @@ class TagTextareaClComp extends React.Component {
               />
             </code>
           </pre>
+        </div>
+        <div className="TagTextareaClComp__descript----">
+          <p>
+            Внимание на то что <code>this.state.value</code> он инициализируется
+            в конструкторе, так что текстовая область начинается с некоторого
+            текста.
+          </p>
         </div>
       </div>
     );

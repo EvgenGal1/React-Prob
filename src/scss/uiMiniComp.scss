@@ -13,6 +13,20 @@ form {
   justify-content: center;
   text-align: center;
   border-radius: 10px;
+  @media (max-width: $md3NoErr) {
+    @include size(250px, auto);
+    border: 3px solid #ff0000;
+  }
+  @media (max-width: $md4NoErr) {
+    @include size(150px, auto);
+    border: 2px solid #ff0000;
+    label > span {
+      display: flex;
+    }
+    span.spmdnon {
+      display: none;
+    }
+  }
 }
 input[type="submit"] {
   // height: 40px;

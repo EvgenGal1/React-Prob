@@ -21,7 +21,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
-} from "../../../js/examples/ExpPreCode.js";
+} from "../../../../js/examples/ExpPreCode.js";
 
 //  ----------------------------------------------------------------------------------
 // function SpolerUseSpoler(props) {
@@ -764,31 +764,42 @@ const AppAccordion = () => {
 class ProbSpoiler extends React.Component {
   constructor(props) {
     super(props);
-    this.RefOpenClCont = React.createRef();
+    this.state = {
+      // openArrowAccord: false,
+      openArrowAccord: true,
+    };
     this.RefActivCl = React.createRef();
-    this.RefOpenClDop = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
   handleClickRef() {
-    const OpenCont = this.RefOpenClCont.current;
-    const ActionArrow = this.RefActivCl.current;
-    const OpenDopEl = this.RefOpenClDop.current;
-    // const OpenCont = this.RefOpenClCont.all;
-    OpenCont.classList.toggle("isOpenRef");
-    ActionArrow.classList.toggle("_active");
-    OpenDopEl.classList.toggle("isOpenRefStyle");
+    this.RefActivCl.current.classList.toggle("_active");
+    // this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+  }
+  toggleArrowAccord() {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
   }
   render() {
     return (
       <div className="ProbSpoiler-- accordion">
         <div
-          onClick={() => this.handleClickRef()}
           ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
           className="ProbSpoiler__description--"
         >
           Пробы различных аккордионо/спойлеров
         </div>
+        {/* <p style={{ display: "none" }} ref={this.RefOpenDop}>
+          121212
+        </p> */}
         <div
-          ref={this.RefOpenClCont}
+          ref={this.RefOpenCont}
           // style={{ display: "none" }}
           className="ProbSpoiler__content--"
         >

@@ -11,6 +11,157 @@ const BrSp = ({ sp }) => {
     </>
   );
 };
+// тег select
+const SelectLet = ({
+  nameS,
+  sp1,
+  val1,
+  val2,
+  val3,
+  val4,
+  val5,
+  val6,
+  val7,
+  sp2,
+  seld,
+}) => {
+  let LetSeld;
+  if (seld) {
+    LetSeld = (
+      <>
+        <span className="token attr-name">selected</span>
+      </>
+    );
+  }
+  let LetBefValS = (
+    <>
+      {sp2}
+      {"  "}
+      <span className="token punctuationhtml">&lt;</span>
+      <span className="token tag">{"option"}</span>
+      {/* {val1} */}
+      {/* <AttrValMetd
+        attr1={"value"}
+        dop3={true}
+        val1={val1}
+        val2={""}
+        val3={""}
+      />
+      <span className="token punctuationhtml">&gt;</span> */}
+    </>
+  );
+  let LetAftValS = (
+    <>
+      <span className="token punctuationhtml">/&lt;</span>
+      <span className="token tag">{"option"}</span>
+      <span className="token punctuationhtml">&gt;</span>
+    </>
+  );
+
+  let LetVal1;
+  if (val1) {
+    LetVal1 = (
+      <>
+        {LetBefValS}
+        {/* {sp2}
+        {"  "}
+        <span className="token punctuationhtml">&lt;</span>
+        <span className="token tag">{"option"}</span> */}
+        {/* {val1} */}
+        <AttrValMetd
+          attr1={"value"}
+          dop3={true}
+          val1={val1}
+          val2={""}
+          val3={""}
+        />{" "}
+        {LetSeld}
+        <span className="token punctuationhtml">&gt;</span>
+        {val1}
+        {/* <span className="token punctuationhtml">/&lt;</span>
+        <span className="token tag">{"option"}</span>
+        <span className="token punctuationhtml">&gt;</span> */}
+        {LetAftValS}
+      </>
+    );
+  }
+  let LetVal2;
+  if (val2) {
+    LetVal2 = (
+      <>
+        {LetBefValS}
+        <AttrValMetd attr1={"value"} dop3={true} val1={val2} />
+        <span className="token punctuationhtml">&gt;</span>
+        {val2}
+        {LetAftValS}
+      </>
+    );
+  }
+  let LetVal3;
+  if (val3) {
+    LetVal3 = (
+      <>
+        {LetBefValS}
+        <AttrValMetd attr1={"value"} dop3={true} val1={val3} />
+        <span className="token punctuationhtml">&gt;</span>
+        {val3}
+        {LetAftValS}
+      </>
+    );
+  }
+  let LetVal4;
+  if (val4) {
+    LetVal4 = (
+      <>
+        {LetBefValS}
+        <AttrValMetd attr1={"value"} dop3={true} val1={val4} />
+        <span className="token punctuationhtml">&gt;</span>
+        {val4}
+        {LetAftValS}
+      </>
+    );
+  }
+
+  return (
+    <>
+      {/* 123123123 */}
+      {/* <select className="token"> */}
+      <span className="token punctuationhtml">&lt;</span>
+      <span className="token tag">{"select"}</span>
+      <span className="token punctuationhtml">&gt;</span>
+      {/* {sp1} */}
+      {/* {sp1} */}
+      {/* {sp2}
+      {"  "}
+      <span className="token punctuationhtml">&lt;</span>
+      <span className="token tag">{"option"}</span> */}
+      {/* <span className="token punctuationhtml">&lt;</span> */}
+      {/* <span className="token tag">{"value"}</span> */}
+      {/* {val1} */}
+      {/* <span className="token punctuationhtml">/&gt;</span> */}
+      {/* <span className="token punctuationhtml">&gt;</span> */}
+
+      {/* <span className="token punctuationhtml">/&lt;</span>
+      <span className="token tag">{"option"}</span>
+      <span className="token punctuationhtml">&gt;</span> */}
+      {LetVal1}
+      {LetVal2}
+      {LetVal3}
+      {LetVal4}
+      {/* <div className="token"></div>
+        <div className="token"></div>
+      </select>
+      <select>
+        <option value="grapefruit">Grapefruit</option>
+        <option value="lime">Lime</option>
+        <option selected value="coconut">
+          Coconut
+        </option>
+        <option value="mango">Mango</option>
+      </select> */}
+    </>
+  );
+};
 {
   /* 
 <form1 attrF1> 
@@ -31,6 +182,12 @@ const FormLabInpLet = ({
   label1,
   sp2,
   name1,
+  elemF1,
+  valS1,
+  valS2,
+  valS3,
+  valS4,
+  seldS,
   inputLab1,
   attrInLab1,
   input1,
@@ -63,6 +220,50 @@ const FormLabInpLet = ({
     );
   }
 
+  let LetElem1;
+  // if (elemF1) {
+  // let LetElem1;
+  // LetElem1 = (
+  //   <>
+  //     <span className="token punctuationhtml">&lt;</span>
+  //     <span className="token tag">{inputLab1}</span>
+  //     {attrInLab1}
+  //     <span className="token punctuationhtml">/&gt;</span>
+  //   </>
+  // );
+  // if () {
+  // }
+  if (elemF1) {
+    LetElem1 = (
+      <>
+        <SelectLet
+          nameS={""}
+          sp1={sp1}
+          sp2={sp2}
+          val1={valS1}
+          val2={valS2}
+          val3={valS3}
+          val4={valS4}
+          seld={seldS}
+        />
+      </>
+    );
+  } else {
+    // else if {
+    LetElem1 = (
+      <>
+        <span className="token punctuationhtml">&lt;</span>
+        <span className="token tag">{inputLab1}</span>
+        {attrInLab1}
+        <span className="token punctuationhtml">/&gt;</span>
+      </>
+    );
+  }
+
+  // }
+
+  // }
+
   return (
     <>
       <span className="token punctuationhtml">&lt;</span>
@@ -76,10 +277,11 @@ const FormLabInpLet = ({
       <span className="token punctuationhtml">&gt;</span>
       {sp2}
       {name1}
-      <span className="token punctuationhtml">&lt;</span>
+      {/* <span className="token punctuationhtml">&lt;</span>
       <span className="token tag">{inputLab1}</span>
       {attrInLab1}
-      <span className="token punctuationhtml">/&gt;</span>
+      <span className="token punctuationhtml">/&gt;</span> */}
+      {LetElem1}
       {sp1}
       <span className="token punctuationhtml">&lt;/</span>
       <span className="token tag">{label1}</span>
@@ -190,14 +392,25 @@ const AttrValMetd = ({ attr1, dop3, val1, val2, val3 }) => {
   // прятать фигурные ковычки если передали dop3
   let BracesOpen;
   let BracesClose;
+  let letValue1;
   if (dop3) {
     // BracesOpen = null;
     // BracesClose = null;
     BracesOpen = <span className="token punctuation">"</span>;
     BracesClose = <span className="token punctuation">"</span>;
+    letValue1 = (
+      <>
+        <span className="token atrule">{val1}</span>
+      </>
+    );
   } else {
     BracesOpen = <span className="token punctuation">&#123;</span>;
     BracesClose = <span className="token punctuation">&#125;</span>;
+    letValue1 = (
+      <>
+        <span className="token parameter">{val1}</span>
+      </>
+    );
   }
 
   let letValue2;
@@ -244,7 +457,8 @@ const AttrValMetd = ({ attr1, dop3, val1, val2, val3 }) => {
       <span className="token attr-name">{attr1}</span>
       <span className="token  operator">=</span>
       <span className="token punctuation">{BracesOpen}</span>
-      <span className="token parameter">{val1}</span>
+      {/* <span className="token parameter">{val1}</span> */}
+      {letValue1}
       {letValue2}
       {letValue3}
       <span className="token punctuation">{BracesClose}</span>
@@ -628,7 +842,7 @@ const ClCompLet = ({
         <BrSp sp={sp1} />
         <span className="token function">{fn2}</span>
         <span className="token punctuation">(</span>
-        <span className="token punctuation">{fnProp2}</span>
+        <span className="token parameter">{fnProp2}</span>
         <span className="token punctuation">)</span>{" "}
         <span className="token punctuation">&#123;</span>
         <BrSp sp={sp2} />
@@ -695,7 +909,7 @@ const ClCompLet = ({
       <BrSp sp={sp1} />
       <span className="token function">{fn1}</span>
       <span className="token punctuation">(</span>
-      <span className="token punctuation">{fnProp1}</span>
+      <span className="token parameter">{fnProp1}</span>
       <span className="token punctuation">)</span>{" "}
       <span className="token punctuation">&#123;</span>
       {/* <br /> */}

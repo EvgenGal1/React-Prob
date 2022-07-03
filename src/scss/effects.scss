@@ -1,55 +1,80 @@
 // accordion (раскрывашка) ----------------------------------------------------------------------------------
-// .StateAndLifeCycle--
-// div[ref="RefActivCl"]
 .accordion {
-  // transition: all 06s cubic-bezier(0.08, 1.09, 0.32, 1.275);
-  // transition-duration: 6s;
-  h3 {
-    // width: 100vw;
-  }
-  //  ----------------------------------------------------------------------------------
+  // С ЛЕВА
+  // стили закрытого акордиона ----------------------------------------------------------------------------------
   .openArrowAccord {
-    width: 40px;
-    height: 40px;
     content: "";
     position: relative;
-    background: #00f;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    width: calc(70px + 30 * ((100vw - 320px) / 1600));
+    height: calc(70px + 30 * ((100vw - 320px) / 1600));
+    // background: #00f;
+    // background: #fff;
+    // margin: 0px auto;
+    // padding: 32px;
+    border-radius: 50%;
     &::before,
     &::after {
       content: "";
       width: 20px;
+      width: 30px;
       height: 4px;
       position: absolute;
       top: 50%;
+      top: 47%;
       background-color: $DarkRed;
       // transition: transform 0.3s ease 0s;
       transition: all 0.7s cubic-bezier(0.08, 1.09, 0.32, 1.275);
-
       border-radius: 6px 10px 10px 6px;
       border-radius: 10px;
+      z-index: 1;
     }
+
     &::before {
       transform: translate(0, -50%) rotate(45deg);
       left: 10px;
+      left: calc(50% - 21px);
+      left: calc(50% - 26px);
     }
     &::after {
       transform: translate(0, -50%) rotate(-45deg);
       left: 21px;
+      left: calc(50% + -6px);
     }
   }
-  & > div:first-child._active > .openArrowAccord {
-    background: #fff;
-    &::before {
-      transform: translate(0, -50%) rotate(-45deg);
-      // right: 33px;
-      // transition: transform 0.3s ease-in-out;
-    }
-    &::after {
-      transform: translate(0, -50%) rotate(45deg);
-      // right: 44px;
-      // transition: transform 0.3s ease-in-out;
+  // стили открытого акордиона ----------------------------------------------------------------------------------
+  // & > div:first-child._active {
+  & > ._active {
+    & > .openArrowAccord {
+      background: #fff;
+      &::before {
+        width: 30px;
+        height: 2px;
+        background-color: #fff;
+        transform: translate(0, -50%) rotate(-45deg);
+        transform: translate(0, -50%) rotate(-63deg);
+        z-index: 3;
+      }
+      &::after {
+        width: 30px;
+        height: 2px;
+        background-color: #fff;
+        transform: translate(0, -50%) rotate(45deg);
+        transform: translate(0, -50%) rotate(63deg);
+        z-index: 2;
+      }
     }
   }
+  .accordion > div:first-child._active > .openArrowAccord::before {
+    transform: translate(0, -50%) rotate(64deg);
+  }
+  .accordion > div:first-child._active > .openArrowAccord::after {
+    transform: translate(0, -50%) rotate(-64deg);
+  }
+
+  // С ПРАВА
   //  ----------------------------------------------------------------------------------
   & > div:first-child {
     &::before,
@@ -59,31 +84,39 @@
       height: 4px;
       position: absolute;
       top: 50%;
+      border-radius: 6px 10px 10px 6px;
+      border-radius: 10px;
       background-color: $DarkRed;
       // transition: transform 0.3s ease 0s;
       transition: all 0.6s cubic-bezier(0.08, 1.09, 0.32, 1.275);
+      z-index: 2;
     }
     &::before {
-      transform: translate(0, -50%) rotate(-45deg);
+      transform: translate(0, -50%) rotate(45deg);
       right: 10px;
+      right: 14px;
+      // @include adaptiv-value("right", 21, 3, 3);
       // right: 33px;
       // transition: transform 0.3s ease-in-out;
     }
     &::after {
-      transform: translate(0, -50%) rotate(45deg);
       right: 21px;
+      right: 3px;
+      // @include adaptiv-value("right", 20, 2, 3);
+      transform: translate(0, -50%) rotate(-45deg);
       // right: 44px;
       // transition: transform 0.3s ease-in-out;
     }
     &._active {
       &::before {
-        transform: translate(0, -50%) rotate(45deg);
+        transform: translate(0, -50%) rotate(-45deg);
       }
       &::after {
-        transform: translate(0, -50%) rotate(-45deg);
+        transform: translate(0, -50%) rotate(45deg);
       }
     }
   }
+  //  ----------------------------------------------------------------------------------
   div[class$="__content--"] {
     height: 0;
     visibility: hidden;
@@ -91,18 +124,67 @@
     overflow: auto;
     transition: all 0.2s ease-in;
   }
-  .isOpenRef {
+  .openCont {
     visibility: visible;
     opacity: 1;
     transition: all 0.8s ease-in;
   }
-  .isOpenRefStyle {
+  .openDop {
     display: none;
     display: inline-block !important;
   }
 }
 
-// скрытие блоков
+// НОВ ----------------------------------------------------------------------------------
+.arrow-scroll {
+  /* margin-bottom: 10px; */
+  /* box-sizing: content-box; */
+  /* background: #263238; */
+  /* height: 100px; */
+  z-index: 1;
+}
+.arrow-scroll .arrow-container {
+  width: 100px;
+  height: 100px;
+  width: calc(70px + 30 * ((100vw - 320px) / 1600));
+  height: calc(70px + 30 * ((100vw - 320px) / 1600));
+  // margin: 0 auto;
+  position: absolute;
+  /* left: 0; */
+  /* right: 0; */
+  z-index: 1;
+}
+.arrow-scroll {
+  .arrow-scroll .arrow-container {
+    width: 100px;
+    height: 100px;
+    width: calc(70px + 30 * ((100vw - 320px) / 1600));
+    height: calc(70px + 30 * ((100vw - 320px) / 1600));
+    margin: 0 auto;
+    position: absolute;
+    /* left: 0; */
+    /* right: 0; */
+    z-index: 1;
+  }
+}
+.arrow-scroll .arrow-1 {
+  /* position: absolute; */
+  /* width: 100px; */
+  /* height: 100px; */
+  width: calc(70px + 30 * ((100vw - 320px) / 1600));
+  height: calc(70px + 30 * ((100vw - 320px) / 1600));
+  /* background: #00bcd4; */
+  /* background: #8b0000; */
+  /* opacity: 0.5; */
+  border-radius: 50%;
+  font-size: 72px;
+  font-size: calc(30px + 12 * ((100vw - 320px) / 1600));
+  font-weight: 900;
+  z-index: 1;
+}
+// НОВ ----------------------------------------------------------------------------------
+
+// скрытие блоков =======================================================================================
 .root-body {
   & > div {
     // &:not([class*="__descript"] > h3) {
@@ -148,7 +230,7 @@ div[class$="__content"] {
   }
 }
 
-//  ----------------------------------------------------------------------------------
+//   =======================================================================================
 .spoiler-body {
   display: none;
 }
@@ -163,14 +245,14 @@ div[class$="__content"] {
   background: $DarkRed;
 }
 
-//  ----------------------------------------------------------------------------------
+//   =======================================================================================
 
 .isopen {
   display: none;
   display: inline-block !important;
 }
 
-//  ----------------------------------------------------------------------------------
+//  - =======================================================================================
 
 .spollers-block {
   margin: 0px 0px 50px 0px;
@@ -293,7 +375,7 @@ h1 {
   }
 }
 
-// СТРЕЛКИ ----------------------------------------------------------------------------------
+// СТРЕЛКИ  =======================================================================================
 
 .arrow-inside {
   margin-bottom: 10px;
@@ -435,10 +517,8 @@ h1 {
     }
   }
 }
-
+// стили стрелки треугольник в кругу ----------------------------------------------------------------------------------
 .arrow-scroll {
-  margin-bottom: 10px;
-  box-sizing: content-box;
   &:after,
   &::before {
     box-sizing: content-box;
@@ -446,19 +526,7 @@ h1 {
   /* icon: https://fortawesome.github.io/Font-Awesome/icons/ */
   /* Animation: https://daneden.github.io/animate.css/ */
 
-  // body{
-  background: #263238;
-  // }
-
-  height: 100px;
   .arrow-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    position: absolute;
-    // bottom: 25px;
-    left: 0;
-    right: 0;
     &:hover {
       & .arrow-2 i.fa {
         color: yellow;
@@ -486,11 +554,15 @@ h1 {
     position: absolute;
     width: 100px;
     height: 100px;
+    @include adaptiv-value("width", 100, 70, 3);
+    @include adaptiv-value("height", 100, 70, 3);
+    // z-index: 1;
     background: #00bcd4;
     background: $DarkRed;
     opacity: 0.5;
     border-radius: 50%;
     font-size: 72px;
+    @include adaptiv-value("font-size", 42, 30, 3);
     font-weight: 900;
     &:active {
       // transform: translateX(-50%) translateY(-50%) scale(0.9);
@@ -503,6 +575,9 @@ h1 {
   .arrow-2 {
     width: 60px;
     height: 60px;
+    width: 60%;
+    height: 60%;
+    @include size(60%, 60%);
     background: #00bcd4;
     background: #8d0000;
     border-radius: 50%;
@@ -512,7 +587,9 @@ h1 {
     z-index: 1;
     // display: table;
     margin-top: calc(50% - 30px);
+    margin-top: calc((100% - 60%) / 2);
     margin-left: calc(50% - 30px);
+    margin-left: calc((100% - 60%) / 2);
     &:after,
     &::before {
       box-sizing: content-box;
@@ -526,6 +603,7 @@ h1 {
   .arrow-2:before {
     width: 52px;
     height: 52px;
+    @include size(83%, 83%);
     content: "";
     border: 2px solid #006064;
     border: 2px solid #fff000;
@@ -535,6 +613,8 @@ h1 {
     position: absolute;
     top: 2px;
     left: 2px;
+    @include adaptiv-value("top", 3, 1, 3);
+    @include adaptiv-value("left", 3, 1, 3);
     &:hover {
       border: 2px solid #fff000;
     }
@@ -544,6 +624,8 @@ h1 {
     position: absolute;
     font-size: 30px;
     font-size: 42px;
+    font-style: normal;
+    @include adaptiv-value("font-size", 48, 28, 3);
     font-size: normal;
     // display: table-cell;
     vertical-align: middle;
@@ -551,7 +633,7 @@ h1 {
     color: #006064;
     color: #000;
     // display: flex;
-    font-size: 30px;
+    // font-size: 30px;
     // /* display: table-cell; */
     // line-height: 50px;
     // /* line-height: 122%; */
@@ -564,8 +646,19 @@ h1 {
     // /* align-items: center;
     width: 100%;
     height: 100%;
+    // @include adaptiv-value("width", 100, 70, 3);
+    // @include adaptiv-value("height", 100, 70, 3);
     top: calc(50% - 35px);
     left: calc(50% - 30px);
+    top: calc(100% - 83%);
+    left: calc(100% - 83%);
+    top: calc((100% - 83%) / 2);
+    left: calc((100% - 83%) / 2);
+    @include adaptiv-value("top", -12, -3, 3);
+    left: 0;
+    // margin-top: calc((100% - 60%) / 2);
+    // margin-left: calc(50% - 30px);
+    // margin-left: calc((100% - 60%) / 2);
     &:hover {
       color: $DarkRed;
     }
@@ -621,7 +714,7 @@ h1 {
     animation-name: zoomIn;
   }
 }
-
+//  ----------------------------------------------------------------------------------
 .arrow- {
   margin-bottom: 10px;
 }
