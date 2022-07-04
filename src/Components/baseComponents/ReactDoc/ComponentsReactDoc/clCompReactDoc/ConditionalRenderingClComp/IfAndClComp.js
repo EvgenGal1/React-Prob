@@ -16,7 +16,11 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 } from "../../../../../../js/examples/ExpPreCode.js";
+
+// подкл. UI блоков
+import ArrowAccordion from "../../../../../../js/uiBlock/ArrowAccordion.js";
 
 // Встроенный оператор If с логическим оператором &&
 class IfAndClComp extends React.Component {
@@ -26,7 +30,19 @@ class IfAndClComp extends React.Component {
       // name2: "Mailbox",
       nameRoot: <span className="token class-name">Mailbox</span>,
       // nameFn1: "Mailbox",
+      openArrowAccord: true,
     };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
   }
   render() {
     // function Mailbox(props) {
@@ -45,23 +61,39 @@ class IfAndClComp extends React.Component {
     const messages = ["React", "Re: React", "Re:Re: React"];
 
     return (
-      <div className="IfAndClComp----">
-        <div className="IfAndClComp__descript----">
+      <div
+        className="IfAndClComp---- accordion"
+        style={{ position: "relative" }}
+      >
+        <div
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
+          className="IfAndClComp__descript----"
+        >
           <h3>Встроенный оператор If с логическим оператором &&</h3>
-          <div>
-            Можно встраивать выражения в JSX, заключая их в фигурные скобки. Это
-            включает в себя логический <code>&&</code> оператор JavaScript. Это
-            может быть удобно для условного включения элемента
+          <div style={{ display: "none" }} ref={this.RefOpenDop}>
+            <div>
+              Можно встраивать выражения в JSX, заключая их в фигурные скобки.
+              Это включает в себя логический <code>&&</code> оператор
+              JavaScript. Это может быть удобно для условного включения элемента
+            </div>
+            <div>
+              Это работает, потому что в JavaScript{" "}
+              <code>true && expression</code> всегда оценивается как{" "}
+              <code>expression</code>, и <code>false && expression</code> всегда
+              оценивается как <code>false</code>. Следовательно, если условие
+              равно <code>true</code>, элемент сразу после <code>&&</code>{" "}
+              появится в выводе. Если это <code>false</code>, React
+              проигнорирует и пропустит его.
+            </div>
           </div>
-          <div>
-            Это работает, потому что в JavaScript{" "}
-            <code>true && expression</code> всегда оценивается как{" "}
-            <code>expression</code>, и <code>false && expression</code> всегда
-            оценивается как <code>false</code>. Следовательно, если условие
-            равно <code>true</code>, элемент сразу после <code>&&</code>{" "}
-            появится в выводе. Если это <code>false</code>, React проигнорирует
-            и пропустит его.
-          </div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
         <Mailbox unreadMessages={messages} />
         <div className="IfAndClComp__descript---- temporary">
@@ -69,7 +101,7 @@ class IfAndClComp extends React.Component {
           <code style={{ color: "red" }}>!!!</code> КОД | ПЕРЕБРАТЬ{" "}
           <code>pre</code> и <code>code</code>
         </div>
-        <div className="IfAndClComp-content----">
+        <div ref={this.RefOpenCont} className="IfAndClComp__content----">
           <pre className="code-jsx">
             <code className="code-jsx">
               {/* <span className="token keyword">function</span>{" "}

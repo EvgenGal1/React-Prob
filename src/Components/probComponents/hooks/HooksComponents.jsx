@@ -8,6 +8,9 @@ import "./hooks.scss";
 // !!! https://ru.reactjs.org/docs/concurrent-mode-reference.html
 // Конкурентный режим - при render, до отрисовки, загрузку можно разделять на мелкие (чанки) части (навроде асинхрона) для приостановки загрузки некоторых чанков. определять что сейчас важно/не важно загрузить.
 
+// подкл. UI блоков
+import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+
 // Suspense (`приостановка`) =======================================================================================
 const Suspense = () => {
   return (
@@ -242,22 +245,46 @@ function TransitionDefrred() {
 
 // подкл.всех Компонентов hooks =======================================================================================
 class HooksComponents extends React.Component {
-  //  constructor(props) {
-  // super(props);
-  //  state = {  }
-  //  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
   render() {
     return (
-      <div className="HooksComponents">
-        <div className="HooksComponents__description">
+      <div className="HooksComponents accordion">
+        <div
+          className="HooksComponents__description"
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
+        >
           <h3>Конкурентный режим.</h3>
-          <p>
+          <p style={{ display: "none" }} ref={this.RefOpenDop}>
             При render, до отрисовки, загрузку можно разделять на мелкие части
             (чанки) для приостановки загрузки некоторых чанков. Определять что
             сейчас важно/не важно загрузить.
           </p>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
-        <div className="HooksComponents__content">
+        <div ref={this.RefOpenCont} className="HooksComponents__content">
           <Suspense />
           <SuspenseList />
           <TransitionDefrred />

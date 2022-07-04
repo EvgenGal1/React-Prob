@@ -13,6 +13,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 const TagInpFileClComp = () => {
@@ -24,18 +25,25 @@ const TagInpFileClComp = () => {
           В HTML <code>&lt;input type="file"&g t;</code>элемент позволяет
           пользователю выбрать один или несколько файлов из хранилища своего
           устройства для загрузки на сервер или обработки с помощью JavaScript
-          через File API .
+          через <code>File API</code>.
         </div>
-        <div>3</div>
+        <div>
+          <code>&lt;input type="file" /&gt;</code>
+        </div>
+        <div>
+          Поскольку его значение доступно только для чтения, это
+          неконтролируемый компонент в React. Он обсуждается вместе с другими
+          неуправляемыми компонентами далее в документации.
+        </div>
       </div>
-      <div className="TagInpFileClComp__content----">
+      {/* <div className="TagInpFileClComp__content----">
         <pre>
           <code>
             44
             <BrSp sp={"  "} />
           </code>
         </pre>
-      </div>
+      </div> */}
     </div>
   );
 };

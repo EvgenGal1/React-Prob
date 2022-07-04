@@ -10,6 +10,9 @@ import VidButton2 from "./VidButton2.js";
 // !!! По видео - https://www.youtube.com/watch?v=-D4UMrcjreU
 // + доп из https://reactjs.org/docs/handling-events.html
 
+// подкл. UI блоков
+import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+
 class VidInput extends React.Component {
   // export default class Vid extends Component {
   constructor(props) {
@@ -188,14 +191,44 @@ class VidButton extends React.Component {
 }
 
 class Vid extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
   render() {
     return (
-      <div className="Vid">
-        <div className="Vid__descript">
-          <h3>Общий заголовок</h3>
-          <p>Общее описание</p>
+      <div className="Vid accordion">
+        <div
+          className="Vid__descript"
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            // this.toggleArrowAccord(this.openArrowAccord);
+          }}
+        >
+          <h3>Интерактивный INPUT и BUTTON</h3>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
+          <p style={{ display: "none" }} ref={this.RefOpenDop}>
+            Общее описание
+          </p>
         </div>
-        <div className="Vid__content">
+        <div className="Vid__content" ref={this.RefOpenCont}>
           <VidInput />
           <VidButton />
         </div>

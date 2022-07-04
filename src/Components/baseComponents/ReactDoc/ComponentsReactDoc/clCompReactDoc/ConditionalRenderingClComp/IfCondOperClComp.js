@@ -34,7 +34,7 @@ const IfCondOperClComp = () => {
         <code style={{ color: "red" }}>!!!</code> КОД | ПЕРЕБРАТЬ{" "}
         <code>pre</code> и <code>code</code>
       </div>
-      <div className="IfCondOperClComp-content----">
+      <div className="IfCondOperClComp__content----">
         <pre className="code-jsx">
           <code className="code-jsx">
             <span className="token function">render</span>

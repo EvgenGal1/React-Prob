@@ -4,6 +4,9 @@ import "./PersistState.scss";
 // Методы сохранения состояния между перезагрузками страницы =======================================================================================
 // !!! https://blog.bitsrc.io/5-methods-to-persisting-state-between-page-reloads-in-react-8fc9abd3fa2f
 
+// подкл. UI блоков
+import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+
 // переменные как проба ----------------------------------------------------------------------------------
 const styles = {
   fontSize: "100%",
@@ -103,18 +106,44 @@ export { FunctComp };
 
 // покл. в общий Компонент и импорт ----------------------------------------------------------------------------------
 class PersistState extends React.Component {
-  //  constructor(props) {
-  // super(props);
-  //  //this.state = {  }
-  //  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
   render() {
     return (
-      <div className="PersistState">
-        <div className="PersistState__descript">
+      <div className="PersistState accordion">
+        <div
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
+          className="PersistState__descript"
+        >
           <h3>Методы сохранения состояния между перезагрузками страницы</h3>
-          <div>описать</div>
+          <div style={{ display: "none" }} ref={this.RefOpenDop}>
+            описать
+          </div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
-        <div className="PersistState__content">
+        <div ref={this.RefOpenCont} className="PersistState__content">
           <ClassComp />
           <FunctComp />
         </div>

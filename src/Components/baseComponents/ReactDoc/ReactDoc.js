@@ -20,6 +20,9 @@ import FormsClComp from "./ComponentsReactDoc/clCompReactDoc/FormsClComp/FormsС
 // SteteUp
 import StateUpClComp from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
 
+// подкл. UI блоков
+import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+
 // пробы спойлера/аккардиона
 import ProbSpoiler from "./ComponentsReactDoc/ProbSpoiler.js";
 
@@ -37,6 +40,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 } from "../../../js/examples/ExpPreCode.js";
 
 // !!! https://ru.reactjs.org/docs/components-and-props.
@@ -45,30 +49,7 @@ import {
 /* Компоненты позволяют разбить интерфейс на независимые части, про которые легко думать в отдельности.
   Их можно складывать вместе и использовать несколько раз.
   Во многом компоненты ведут себя как обычные функции JavaScript. Они принимают произвольные входные данные (так называемые «пропсы») и возвращают React-элементы, описывающие, что мы хотим увидеть на экране. */
-//  ----------------------------------------------------------------------------------
-class AccordinClComp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      openArrowAccord: false,
-    };
-    this.RefActivCl = React.createRef();
-    this.RefOpenDop = React.createRef();
-    this.RefOpenCont = React.createRef();
-  }
-  render() {
-    return (
-      <>
-        {this.state.openArrowAccord ? (
-          <div className="openArrowAccord"></div>
-        ) : (
-          <div className="openArrowAccord"></div>
-        )}
-      </>
-    );
-  }
-}
-//  ----------------------------------------------------------------------------------
+
 // !!! https://ru.reactjs.org/docs/state-and-lifecycle.html
 // Состояние и жизненный цикл `State and Lifecycle`=============================================================================
 // понятия «состояние» (state) и «жизненный цикл» (lifecycle) React-компонентов
@@ -76,7 +57,6 @@ class StateAndLifeCycle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // openArrowAccord: false,
       openArrowAccord: true,
     };
     this.RefActivCl = React.createRef();
@@ -87,6 +67,9 @@ class StateAndLifeCycle extends React.Component {
     this.RefActivCl.current.classList.toggle("_active");
     this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
   }
   toggleArrowAccord() {
     this.setState((prevState) => ({
@@ -96,7 +79,7 @@ class StateAndLifeCycle extends React.Component {
   render() {
     // const openArrowAccord = this.state.openArrowAccord;
     return (
-      console.log("openArrowAccord : " + this.state.openArrowAccord),
+      console.log("openAA StateAndLifeCycle: " + this.state.openArrowAccord),
       (
         <div className="StateAndLifeCycle-- accordion">
           <div
@@ -108,54 +91,63 @@ class StateAndLifeCycle extends React.Component {
             className="StateAndLifeCycle__descriptin--"
           >
             <h3>Состояние (state) и жизненный цикл (lifecycle)</h3>
+            <div
+              // style={{ display: "none" }}
+              // ref={this.RefOpenDop}
+              className="StateAndLifeCycle--- temporary"
+            >
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ/СДЕЛАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code> ПРОДУМАТЬ НА COMP{" "}
+              <code>ArrowAccordion</code> ЛОГИКУ ЧТОБ МЕНЯЛИСЬ И СТРЕЛКИ
+              (ПЛАВНО) И ПУЛЬСАР (ВНИЗ/ВЕРХ).{" "}
+              <div>
+                <div>
+                  СЕЙЧАС, ПРИ ПЕРЕДАЧЕ В COMP <code>ArrowAccordion</code>:
+                </div>
+                <code>state</code> -{"  "}
+                <code>
+                  openArrowAccord=&#123;this.state.openArrowAccord&#1256;
+                </code>
+                , COMP ЕЁ ВИДИТ И ВЫВОДИТ В ПУЛЬСАР ПОПЕРЕМЕННО 1ЫЙ/2ОЙ ВАРИК
+                УСЛОВИЯ (ВНИЗ/ВВЕРХ - ᐁ/ᐃ). <code>!!!</code> НО ПЕРЕХОД СТРЕЛОК
+                БЕЗ АНИМАЦИИ. В <code>StateAndLifeCycle</code>
+              </div>
+              <div>
+                <code>fn</code> -{" "}
+                <code>
+                  toggleArrowAccord=&#123;this.toggleArrowAccord&#1256;
+                </code>
+                , COMP ЕЁ НЕ ВИДИТ И ВЫВОДИТ ОДИН ВАРИК УСЛОВИЯ (ЛИБО ВНИЗ - ᐁ,
+                ЛИБО ВВЕРХ - ᐃ). ЗАВИСИТ ОТ <code>state</code>. АНИМАЦИЯ ПЛАВНО.{" "}
+                <code>!!!</code> НО ПУЛЬСАР В ОДНОМ ПОЛОЖЕНИИ. В{" "}
+                <code>ConditionalRendering</code>
+              </div>
+            </div>
             <p style={{ display: "none" }} ref={this.RefOpenDop}>
-              121212
+              Общее описание
             </p>
-            {/* {this.state.openArrowAccord ? ( */}
-            {/* <>
-              {this.state.openArrowAccord ? (
-                <div className="openArrowAccord"></div>
+            <ArrowAccordion
+              // toggleArrowAccord={this.toggleArrowAccord}
+              openArrowAccord={this.state.openArrowAccord}
+            />
+            <>
+              {/* {this.state.openArrowAccord ? (
+                <div className="arrowAccord">
+                  <div className="ArrowAccord-show">
+                    <span>ᐁ</span>
+                  </div>
+                </div>
               ) : (
                 <>
-                  <div className="openArrowAccord"></div>
-                  <div className="arrow-scroll">
-                    <div class="arrow-container animated fadeInDown">
-                      <div class="arrow-2">
-                        <i class="fa fa-angle-down">ᐃ</i>
-                      </div>
-                      <div class="arrow-1 animated hinge infinite zoomIn">
-                                    ^ ⌆ ⌤ ⌅ ᐁ ▼ ᐳ ᐃ ᐯ ᐉ
-                      </div>
+                  <div className="arrowAccord">
+                    <div className="ArrowAccord-show">
+                      <span>ᐃ</span>
                     </div>
                   </div>
                 </>
-              )}
-            </> */}
-            {/* <div>
-              {this.state.isToggleOn ? "ON" : "OFF"}</div> */}
-            {/* //  ---------------------------------------------------------------------------------- */}
-            {/* <div className="arrow-anim">
-              https://codepen.io/HektorW/pen/eJMMaR
-              <div class="arrow">
-                <div class="arrow-top"></div>
-                <div class="arrow-bottom"></div>
-              </div>
-            </div>
-            <div className="arrow-scroll">
-              https://codepen.io/Hoebink/pen/YwpxMW?editors=1100
-              <div class="arrow-container animated fadeInDown">
-                <div class="arrow-2">
-                  <i
-                    // style={{ fontSize: "42px", fontStyle: "normal" }}
-                    class="fa fa-angle-down"
-                  >
-                    ᐃ
-                  </i>
-                </div>
-                <div class="arrow-1 animated hinge infinite zoomIn">ᐉ</div>
-              </div>
-            </div> */}
-            {/* //  ---------------------------------------------------------------------------------- */}
+              )} */}
+              {/* ^ ⌆ ⌤ ⌅ ᐁ ▼ ᐳ ᐃ ᐯ ᐉ */}
+            </>
           </div>
           <div
             ref={this.RefOpenCont}
@@ -238,52 +230,75 @@ class StateAndLifeCycle extends React.Component {
 class ConditionalRendering extends React.Component {
   constructor(props) {
     super(props);
-    this.RefOpenCont = React.createRef();
+    this.state = {
+      openArrowAccord: true,
+    };
     this.RefActivCl = React.createRef();
     this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
   handleClickRef() {
     this.RefActivCl.current.classList.toggle("_active");
     this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
   }
+  // toggleArrowAccord() {
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+    // this.setState({ openArrowAccord: openArrowAccord });
+    // this.setState({ openArrowAccord: openArrowAccord });
+  };
 
   render() {
     return (
-      <div className="ConditionalRendering-- accordion">
-        <div
-          onClick={() => this.handleClickRef()}
-          ref={this.RefActivCl}
-          className="ConditionalRendering__descript--"
-        >
-          <h3>Условный рендеринг</h3>
-          <div ref={this.RefOpenDop} style={{ display: "none" }}>
-            Бывает нужно объяснить React, как состояние влияет на то, какие
-            компоненты требуется скрыть, а какие — отрендерить, и как именно. В
-            таких ситуациях используйте операторы (<code>if else</code>,{" "}
-            <code>&&</code>) JavaScript и/или тернарные операторы (
-            <code>if...else</code>, <code>condition ? true : false</code>).
+      console.log("openAA CondRend state: " + this.state.openArrowAccord),
+      (
+        // console.log("openAA CondRend props: " + this.props.openArrowAccord),
+        <div className="ConditionalRendering-- accordion">
+          <div
+            // onClick={() => this.handleClickRef()}
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
+            className="ConditionalRendering__descript--"
+          >
+            <h3>Условный рендеринг</h3>
+            <div ref={this.RefOpenDop} style={{ display: "none" }}>
+              Бывает нужно объяснить React, как состояние влияет на то, какие
+              компоненты требуется скрыть, а какие — отрендерить, и как именно.
+              В таких ситуациях используйте операторы (<code>if else</code>,{" "}
+              <code>&&</code>) JavaScript и/или тернарные операторы (
+              <code>if...else</code>, <code>condition ? true : false</code>).
+            </div>{" "}
+            <ArrowAccordion
+              // toggleArrowAccord={this.toggleArrowAccord}
+              openArrowAccord={this.state.openArrowAccord}
+            />
+          </div>
+          <div
+            className="ConditionalRendering__content--"
+            ref={this.RefOpenCont}
+            // style={{ display: "none" }}
+          >
+            <ConditionalRenderingClComp />
+          </div>
+          <div
+            className="ConditionalRendering__descript--"
+            // ref={this.RefOpenDop}
+            style={{ display: "none" }}
+          >
+            Подробнее по ссылке{" "}
+            <code>https://reactjs.org/docs/ConditionalRendering.html</code>
+          </div>
+          <div className="ConditionalRendering__frame--">
+            ConditionalRendering
           </div>
         </div>
-        <div
-          className="ConditionalRendering__content--"
-          ref={this.RefOpenCont}
-          // style={{ display: "none" }}
-        >
-          <ConditionalRenderingClComp />
-        </div>
-        <div
-          className="ConditionalRendering__descript--"
-          // ref={this.RefOpenDop}
-          style={{ display: "none" }}
-        >
-          Подробнее по ссылке{" "}
-          <code>https://reactjs.org/docs/ConditionalRendering.html</code>
-        </div>
-        <div className="ConditionalRendering__frame--">
-          ConditionalRendering
-        </div>
-      </div>
+      )
     );
   }
 }
@@ -291,24 +306,22 @@ class ConditionalRendering extends React.Component {
 // !!! https://reactjs.org/docs/lists-and-keys.html
 // Списки и ключи `Lists and keys` =======================================================================================
 class ListsAndKeys extends React.Component {
-  //  constructor(props) {
-  // super(props);
-  //this.state = {  }
-  //  }
   constructor(props) {
     super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
     this.RefActivCl = React.createRef();
-    this.RefOpenCont = React.createRef();
     this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
   handleClickRef() {
-    const ActionArrow = this.RefActivCl.current;
-    const OpenCont = this.RefOpenCont.current;
-    const OpenDopEl = this.RefOpenDop.current;
-    // const OpenCont = this.RefOpenCont.all;
-    ActionArrow.classList.toggle("_active");
-    OpenCont.classList.toggle("openCont");
-    OpenDopEl.classList.toggle("openDop");
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
   }
   handleClick33() {
     const spolerCont = document.querySelectorAll("[data-name='spoiler-cont']");
@@ -324,21 +337,28 @@ class ListsAndKeys extends React.Component {
         className="ListsAndKeys-- accordion"
       >
         <div
-          onClick={() => this.handleClickRef()}
           ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
           className="ListsAndKeys__descript--"
         >
           <h3>Списки и Ключи</h3>
           <div
-            className="ListsAneys__coent--"
+            className="ListsAneys__content--"
             ref={this.RefOpenDop}
             style={{ display: "none" }}
           >
             Общие Описание
           </div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
         <div
-          data-name="spoiler-cont"
+          // data-name="spoiler-cont"
           ref={this.RefOpenCont}
           className="ListsAndKeys__content--"
           // style={{ display: "none" }}
@@ -358,9 +378,12 @@ class ListsAndKeys extends React.Component {
 class Forms extends React.Component {
   constructor(props) {
     super(props);
-    this.RefOpenCont = React.createRef();
+    this.state = {
+      openArrowAccord: true,
+    };
     this.RefActivCl = React.createRef();
     this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
   handleClickRef() {
     this.RefActivCl.current.classList.toggle("_active");
@@ -391,6 +414,10 @@ class Forms extends React.Component {
             некоторое внутреннее состояние. Например, эта форма в простом HTML
             принимает одно имя:
           </p>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
         <div
           ref={this.RefOpenCont}
@@ -409,9 +436,12 @@ class Forms extends React.Component {
 class LiftingStateUp extends React.Component {
   constructor(props) {
     super(props);
-    this.RefOpenCont = React.createRef();
+    this.state = {
+      openArrowAccord: true,
+    };
     this.RefActivCl = React.createRef();
     this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
   handleClickRef() {
     this.RefActivCl.current.classList.toggle("_active");
@@ -447,6 +477,10 @@ class LiftingStateUp extends React.Component {
             ближайшего общего предка. Давайте посмотрим, как это работает в
             действии
           </p>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
         <div
           ref={this.RefOpenCont}
@@ -482,20 +516,48 @@ function knpToggleClick() {
 // !!!
 // подкл.всех Компонентов React Doc =!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=¡=!=
 class ReactDocComponents extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    // this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    // this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
   render() {
     return (
-      <div className="ReactDocComponents">
-        <div className="ReactDocComponents__descript">
+      <div className="ReactDocComponents accordion">
+        <div
+          className="ReactDocComponents__descript"
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            // this.toggleArrowAccord(this.openArrowAccord);
+          }}
+        >
           <h3>Общие понятия/концепции/методы из React документации</h3>
 
-          <div className="IfCondOperClComp__descript--- temporary">
+          {/* <div
+            className="ReactDocComponents__descript--- temporary"
+            style={{ display: "none" }}
+            ref={this.RefOpenDop}
+          >
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ/СДЕЛАТЬ{" "}
             <code style={{ color: "red" }}>!!!</code> СПОЙЛЕР/РАСКРЫВАШКУ. ПО
             КЛИК НА H3 (ЗАГОЛОВОК) И С ПЕРЕБОРОМ ВСЕХ ПОХОЖИХ,
             СКРЫВАТЬ/ПОКАЗЫВАТЬ CONTENT БЛОКОВ
           </div>
           <br />
-          <div className="IfCondOperClComp__descript--- temporary">
+          <div className="ReactDocComponents__descript--- temporary">
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
             <code style={{ color: "red" }}>!!!</code> СПОЙЛЕР/РАСКРЫВАШКУ ПО
             КЛИК И С ПЕРЕБОРОМ
@@ -517,10 +579,14 @@ class ReactDocComponents extends React.Component {
               <code>this.RefOpenCont = React.createRef();</code>. Но раб ток
               один ref. Узнать как на много раб
             </div>
-          </div>
+          </div> */}
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
 
-        <div className="ReactDocComponents__content">
+        <div className="ReactDocComponents__content" ref={this.RefOpenCont}>
           {/* <Spoiler />
           <SpoilerProb />
           <SpoilerTitle />

@@ -14,6 +14,7 @@ const BrSp = ({ sp }) => {
 // тег select
 const SelectLet = ({
   nameS,
+  atrN,
   sp1,
   val1,
   val2,
@@ -25,14 +26,6 @@ const SelectLet = ({
   sp2,
   seld,
 }) => {
-  let LetSeld;
-  if (seld) {
-    LetSeld = (
-      <>
-        <span className="token attr-name">selected</span>
-      </>
-    );
-  }
   let LetBefValS = (
     <>
       {sp2}
@@ -57,6 +50,15 @@ const SelectLet = ({
       <span className="token punctuationhtml">&gt;</span>
     </>
   );
+  let LetSeld;
+  if (seld) {
+    LetSeld = (
+      <>
+        {" "}
+        <span className="token attr-name">selected</span>
+      </>
+    );
+  }
 
   let LetVal1;
   if (val1) {
@@ -74,7 +76,7 @@ const SelectLet = ({
           val1={val1}
           val2={""}
           val3={""}
-        />{" "}
+        />
         {LetSeld}
         <span className="token punctuationhtml">&gt;</span>
         {val1}
@@ -127,7 +129,9 @@ const SelectLet = ({
       {/* 123123123 */}
       {/* <select className="token"> */}
       <span className="token punctuationhtml">&lt;</span>
-      <span className="token tag">{"select"}</span>
+      {/* <span className="token tag">{"select"}</span> */}
+      <span className="token tag">{nameS}</span>
+      {atrN}
       <span className="token punctuationhtml">&gt;</span>
       {/* {sp1} */}
       {/* {sp1} */}
@@ -148,6 +152,10 @@ const SelectLet = ({
       {LetVal2}
       {LetVal3}
       {LetVal4}
+      {sp2}
+      <span className="token punctuationhtml">&lt;</span>
+      <span className="token tag">{nameS}</span>
+      <span className="token punctuationhtml">&gt;</span>
       {/* <div className="token"></div>
         <div className="token"></div>
       </select>
@@ -183,11 +191,11 @@ const FormLabInpLet = ({
   sp2,
   name1,
   elemF1,
-  valS1,
-  valS2,
-  valS3,
-  valS4,
-  seldS,
+  // valS1,
+  // valS2,
+  // valS3,
+  // valS4,
+  // seldS,
   inputLab1,
   attrInLab1,
   input1,
@@ -236,7 +244,8 @@ const FormLabInpLet = ({
   if (elemF1) {
     LetElem1 = (
       <>
-        <SelectLet
+        {elemF1}
+        {/* <SelectLet
           nameS={""}
           sp1={sp1}
           sp2={sp2}
@@ -245,7 +254,7 @@ const FormLabInpLet = ({
           val3={valS3}
           val4={valS4}
           seld={seldS}
-        />
+        /> */}
       </>
     );
   } else {
@@ -982,6 +991,7 @@ export {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 };
 // Экспорт «по умолчанию» (импортирован как «contextexp») не был найден в ./contextexp.js '(модуль не имеет экспорта)
 // Ошибка анализа: только выражения, функции или классы разрешены в качестве экспорта `default`

@@ -25,10 +25,23 @@ import {
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 class FormsClComp extends React.Component {
-  //constructor(props) {
-  //super(props);
-  //this.state = {  }
-  //}
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
   render() {
     return (
       <div className="FormsClComp---">

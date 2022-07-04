@@ -1,123 +1,205 @@
 // accordion (раскрывашка) ----------------------------------------------------------------------------------
 .accordion {
-  // С ЛЕВА
-  // стили закрытого акордиона ----------------------------------------------------------------------------------
-  .openArrowAccord {
-    content: "";
-    position: relative;
+  transition: all 0.8s cubic-bezier(0.08, 1.09, 0.32, 1.275);
+  // Общий Блок стрелки аккордиона
+  .arrowAccord {
     position: absolute;
+    // left: 50%;
+    right: 0;
+    top: 0;
     width: 40px;
     height: 40px;
-    width: calc(70px + 30 * ((100vw - 320px) / 1600));
-    height: calc(70px + 30 * ((100vw - 320px) / 1600));
-    // background: #00f;
-    // background: #fff;
-    // margin: 0px auto;
-    // padding: 32px;
+    width: calc(22px + 30 * ((100vw - 320px) / 1600));
+    height: calc(22px + 30 * ((100vw - 320px) / 1600));
+    // width: calc(2% + 30 * ((100vw - 320px) / 1600));
+    // height: calc(60% + 30 * ((100vw - 320px) / 1600));
+    padding: 0;
+    background: inherit;
+    background: none !important;
     border-radius: 50%;
-    &::before,
-    &::after {
-      content: "";
-      width: 20px;
-      width: 30px;
-      height: 4px;
-      position: absolute;
-      top: 50%;
-      top: 47%;
-      background-color: $DarkRed;
-      // transition: transform 0.3s ease 0s;
-      transition: all 0.7s cubic-bezier(0.08, 1.09, 0.32, 1.275);
-      border-radius: 6px 10px 10px 6px;
-      border-radius: 10px;
-      z-index: 1;
-    }
-
+    transition: all 0.8s cubic-bezier(0.08, 1.09, 0.32, 1.275);
+    z-index: 1;
+    //Круг.Рамка Общ.Бл. Скрыт
     &::before {
-      transform: translate(0, -50%) rotate(45deg);
-      left: 10px;
-      left: calc(50% - 21px);
-      left: calc(50% - 26px);
+      // transition: all 0.5s cubic-bezier(0.08, 1.09, 0.32, 1.275);
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      // background: none;
+      border-radius: 50%;
+      z-index: 1;
+      left: 0;
     }
-    &::after {
-      transform: translate(0, -50%) rotate(-45deg);
-      left: 21px;
-      left: calc(50% + -6px);
-    }
-  }
-  // стили открытого акордиона ----------------------------------------------------------------------------------
-  // & > div:first-child._active {
-  & > ._active {
-    & > .openArrowAccord {
-      background: #fff;
-      &::before {
-        width: 30px;
-        height: 2px;
-        background-color: #fff;
-        transform: translate(0, -50%) rotate(-45deg);
-        transform: translate(0, -50%) rotate(-63deg);
-        z-index: 3;
-      }
+    // блок для Стрелок + Пульсар
+    .ArrowAccord-show {
+      // Стрелки на before и after. Общ.стили
+      &::before,
       &::after {
-        width: 30px;
-        height: 2px;
-        background-color: #fff;
-        transform: translate(0, -50%) rotate(45deg);
-        transform: translate(0, -50%) rotate(63deg);
+        content: "";
+        width: 20px;
+        height: 4px;
+        width: 40%;
+        height: 8%;
+        position: absolute;
+        top: 50%;
+        border-radius: 6px 10px 10px 6px;
+        border-radius: 20%;
+        border-radius: 10px;
+        background-color: #8b0000;
+        transition: all 0.6s cubic-bezier(0.08, 1.09, 0.32, 1.275);
         z-index: 2;
       }
-    }
-  }
-  .accordion > div:first-child._active > .openArrowAccord::before {
-    transform: translate(0, -50%) rotate(64deg);
-  }
-  .accordion > div:first-child._active > .openArrowAccord::after {
-    transform: translate(0, -50%) rotate(-64deg);
-  }
-
-  // С ПРАВА
-  //  ----------------------------------------------------------------------------------
-  & > div:first-child {
-    &::before,
-    &::after {
-      content: "";
-      width: 20px;
-      height: 4px;
-      position: absolute;
-      top: 50%;
-      border-radius: 6px 10px 10px 6px;
-      border-radius: 10px;
-      background-color: $DarkRed;
-      // transition: transform 0.3s ease 0s;
-      transition: all 0.6s cubic-bezier(0.08, 1.09, 0.32, 1.275);
-      z-index: 2;
-    }
-    &::before {
-      transform: translate(0, -50%) rotate(45deg);
-      right: 10px;
-      right: 14px;
-      // @include adaptiv-value("right", 21, 3, 3);
-      // right: 33px;
-      // transition: transform 0.3s ease-in-out;
-    }
-    &::after {
-      right: 21px;
-      right: 3px;
-      // @include adaptiv-value("right", 20, 2, 3);
-      transform: translate(0, -50%) rotate(-45deg);
-      // right: 44px;
-      // transition: transform 0.3s ease-in-out;
-    }
-    &._active {
       &::before {
-        transform: translate(0, -50%) rotate(-45deg);
+        transform: translate(0, -50%) rotate(45deg);
+        left: calc(50% - 32%);
       }
       &::after {
-        transform: translate(0, -50%) rotate(45deg);
+        transform: translate(0, -50%) rotate(-45deg);
+        left: calc(50% - 9%);
+      }
+      // Пульсар. Скрыт
+      span {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    // наведение на Общ.Бл
+    &:hover {
+      background: $DarkRed !important;
+      z-index: 1;
+      // Круг.Рамка показ
+      &::before {
+        width: 90%;
+        height: 90%;
+        border: 2px solid #fff000;
+        top: calc(1px + 2 * ((100vw - 320px) / 1600));
+        left: calc(1px + 2 * ((100vw - 320px) / 1600));
+      }
+      .ArrowAccord-show {
+        // Сртелки. измен. цвет, сдвиг
+        &::before,
+        &::after {
+          background-color: #fff000;
+        }
+        &::before {
+          transform: translate(0, -50%) rotate(63deg);
+        }
+        &::after {
+          transform: translate(0, -50%) rotate(-63deg);
+        }
+        // Пульсар. Показ
+        span {
+          width: 150%;
+          height: 150%;
+          position: absolute;
+          top: -25%;
+          left: -25%;
+          font-style: normal;
+          font-size: calc(28px + 20 * ((100vw - 320px) / 1600));
+          font-size: calc(105% + 20 * ((100vw - 320px) / 1600));
+          line-height: 1.8;
+          color: #000;
+          background: #8b0000;
+          border-radius: 50%;
+          animation: zoomIn 2s ease-in-out 0s infinite;
+          opacity: 1;
+          visibility: visible;
+        }
+        @keyframes zoomIn {
+          0% {
+            opacity: 0;
+            -webkit-transform: scale3d(0.4, 0.4, 0.4);
+            transform: scale3d(0.4, 0.4, 0.4);
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
       }
     }
   }
+  // ОТКРЫТЫЙ аккорд (+ ._active)
+  & > ._active {
+    & .arrowAccord {
+      & .ArrowAccord-show {
+        &::before,
+        &::after {
+          top: 50%;
+        }
+        &::before {
+          transform: translate(0, -50%) rotate(-45deg);
+        }
+        &::after {
+          transform: translate(0, -50%) rotate(45deg);
+        }
+        // span {
+        //   transform: rotate(180deg);
+        // }
+      }
+      &:hover {
+        & .ArrowAccord-show {
+          &::before {
+            transform: translate(0, -50%) rotate(-63deg);
+          }
+          &::after {
+            transform: translate(0, -50%) rotate(63deg);
+          }
+        }
+      }
+    }
+  }
+  // С ПРАВА
   //  ----------------------------------------------------------------------------------
-  div[class$="__content--"] {
+  // & > div:first-child {
+  //   &::before,
+  //   &::after {
+  //     content: "";
+  //     width: 20px;
+  //     height: 4px;
+  //     position: absolute;
+  //     top: 50%;
+  //     border-radius: 6px 10px 10px 6px;
+  //     border-radius: 10px;
+  //     background-color: $DarkRed;
+  //     // transition: transform 0.3s ease 0s;
+  //     transition: all 0.6s cubic-bezier(0.08, 1.09, 0.32, 1.275);
+  //     z-index: 2;
+  //   }
+  //   &::before {
+  //     transform: translate(0, -50%) rotate(45deg);
+  //     right: 10px;
+  //     right: 14px;
+  //     // @include adaptiv-value("right", 21, 3, 3);
+  //     // right: 33px;
+  //     // transition: transform 0.3s ease-in-out;
+  //   }
+  //   &::after {
+  //     right: 21px;
+  //     right: 3px;
+  //     // @include adaptiv-value("right", 20, 2, 3);
+  //     transform: translate(0, -50%) rotate(-45deg);
+  //     // right: 44px;
+  //     // transition: transform 0.3s ease-in-out;
+  //   }
+  //   &._active {
+  //     &::before {
+  //       transform: translate(0, -50%) rotate(-45deg);
+  //     }
+  //     &::after {
+  //       transform: translate(0, -50%) rotate(45deg);
+  //     }
+  //   }
+  // }
+
+  // доп классы вкл REF ----------------------------------------------------------------------------------
+  &
+    > div[class*="__content--"]:not([class^="countryflags"], [class^="clComp"], [class^="fnComp"], [class^="Keys"], [class^="Lists"], [class^="Forms"]),
+  div[class$="__content"],
+  div[class$="__content----"]:not([class^="Keys"], [class^="Lists"]) {
     height: 0;
     visibility: hidden;
     opacity: 0;
@@ -134,55 +216,6 @@
     display: inline-block !important;
   }
 }
-
-// НОВ ----------------------------------------------------------------------------------
-.arrow-scroll {
-  /* margin-bottom: 10px; */
-  /* box-sizing: content-box; */
-  /* background: #263238; */
-  /* height: 100px; */
-  z-index: 1;
-}
-.arrow-scroll .arrow-container {
-  width: 100px;
-  height: 100px;
-  width: calc(70px + 30 * ((100vw - 320px) / 1600));
-  height: calc(70px + 30 * ((100vw - 320px) / 1600));
-  // margin: 0 auto;
-  position: absolute;
-  /* left: 0; */
-  /* right: 0; */
-  z-index: 1;
-}
-.arrow-scroll {
-  .arrow-scroll .arrow-container {
-    width: 100px;
-    height: 100px;
-    width: calc(70px + 30 * ((100vw - 320px) / 1600));
-    height: calc(70px + 30 * ((100vw - 320px) / 1600));
-    margin: 0 auto;
-    position: absolute;
-    /* left: 0; */
-    /* right: 0; */
-    z-index: 1;
-  }
-}
-.arrow-scroll .arrow-1 {
-  /* position: absolute; */
-  /* width: 100px; */
-  /* height: 100px; */
-  width: calc(70px + 30 * ((100vw - 320px) / 1600));
-  height: calc(70px + 30 * ((100vw - 320px) / 1600));
-  /* background: #00bcd4; */
-  /* background: #8b0000; */
-  /* opacity: 0.5; */
-  border-radius: 50%;
-  font-size: 72px;
-  font-size: calc(30px + 12 * ((100vw - 320px) / 1600));
-  font-weight: 900;
-  z-index: 1;
-}
-// НОВ ----------------------------------------------------------------------------------
 
 // скрытие блоков =======================================================================================
 .root-body {
@@ -670,40 +703,19 @@ h1 {
   /* Custom Animate.css */
 
   .animated.hinge {
-    // -webkit-animation-duration: 2s;
-    // animation: 2s infinite ease-in-out;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
-
-  // @-webkit-keyframes zoomIn {
-  //   0% {
-  //     opacity: 0;
-  //     // -webkit-transform: scale3d(0.4, 0.4, 0.4);
-  //     transform: scale3d(0.4, 0.4, 0.4);
-  //   }
-
-  //   50% {
-  //     opacity: 0.5;
-  //   }
-
-  //   100% {
-  //     opacity: 0;
-  //   }
-  // }
-
   @keyframes zoomIn {
     0% {
       opacity: 0;
       -webkit-transform: scale3d(0.4, 0.4, 0.4);
       transform: scale3d(0.4, 0.4, 0.4);
     }
-
     50% {
       opacity: 0.5;
     }
-
     100% {
       opacity: 0;
     }

@@ -5,6 +5,10 @@ import "./CommonTrifles.scss";
 // хук useKeyPress + отладка (нажатие на клвш., отслж., вывод)=======================================================================================
 // при нажатии опред. одиночных клвш. - вывод + шрифт к обозначению. е\и надо чтобы вывод отражался/мигал, то комит/разкомит useKeyPress.useEffect.keyup отрисовка мигает.
 // !!! по YT видео RED Group
+
+// подкл. UI блоков
+import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+
 // созд хук. в аргум. принимаем клвш.
 const useKeyPress = (keyTarget) => {
   // состояние для отслеж нажат клвш
@@ -219,16 +223,40 @@ function CountryFlags() {
 // покл. в общий Компонент и импорт  =======================================================================================
 
 class CommonTrifles extends React.Component {
-  //  constructor(props) {
-  //         super(props);
-  //       }
-  //       state = {  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
   render() {
     return (
-      <div className="CommonTrifles">
-        <div className="CommonTrifles__descript">
+      <div className="CommonTrifles accordion">
+        <div
+          className="CommonTrifles__descript"
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
+        >
           <h3>хук useKeyPress (+ fn()useMultiKeyPress) + отладка</h3>
-          <div className="temporary">
+          <div
+            className="temporary"
+            style={{ display: "none" }}
+            ref={this.RefOpenDop}
+          >
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
             <code style={{ color: "red" }}>!!!</code>
             Написать код по считыванию нажатий на клавиши. Разные комбинации для
@@ -244,8 +272,12 @@ class CommonTrifles extends React.Component {
               CamelCase(верблюжьем стиле)
             </p>
           </div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
-        <div className="CommonTrifles__content">
+        <div ref={this.RefOpenCont} className="CommonTrifles__content">
           <CountryFlags />
         </div>
         <div className="CommonTrifles__frame">CommonTrifles.js</div>
