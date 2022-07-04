@@ -20,7 +20,7 @@ class ClassComp extends React.Component {
   constructor(props) {
     super();
     // местное состояние = доступ к localStorage ИЛИ счётчик
-    this.state = JSON.parse(window.localStorage.getItem("state")) || {
+    this.state = JSON.parse(window.localStorage.getItem("state clComp")) || {
       count: 0,
     };
     // попытка сделать JSON отдельно
@@ -31,7 +31,7 @@ class ClassComp extends React.Component {
   }
   // состояние для отслеж
   setState(state) {
-    window.localStorage.setItem("state", JSON.stringify(state));
+    window.localStorage.setItem("state clComp", JSON.stringify(state));
     super.setState(state);
   }
   // измен сост +/-
@@ -69,11 +69,11 @@ const FunctComp = () => {
   const [count, setCount] = useState(0);
   // Аналог компон. componentDidMount(монтаж) и componentDidUpdate(обновление)
   useEffect(() => {
-    setCount(JSON.parse(window.localStorage.getItem("count")));
+    setCount(JSON.parse(window.localStorage.getItem("count fnComp")));
     // Пустой массив для запуска и очистки эффекта один раз, при монтаже и демонтаже
   }, []);
   useEffect(() => {
-    window.localStorage.setItem("count", count);
+    window.localStorage.setItem("count fnComp", count);
     // второй аргумент еффекта. запуск эффекта если значения с предадушим отличаются
   }, [count]);
   // измен сост +/-

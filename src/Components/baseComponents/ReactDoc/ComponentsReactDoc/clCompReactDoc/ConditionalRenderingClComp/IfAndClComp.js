@@ -21,7 +21,68 @@ import {
 
 // подкл. UI блоков
 import ArrowAccordion from "../../../../../../js/uiBlock/ArrowAccordion.js";
+// 1111111 ----------------------------------------------------------------------------------
+const Input = (props) => {
+  return (
+    <div>
+      <input type="text" ref={props.inputRef} />
+    </div>
+  );
+};
 
+class App extends React.Component {
+  state = {
+    value: "",
+  };
+
+  handleSubmit = (event) => {
+    this.setState({ value: this.inputElement.value });
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>React Ref - Callback Ref</h1>
+        <h3>Value: {this.state.value}</h3>
+        <Input inputRef={(el) => (this.inputElement = el)} />
+        <button onClick={this.handleSubmit}>Submit</button>
+      </div>
+    );
+  }
+}
+// 2222222222222 ----------------------------------------------------------------------------------
+const Input2 = React.forwardRef((props, ref) => (
+  <input type="text" ref={ref} />
+));
+
+class App2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+    this.state = {
+      value: "",
+    };
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ value: this.inputRef.current.value });
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>React Ref - createRef</h1>
+        <h3>Value: {this.state.value}</h3>
+        <form onSubmit={this.handleSubmit}>
+          <Input2 ref={this.inputRef} />
+          <button>Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+// 333333333333 ----------------------------------------------------------------------------------
 // Встроенный оператор If с логическим оператором &&
 class IfAndClComp extends React.Component {
   constructor(props) {
@@ -44,6 +105,14 @@ class IfAndClComp extends React.Component {
     //   openArrowAccord: !prevState.openArrowAccord,
     // }));
   }
+  // toggleArrowAccord() {
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+    // this.setState({ openArrowAccord: openArrowAccord });
+    // this.setState({ openArrowAccord: openArrowAccord });
+  };
   render() {
     // function Mailbox(props) {
     const Mailbox = (props) => {
@@ -89,17 +158,22 @@ class IfAndClComp extends React.Component {
               появится в выводе. Если это <code>false</code>, React
               проигнорирует и пропустит его.
             </div>
+            <Mailbox unreadMessages={messages} />
+            <div className="IfAndClComp__descript---- temporary">
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code> КОД | ПЕРЕБРАТЬ{" "}
+              <code>pre</code> и <code>code</code>
+              <div>
+                <code style={{ color: "red" }}>!!!</code> Можно доработать
+                визуализацию чтоб по клик на кнп увелич/уменьшать список тем
+                самым меняя ввывод
+              </div>
+            </div>
           </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
             openArrowAccord={this.state.openArrowAccord}
           />
-        </div>
-        <Mailbox unreadMessages={messages} />
-        <div className="IfAndClComp__descript---- temporary">
-          <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-          <code style={{ color: "red" }}>!!!</code> КОД | ПЕРЕБРАТЬ{" "}
-          <code>pre</code> и <code>code</code>
         </div>
         <div ref={this.RefOpenCont} className="IfAndClComp__content----">
           <pre className="code-jsx">
@@ -222,12 +296,6 @@ class IfAndClComp extends React.Component {
               <ConstRoot nameRoot={this.state.nameRoot} />
             </code>
           </pre>
-        </div>
-        <div className="IfAndClComp__descript---- temporary">
-          <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-          <code style={{ color: "red" }}>!!!</code> Можно доработать
-          визуализацию чтоб по клик на кнп увелич/уменьшать список тем самым
-          меняя ввывод
         </div>
       </div>
     );

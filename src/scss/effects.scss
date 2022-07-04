@@ -196,15 +196,18 @@
   // }
 
   // доп классы вкл REF ----------------------------------------------------------------------------------
-  &
-    > div[class*="__content--"]:not([class^="countryflags"], [class^="clComp"], [class^="fnComp"], [class^="Keys"], [class^="Lists"], [class^="Forms"]),
-  div[class$="__content"],
-  div[class$="__content----"]:not([class^="Keys"], [class^="Lists"]) {
+  //   > div[class*="__content--"]:not([class^="countryflags"], [class^="clComp"], [class^="fnComp"], [class^="Keys"], [class^="Lists"], [class^="Forms"]),
+  // div[class$="__content"],
+  // div[class$="__content----"]:not([class^="Keys"], [class^="Lists"]) {
+  & > div[class$="__content--"],
+  & > div[class$="__content"],
+  & > div[class$="__content----"] {
     height: 0;
     visibility: hidden;
     opacity: 0;
     overflow: auto;
     transition: all 0.2s ease-in;
+    padding: 0px !important;
   }
   .openCont {
     visibility: visible;

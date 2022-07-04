@@ -3,7 +3,7 @@ class ArrowAccordion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openArrowAccord: false,
+      // openArrowAccord: false,
     };
   }
   // handleClickRef() {
@@ -11,37 +11,23 @@ class ArrowAccordion extends React.Component {
   //   this.RefOpenDop.current.classList.toggle("openDop");
   //   this.RefOpenCont.current.classList.toggle("openCont");
   // }
-  toggleArrowAccord() {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
-  }
+  // toggleArrowAccord() {
+  //   this.setState((prevState) => ({
+  //     openArrowAccord: !prevState.openArrowAccord,
+  //   }));
+  // }
   render() {
     return (
-      console.log("ArrowAccord this: " + this.state.openArrowAccord),
-      console.log("ArrowAccord prop: " + this.props.openArrowAccord),
-      (
-        <>
-          {/* {this.props.toggleArrowAccord(this.state.openArrowAccord) ? ( */}
-          {/* {this.props.toggleArrowAccord(this.state.openArrowAccord) ? ( */}
-          {this.props.openArrowAccord ? (
-            <div className="arrowAccord">
-              <div className="ArrowAccord-show">
-                <span>ᐁ</span>
-              </div>
-            </div>
-          ) : (
-            <>
-              <div className="arrowAccord">
-                <div className="ArrowAccord-show">
-                  <span>ᐃ</span>
-                </div>
-              </div>
-            </>
-          )}
-          {/* ^ ⌆ ⌤ ⌅ ᐁ ▼ ᐳ ᐃ ᐯ ᐉ */}
-        </>
-      )
+      // console.log("ArrowAccord this: " + this.state.openArrowAccord),
+      // console.log("ArrowAccord prop: " + this.props.openArrowAccord),
+      <>
+        <div className="arrowAccord">
+          <div className="ArrowAccord-show">
+            <span>{this.props.openArrowAccord ? "ᐁ" : "ᐃ"}</span>
+          </div>
+        </div>
+        {/* ^ ⌆ ⌤ ⌅ ᐁ ▼ ᐳ ᐃ ᐯ ᐉ */}
+      </>
     );
   }
 }
