@@ -208,6 +208,11 @@ class Vid extends React.Component {
     //   openArrowAccord: !prevState.openArrowAccord,
     // }));
   }
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+  };
   render() {
     return (
       <div className="Vid accordion">
@@ -216,7 +221,7 @@ class Vid extends React.Component {
           ref={this.RefActivCl}
           onClick={() => {
             this.handleClickRef();
-            // this.toggleArrowAccord(this.openArrowAccord);
+            this.toggleArrowAccord(this.openArrowAccord);
           }}
         >
           <h3>Интерактивный INPUT и BUTTON</h3>

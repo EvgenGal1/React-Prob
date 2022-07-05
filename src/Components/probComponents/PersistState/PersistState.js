@@ -123,6 +123,12 @@ class PersistState extends React.Component {
     //   openArrowAccord: !prevState.openArrowAccord,
     // }));
   }
+  toggleArrowAccord() {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+    // localStorage.setItem("openArrowAccord", JSON.stringify(22));
+  }
   render() {
     return (
       <div className="PersistState accordion">

@@ -262,6 +262,11 @@ class HooksComponents extends React.Component {
     //   openArrowAccord: !prevState.openArrowAccord,
     // }));
   }
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+  };
   render() {
     return (
       <div className="HooksComponents accordion">

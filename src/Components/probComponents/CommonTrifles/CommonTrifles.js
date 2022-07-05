@@ -240,6 +240,11 @@ class CommonTrifles extends React.Component {
     //   openArrowAccord: !prevState.openArrowAccord,
     // }));
   }
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+  };
   render() {
     return (
       <div className="CommonTrifles accordion">

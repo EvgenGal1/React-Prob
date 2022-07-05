@@ -71,48 +71,15 @@ class StateAndLifeCycle extends React.Component {
     this.RefActivCl.current.classList.toggle("_active");
     this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
-    // this.setState(this.openArrowAccord);
-    this.setState0();
   }
   toggleArrowAccord() {
     this.setState((prevState) => ({
       openArrowAccord: !prevState.openArrowAccord,
     }));
+    // localStorage.setItem("openArrowAccord",JSON.stringify(this.state.openArrowAccord));
   }
-  //  ----------------------------------------------------------------------------------
-  setState0() {
-    // setState(openArrowAccord) {
-    // localStorage.setItem("openArrowAccord", JSON.stringify(1));
-    window.localStorage.setItem("openArrowAccord", 3);
-    // super.setState(state);
-  }
-  //  ----------------------------------------------------------------------------------
-  // setState() {
-  //   window.localStorage.setItem("openArrowAccord", JSON.stringify(this.openArrowAccord));
-  //   // super.setState(state);
-  // }
-  //  ----------------------------------------------------------------------------------
-  // componentDidMount() {
-  //   const openArrowAccord = JSON.parse(localStorage.getItem("openArrowAccord"));
-  //   this.setState({ openArrowAccord });
-  // }
+
   render() {
-    window.localStorage.setItem("openArrowAccord", 4);
-    // if (!this.state.openArrowAccord.length) {
-    //   return <p>No recipe</p>;
-    //   // or you can use a spinner here
-    // }
-    //  ----------------------------------------------------------------------------------
-    // localStorage.setItem("openArrowAccord", JSON.stringify(this.state.openArrowAccord);
-    // const openArrowAccord = localStorage.getItem("openArrowAccord")
-    // this.setState({...openArrowAccord})
-    //  ----------------------------------------------------------------------------------
-    // localStorage.setItem(
-    //   "openArrowAccord",
-    //   this.openArrowAccord
-    //   // JSON.stringify(this.openArrowAccord)
-    // );
-    //  ----------------------------------------------------------------------------------
     return (
       console.log("openAA StateAndLifeCycle: " + this.state.openArrowAccord),
       (
@@ -548,6 +515,15 @@ class ReactDocComponents extends React.Component {
     this.state = {
       openArrowAccord: true,
     };
+    // Пульсар в LocalStorage отрабатывает ----------------------------------------------------------------------------------
+    // this.state = JSON.parse(localStorage.getItem("openArrowAccord")) || {
+    //   openArrowAccord: true,
+    // };
+    // попытка передачи RefActivCl ----------------------------------------------------------------------------------
+    // const LetRefActivCl = (this.RefActivCl = React.createRef());
+    // this.state = JSON.parse(localStorage.getItem("LetRefActivCl")) || {
+    //   LetRefActivCl,
+    // };
     this.RefActivCl = React.createRef();
     // this.RefOpenDop = React.createRef();
     this.RefOpenCont = React.createRef();
@@ -556,16 +532,62 @@ class ReactDocComponents extends React.Component {
     this.RefActivCl.current.classList.toggle("_active");
     // this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
-    // this.setState((prevState) => ({
-    //   openArrowAccord: !prevState.openArrowAccord,
-    // }));
+    // попытка передачи RefActivCl ----------------------------------------------------------------------------------
+    // localStorage.setItem(
+    //   "LetRefActivCl",
+    //   JSON.stringify(this.state.LetRefActivCl)
+    // );
+    // ------
+    // const ActionArrow = this.RefActivCl.current;
+    // ActionArrow.classList.toggle("_active");
+    // ------------------------------------
+    // this.setState(this.openArrowAccord);
+    // this.setState0();
+    // localStorage.setItem("openArrowAccord", JSON.stringify(33));
   }
   toggleArrowAccord() {
     this.setState((prevState) => ({
       openArrowAccord: !prevState.openArrowAccord,
     }));
+    // Пульсар в LocalStorage отрабатывает ----------------------------------------------------------------------------------
+    // console.log("this.state.openArrowAccord 1: " + this.state.openArrowAccord);
+    // localStorage.setItem(
+    //   "openArrowAccord",
+    //   JSON.stringify(this.state.openArrowAccord)
+    // );
+    // console.log("this.state.openArrowAccord 2: " + this.state.openArrowAccord);
   }
+  //  ----------------------------------------------------------------------------------
+  // setState() {
+  //   // setState(openArrowAccord) {
+  //   window.localStorage.setItem(
+  //     "openArrowAccord",
+  //     JSON.stringify(this.openArrowAccord)
+  //   );
+  //   // super.setState(state);
+  // }
+  //  ----------------------------------------------------------------------------------
+  // componentDidMount() {
+  //   const openArrowAccord = JSON.parse(localStorage.getItem("openArrowAccord"));
+  //   this.setState({ openArrowAccord });
+  // }
   render() {
+    // window.localStorage.setItem("openArrowAccord", 4);
+    // if (!this.state.openArrowAccord.length) {
+    //   return <p>No recipe</p>;
+    //   // or you can use a spinner here
+    // }
+    //  ----------------------------------------------------------------------------------
+    // localStorage.setItem("openArrowAccord", JSON.stringify(this.state.openArrowAccord);
+    // const openArrowAccord = localStorage.getItem("openArrowAccord")
+    // this.setState({...openArrowAccord})
+    //  ----------------------------------------------------------------------------------
+    // localStorage.setItem(
+    //   "openArrowAccord",
+    //   this.openArrowAccord
+    //   // JSON.stringify(this.openArrowAccord)
+    // );
+    //  ----------------------------------------------------------------------------------
     return (
       <div className="ReactDocComponents accordion">
         <div
@@ -577,7 +599,7 @@ class ReactDocComponents extends React.Component {
           }}
         >
           <h3>Общие понятия/концепции/методы из React документации</h3>
-
+          {/* //* временно коммит, чтоб не мешал  */}
           {/* <div
             className="ReactDocComponents__descript--- temporary"
             style={{ display: "none" }}
