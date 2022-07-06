@@ -5,7 +5,7 @@ import ManagedComponentsClComp from "./ManagedComponentsClComp.js";
 import TagTextareaClComp from "./TagTextareaClComp.js";
 import TagSelectClComp from "./TagSelectClComp.js";
 import TagInpFileClComp from "./TagInpFileClComp.js";
-import InputsMultipleClComp from "./InputsMultipleClComp.js";
+import MultipleInputsClComp from "./MultipleInputsClComp.js";
 import InputNullValueClComp from "./InputNullValueClComp.js";
 import AlterContrCompClComp from "./AlterContrCompClComp.js";
 
@@ -22,6 +22,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 class FormsClComp extends React.Component {
@@ -52,7 +53,7 @@ class FormsClComp extends React.Component {
           <TagTextareaClComp />
           <TagSelectClComp />
           <TagInpFileClComp />
-          <InputsMultipleClComp />
+          <MultipleInputsClComp />
           <InputNullValueClComp />
           <AlterContrCompClComp />
         </div>

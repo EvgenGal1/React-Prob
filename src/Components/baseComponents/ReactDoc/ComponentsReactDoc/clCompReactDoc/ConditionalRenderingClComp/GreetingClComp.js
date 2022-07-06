@@ -16,6 +16,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 // приветствие. Условный опрератор If + Переменные

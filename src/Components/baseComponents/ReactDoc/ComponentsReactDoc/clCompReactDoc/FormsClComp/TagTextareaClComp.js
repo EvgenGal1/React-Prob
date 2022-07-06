@@ -13,6 +13,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
+  SelectLet,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 class TagTextareaClComp extends React.Component {
@@ -71,8 +72,14 @@ class TagTextareaClComp extends React.Component {
                 stVal1={<span className="token atrule">'Напишите'</span>}
                 fn1={"handleChange"}
                 fnProp1={"event"}
-                fnVal1={"event.target.value"}
-                dop2={
+                fnVal1={
+                  <>
+                    <span className="token parameter">event</span>
+                    <span className="token operator">.</span>target
+                    <span className="token operator">.</span>value
+                  </>
+                }
+                fn2Body={
                   <>
                     <span className="token keyword">alert</span>{" "}
                     <span className="token punctuation">(</span>
@@ -81,20 +88,27 @@ class TagTextareaClComp extends React.Component {
                     </span>{" "}
                     <span className="token operator">+</span>{" "}
                     <span className="token parameter">this</span>
-                    <span className="token operator">.</span> state
-                    <span className="token operator">.</span> value
+                    <span className="token operator">.</span>state
+                    <span className="token operator">.</span>value
                     <span className="token punctuation">);</span>
                     <BrSp sp={"    "} />
                     <span className="token parameter">event</span>
                     <span className="token operator">.</span>
                     <span className="token function">preventDefault</span>
                     <span className="token number">()</span>
+                    <span className="token punctuation">;</span>
                   </>
                 }
                 fn2={"handleSubmit"}
-                state2={"value"}
+                // state2={"value"}
                 fnProp2={"event"}
-                fnVal2={"event.target.value"}
+                fnVal2={
+                  <>
+                    <span className="token parameter">event</span>
+                    <span className="token operator">.</span>target
+                    <span className="token operator">.</span>value
+                  </>
+                }
                 exp1={
                   <>
                     <FormLabInpLet

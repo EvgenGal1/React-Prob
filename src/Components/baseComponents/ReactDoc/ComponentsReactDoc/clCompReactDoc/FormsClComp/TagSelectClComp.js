@@ -77,8 +77,14 @@ class TagSelectClComp extends React.Component {
                 stVal1={<span className="token atrule">'coconut'</span>}
                 fn1={"handleChange"}
                 fnProp1={"event"}
-                fnVal1={"event.target.value"}
-                dop2={
+                fnVal1={
+                  <>
+                    <span className="token parameter">event</span>
+                    <span className="token operator">.</span>target
+                    <span className="token operator">.</span>value
+                  </>
+                }
+                fn2Body={
                   <>
                     <span className="token keyword">alert</span>{" "}
                     <span className="token punctuation">(</span>
@@ -95,12 +101,13 @@ class TagSelectClComp extends React.Component {
                     <span className="token operator">.</span>
                     <span className="token function">preventDefault</span>
                     <span className="token number">()</span>
+                    <span className="token punctuation">;</span>
                   </>
                 }
                 fn2={"handleSubmit"}
-                state2={"value"}
+                // state2={"value"}
                 fnProp2={"event"}
-                fnVal2={"event.target.value"}
+                // fnVal2={"event.target.value"}
                 exp1={
                   <>
                     <FormLabInpLet

@@ -172,7 +172,7 @@ class KeysClComp extends React.Component {
                   name2={"todos"}
                   metd={"map"}
                   param1={"todo"}
-                  param2={
+                  mtdParam2={
                     <>
                       <span className="token punctuation">,</span>{" "}
                       <span className="token parameter">index</span>

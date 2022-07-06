@@ -68,12 +68,15 @@ input[type="submit"] {
   }
   // height: 100%;
 }
-input[type="text"] {
+input[type="text"],
+textarea,
+select {
   max-width: 50%;
   /* width: auto; */
   /* margin: 10px 0 0; */
   // background: #a3a3a3;
   font-size: larger;
+  font-size: initial;
   cursor: pointer;
   /* border-radius: 5px; */
   /* display: inline-block; */
