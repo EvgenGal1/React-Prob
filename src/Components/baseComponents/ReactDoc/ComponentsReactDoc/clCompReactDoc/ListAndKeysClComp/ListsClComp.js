@@ -184,6 +184,27 @@ class ListsClComp extends React.Component {
                 {/* <div>{this.state.show ? "Show" : "Hide"}</div> */}
                 <div>{this.state.showKey ? "Hide" : "Show"}</div>
               </button>
+              <button
+                className="btmShowHide"
+                onClick={this.knpToggleClick}
+                value={this.state.showKey ? "Hide" : "Show"}
+              >
+                {this.state.showKey ? "Hide" : "Show"}
+                {/* <button onClick={knpToggleClick}> */}
+                {/* <div>{this.state.showKey ? "Show" : "Hide"}</div> */}
+                {/* <div>{this.state.show ? "Show" : "Hide"}</div> */}
+                {/* <div></div> */}
+              </button>
+              {/* <input className="btmShowHide" onClick={this.knpToggleClick}>
+                {this.state.showKey ? "Hide" : "Show"}
+              </input> */}
+              33333333333333
+              <input
+                type="button"
+                className="btmShowHide"
+                onClick={this.knpToggleClick}
+                value={this.state.showKey ? "Show" : "Hide"}
+              />
             </div>
           </div>
           <div className="BasicListComponent__content----">

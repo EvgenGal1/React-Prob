@@ -365,7 +365,6 @@ const ConstNamePlus = ({
           param1={param1}
           param2={mtdParam2}
         />
-        12121212121212
       </>
     );
   } else if (empty) {

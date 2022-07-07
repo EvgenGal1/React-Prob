@@ -20,7 +20,7 @@ class TagTextareaClComp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "Пожалуйста, напишите эссе о вашем любимом элементе DOM.",
+      value: "Эссе о эл. DOM",
     };
 
     this.handleChange = this.handleChange.bind(this);

@@ -15,6 +15,12 @@ import {
   ConstRoot,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
+function knpToggleClick4(event) {
+  this.setState((state) => ({
+    [event.target.name]: !state[event.target.name],
+  }));
+}
+
 // Ключи
 class KeysClComp extends React.Component {
   constructor(props) {
@@ -24,27 +30,89 @@ class KeysClComp extends React.Component {
       showJSX: true,
     };
     this.knpToggleClick = this.knpToggleClick.bind(this);
+    this.knpToggleClick2 = this.knpToggleClick2.bind(this);
+    this.knpToggleClick3 = this.knpToggleClick3.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-  knpToggleClick() {
+  knpToggleClick(event) {
     this.setState((state) => ({
-      showTrue: !state.showTrue,
-      showJSX: !state.showJSX,
+      [event.target.name]: !state[event.target.name],
+      // showTrue: !state.showTrue,
+      // showJSX: !state.showJSX,
       // show: !state.show,
     }));
   }
   //  ----------------------------------------------------------------------------------
-  // попытка преобразования в общую fn для кнп knpToggleClick
-  knpToggleClick2 = (props) => {
+  knpToggleClick2(event) {
+    // name="showTrue"
+    // name="showJSX"
+    // type="button"
+    // value={this.state.showTrue}
+    // value={this.state.showJSX}
+    // className="btmShowHide"
+    // onClick={this.knpToggleClick2}
+
+    // console.log("event.target : " + event.target); // [object HTMLButtonElement]
+    // console.log("this.state.showJSX 1: " + this.state.showJSX);
+
+    const target = event.target;
+    const value = target.name === "showJSX" ? true : false;
+    // const value = target.value === "showJSX" ? this.state.showJSX : this.state.showTrue;
+    // const value = target.value === "showJSX" ? target.value : target.value;
+    // const value = target.type === "showJSX" ? target.checked : target.value;
+    const name = target.name;
+
+    // const evt = event.target.value;
+    // console.log("evt 1: " + evt);
+
+    // console.log("222 event.target.name : " + event.target.name); // showJSX
+    // console.log("222 event.target.value : " + event.target.value); // true
+
+    this.setState({
+      [name]: !value, // раб с true на false
+      // [name]: !this.state.value,
+    });
     // this.setState((state) => ({
-    //   // showTrue: !state.showTrue,
-    //   this.props.showJSX: !state.showJSX,
-    //   // this.props: !state.props,
-    //   // show: !state.show,
+    //   [name]: !state.value,
+    //   // [name]: !state.value,
     // }));
-    this.setState((prevState) => ({
-      showJSX: !prevState.showJSX,
+    // console.log("this.state.showJSX 2: " + this.state.showJSX);
+  }
+  //  ----------------------------------------------------------------------------------
+  // попытка преобразования в общую fn для кнп knpToggleClick
+  handleInputChange(event) {
+    // name="isGoing"
+    // type="checkbox"
+    // checked={this.state.isGoing}
+    // name="numberOfGuests"
+    // type="number"
+    // value={this.state.numberOfGuests}
+    // onChange={this.handleInputChange}
+
+    // console.log("event.target : " + event.target);
+
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    // console.log("000 event.target.name : " + event.target.name);
+    // console.log("000 event.target.value : " + event.target.value);
+
+    this.setState({
+      [name]: value,
+    });
+  }
+  handleChange(evt, field) {
+    // check it out: we get the evt.target.name (which will be either "email" or "password")
+    // and use it to target the key on our `state` object with the same name, using bracket syntax
+    this.setState({ [field]: evt.target.value });
+  }
+  //  ----------------------------------------------------------------------------------
+  knpToggleClick3(event) {
+    this.setState((state) => ({
+      [event.target.name]: !state[event.target.name],
     }));
-  };
+  }
   //  ----------------------------------------------------------------------------------
   nameRoot = () => {
     return (
@@ -238,9 +306,59 @@ class KeysClComp extends React.Component {
               </div>
             </div>
             <div>
-              <button className="btmShowHide" onClick={this.knpToggleClick}>
+              {/* <button className="btmShowHide" onClick={this.knpToggleClick}>
                 <div> {this.state.showTrue ? "Hide" : "Show"}</div>
-              </button>
+              </button> */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignContent: "center",
+                  margin: "0 -15px",
+                }}
+              >
+                <div>
+                  <div>knpToggleClick</div>
+                  <button
+                    style={{ flex: "0 0 auto", margin: "0 10px" }}
+                    name="showTrue"
+                    type="button"
+                    value={this.state.showTrue}
+                    className="btmShowHide"
+                    onClick={this.knpToggleClick}
+                    // onChange={(event) => this.knpToggleClick(event, "showTrue")}
+                    // onChange={(event) => this.knpToggleClick(event)}
+                  >
+                    <div> {this.state.showTrue ? "Hide" : "Show"}</div>
+                  </button>
+                </div>
+                <div>
+                  <div>inp knpToggleClick3</div>
+                  <input
+                    style={{ flex: "0 0 auto", margin: "0 10px" }}
+                    name="showTrue"
+                    type="button"
+                    // value={this.state.showJSX}
+                    className="btmShowHide"
+                    onClick={this.knpToggleClick3}
+                    value={this.state.showTrue ? "Hide" : "Show"}
+                  />
+                </div>
+                <div>
+                  <div>inp knpToggleClick4</div>
+                  <input
+                    style={{ flex: "0 0 auto", margin: "0 10px" }}
+                    name="showTrue"
+                    type="button"
+                    // value={this.state.showJSX}
+                    className="btmShowHide"
+                    onClick={knpToggleClick4}
+                    value={this.state.showTrue ? "Hide" : "Show"}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div className="ExtractComponentKeys__content">
@@ -650,9 +768,59 @@ class KeysClComp extends React.Component {
               мы могли встроить <code>map()</code> результат:
             </div>
             <div>
-              <button className="btmShowHide" onClick={this.knpToggleClick}>
+              {/* <button className="btmShowHide" onClick={this.knpToggleClick}>
                 <div>{this.state.showJSX ? "Hide" : "Show"}</div>
-              </button>
+              </button> */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignContent: "center",
+                  margin: "0 -15px",
+                }}
+              >
+                <div>
+                  <div>but knpToggleClick</div>
+                  <button
+                    style={{ flex: "0 0 auto", margin: "0 10px" }}
+                    name="showJSX"
+                    type="button"
+                    value={this.state.showJSX}
+                    className="btmShowHide"
+                    onClick={this.knpToggleClick}
+                    // onChange={(event) => this.knpToggleClick(event, "showJSX")}
+                    // onChange={(event) => this.knpToggleClick(event)}
+                  >
+                    <div>{this.state.showJSX ? "Hide" : "Show"}</div>
+                  </button>
+                </div>
+                <div>
+                  <div>inp knpToggleClick3</div>
+                  <input
+                    style={{ flex: "0 0 auto", margin: "0 10px" }}
+                    name="showJSX"
+                    type="button"
+                    // value={this.state.showJSX}
+                    className="btmShowHide"
+                    onClick={this.knpToggleClick3}
+                    value={this.state.showJSX ? "Hide" : "Show"}
+                  />
+                </div>
+                <div>
+                  <div>inp knpToggleClick4</div>
+                  <input
+                    style={{ flex: "0 0 auto", margin: "0 10px" }}
+                    name="showJSX"
+                    type="button"
+                    // value={this.state.showJSX}
+                    className="btmShowHide"
+                    onClick={knpToggleClick4}
+                    value={this.state.showJSX ? "Hide" : "Show"}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div className="BuildMapInJSX__content">
@@ -840,6 +1008,20 @@ class KeysClComp extends React.Component {
               разные клавиши, послольку в <code>fn()knpToggleClick</code>{" "}
               заложены оба <code>state</code>. Надо как то передавая один, чтоб
               он и изменялся не затрагивая второй.
+            </div>
+            <div>
+              На основе Forms.Обработка нескольких входов, получается изменить
+              один раз <code>state</code> у одной кнп через условие{" "}
+              <code>target.name === "showJSX" ? true : false;</code> и изменения{" "}
+              <code>state</code> таким способом <code>[name]: value</code>.{" "}
+              <code>НО !!!</code>
+              <br />
+              Если в <code>button</code> вложен какой нить блок - не раб.
+              <br />
+              Если изменять <code>state</code> обратным методом{" "}
+              <code>[name]: !value</code> - не раб
+              <br />
+              Продумать как менять у нескольких кнопок независимо через одну fn
             </div>
           </div>
         </div>

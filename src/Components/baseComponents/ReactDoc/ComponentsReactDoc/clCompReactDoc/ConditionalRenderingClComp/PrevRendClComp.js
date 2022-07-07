@@ -25,9 +25,9 @@ import {
 function knpToggleClick() {
   // let knpToggleClick = () => {
   this.setState((state) => ({
-    showKey: !state.showKey,
+    // showKey: !state.showKey,
     show: !state.show,
-    showWarning: !state.showWarning,
+    // showWarning: !state.showWarning,
   }));
   // console.log("this : " + this);
   // console.log("this : " + this.state);
@@ -37,27 +37,62 @@ function knpToggleClick() {
   // }));
 }
 
+// в родителе
+// const [counter, setCounter] = useState(0);
+// const increment = useCallback(
+// () => setCounter(c => c + 1),
+// []
+// );
+// передали из родителя
+// <CounterText counter={counter} />
+// <CounterButton increment={increment} />
+// приняли в дочках
+// function CounterText({ counter }) {
+//   return <h2>{counter}</h2>;
+// }
+// function CounterButton({ increment }) {
+//   return <button onClick={increment}>Increment</button>;
+// }
+// useCallbackВызов там не требуется, но он делает incrementфункцию стабильной,
+// что предотвращает ненужный повторный рендеринг CounterButtonпри counterизменениях.
+
+// let knpToggleClick = () => {
+//   // this.setState((state) => ({
+//   this.setState((state) => ({
+//     show: !state.show,
+//   }));
+// };
+
 // предовращение рендера
 class PrevRendClComp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // showWarning: false,
+      showWarning: false,
       show: false,
       nameRoot: <span className="token class-name">Page</span>,
       nameFn1: "WarningBanner",
     };
     // попытка преобразования в общую fn для кнп knpToggleClick
-    // this.handleToggleClick = this.handleToggleClick.bind(this);
+    // 0
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+    // 1
     // knpToggleClick = knpToggleClick.bind();
     this.knpToggleClick = knpToggleClick.bind(this);
   }
   // попытка преобразования в общую fn для кнп knpToggleClick
-  // handleToggleClick() {
-  //   this.setState((state) => ({
-  //     showWarning: !state.showWarning,
-  //   }));
-  // }
+  handleToggleClick() {
+    this.setState((state) => ({
+      showWarning: !state.showWarning,
+    }));
+  }
+
+  // function knpToggleClick() {
+  knpToggleClick = () => {
+    this.setState((state) => ({
+      show: !state.show,
+    }));
+  };
 
   render() {
     const WarningBanner = (props) => {
@@ -139,17 +174,35 @@ class PrevRendClComp extends React.Component {
           <div>
             <code>&lt;WarningBanner/&gt;</code> визуализируется в зависимости от
             значения реквизита под названием <code>warn</code>. Если значение
-            свойства равно
-            <code>false</code>, то компонент не отображается:
+            свойства равно <code>false</code>, то компонент не отображается:
           </div>
-          <div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+              margin: "0 -15px",
+            }}
+          >
             {/* попытка преобразования в общую fn для кнп knpToggleClick */}
-            {/* <button onClick={this.handleToggleClick}> */}
-            {/* <button onClick={knpToggleClick}> */}
-            <button className="btmShowHide" onClick={knpToggleClick}>
-              {/* <div>{this.state.showWarning ? "Show" : "Hide"}</div> */}
-              <div>{this.state.show ? "Hide" : "Show"}</div>
-            </button>
+            {/* 0 */}
+            <div style={{ flex: "0 0 auto", margin: "0 10px" }}>
+              <p>fn handleToggleClick</p>
+              {"              "}
+              <button className="btmShowHide" onClick={this.handleToggleClick}>
+                <div>{this.state.showWarning ? "Hide" : "Show"}</div>
+              </button>
+            </div>
+            {/* 1 */}
+            <div style={{ flex: "0 0 auto", margin: "0 10px" }}>
+              <p>fn knpToggleClick</p>
+              <button className="btmShowHide" onClick={knpToggleClick}>
+                {/* <button className="btmShowHide" onClick={this.knpToggleClick}> */}
+                <div>{this.state.show ? "Hide" : "Show"}</div>
+              </button>
+            </div>
             {/* <button onClick={(e) => this.deleteRow(id, e)}>Удалить строку</button> */}
             {/* <button onClick={this.deleteRow.bind(this, id)}>Удалить строку</button> */}
           </div>
@@ -157,7 +210,9 @@ class PrevRendClComp extends React.Component {
         <div className="PrevRendClComp__content----">
           <pre className="code-jsx">
             <code className="code-jsx">
-              {/* <WarningBanner warn={this.state.showWarning} /> */}
+              {/* 0 */}
+              <WarningBanner warn={this.state.showWarning} />
+              {/* 1 */}
               <WarningBanner warn={this.state.show} />
               <span className="token keyword">class</span>{" "}
               <span className="token class-name">Page</span>{" "}

@@ -46,7 +46,6 @@ class MultipleInputsClComp extends React.Component {
             атрибут к каждому элементу и позволить функции обработчика выбирать,
             что делать на основе значения <code>event.target.name</code>.
           </div>
-          <div>3</div>
         </div>
         <div className="MultipleInputsClComp__content----">
           <form>
@@ -59,7 +58,7 @@ class MultipleInputsClComp extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <br />
+            {/* <br /> */}
             <label>
               Number of guests:
               <input
@@ -77,7 +76,7 @@ class MultipleInputsClComp extends React.Component {
                 sp1={"  "}
                 sp2={"    "}
                 sp3={"      "}
-                state1={"name"}
+                state1={"isGoing"}
                 stVal1={<span className="token parameter">true</span>}
                 fn1={"handleInputChange"}
                 fnProp1={"event"}
@@ -85,7 +84,11 @@ class MultipleInputsClComp extends React.Component {
                   <>
                     <ConstNamePlus
                       name1={"target"}
-                      param1={"event"}
+                      param1={
+                        <>
+                          <span className="token parameter">event</span>
+                        </>
+                      }
                       param2={"target"}
                     />
                     <BrSp sp={"    "} />
@@ -249,6 +252,27 @@ class MultipleInputsClComp extends React.Component {
               />
             </code>
           </pre>
+        </div>
+        <div className="MultipleInputsClComp__descript----">
+          <div>
+            Использован синтаксис имени вычисляемого свойства ES6 для обновления
+            ключа состояния, соответствующего заданному входному имени:
+          </div>
+          <p>
+            <code>[name]: value</code>
+          </p>
+          <p>Это ивалентно этому коду ES5:</p>
+          <p>
+            <code>
+              var partialState = {}; partialState[name] = value;
+              this.setState(partialState);
+            </code>
+          </p>
+          <p>
+            Кроме того, поскольку частичное состояние <code>setState()</code>{" "}
+            автоматически объединяется с текущим состоянием , нам нужно было
+            вызвать его только с измененными частями.
+          </p>
         </div>
       </div>
     );

@@ -56,7 +56,7 @@ class TagSelectClComp extends React.Component {
         <div className="TagSelectClComp__content----">
           <form onSubmit={this.handleSubmit}>
             <label>
-              Выберите свой любимый вкус:
+              Выберите вкус:
               <select value={this.state.value} onChange={this.handleChange}>
                 <option value="grapefruit">Грейпфрут</option>
                 <option value="lime">Лайм</option>
@@ -128,7 +128,7 @@ class TagSelectClComp extends React.Component {
                       sp2={<BrSp sp={"          "} />}
                       name1={
                         <>
-                          Выберите свой любимый вкус:
+                          Выберите вкус:
                           <BrSp sp={"          "} />
                         </>
                       }

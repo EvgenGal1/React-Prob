@@ -1,6 +1,7 @@
 // formы|начало  ----------------------------------------------------------------------------------
 form {
   width: 350px;
+  width: max-content;
   // height: 150px;
   margin: 0 auto;
   padding: 3px 5px;
@@ -32,7 +33,7 @@ input[type="submit"] {
   // height: 40px;
   /* width: 200px; */
   width: calc(100px + 100 * ((100vw - 320px) / 1600));
-  width: 100%;
+  width: 100% !important;
   margin: 10px 0 0;
   background: #a3a3a3;
   font-size: larger;
@@ -68,10 +69,10 @@ input[type="submit"] {
   }
   // height: 100%;
 }
-input[type="text"],
+input,
 textarea,
 select {
-  max-width: 50%;
+  // max-width: 50%;
   /* width: auto; */
   /* margin: 10px 0 0; */
   // background: #a3a3a3;
@@ -99,13 +100,14 @@ label {
 }
 
 // стили кнопки закруг с тенью ----------------------------------------------------------------------------------
-button.btmShowHide {
+button.btmShowHide,
+input.btmShowHide {
   height: 40px;
   width: 200px;
   // @include size(40, 200);
   @include adaptiv-value("width", 200, 100, 3);
   margin: 10px 0 0;
-  background: #a3a3a3;
+  background-color: #a3a3a3;
   font-size: larger;
   cursor: pointer;
   border-radius: 10px;
@@ -113,7 +115,8 @@ button.btmShowHide {
   color: white;
   box-shadow: 0px 0px 3px 3px rgb(0 0 0 / 50%),
     0px 0px 10px 3px rgb(63 63 63 / 70%) inset;
-  transition: 0.1s linear;
+  transition: 0.1s linear, 0.1s cubic-bezier(0.54, 0.05, 0.43, 1.21),
+    background-color 0.7s;
   transform: scale(1);
   line-height: 37px;
   @include adaptiv-value("line-height", 37, 15, 3);
@@ -122,6 +125,7 @@ button.btmShowHide {
       0px 0px 10px 2px rgb(63 63 63 / 70%) inset;
     // box-shadow: 0 0 1px 1px rgb(63 63 63/ 70%);
     transform: scale(1.2);
+    background-color: rgb(0 0 0 / 50%);
   }
   &:active {
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 50%) inset;

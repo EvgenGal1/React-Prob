@@ -7,7 +7,6 @@ import TagSelectClComp from "./TagSelectClComp.js";
 import TagInpFileClComp from "./TagInpFileClComp.js";
 import MultipleInputsClComp from "./MultipleInputsClComp.js";
 import InputNullValueClComp from "./InputNullValueClComp.js";
-import AlterContrCompClComp from "./AlterContrCompClComp.js";
 
 import {
   BrSp,
@@ -55,7 +54,6 @@ class FormsClComp extends React.Component {
           <TagInpFileClComp />
           <MultipleInputsClComp />
           <InputNullValueClComp />
-          <AlterContrCompClComp />
         </div>
       </div>
     );
