@@ -15,11 +15,46 @@ import {
   ConstRoot,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
-function knpToggleClick4(event) {
+function knpToggleClick44(event) {
   this.setState((state) => ({
     [event.target.name]: !state[event.target.name],
   }));
+  // --
+  // name="showJSX"
+  // type="button"
+  //  // value={this.state.showJSX}
+  // className="btmShowHide"
+  // onClick={knpToggleClick4}
+  // value={this.state.showJSX ? "Hide" : "Show"}
+  // --
+  // isToggleOn={this.state.isToggleOn}
+  // {this.props.isToggleOn ? "ONNNN" : "OFFFFF"}
+  //  --
+  // <button onClick={() => handleClick(setState)}>Click</button>
+  // export const handleClick = setState => {
+  //   setState({ name: "Нажал" })
+  // }
 }
+
+class knpToggleClick4 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name4: "Button pressed" };
+  }
+  render() {
+    return <span>{this.props.name4 ? "ONNNN" : "OFFFFF"}</span>;
+  }
+}
+
+// // const knpToggleClick4 = () => {
+// const knpToggleClick4() {
+//   // function knpToggleClick4() {
+//   // setState({ name4: "Нажал" });
+//   return(
+//   {this.props.name4 ? "ONNNN" : "OFFFFF"}
+//   )
+//   // Ожидается, что назначение или функциональный вызов и вместо этого увидел выражение.
+// };
 
 // Ключи
 class KeysClComp extends React.Component {
@@ -28,84 +63,20 @@ class KeysClComp extends React.Component {
     this.state = {
       showTrue: true,
       showJSX: true,
+      name4: "Не нажал",
     };
     this.knpToggleClick = this.knpToggleClick.bind(this);
-    this.knpToggleClick2 = this.knpToggleClick2.bind(this);
     this.knpToggleClick3 = this.knpToggleClick3.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.knpToggleClick4 = knpToggleClick4.bind(this);
+    // this.handleInputChange = this.handleInputChange.bind(this);
   }
   knpToggleClick(event) {
     this.setState((state) => ({
-      [event.target.name]: !state[event.target.name],
-      // showTrue: !state.showTrue,
-      // showJSX: !state.showJSX,
+      // [event.target.name]: !state[event.target.name],
+      showTrue: !state.showTrue,
+      showJSX: !state.showJSX,
       // show: !state.show,
     }));
-  }
-  //  ----------------------------------------------------------------------------------
-  knpToggleClick2(event) {
-    // name="showTrue"
-    // name="showJSX"
-    // type="button"
-    // value={this.state.showTrue}
-    // value={this.state.showJSX}
-    // className="btmShowHide"
-    // onClick={this.knpToggleClick2}
-
-    // console.log("event.target : " + event.target); // [object HTMLButtonElement]
-    // console.log("this.state.showJSX 1: " + this.state.showJSX);
-
-    const target = event.target;
-    const value = target.name === "showJSX" ? true : false;
-    // const value = target.value === "showJSX" ? this.state.showJSX : this.state.showTrue;
-    // const value = target.value === "showJSX" ? target.value : target.value;
-    // const value = target.type === "showJSX" ? target.checked : target.value;
-    const name = target.name;
-
-    // const evt = event.target.value;
-    // console.log("evt 1: " + evt);
-
-    // console.log("222 event.target.name : " + event.target.name); // showJSX
-    // console.log("222 event.target.value : " + event.target.value); // true
-
-    this.setState({
-      [name]: !value, // раб с true на false
-      // [name]: !this.state.value,
-    });
-    // this.setState((state) => ({
-    //   [name]: !state.value,
-    //   // [name]: !state.value,
-    // }));
-    // console.log("this.state.showJSX 2: " + this.state.showJSX);
-  }
-  //  ----------------------------------------------------------------------------------
-  // попытка преобразования в общую fn для кнп knpToggleClick
-  handleInputChange(event) {
-    // name="isGoing"
-    // type="checkbox"
-    // checked={this.state.isGoing}
-    // name="numberOfGuests"
-    // type="number"
-    // value={this.state.numberOfGuests}
-    // onChange={this.handleInputChange}
-
-    // console.log("event.target : " + event.target);
-
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-
-    // console.log("000 event.target.name : " + event.target.name);
-    // console.log("000 event.target.value : " + event.target.value);
-
-    this.setState({
-      [name]: value,
-    });
-  }
-  handleChange(evt, field) {
-    // check it out: we get the evt.target.name (which will be either "email" or "password")
-    // and use it to target the key on our `state` object with the same name, using bracket syntax
-    this.setState({ [field]: evt.target.value });
   }
   //  ----------------------------------------------------------------------------------
   knpToggleClick3(event) {
@@ -113,6 +84,22 @@ class KeysClComp extends React.Component {
       [event.target.name]: !state[event.target.name],
     }));
   }
+  //  ----------------------------------------------------------------------------------
+  // попытка преобразования в общую fn для кнп knpToggleClick
+  // handleInputChange(event) {
+  //   const target = event.target;
+  //   const value = target.type === "checkbox" ? target.checked : target.value;
+  //   const name = target.name;
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // }
+  // handleChange(evt, field) {
+  //   // check it out: we get the evt.target.name (which will be either "email" or "password")
+  //   // and use it to target the key on our `state` object with the same name, using bracket syntax
+  //   this.setState({ [field]: evt.target.value });
+  // }
+
   //  ----------------------------------------------------------------------------------
   nameRoot = () => {
     return (
@@ -810,15 +797,23 @@ class KeysClComp extends React.Component {
                 </div>
                 <div>
                   <div>inp knpToggleClick4</div>
+                  <div>{this.state.name4}</div>
                   <input
                     style={{ flex: "0 0 auto", margin: "0 10px" }}
-                    name="showJSX"
+                    // name="showJSX"
                     type="button"
-                    // value={this.state.showJSX}
                     className="btmShowHide"
-                    onClick={knpToggleClick4}
+                    // onClick={knpToggleClick4}
+                    // onClick={() => knpToggleClick4(this.setState)}
+                    onClick={() => knpToggleClick4(this.state.name4)}
                     value={this.state.showJSX ? "Hide" : "Show"}
                   />
+                  {/* 
+                  // <button onClick={() => handleClick(setState)}>Click</button>
+                  // export const handleClick = setState => {
+                  //   setState({ name: "Нажал" })
+                  // } 
+                  */}
                 </div>
               </div>
             </div>

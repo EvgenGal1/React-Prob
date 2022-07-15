@@ -749,18 +749,119 @@ const CondRender = ({ show, value1, value2 }) => {
   // на условном операторе
   return <>{show ? value1 : value2}</>;
 };
+const IfElse = ({ ifBod, ifParam1, ifParam2, ife, ifeParam1, ifeParam2 }) => {
+  return (
+    <>
+      <BrSp sp={"    "} />
+      999
+      <BrSp sp={"    "} />
+      <span className="token keyword">if</span>{" "}
+      <span className="token punctuation">(</span>
+      {ifParam1}
+      {ifParam2}
+      <span className="token punctuation">)</span>{" "}
+      <span className="token punctuation">&#123;</span>
+      <BrSp sp={"    "} />
+      {ifBod}
+      <BrSp sp={"    "} />
+      <BrSp sp={"    "} />
+      <span className="token punctuation">&#125;</span>
+      <BrSp sp={"    "} />4
+    </>
+  );
+};
 // function nameFn(props) {
-const FuncNameProps = ({ nameFn, param1, param2 }) => {
+const FuncNameProps = ({ nameFn, param1, param2, body, returnBody }) => {
+  let letParam1;
+  if (param1) {
+    letParam1 = <>{param1}</>;
+  } else {
+    letParam1 = <>props</>;
+  }
+  let letBody;
+  let letBrace;
+  let letReturn;
+  // if (body || returnBody === "if") {
+  // if (body || returnBody === true) {
+  if (body) {
+    // если true
+    if (returnBody === true) {
+      letReturn = <>11 {returnBody} 11</>;
+    }
+    // если if
+    else if (returnBody === "if") {
+      letReturn = (
+        <>
+          4 <IfElse /> 4
+        </>
+      );
+    }
+    // если ife
+    else if (returnBody === "ife") {
+      letReturn = (
+        <>
+          <IfElse els={"els"} />
+        </>
+      );
+    }
+    // если не false
+    else if (returnBody !== !true) {
+      letReturn = (
+        <>
+          <BrSp sp={"    "} />
+          {returnBody} 333
+          <BrSp sp={"    "} />
+        </>
+      );
+    }
+    // else if (returnBody === "if") {
+    //   letReturn = (
+    //     <>
+    //       <IfElse />
+    //     </>
+    //   );
+    // }
+    else {
+      letReturn = <>2222</>;
+    }
+
+    letBody = (
+      <>
+        <BrSp sp={"  "} />
+        {/* {body} */}
+        <span className="token keyword">return</span>{" "}
+        <span className="token punctuation">(</span>
+        {/* <BrSp sp={"  "} /> */}
+        {/* {returnBody} */}
+        {letReturn}
+        {/* <BrSp sp={"  "} /> */}
+        <span className="token punctuation">)</span>
+      </>
+    );
+    letBrace = (
+      <>
+        <BrSp />
+        <span className="token punctuation">&#125;</span>
+      </>
+    );
+  } else {
+    letBody = <>{}</>;
+    letBrace = <>{}</>;
+    // letReturn = <>{}</>;
+  }
+
   return (
     <>
       <span className="token keyword">function</span>{" "}
       <span className="token class-name">{nameFn}</span>
       <span className="token punctuation">(</span>
-      <span className="token parameter">props</span>
+      <span className="token parameter">{letParam1}</span>
       {/* <span className="token parameter">{param1}</span> */}
       <span className="token parameter">{param2}</span>
       <span className="token punctuation">)</span>{" "}
       <span className="token punctuation">&#123;</span>
+      {letBody}
+      {letBrace}
     </>
   );
 };
@@ -1036,6 +1137,7 @@ export {
   ClCompLet,
   ConstRoot,
   SelectLet,
+  IfElse,
 };
 // Экспорт «по умолчанию» (импортирован как «contextexp») не был найден в ./contextexp.js '(модуль не имеет экспорта)
 // Ошибка анализа: только выражения, функции или классы разрешены в качестве экспорта `default`

@@ -1,42 +1,34 @@
 import React from "react";
 
+import CalcTemperClComp from "./CalcTemperClComp.js";
+
+import {
+  BrSp,
+  AttrValMetd,
+  FormLabInpLet,
+  NameMetdPearam,
+  ConstNamePlus,
+  ReturnTagExp,
+  TagAttrValJSX,
+  ComponLet,
+  CondRender,
+  FuncNameProps,
+  ClCompLet,
+  ConstRoot,
+  SelectLet,
+} from "../../../../../../js/examples/ExpPreCode.js";
+
 class StateUpClComp extends React.Component {
   constructor(props) {
     super(props);
     //this.state = {  }
   }
   render() {
-    class CalcTemper extends React.Component {
-      //constructor(props) {
-      //super(props);
-      //this.state = {  }
-      //}
-      render() {
-        return (
-          <div className="CalcTemper">
-            <div className="CalcTemper__descript">
-              <h3>Cоздадим калькулятор температуры</h3>
-              <p>
-                Мы начнем с компонента под названием BoilingVerdict. Он
-                принимает celsiusтемпературу в качестве опоры и выводит,
-                достаточно ли ее для кипячения воды:
-              </p>
-            </div>
-            <div className="CalcTemper__content">
-              <pre>
-                <code>code</code>
-              </pre>
-            </div>
-          </div>
-        );
-      }
-    }
     return (
       <div className="StateUpClComp---">
         {/* <div className="LiftingStateUp__descript"></div> */}
         <div className="StateUpClComp__content---">
-          <CalcTemper />
-          <CalcTemper />
+          <CalcTemperClComp />
         </div>
       </div>
     );
