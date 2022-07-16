@@ -217,7 +217,7 @@
   & > div {
     // 3я влж. Разделы Темы (vid-input, StateAndLifeCycle, clComp, )-------------------------------------------------------------------------------
     // РАМКА С ПРАВА (при .active)-----------------------------------------------------------------------------
-    // div[class$="descriptin--"]._active ~ [class$="__frame--"] {
+    // div[class$="descript--"]._active ~ [class$="__frame--"] {
     div:first-child._active ~ [class$="__frame--"] {
       display: block;
       @include afterbefore;
@@ -383,7 +383,7 @@
 
 //  ----------------------------------------------------------------------------------
 
-// .StateAndLifeCycle__descriptin-- h3 {
+// .StateAndLifeCycle__descript-- h3 {
 //   &::before {
 //     content: "";
 //     width: 20px;

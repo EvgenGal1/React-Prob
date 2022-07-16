@@ -7,6 +7,26 @@
       top: calc(50% - 20px);
     }
   }
+  & div[class$="__descript _active"] {
+    & > .arrowAccord {
+      top: calc(100% - 40px);
+    }
+  }
+  // блок стрелки 2 уровня
+  & div[class$="__descript--"] {
+    & > .arrowAccord {
+      top: calc(50% - 0px);
+      top: 0px;
+      right: 44px;
+    }
+  }
+  & div[class$="__descript-- _active"] {
+    & > .arrowAccord {
+      top: calc(50% - 0px);
+      top: 0px;
+      right: 44px;
+    }
+  }
   // Общий Блок стрелки аккордиона
   .arrowAccord {
     position: absolute;
@@ -130,9 +150,39 @@
       }
     }
   }
-  // ОТКРЫТЫЙ аккорд (+ ._active)
-  & > ._active {
+  // ОТКРЫТЫЙ аккорд (+ ._active) (дочерний .arrowAccord)
+  & ._active {
     & .arrowAccord {
+      & .ArrowAccord-show {
+        &::before,
+        &::after {
+          top: 50%;
+        }
+        &::before {
+          transform: translate(0, -50%) rotate(-45deg);
+        }
+        &::after {
+          transform: translate(0, -50%) rotate(45deg);
+        }
+        // span {
+        //   transform: rotate(180deg);
+        // }
+      }
+      &:hover {
+        & .ArrowAccord-show {
+          &::before {
+            transform: translate(0, -50%) rotate(-63deg);
+          }
+          &::after {
+            transform: translate(0, -50%) rotate(63deg);
+          }
+        }
+      }
+    }
+  }
+  // братский .arrowAccord
+  & ._active {
+    & ~ .arrowAccord {
       & .ArrowAccord-show {
         &::before,
         &::after {

@@ -72,12 +72,12 @@ class StateAndLifeCycle extends React.Component {
     this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
   }
-  toggleArrowAccord() {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
-    // localStorage.setItem("openArrowAccord",JSON.stringify(this.state.openArrowAccord));
-  }
+  // toggleArrowAccord() {
+  //   this.setState((prevState) => ({
+  //     openArrowAccord: !prevState.openArrowAccord,
+  //   }));
+  //   // localStorage.setItem("openArrowAccord",JSON.stringify(this.state.openArrowAccord));
+  // }
 
   render() {
     return (
@@ -85,14 +85,22 @@ class StateAndLifeCycle extends React.Component {
       (
         <div className="StateAndLifeCycle-- accordion">
           <div
-            ref={this.RefActivCl}
-            onClick={() => {
-              this.handleClickRef();
-              this.toggleArrowAccord(this.openArrowAccord);
-            }}
-            className="StateAndLifeCycle__descriptin--"
+            // ref={this.RefActivCl}
+            // onClick={() => {
+            //   this.handleClickRef();
+            //   this.toggleArrowAccord(this.openArrowAccord);
+            // }}
+            className="StateAndLifeCycle__descript--"
           >
-            <h3>Состояние (state) и жизненный цикл (lifecycle)</h3>
+            <h3
+              onClick={() => {
+                this.handleClickRef();
+                // this.toggleArrowAccord(this.openArrowAccord);
+              }}
+              ref={this.RefActivCl}
+            >
+              Состояние (state) и жизненный цикл (lifecycle)
+            </h3>
             <div style={{ display: "none" }} ref={this.RefOpenDop}>
               <div
                 // style={{ display: "none" }}
@@ -129,8 +137,11 @@ class StateAndLifeCycle extends React.Component {
               <p>Общее описание</p>
             </div>
             <ArrowAccordion
-              toggleArrowAccord={this.toggleArrowAccord}
-              openArrowAccord={this.state.openArrowAccord}
+              // toggleArrowAccord={this.toggleArrowAccord}
+              // openArrowAccord={this.state.openArrowAccord}
+              RefActivCl={this.RefActivCl}
+              RefOpenDop={this.RefOpenDop}
+              RefOpenCont={this.RefOpenCont}
             />
           </div>
           <div
@@ -208,14 +219,11 @@ class StateAndLifeCycle extends React.Component {
 
 // !!! https://ru.reactjs.org/docs/ConditionalRendering.html
 // Условный рендеринг `Conditional Rendering`=============================================================================
-// Бывает нужно объяснить React, как состояние влияет на то, какие компоненты требуется скрыть, а какие — отрендерить, и как именно. В таких ситуациях используйте условный оператор JavaScript или выражения подобные if.
-
-// подкл всех Компонентов Условного рендеринга
 class ConditionalRendering extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openArrowAccord: true,
+      // openArrowAccord: true,
     };
     this.RefActivCl = React.createRef();
     this.RefOpenDop = React.createRef();
@@ -226,26 +234,27 @@ class ConditionalRendering extends React.Component {
     this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
   }
-  toggleArrowAccord = () => {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
-  };
+  // toggleArrowAccord = () => {
+  //   this.setState((prevState) => ({
+  //     openArrowAccord: !prevState.openArrowAccord,
+  //   }));
+  // };
 
   render() {
     return (
       console.log("openAA CondRend state: " + this.state.openArrowAccord),
       (
         <div className="ConditionalRendering-- accordion">
-          <div
-            onClick={() => {
-              this.handleClickRef();
-              this.toggleArrowAccord(this.openArrowAccord);
-            }}
-            ref={this.RefActivCl}
-            className="ConditionalRendering__descript--"
-          >
-            <h3>Условный рендеринг</h3>
+          <div className="ConditionalRendering__descript--">
+            <h3
+              onClick={() => {
+                this.handleClickRef();
+                // this.toggleArrowAccord(this.openArrowAccord);
+              }}
+              ref={this.RefActivCl}
+            >
+              Условный рендеринг
+            </h3>
             <div ref={this.RefOpenDop} style={{ display: "none" }}>
               Бывает нужно объяснить React, как состояние влияет на то, какие
               компоненты требуется скрыть, а какие — отрендерить, и как именно.
@@ -254,8 +263,9 @@ class ConditionalRendering extends React.Component {
               <code>if...else</code>, <code>condition ? true : false</code>).
             </div>{" "}
             <ArrowAccordion
-              // toggleArrowAccord={this.toggleArrowAccord}
-              openArrowAccord={this.state.openArrowAccord}
+              RefActivCl={this.RefActivCl}
+              RefOpenDop={this.RefOpenDop}
+              RefOpenCont={this.RefOpenCont}
             />
           </div>
           <div
@@ -302,27 +312,31 @@ class ListsAndKeys extends React.Component {
     //   openArrowAccord: !prevState.openArrowAccord,
     // }));
   }
-  toggleArrowAccord() {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
-  }
+  // toggleArrowAccord() {
+  //   this.setState((prevState) => ({
+  //     openArrowAccord: !prevState.openArrowAccord,
+  //   }));
+  // }
   render() {
     return (
-      <div
-        // onClick={() => this.handleClickRef()}
-        // ref={this.RefActivCl}
-        className="ListsAndKeys-- accordion"
-      >
+      <div className="ListsAndKeys-- accordion">
         <div
-          ref={this.RefActivCl}
-          onClick={() => {
-            this.handleClickRef();
-            this.toggleArrowAccord(this.openArrowAccord);
-          }}
+          // ref={this.RefActivCl}
+          // onClick={() => {
+          //   this.handleClickRef();
+          //   this.toggleArrowAccord(this.openArrowAccord);
+          // }}
           className="ListsAndKeys__descript--"
         >
-          <h3>Списки и Ключи</h3>
+          <h3
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
+          >
+            Списки и Ключи
+          </h3>
           <div
             className="ListsAneys__content--"
             ref={this.RefOpenDop}
@@ -332,7 +346,10 @@ class ListsAndKeys extends React.Component {
           </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            openArrowAccord={this.state.openArrowAccord}
+            // openArrowAccord={this.state.openArrowAccord}
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
           />
         </div>
         <div
@@ -368,28 +385,31 @@ class Forms extends React.Component {
     this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
   }
-  toggleArrowAccord() {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
-  }
+  // toggleArrowAccord() {
+  //   this.setState((prevState) => ({
+  //     openArrowAccord: !prevState.openArrowAccord,
+  //   }));
+  // }
   render() {
     return (
-      <div
-        // onClick={() => this.handleClickRef()}
-        // ref={this.RefActivCl}
-        className="Forms-- accordion"
-      >
+      <div className="Forms-- accordion">
         <div
-          onClick={() => {
-            this.handleClickRef();
-            this.toggleArrowAccord(this.openArrowAccord);
-          }}
-          ref={this.RefActivCl}
-          data-name="spoiler-title"
-          className="Forms__descript-- _spollers"
+          // onClick={() => {
+          //   this.handleClickRef();
+          //   // this.toggleArrowAccord(this.openArrowAccord);
+          // }}
+          // ref={this.RefActivCl}
+          className="Forms__descript--"
         >
-          <h3>Формы</h3>
+          <h3
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
+          >
+            Формы
+          </h3>
           <p
             ref={this.RefOpenDop}
             style={{ display: "none" }}
@@ -402,7 +422,10 @@ class Forms extends React.Component {
           </p>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            openArrowAccord={this.state.openArrowAccord}
+            // openArrowAccord={this.state.openArrowAccord}
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
           />
         </div>
         <div
@@ -419,6 +442,8 @@ class Forms extends React.Component {
   }
 }
 
+// Подъем состояния вверх =======================================================================================
+// !!! https://reactjs.org/docs/lifting-state-up.html
 class LiftingStateUp extends React.Component {
   constructor(props) {
     super(props);
@@ -440,27 +465,31 @@ class LiftingStateUp extends React.Component {
     // ActionArrow.classList.toggle("_active");
     // OpenDopEl.classList.toggle("openDop");
   }
-  toggleArrowAccord() {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
-  }
+  // toggleArrowAccord() {
+  //   this.setState((prevState) => ({
+  //     openArrowAccord: !prevState.openArrowAccord,
+  //   }));
+  // }
   render() {
     return (
-      <div
-        // onClick={() => this.handleClickRef()}
-        // ref={this.RefActivCl}
-        className="LiftingStateUp-- accordion"
-      >
+      <div className="LiftingStateUp-- accordion">
         <div
-          onClick={() => {
-            this.handleClickRef();
-            this.toggleArrowAccord(this.openArrowAccord);
-          }}
-          ref={this.RefActivCl}
+          // onClick={() => {
+          //   this.handleClickRef();
+          //   this.toggleArrowAccord(this.openArrowAccord);
+          // }}
+          // ref={this.RefActivCl}
           className="LiftingStateUp__descript--"
         >
-          <h3>StateUpClComp</h3>
+          <h3
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
+          >
+            StateUpClComp
+          </h3>
           <p
             ref={this.RefOpenDop}
             className="spoiler-body"
@@ -473,7 +502,10 @@ class LiftingStateUp extends React.Component {
           </p>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            openArrowAccord={this.state.openArrowAccord}
+            // openArrowAccord={this.state.openArrowAccord}
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
           />
         </div>
         <div
@@ -525,12 +557,12 @@ class ReactDocComponents extends React.Component {
     //   LetRefActivCl,
     // };
     this.RefActivCl = React.createRef();
-    // this.RefOpenDop = React.createRef();
+    this.RefOpenDop = React.createRef();
     this.RefOpenCont = React.createRef();
   }
   handleClickRef() {
     this.RefActivCl.current.classList.toggle("_active");
-    // this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenDop.current.classList.toggle("openDop");
     this.RefOpenCont.current.classList.toggle("openCont");
     // попытка передачи RefActivCl ----------------------------------------------------------------------------------
     // localStorage.setItem(
@@ -590,17 +622,18 @@ class ReactDocComponents extends React.Component {
     //  ----------------------------------------------------------------------------------
     return (
       <div className="ReactDocComponents accordion">
-        <div
-          className="ReactDocComponents__descript"
-          ref={this.RefActivCl}
-          onClick={() => {
-            this.handleClickRef();
-            this.toggleArrowAccord(this.openArrowAccord);
-          }}
-        >
-          <h3>Общие понятия/концепции/методы из React документации</h3>
+        <div className="ReactDocComponents__descript">
+          <h3
+            ref={this.RefActivCl}
+            onClick={() => {
+              this.handleClickRef();
+              this.toggleArrowAccord(this.openArrowAccord);
+            }}
+          >
+            Общие понятия/концепции/методы из React документации
+          </h3>
           {/* //* временно коммит, чтоб не мешал  */}
-          {/* <div
+          <div
             className="ReactDocComponents__descript--- temporary"
             style={{ display: "none" }}
             ref={this.RefOpenDop}
@@ -609,9 +642,7 @@ class ReactDocComponents extends React.Component {
             <code style={{ color: "red" }}>!!!</code> СПОЙЛЕР/РАСКРЫВАШКУ. ПО
             КЛИК НА H3 (ЗАГОЛОВОК) И С ПЕРЕБОРОМ ВСЕХ ПОХОЖИХ,
             СКРЫВАТЬ/ПОКАЗЫВАТЬ CONTENT БЛОКОВ
-          </div>
-          <br />
-          <div className="ReactDocComponents__descript--- temporary">
+            <br />
             <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
             <code style={{ color: "red" }}>!!!</code> СПОЙЛЕР/РАСКРЫВАШКУ ПО
             КЛИК И С ПЕРЕБОРОМ
@@ -632,11 +663,14 @@ class ReactDocComponents extends React.Component {
               <br />
               <code>this.RefOpenCont = React.createRef();</code>. Но раб ток
               один ref. Узнать как на много раб
-            </div>
-          </div> */}
+            </div>{" "}
+          </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
             openArrowAccord={this.state.openArrowAccord}
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
           />
         </div>
 
