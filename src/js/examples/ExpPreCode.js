@@ -378,10 +378,10 @@ const ConstNamePlus = ({
   } else if (param3) {
     plus = (
       <>
-        {param1}
+        <span className="token parameter">{param1}</span>
         <span className="token operator">.</span>
         {param2}
-        {/* <span className="token operator">.</span> */}
+        <span className="token operator">.</span>
         {param3}
       </>
     );
@@ -661,6 +661,7 @@ const TagAttrValJSX = ({
       {/* {letName1} */}
       {letTagOf}
       {dop2}
+      {/* <span className="token punctuation">;</span> */}
     </>
   );
   // }
@@ -749,91 +750,105 @@ const CondRender = ({ show, value1, value2 }) => {
   // на условном операторе
   return <>{show ? value1 : value2}</>;
 };
-const IfElse = ({ ifBod, ifParam1, ifParam2, ife, ifeParam1, ifeParam2 }) => {
+// if(isParam1/2){sp2 ifBody sp1}
+const IfElse = ({
+  sp1,
+  ifParam1,
+  ifParam2,
+  sp2,
+  ifBod,
+  ifeParam1,
+  ifeParam2,
+  ife,
+}) => {
   return (
     <>
-      <BrSp sp={"    "} />
-      999
-      <BrSp sp={"    "} />
-      <span className="token keyword">if</span>{" "}
+      <BrSp sp={sp1} />
+      {/* <BrSp sp={"    "} /> */}
+      <span className="token tag">if</span>{" "}
       <span className="token punctuation">(</span>
       {ifParam1}
       {ifParam2}
       <span className="token punctuation">)</span>{" "}
       <span className="token punctuation">&#123;</span>
-      <BrSp sp={"    "} />
+      <BrSp sp={sp2} />
+      {/* <BrSp sp={"    "} /> */}
       {ifBod}
-      <BrSp sp={"    "} />
-      <BrSp sp={"    "} />
+      <BrSp sp={sp1} />
+      {/* <BrSp sp={"    "} /> */}
+      {/* <BrSp sp={"    "} /> */}
       <span className="token punctuation">&#125;</span>
-      <BrSp sp={"    "} />4
+      {/* <BrSp sp={sp1} /> */}
+      {/* <BrSp sp={"    "} /> */}
     </>
   );
 };
 // function nameFn(props) {
-const FuncNameProps = ({ nameFn, param1, param2, body, returnBody }) => {
+const FuncNameProps = ({
+  nameFn,
+  param1,
+  param2,
+  sp1,
+  body,
+  constBody,
+  sp2,
+  returnBody,
+}) => {
+  // первый параметр
   let letParam1;
   if (param1) {
     letParam1 = <>{param1}</>;
   } else {
     letParam1 = <>props</>;
   }
+  // доп до return
+  let letConstBody;
+  if (constBody) {
+    letConstBody = <>{constBody}</>;
+  } else {
+    letConstBody = <></>;
+  }
+  // return
+  let letReturn;
+  // если не false
+  if (returnBody !== !true) {
+    letReturn = <>{returnBody}</>;
+  } else {
+    letReturn = <>2222</>;
+  }
+  // сокращённая версия return
+  let letShorReturn;
   let letBody;
   let letBrace;
-  let letReturn;
-  // if (body || returnBody === "if") {
-  // if (body || returnBody === true) {
-  if (body) {
-    // если true
-    if (returnBody === true) {
-      letReturn = <>11 {returnBody} 11</>;
-    }
-    // если if
-    else if (returnBody === "if") {
-      letReturn = (
-        <>
-          4 <IfElse /> 4
-        </>
-      );
-    }
-    // если ife
-    else if (returnBody === "ife") {
-      letReturn = (
-        <>
-          <IfElse els={"els"} />
-        </>
-      );
-    }
-    // если не false
-    else if (returnBody !== !true) {
-      letReturn = (
-        <>
-          <BrSp sp={"    "} />
-          {returnBody} 333
-          <BrSp sp={"    "} />
-        </>
-      );
-    }
-    // else if (returnBody === "if") {
-    //   letReturn = (
-    //     <>
-    //       <IfElse />
-    //     </>
-    //   );
-    // }
-    else {
-      letReturn = <>2222</>;
-    }
 
+  if (body === "short") {
     letBody = (
       <>
+        {/* <BrSp sp={"  "} /> */}
+        {letConstBody}
+        <BrSp sp={"  "} />
+        <span className="token tag">return</span> {letReturn}
+      </>
+    );
+    letBrace = (
+      <>
+        <BrSp />
+        <span className="token punctuation">&#125;</span>
+      </>
+    );
+  } else if (body) {
+    letBody = (
+      <>
+        {/* <BrSp sp={"  "} /> */}
+        {letConstBody}
         <BrSp sp={"  "} />
         {/* {body} */}
-        <span className="token keyword">return</span>{" "}
+        <span className="token tag">return</span>{" "}
         <span className="token punctuation">(</span>
-        {/* <BrSp sp={"  "} /> */}
+        {/* <BrSp sp={sp2} /> */}
         {/* {returnBody} */}
         {letReturn}
+        <BrSp sp={sp1} />
         {/* <BrSp sp={"  "} /> */}
         <span className="token punctuation">)</span>
       </>
@@ -920,6 +935,7 @@ const ClCompLet = ({
   fn2Body,
   fnProp2,
   fnVal2,
+  constRet,
   exp1,
 }) => {
   let LetStates;
@@ -1030,6 +1046,14 @@ const ClCompLet = ({
       </>
     );
   }
+  // доп в return
+  let letConstRet;
+  if (constRet) {
+    letConstRet = <>{constRet}</>;
+  } else {
+    letConstRet = <></>;
+  }
+
   return (
     <>
       <span className="token keyword">class</span>{" "}
@@ -1106,6 +1130,8 @@ const ClCompLet = ({
       <span className="token punctuation">)</span>{" "}
       <span className="token punctuation">&#123;</span>
       {/* <br /> */}
+      <BrSp sp={sp2} />
+      {letConstRet}
       <BrSp sp={sp2} />
       <span className="token tag">return</span>{" "}
       <span className="token punctuation">(</span>

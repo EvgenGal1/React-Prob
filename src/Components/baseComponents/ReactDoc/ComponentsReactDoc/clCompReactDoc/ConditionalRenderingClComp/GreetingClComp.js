@@ -17,17 +17,43 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
+  IfElse,
 } from "../../../../../../js/examples/ExpPreCode.js";
+
+// подкл. UI блоков
+import ArrowAccordion from "../../../../../../js/uiBlock/ArrowAccordion.js";
+// 1111111 ----------------------------------------------------------------------------------
 
 // приветствие. Условный опрератор If + Переменные
 class GreetingClComp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoggedIn: false };
-    // this.handleLoginClick = this.handleLoginClick.bind(this);
-    // this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      isLoggedIn: false,
+      // this.handleLoginClick = this.handleLoginClick.bind(this);
+      // this.handleLogoutClick = this.handleLogoutClick.bind(this);
+      // this.handleClick = this.handleClick.bind(this);
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
+  // toggleArrowAccord() {
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+  };
+
   // передаём в state.isLoggedIn true
   handleClick = () => {
     this.setState({ isLoggedIn: true });
@@ -89,8 +115,18 @@ class GreetingClComp extends React.Component {
     }
 
     return (
-      <div className="GreetingClComp----">
-        <div className="GreetingClComp__descript---">
+      <div
+        style={{ position: "relative" }}
+        className="GreetingClComp---- accordion"
+      >
+        <div
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
+          className="GreetingClComp__descript---"
+        >
           {/* <h3>Условный рендеринг</h3>
           <div>
             Бывает нужно объяснить React, как состояние влияет на то, какие
@@ -99,25 +135,31 @@ class GreetingClComp extends React.Component {
             тернарные операторы (if...else, cond ? true : false).
           </div> */}
           <h3>Условный опрератор If + Переменные</h3>
-          <div>
-            Создали компонент Greeting, который отражает один из этих
-            компонентов в зависимости от того, выполнено ли условие (вход на
-            сайт)
-          </div>
-          <div>
-            В первой части передам false напрямую или изначально записываем
-            state.isLoggedIn.false
-          </div>
-          <div>
-            Во второй используем переменные для хранения эл-ов. Помошь в
-            визуале, логика такая же.
-          </div>
-          <div className="IfAnd__descript--- temporary">
-            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-            <code style={{ color: "red" }}>!!!</code> НАПИСАТЬ КОД | ПЕРЕБРАТЬ
-          </div>
+          <div style={{ display: "none" }} ref={this.RefOpenDop}>
+            <div>
+              Создали компонент Greeting, который отражает один из этих
+              компонентов в зависимости от того, выполнено ли условие (вход на
+              сайт)
+            </div>
+            <div>
+              В первой части передам false напрямую или изначально записываем
+              state.isLoggedIn.false
+            </div>
+            <div>
+              Во второй используем переменные для хранения эл-ов. Помошь в
+              визуале, логика такая же.
+            </div>
+            <div className="IfAnd__descript--- temporary">
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code> НАПИСАТЬ КОД | ПЕРЕБРАТЬ
+            </div>
+          </div>{" "}
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
-        <div className="GreetingClComp__content---">
+        <div ref={this.RefOpenCont} className="GreetingClComp__content---">
           <div className="GreetingClComp__oneexp----">
             <div className="GreetingClComp__oneexp_description----">
               <span className="spmdnon">Напрямую передаём . </span>{" "}

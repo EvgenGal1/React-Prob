@@ -17,6 +17,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
+  IfElse,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 // подкл. UI блоков

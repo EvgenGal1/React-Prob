@@ -17,7 +17,11 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
+  IfElse,
 } from "../../../../../../js/examples/ExpPreCode.js";
+
+// подкл. UI блоков
+import ArrowAccordion from "../../../../../../js/uiBlock/ArrowAccordion.js";
 
 // ОБЩИЕ FN для всех Компонентов ----------------------------------------------------------------------------------
 // переключение кнп. принимает только boolen ?
@@ -72,6 +76,7 @@ class PrevRendClComp extends React.Component {
       show: false,
       nameRoot: <span className="token class-name">Page</span>,
       nameFn1: "WarningBanner",
+      openArrowAccord: true,
     };
     // попытка преобразования в общую fn для кнп knpToggleClick
     // 0
@@ -79,7 +84,27 @@ class PrevRendClComp extends React.Component {
     // 1
     // knpToggleClick = knpToggleClick.bind();
     this.knpToggleClick = knpToggleClick.bind(this);
+
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
   }
+
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+    // this.setState((prevState) => ({
+    //   openArrowAccord: !prevState.openArrowAccord,
+    // }));
+  }
+  // toggleArrowAccord() {
+  toggleArrowAccord = () => {
+    this.setState((prevState) => ({
+      openArrowAccord: !prevState.openArrowAccord,
+    }));
+  };
+
   // попытка преобразования в общую fn для кнп knpToggleClick
   handleToggleClick() {
     this.setState((state) => ({
@@ -163,51 +188,71 @@ class PrevRendClComp extends React.Component {
     };
     // console.log("PrevRendClComp : " + this.state.show);
     return (
-      <div className="PrevRendClComp----">
-        <div className="PrevRendClComp__descript----">
+      <div
+        style={{ position: "relative" }}
+        className="PrevRendClComp---- accordion"
+      >
+        <div
+          ref={this.RefActivCl}
+          onClick={() => {
+            this.handleClickRef();
+            this.toggleArrowAccord(this.openArrowAccord);
+          }}
+          className="PrevRendClComp__descript----"
+        >
           <h3>Предотвращение рендеринга компонента</h3>
-          <div>
-            В редких случаях вы можете захотеть, чтобы компонент скрывал себя,
-            даже если он был визуализирован другим компонентом. Чтобы сделать
-            это, верните <code>null</code> вместо своего вывода рендеринга.
-          </div>
-          <div>
-            <code>&lt;WarningBanner/&gt;</code> визуализируется в зависимости от
-            значения реквизита под названием <code>warn</code>. Если значение
-            свойства равно <code>false</code>, то компонент не отображается:
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              alignContent: "center",
-              margin: "0 -15px",
-            }}
-          >
-            {/* попытка преобразования в общую fn для кнп knpToggleClick */}
-            {/* 0 */}
-            <div style={{ flex: "0 0 auto", margin: "0 10px" }}>
-              <p>fn handleToggleClick</p>
-              {"              "}
-              <button className="btmShowHide" onClick={this.handleToggleClick}>
-                <div>{this.state.showWarning ? "Hide" : "Show"}</div>
-              </button>
+          <div style={{ display: "none" }} ref={this.RefOpenDop}>
+            <div>
+              В редких случаях вы можете захотеть, чтобы компонент скрывал себя,
+              даже если он был визуализирован другим компонентом. Чтобы сделать
+              это, верните <code>null</code> вместо своего вывода рендеринга.
             </div>
-            {/* 1 */}
-            <div style={{ flex: "0 0 auto", margin: "0 10px" }}>
-              <p>fn knpToggleClick</p>
-              <button className="btmShowHide" onClick={knpToggleClick}>
-                {/* <button className="btmShowHide" onClick={this.knpToggleClick}> */}
-                <div>{this.state.show ? "Hide" : "Show"}</div>
-              </button>
+            <div>
+              <code>&lt;WarningBanner/&gt;</code> визуализируется в зависимости
+              от значения реквизита под названием <code>warn</code>. Если
+              значение свойства равно <code>false</code>, то компонент не
+              отображается:
             </div>
-            {/* <button onClick={(e) => this.deleteRow(id, e)}>Удалить строку</button> */}
-            {/* <button onClick={this.deleteRow.bind(this, id)}>Удалить строку</button> */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                alignContent: "center",
+                margin: "0 -15px",
+              }}
+            >
+              {/* попытка преобразования в общую fn для кнп knpToggleClick */}
+              {/* 0 */}
+              <div style={{ flex: "0 0 auto", margin: "0 10px" }}>
+                <p>fn handleToggleClick</p>
+                {"              "}
+                <button
+                  className="btmShowHide"
+                  onClick={this.handleToggleClick}
+                >
+                  <div>{this.state.showWarning ? "Hide" : "Show"}</div>
+                </button>
+              </div>
+              {/* 1 */}
+              <div style={{ flex: "0 0 auto", margin: "0 10px" }}>
+                <p>fn knpToggleClick</p>
+                <button className="btmShowHide" onClick={knpToggleClick}>
+                  {/* <button className="btmShowHide" onClick={this.knpToggleClick}> */}
+                  <div>{this.state.show ? "Hide" : "Show"}</div>
+                </button>
+              </div>
+              {/* <button onClick={(e) => this.deleteRow(id, e)}>Удалить строку</button> */}
+              {/* <button onClick={this.deleteRow.bind(this, id)}>Удалить строку</button> */}
+            </div>
           </div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
+          />
         </div>
-        <div className="PrevRendClComp__content----">
+        <div ref={this.RefOpenCont} className="PrevRendClComp__content----">
           <pre className="code-jsx">
             <code className="code-jsx">
               {/* 0 */}
@@ -387,11 +432,12 @@ class PrevRendClComp extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="PrevRendClComp__descript----">
+        {/* //!!! не раб - 2 ref RefOpenDop не раб. только последний */}
+        {/* <div style={{ display: "none" }} ref={this.RefOpenDop} className="PrevRendClComp__descript----">
           Возврат <code>null</code> из <code>render</code> метода компонента не
           влияет на запуск методов жизненного цикла компонента. Например{" "}
           <code>componentDidUpdate</code>, все равно будут называть.
-        </div>
+        </div> */}
       </div>
     );
   }
