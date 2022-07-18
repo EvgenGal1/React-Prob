@@ -316,13 +316,13 @@ const FormLabInpLet = ({
       {Letlabel2}
       {/* input1 */}
       {/* {sp1} */}
+      {sp4}
+      {letInput}
+      {letDop}
       {sp3}
       <span className="token punctuationhtml">&lt;/</span>
       <span className="token tag">{form1}</span>
       <span>&gt;</span>
-      {sp4}
-      {letInput}
-      {letDop}
       {sp5}
     </>
   );
@@ -1074,7 +1074,12 @@ const ClCompLet = ({
   // доп в return
   let letConstRet;
   if (constRet) {
-    letConstRet = <>{constRet}</>;
+    letConstRet = (
+      <>
+        <BrSp sp={sp2} />
+        {constRet}
+      </>
+    );
   } else {
     letConstRet = <></>;
   }
@@ -1155,7 +1160,6 @@ const ClCompLet = ({
       <span className="token punctuation">)</span>{" "}
       <span className="token punctuation">&#123;</span>
       {/* <br /> */}
-      <BrSp sp={sp2} />
       {letConstRet}
       <BrSp sp={sp2} />
       <span className="token tag">return</span>{" "}

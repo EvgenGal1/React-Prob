@@ -50,7 +50,7 @@ class MultipleInputsClComp extends React.Component {
         <div className="MultipleInputsClComp__content----">
           <form>
             <label>
-              Is going:
+              Идет:
               <input
                 name="isGoing"
                 type="checkbox"
@@ -60,7 +60,7 @@ class MultipleInputsClComp extends React.Component {
             </label>
             {/* <br /> */}
             <label>
-              Number of guests:
+              Кол-во гостей:
               <input
                 name="numberOfGuests"
                 type="number"
@@ -212,20 +212,20 @@ class MultipleInputsClComp extends React.Component {
                             // val2={"val"}
                             // val3={"val"}
                           />
-                          <BrSp sp={"            "} />
+                          <BrSp sp={"           "} />
                           <AttrValMetd
                             attr1={"type"}
                             val1={"number"}
                             dop3={" "}
                           />
-                          <BrSp sp={"            "} />
+                          <BrSp sp={"           "} />
                           <AttrValMetd
                             attr1={"value"}
                             val1={"this"}
                             val2={"state"}
                             val3={"numberOfGuests"}
                           />
-                          <BrSp sp={"            "} />
+                          <BrSp sp={"           "} />
                           <AttrValMetd
                             attr1={"onChange"}
                             val1={"this"}
@@ -234,7 +234,8 @@ class MultipleInputsClComp extends React.Component {
                           <BrSp sp={"          "} />
                         </>
                       }
-                      sp3={<BrSp sp={"    "} />}
+                      sp3={<BrSp sp={"      "} />}
+                      sp5={<BrSp sp={"    "} />}
                     />
                     {/* <form>
                           <br />

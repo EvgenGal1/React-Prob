@@ -1,8 +1,10 @@
 // formы|начало  ----------------------------------------------------------------------------------
 form,
 fieldset {
-  width: 350px;
-  width: max-content;
+  // width: 350px;
+  // min-width: 350px;
+  // width: max-content;
+  @include adaptiv-value("width", 450, 300, 3);
   // height: 150px;
   margin: 0 auto;
   padding: 3px 5px;

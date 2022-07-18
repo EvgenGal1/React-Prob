@@ -109,17 +109,23 @@
       @include adaptiv-value-all("padding", 10, 0, 60, 25);
     }
     // общие бл. 2ой влж (вложенности). vid-input, GreetingClComp__content,
-    & > div {
-      // общие бл. 3ей влж. vid-input-1, GreetingClComp__content-1,
-      & > div {
-        // font-size: 18px;
-        // font-size: inherit;
-        @media (max-width: $md3NoErr) {
-          // font-size: 14px;
-          // font-size: inherit;
-        }
-      }
+    // & > div {
+    // общие бл. 3ей влж. vid-input-1, GreetingClComp__content-1,
+    // & > div {
+    & div[class$="__content---"] div[class*="descript"] {
+      // padding-left: calc(100px + 580 * ((100vw - 320px) / 1600));
+      // padding-right: calc(100px + 580 * ((100vw - 320px) / 1600));
+      @include adaptiv-value("padding-left", 30, 5, 3);
+      @include adaptiv-value("padding-right", 30, 5, 3);
     }
+    // font-size: 18px;
+    // font-size: inherit;
+    @media (max-width: $md3NoErr) {
+      // font-size: 14px;
+      // font-size: inherit;
+    }
+    // }
+    // }
 
     // именнованые бл. 2ой влж(Цв.Поле 2ой влж). vid-input, GreetingClComp__content,  ----------------------------------------------------------------------------------
     // & [class^="vid-input__content"],
