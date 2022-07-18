@@ -165,8 +165,20 @@ class ManagedComponents extends React.Component {
                             attr1={"value"}
                             dop3={""}
                             val1={"this"}
-                            val2={"state"}
-                            val3={"value"}
+                            val2={
+                              <>
+                                <span className="token punctuationhtml">
+                                  state
+                                </span>
+                              </>
+                            }
+                            val3={
+                              <>
+                                <span className="token punctuationhtml">
+                                  value
+                                </span>
+                              </>
+                            }
                           />
                           <BrSp sp={"           "} />
                           <AttrValMetd

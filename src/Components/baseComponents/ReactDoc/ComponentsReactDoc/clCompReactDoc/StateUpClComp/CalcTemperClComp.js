@@ -19,20 +19,71 @@ import {
 
 import ExpPreCode from "../../../../../../js/examples/ExpPreCode";
 
-class CalcTemperClComp extends React.Component {
-  //constructor(props) {
-  //super(props);
-  //this.state = {  }
-  //}
+// приём t, проверка на 100 С*
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>Вода кипит.</p>;
+  }
+  return <p>Вода не кипит.</p>;
+}
+
+const scaleNames = {
+  c: "Celsius",
+  f: "Fahrenheit",
+};
+
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = { temperature: "" };
+  }
+
+  handleChange(e) {
+    this.setState({ temperature: e.target.value });
+  }
 
   render() {
-    // приём t, проверка на 100 С*
-    function BoilingVerdict(props) {
-      if (props.celsius >= 100) {
-        return <p>Вода кипятит.</p>;
-      }
-      return <p>The water would not boil.</p>;
-    }
+    const temperature = this.state.temperature;
+    const scale = this.props.scale;
+    return (
+      <fieldset>
+        <legend>Введите температуру в {scaleNames[scale]}:</legend>
+        <input value={temperature} onChange={this.handleChange} />
+      </fieldset>
+    );
+  }
+}
+
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = { temperature: "" };
+  }
+
+  handleChange(e) {
+    this.setState({ temperature: e.target.value });
+  }
+
+  render() {
+    const temperature = this.state.temperature;
+    return (
+      // <fieldset>
+      //   <legend>Введите температуру в Цельсия:</legend>
+      //   <input value={temperature} onChange={this.handleChange} />
+      //   <BoilingVerdict celsius={parseFloat(temperature)} />
+      // </fieldset>
+      <div>
+        <TemperatureInput scale="c" />
+        <TemperatureInput scale="f" />
+      </div>
+    );
+  }
+}
+
+class CalcTemperClComp extends React.Component {
+  render() {
     return (
       <div className="CalcTemperClComp">
         <div className="CalcTemperClComp__descript">
@@ -132,14 +183,14 @@ class CalcTemperClComp extends React.Component {
             <code>
               <ClCompLet
                 clName={"Calculator"}
-                sp1={""}
-                sp2={"  "}
+                sp1={"  "}
+                sp2={"    "}
                 state1={"temperature"}
                 stVal1={"''"}
                 fn1={"handleChange"}
                 fnProp1={"e"}
                 fn1Body={""}
-                sp3={"    "}
+                sp3={"      "}
                 fnVal1={
                   <>
                     temperature: <span className="token parameter">e</span>
@@ -172,60 +223,105 @@ class CalcTemperClComp extends React.Component {
                 }
                 exp1={
                   <>
-                    {/* 
-class Calculator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {temperature: ''};
-  }
-
-  handleChange(e) {
-    this.setState({temperature: e.target.value});
-  }
-
-  render() {
-    const temperature = this.state.temperature;
-    return (
-      <fieldset>
-        <legend>Enter temperature in Celsius:</legend>
-        <input
-          value={temperature}
-          onChange={this.handleChange} />
-        <BoilingVerdict
-          celsius={parseFloat(temperature)} />
-      </fieldset>
-    );
-  }
-} 
-*/}
                     <FormLabInpLet
                       form1={"fieldset"}
                       attrF1={""}
                       sp1={
                         <>
-                          <BrSp sp={"      "} />
+                          <BrSp sp={"        "} />
                         </>
                       }
                       label1={"legend"}
-                      sp2={""}
-                      name1={"Enter temperature in Celsius:"}
+                      sp2={<>{/* <BrSp sp={"  "} /> */}</>}
+                      name1={"Введите температуру в Цельсия:"}
                       elemF1={" "}
                       inputLab1={"1212"}
                       attrInLab1={"3434"}
-                      input1={""}
-                      attrIn1={""}
+                      input1={
+                        <>
+                          input
+                          <BrSp sp={"        "} />
+                        </>
+                      }
+                      attrIn1={
+                        <>
+                          <AttrValMetd
+                            attr1={"value"}
+                            dop3={""}
+                            val1={
+                              <>
+                                <span className="token punctuationhtml">
+                                  temperature
+                                </span>
+                              </>
+                            }
+                            val2={""}
+                            val3={""}
+                          />
+                          <BrSp sp={"        "} />
+                          <AttrValMetd
+                            attr1={"onChange"}
+                            dop3={""}
+                            val1={
+                              <>
+                                <span className="token parameter">this</span>
+                              </>
+                            }
+                            val2={"handleChange"}
+                            val3={""}
+                          />
+                          <BrSp sp={"      "} />
+                        </>
+                      }
                       label2={""}
                       name2={""}
                       inputLab2={""}
                       attrInLab2={""}
-                      sp3={""}
+                      sp3={<BrSp sp={"      "} />}
+                      sp4={<BrSp sp={"      "} />}
+                      sp5={<BrSp sp={"    "} />}
+                      dop={
+                        <>
+                          {/* <BoilingVerdict   celsius={parseFloat(temperature)} /> */}
+                          <BrSp sp={"      "} />
+                          <TagAttrValJSX
+                            Name={"BoilingVerdict"}
+                            attr1={"celsius"}
+                            val1={
+                              <>
+                                <span className="token function">
+                                  parseFloat
+                                </span>
+                                <span className="token punctuation">(</span>
+                                <span className="token punctuationhtml">
+                                  temperature
+                                </span>
+                                <span className="token punctuation">)</span>
+                              </>
+                            }
+                            // val2={
+                            //   <>
+                            //     1212
+
+                            //   </>
+                            // }
+                            // val3={"123"}
+                            // exp1={"123"}
+                            // exp2={"123"}
+                            // hide={" "}
+                            // br={"123"}
+                            dop3={" "}
+                          />
+                        </>
+                      }
                     />
+                    {/* <BrSp sp={" "} /> */}
                   </>
                 }
               />
             </code>
           </pre>
+          <Calculator />
         </div>
       </div>
     );

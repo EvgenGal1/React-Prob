@@ -488,7 +488,7 @@ class LiftingStateUp extends React.Component {
             }}
             ref={this.RefActivCl}
           >
-            StateUpClComp
+            Подъем состояния вверх
           </h3>
           <p
             ref={this.RefOpenDop}

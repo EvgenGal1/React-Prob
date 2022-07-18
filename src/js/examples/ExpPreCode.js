@@ -156,6 +156,7 @@ const SelectLet = ({
       <span className="token punctuationhtml">&lt;</span>
       <span className="token tag">{nameS}</span>
       <span className="token punctuationhtml">&gt;</span>
+      {sp1}
       {/* <div className="token"></div>
         <div className="token"></div>
       </select>
@@ -200,6 +201,9 @@ const FormLabInpLet = ({
   inputLab2,
   attrInLab2,
   sp3,
+  sp4,
+  dop,
+  sp5,
 }) => {
   let Letlabel2;
   if (label2) {
@@ -260,8 +264,26 @@ const FormLabInpLet = ({
         <span className="token tag">{inputLab1}</span>
         {attrInLab1}
         <span className="token punctuationhtml">/&gt;</span>
+        {sp1}
       </>
     );
+  }
+
+  let letInput;
+  if (input1) {
+    letInput = (
+      <>
+        <span className="token punctuationhtml">&lt;</span>
+        <span className="token tag">{input1}</span>
+        {attrIn1}
+        <span className="token punctuationhtml">/&gt;</span>
+      </>
+    );
+  }
+
+  let letDop;
+  if (dop) {
+    letDop = <>{dop}</>;
   }
 
   // }
@@ -286,7 +308,7 @@ const FormLabInpLet = ({
       {attrInLab1}
       <span className="token punctuationhtml">/&gt;</span> */}
       {LetElem1}
-      {sp1}
+      {/* {sp1} */}
       <span className="token punctuationhtml">&lt;/</span>
       <span className="token tag">{label1}</span>
       <span className="token punctuationhtml">&gt;</span>
@@ -298,7 +320,10 @@ const FormLabInpLet = ({
       <span className="token punctuationhtml">&lt;/</span>
       <span className="token tag">{form1}</span>
       <span>&gt;</span>
-      {sp3}
+      {sp4}
+      {letInput}
+      {letDop}
+      {sp5}
     </>
   );
 };
@@ -1138,6 +1163,7 @@ const ClCompLet = ({
       {/* <br /> */}
       <BrSp sp={sp3} />
       {exp1}
+      {/* <BrSp sp={sp2} /> */}
       <span className="token punctuation">);</span>
       {/* <br /> */}
       <BrSp sp={sp1} />
