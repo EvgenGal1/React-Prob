@@ -223,48 +223,20 @@
   & > div {
     // 3я влж. Разделы Темы (vid-input, StateAndLifeCycle, clComp, )-------------------------------------------------------------------------------
     // РАМКА С ПРАВА (при .active)-----------------------------------------------------------------------------
-    // div[class$="descript--"]._active ~ [class$="__frame--"] {
-    // div:first-child._active ~ [class$="__frame--"] {
+    // div[class$="descript--"]._active ~ [class$="__frame--"] { // ранее при _active на первый блок
+    // div:first-child._active ~ [class$="__frame--"] { // ранее при _active на первый блок
     // div[class$="descript"] > h3._active {
     // div:first-child > h3._active ~ [class$="__frame--"] {
-    &:first-child > h3._active {
+    // &:first-child > h3._active {
+    & [class*="__frame--"] {
+      display: none;
+    }
+    div[class*="__content"].openCont {
       & ~ [class$="__frame--"] {
         display: block;
         @include afterbefore;
         @include after;
       }
-    }
-    & > div {
-      // &::after {
-      & [class$="__frame--"] {
-        display: none;
-        display: block;
-
-        @include afterbefore;
-        @include after;
-        // @include afterbefore;
-        // @include after;
-      }
-    }
-  }
-  & > div {
-    &:first-child h3._active {
-      // background: #000;
-      & ~ [class$="__frame--"] {
-        background: #000;
-        display: block;
-        @include afterbefore;
-        @include after;
-      }
-    }
-  }
-  & > div:first-child h3._active {
-    // background: #000;
-    & ~ [class$="__frame--"] {
-      background: #000;
-      display: block;
-      @include afterbefore;
-      @include after;
     }
   }
 

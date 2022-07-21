@@ -3,6 +3,7 @@ import React from "react";
 import AddSecondEntryClComp from "./AddSecondEntryClComp.js";
 import CreateTempetCalcClComp from "./CreateTempetCalcClComp.js";
 import WritFunctTransformClComp from "./WritFunctTransformClComp.js";
+import LiftingStateUpClComp from "./LiftingStateUpClComp.js";
 
 import {
   BrSp,
@@ -21,13 +22,18 @@ import {
   IfElse,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
+const scaleNames = {
+  c: "Цельсиях",
+  f: "Фаренгейтах",
+};
+
 // приём t, проверка на 100 С*
-// function BoilingVerdict(props) {
-//   if (props.celsius >= 100) {
-//     return <p>Вода кипит.</p>;
-//   }
-//   return <p>Вода не кипит.</p>;
-// }
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>Вода кипит.</p>;
+  }
+  return <p>Вода не кипит.</p>;
+}
 
 class StateUpClComp extends React.Component {
   constructor(props) {
@@ -38,6 +44,7 @@ class StateUpClComp extends React.Component {
 
   handleChange(e) {
     this.setState({ temperature: e.target.value });
+    // this.props.onTemperatureChange(e.target.value);
   }
 
   render() {
@@ -48,12 +55,18 @@ class StateUpClComp extends React.Component {
         <div className="StateUpClComp__content---">
           {/* <CalculatorClComp bodyCalc={"fieldset"} />
           <CalculatorClComp bodyCalc={"temperInput"} /> */}
-          <CreateTempetCalcClComp />
-          <AddSecondEntryClComp />
+          <CreateTempetCalcClComp
+          // BoilingVerdict={BoilingVerdict}
+          />
+          <AddSecondEntryClComp
+          // scaleNames={scaleNames}
+          />
           <WritFunctTransformClComp />
+          <LiftingStateUpClComp />
         </div>
       </div>
     );
   }
 }
-export default StateUpClComp;
+// export default StateUpClComp;
+export { BoilingVerdict, StateUpClComp, scaleNames };

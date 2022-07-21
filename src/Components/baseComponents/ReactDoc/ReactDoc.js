@@ -17,8 +17,8 @@ import StateAndLifeCycleClComp from "./ComponentsReactDoc/clCompReactDoc/StateAn
 import ListsAndKeysClComp from "./ComponentsReactDoc/clCompReactDoc/ListAndKeysClComp/ListsAndKeysClComp.js";
 // Forms
 import FormsClComp from "./ComponentsReactDoc/clCompReactDoc/FormsClComp/FormsСlComp.js";
-// SteteUp
-import StateUpClComp from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
+// SteteUp. импорт одного компонента из файла
+import { StateUpClComp } from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
 
 // подкл. UI блоков
 import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";

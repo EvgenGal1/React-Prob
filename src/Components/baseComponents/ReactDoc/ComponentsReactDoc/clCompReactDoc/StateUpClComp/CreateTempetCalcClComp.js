@@ -21,39 +21,34 @@ import {
 import CalculatorClComp from "./CalculatorClComp.js";
 
 // приём t, проверка на 100 С*
-function BoilingVerdict(props) {
-  if (props.celsius >= 100) {
-    return <p>Вода кипит.</p>;
-  }
-  return <p>Вода не кипит.</p>;
+// function BoilingVerdict(props) {
+//   if (props.celsius >= 100) {
+//     return <p>Вода кипит.</p>;
+//   }
+//   return <p>Вода не кипит.</p>;
+// }
+
+// const scaleNames = {
+//   c: "Цельсияx",
+//   f: "Фаренгейтах",
+// };
+
+// fn преобразов Цельсия в Фаренгейта и обратно:
+function toCelsius(fahrenheit) {
+  return ((fahrenheit - 32) * 5) / 9;
 }
-
-const scaleNames = {
-  c: "Цельсияx",
-  f: "Фаренгейтах",
-};
-
-class TemperatureInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { temperature: "" };
+function toFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
+// fn конвертер. вход строка и fn.обраб
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return "";
   }
-
-  handleChange(e) {
-    this.setState({ temperature: e.target.value });
-  }
-
-  render() {
-    const temperature = this.state.temperature;
-    const scale = this.props.scale;
-    return (
-      <fieldset>
-        <legend>Введите температуру в {scaleNames[scale]}:</legend>
-        <input value={temperature} onChange={this.handleChange} />
-      </fieldset>
-    );
-  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
 }
 
 class CreateTempetCalcClComp extends React.Component {
@@ -267,14 +262,13 @@ class CreateTempetCalcClComp extends React.Component {
                       sp5={<BrSp sp={"    "} />}
                       dop={
                         <>
-                          {/* <BoilingVerdict   celsius={parseFloat(temperature)} /> */}
                           <BrSp sp={"        "} />
                           <TagAttrValJSX
                             Name={"BoilingVerdict"}
                             attr1={"celsius"}
                             val1={
                               <>
-                                <span className="token function">
+                                <span className="token keyword">
                                   parseFloat
                                 </span>
                                 <span className="token punctuation">(</span>
@@ -306,18 +300,10 @@ class CreateTempetCalcClComp extends React.Component {
               />
             </code>
           </pre>
-          {/* <p>При вводе значения равное или больше 100, вывод изменится</p>
-          <fieldset>
-            <legend>Введите температуру в Цельсиях:</legend>
-            <input value={temperature} onChange={this.handleChange} />
-            <BoilingVerdict celsius={parseFloat(temperature)} />
-          </fieldset> */}
-          {/* <>
-            <TemperatureInput scale="c" />
-            <TemperatureInput scale="f" />
-          </> */}
-          {/* {bodyCalc} */}
-          <CalculatorClComp bodyCalc={"fieldset"} />
+          <CalculatorClComp
+            bodyCalc={"fieldset"}
+            // BoilingVerdict={this.props.BoilingVerdict}
+          />
         </div>
       </div>
     );

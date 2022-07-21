@@ -19,34 +19,6 @@ import {
 
 import CalculatorClComp from "./CalculatorClComp.js";
 
-const scaleNames = {
-  c: "Celsius",
-  f: "Fahrenheit",
-};
-
-class TemperatureInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { temperature: "" };
-  }
-
-  handleChange(e) {
-    this.setState({ temperature: e.target.value });
-  }
-
-  render() {
-    const temperature = this.state.temperature;
-    const scale = this.props.scale;
-    return (
-      <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
-        <input value={temperature} onChange={this.handleChange} />
-      </fieldset>
-    );
-  }
-}
-
 class AddSecondEntryClComp extends React.Component {
   constructor(props) {
     super(props);
@@ -78,12 +50,12 @@ class AddSecondEntryClComp extends React.Component {
                   <>
                     <span className="token punctuation">&#123;</span>
                     <BrSp sp={"  "} />
-                    <span class="token punctuationhtml">c</span>
+                    <span className="token punctuationhtml">c</span>
                     <span className="token operator">:</span>{" "}
-                    <span class="token atrule">"Celsius"</span>
+                    <span className="token atrule">"Celsius"</span>
                     <span className="token punctuation">,</span>
                     <BrSp sp={"  "} />
-                    <span class="token punctuationhtml">f</span>
+                    <span className="token punctuationhtml">f</span>
                     <span className="token operator">:</span>{" "}
                     <span className="token atrule">"Fahrenheit"</span>{" "}
                     <BrSp sp={""} />
@@ -235,7 +207,7 @@ class AddSecondEntryClComp extends React.Component {
                             attr1={"celsius"}
                             val1={
                               <>
-                                <span className="token function">
+                                <span className="token keyword">
                                   parseFloat
                                 </span>
                                 <span className="token punctuation">(</span>
@@ -278,16 +250,6 @@ class AddSecondEntryClComp extends React.Component {
           <pre>
             <code>
               <ClCompLet
-                //  class Calculator extends React.Component {
-                //   render() {
-                //     return (
-                //       <div>
-                //         <TemperatureInput scale="c" />
-                //         <TemperatureInput scale="f" />
-                //       </div>
-                //     );
-                //   }
-                // }
                 clName={"Calculator"}
                 sp1={"  "}
                 sp2={"    "}
@@ -308,14 +270,14 @@ class AddSecondEntryClComp extends React.Component {
                             Name={"TemperatureInput"}
                             attr1={"scale"}
                             val1={"c"}
-                            dop3={"78"}
+                            dop3={" "}
                           />
                           <BrSp sp={"        "} />
                           <TagAttrValJSX
                             Name={"TemperatureInput"}
                             attr1={"scale"}
                             val1={"f"}
-                            dop3={"dop3"}
+                            dop3={" "}
                           />
                         </>
                       }
@@ -358,7 +320,10 @@ class AddSecondEntryClComp extends React.Component {
           </p>
         </div>
         <div className="AddSecondEntryClComp__content">
-          <CalculatorClComp bodyCalc={"temperInput"} />
+          <CalculatorClComp
+            bodyCalc={"temperInput"}
+            // scaleNames={this.props.scaleNames}
+          />
         </div>
       </div>
     );

@@ -18,43 +18,8 @@ import {
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 // import ExpPreCode from "../../../../../../js/examples/ExpPreCode";
-// import { TemperatureInput } from "./AddSecondEntry.js";
-
-// приём t, проверка на 100 С*
-function BoilingVerdict(props) {
-  if (props.celsius >= 100) {
-    return <p>Вода кипит.</p>;
-  }
-  return <p>Вода не кипит.</p>;
-}
-
-const scaleNames = {
-  c: "Цельсияx",
-  f: "Фаренгейтах",
-};
-
-class TemperatureInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { temperature: "" };
-  }
-
-  handleChange(e) {
-    this.setState({ temperature: e.target.value });
-  }
-
-  render() {
-    const temperature = this.state.temperature;
-    const scale = this.props.scale;
-    return (
-      <fieldset>
-        <legend>Введите температуру в {scaleNames[scale]}:</legend>
-        <input value={temperature} onChange={this.handleChange} />
-      </fieldset>
-    );
-  }
-}
+import { BoilingVerdict, scaleNames } from "./StateUpClComp.js";
+import TemperatureInputClComp from "./TemperatureInputClComp.js";
 
 class CalculatorClComp extends React.Component {
   constructor(props) {
@@ -77,13 +42,22 @@ class CalculatorClComp extends React.Component {
           <legend>Введите температуру в Цельсиях:</legend>
           <input value={temperature} onChange={this.handleChange} />
           <BoilingVerdict celsius={parseFloat(temperature)} />
+          {/* {this.props.BoilingVerdict} */}
         </fieldset>
       </>
     );
     let temperInput = (
       <>
-        <TemperatureInput scale="c" />
-        <TemperatureInput scale="f" />
+        <TemperatureInputClComp
+          scale="c"
+          // scaleNames={this.props.scaleNames}
+          scaleNames={scaleNames}
+        />
+        <TemperatureInputClComp
+          scale="f"
+          // scaleNames={this.props.scaleNames}
+          scaleNames={scaleNames}
+        />
       </>
     );
 
