@@ -1,15 +1,15 @@
 .ReactDocComponents {
   &__frame {
-    background: #000;
+    // background: #000;
     &::before {
-      width: 15px;
+      // width: 15px;
       // content: "123";
     }
   }
   &__frame::before {
-    background: #0f0;
+    // background: #0f0;
     // content: "456";
-    width: 15px;
+    // width: 15px;
   }
 
   &::before {

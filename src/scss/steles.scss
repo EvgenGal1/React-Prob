@@ -218,6 +218,7 @@
   &__frame {
     @include afterbefore;
     @include before;
+    display: none;
   }
   // 2ая влж. Блоки Темы (description, content и frame) ---------------------------------------------------------------------------------
   & > div {
@@ -229,17 +230,19 @@
     // div:first-child > h3._active ~ [class$="__frame--"] {
     // &:first-child > h3._active {
     & [class*="__frame--"] {
+      @include afterbefore;
+      @include after;
       display: none;
     }
-    div[class*="__content"].openCont {
-      & ~ [class$="__frame--"] {
-        display: block;
-        @include afterbefore;
-        @include after;
-      }
+  }
+  // общее правило вкл Боковых Рамок
+  div[class*="__content"].openCont {
+    & ~ [class*="__frame"] {
+      display: block;
+      // @include afterbefore;
+      // @include after;
     }
   }
-
   //  ----------------------------------------------------------------------------------
 
   // ЦВЕТА. 2ая влж. Блоки Темы (description, content и frame) ----------------------------------------------------------------------------------

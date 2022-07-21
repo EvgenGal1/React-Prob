@@ -17,23 +17,44 @@ import {
   IfElse,
 } from "../../../../../../js/examples/ExpPreCode.js";
 
-// import ExpPreCode from "../../../../../../js/examples/ExpPreCode";
-import { BoilingVerdict, scaleNames } from "./StateUpClComp.js";
+import ExpPreCode from "../../../../../../js/examples/ExpPreCode";
+import {
+  scaleNames,
+  toCelsius,
+  toFahrenheit,
+  tryConvert,
+  BoilingVerdict,
+} from "./StateUpClComp.js";
 import TemperatureInputClComp from "./TemperatureInputClComp.js";
 
 class CalculatorClComp extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = { temperature: "" };
-    console.log("this.props : " + this.props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = { temperature: "", scale: "c" };
   }
+  // fn для 1ой кнп (let fieldset)
   handleChange(e) {
     this.setState({ temperature: e.target.value });
   }
+  // fn для State Up. Цельсий
+  handleCelsiusChange(temperature) {
+    this.setState({ scale: "c", temperature });
+  }
+  // fn для State Up. Фаренгейт
+  handleFahrenheitChange(temperature) {
+    this.setState({ scale: "f", temperature });
+  }
 
   render() {
+    const scale = this.state.scale;
     const temperature = this.state.temperature;
+    const celsius =
+      scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
+    const fahrenheit =
+      scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
 
     let fieldset = (
       <>
@@ -51,13 +72,36 @@ class CalculatorClComp extends React.Component {
         <TemperatureInputClComp
           scale="c"
           // scaleNames={this.props.scaleNames}
+          // ранее при передаче ч/з props, сейчас fn отдельно importom
           scaleNames={scaleNames}
+          dop={"11"}
         />
         <TemperatureInputClComp
           scale="f"
           // scaleNames={this.props.scaleNames}
           scaleNames={scaleNames}
+          dop={"11"}
         />
+        2 вариант
+      </>
+    );
+    let temperInputAll = (
+      <>
+        <TemperatureInputClComp
+          scale="c"
+          scaleNames={scaleNames}
+          temperature={celsius}
+          onTemperatureChange={this.handleCelsiusChange}
+          dop={"22"}
+        />
+        <TemperatureInputClComp
+          scale="f"
+          scaleNames={scaleNames}
+          temperature={fahrenheit}
+          onTemperatureChange={this.handleFahrenheitChange}
+          dop={"22"}
+        />
+        <BoilingVerdict celsius={parseFloat(celsius)} />3 вариант
       </>
     );
 
@@ -67,6 +111,8 @@ class CalculatorClComp extends React.Component {
       bodyCalc = fieldset;
     } else if (this.props.bodyCalc === "temperInput") {
       bodyCalc = temperInput;
+    } else if (this.props.bodyCalc === "temperInputAll") {
+      bodyCalc = temperInputAll;
     } else {
       bodyCalc = "";
     }
