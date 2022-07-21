@@ -21,9 +21,9 @@ class ArrowAccordion extends React.Component {
     if (this.state.openArrowAccord || this.props.openArrowAccord) {
       openArrowAccordVar = true;
     }
-    console.log("openArrowAccordVar : " + openArrowAccordVar);
-    console.log("this.state.openArrowAccord : " + this.state.openArrowAccord);
-    console.log("this.props.openArrowAccord : " + this.props.openArrowAccord);
+    // console.log("openArrowAccordVar : " + openArrowAccordVar);
+    // console.log("this.state.openArrowAccord : " + this.state.openArrowAccord);
+    // console.log("this.props.openArrowAccord : " + this.props.openArrowAccord);
     // console.log("this.props.RefActivCl.current : " + this.props.RefActivCl.current);
     return (
       // console.log("ArrowAccord this: " + this.state.openArrowAccord),

@@ -224,20 +224,50 @@
     // 3я влж. Разделы Темы (vid-input, StateAndLifeCycle, clComp, )-------------------------------------------------------------------------------
     // РАМКА С ПРАВА (при .active)-----------------------------------------------------------------------------
     // div[class$="descript--"]._active ~ [class$="__frame--"] {
-    div:first-child._active ~ [class$="__frame--"] {
-      display: block;
-      @include afterbefore;
-      @include after;
+    // div:first-child._active ~ [class$="__frame--"] {
+    // div[class$="descript"] > h3._active {
+    // div:first-child > h3._active ~ [class$="__frame--"] {
+    &:first-child > h3._active {
+      & ~ [class$="__frame--"] {
+        display: block;
+        @include afterbefore;
+        @include after;
+      }
     }
     & > div {
       // &::after {
       & [class$="__frame--"] {
         display: none;
+        display: block;
+
+        @include afterbefore;
+        @include after;
         // @include afterbefore;
         // @include after;
       }
     }
   }
+  & > div {
+    &:first-child h3._active {
+      // background: #000;
+      & ~ [class$="__frame--"] {
+        background: #000;
+        display: block;
+        @include afterbefore;
+        @include after;
+      }
+    }
+  }
+  & > div:first-child h3._active {
+    // background: #000;
+    & ~ [class$="__frame--"] {
+      background: #000;
+      display: block;
+      @include afterbefore;
+      @include after;
+    }
+  }
+
   //  ----------------------------------------------------------------------------------
 
   // ЦВЕТА. 2ая влж. Блоки Темы (description, content и frame) ----------------------------------------------------------------------------------

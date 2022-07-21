@@ -467,7 +467,7 @@ const AttrValMetd = ({ attr1, dop3, val1, val2, val3 }) => {
     letValue2 = (
       <>
         <span className="token operator">.</span>
-        <span className="token attr-name">{val2}</span>
+        <span className="token function">{val2}</span>
       </>
     );
   }
@@ -475,7 +475,7 @@ const AttrValMetd = ({ attr1, dop3, val1, val2, val3 }) => {
     letValue3 = (
       <>
         <span className="token operator">.</span>
-        <span className="token attr-name">{val3}</span>
+        <span className="token function">{val3}</span>
       </>
     );
   }
@@ -613,7 +613,13 @@ const TagAttrValJSX = ({
   } else if (attr1 && val1) {
     letAttr1 = (
       <>
-        <AttrValMetd attr1={attr1} val1={val1} val2={val2} val3={val3} />
+        <AttrValMetd
+          attr1={attr1}
+          val1={val1}
+          val2={val2}
+          val3={val3}
+          dop3={dop3}
+        />
       </>
     );
     // letAttr2 = (
@@ -657,10 +663,10 @@ const TagAttrValJSX = ({
   let BracesOpen;
   let BracesClose;
   let LetExp1;
-  if (dop3) {
+  if (dop3 || dop3 === null) {
     BracesOpen = null;
     BracesClose = null;
-    LetExp1 = <span className="token constName ">{exp1}</span>;
+    LetExp1 = <span className="token  ">{exp1}</span>;
   } else {
     BracesOpen = <span className="token punctuation">&#123;</span>;
     BracesClose = <span className="token punctuation">&#125;</span>;
@@ -814,7 +820,7 @@ const FuncNameProps = ({
   param1,
   param2,
   sp1,
-  body,
+  bodyMini,
   constBody,
   sp2,
   returnBody,
@@ -846,7 +852,7 @@ const FuncNameProps = ({
   let letBody;
   let letBrace;
 
-  if (body === "short") {
+  if (bodyMini === "true") {
     letBody = (
       <>
         {/* <BrSp sp={"  "} /> */}
@@ -861,7 +867,7 @@ const FuncNameProps = ({
         <span className="token punctuation">&#125;</span>
       </>
     );
-  } else if (body) {
+  } else if (bodyMini) {
     letBody = (
       <>
         {/* <BrSp sp={"  "} /> */}
@@ -963,58 +969,7 @@ const ClCompLet = ({
   constRet,
   exp1,
 }) => {
-  let LetStates;
-  if (state2) {
-    LetStates = (
-      <>
-        <BrSp sp={sp3} />
-        {state1} <span className="token operator">:</span> {stVal1}
-        <span className="token punctuation">;</span>
-        <BrSp sp={sp3} />
-        {state2} <span className="token operator">:</span> {stVal2}
-        <span className="token punctuation">;</span>
-        <BrSp sp={sp2} />
-      </>
-    );
-  }
-  // else if (state3){
-  //  LetStates = (<>3</>)
-  // }
-  else {
-    LetStates = (
-      <>
-        {state1} <span className="token operator">:</span> {stVal1}
-      </>
-    );
-  }
-  let letFn1Body;
-  // let letFnProp1;
-  if (fn1Body) {
-    letFn1Body = <>{fn1Body}</>;
-  } else {
-    letFn1Body = (
-      <>
-        <span className="token parameter">this</span>
-        <span className="token operator">.</span>
-        <span className="token function">setState</span>
-        <span className="token punctuation">(</span>
-        {/* <span className="token parameter">state</span>{" "}
-      <span className="token operator">=&gt;</span>{" "}
-      <span className="token punctuation">(</span> */}
-        <span className="token punctuation">&#123;</span>
-        {/* <br /> */}
-        <BrSp sp={sp3} />
-        {/* showWarning */}
-        {state1} <span className="token operator">:</span>{" "}
-        {/* <span className="token operator">!</span> */}
-        {fnVal1}
-        {/* {stVal1} */}
-        {/* <span className="token parameter">state</span>
-      <span className="token operator">.</span>showWarning */}
-        {/* <br /> */}
-      </>
-    );
-  }
+  // перем 2ой fn
   let letFn2;
   let letFnProp2;
   let letFn2Body;
@@ -1071,6 +1026,60 @@ const ClCompLet = ({
       </>
     );
   }
+  let LetStates;
+  if (state2) {
+    LetStates = (
+      <>
+        <BrSp sp={sp3} />
+        {state1} <span className="token operator">:</span> {stVal1}
+        <span className="token punctuation">;</span>
+        <BrSp sp={sp3} />
+        {state2} <span className="token operator">:</span> {stVal2}
+        <span className="token punctuation">;</span>
+        <BrSp sp={sp2} />
+      </>
+    );
+  }
+  // else if (state3){
+  //  LetStates = (<>3</>)
+  // }
+  else {
+    LetStates = (
+      <>
+        {state1} <span className="token operator">:</span> {stVal1}
+      </>
+    );
+  }
+  console.log("state1 : " + state1);
+  let letFn1Body;
+  // let letFnProp1;
+  if (fn1Body) {
+    letFn1Body = <>{fn1Body}</>;
+  } else {
+    letFn1Body = (
+      <>
+        <span className="token parameter">this</span>
+        <span className="token operator">.</span>
+        <span className="token function">setState</span>
+        <span className="token punctuation">(</span>
+        {/* <span className="token parameter">state</span>{" "}
+      <span className="token operator">=&gt;</span>{" "}
+      <span className="token punctuation">(</span> */}
+        <span className="token punctuation">&#123;</span>
+        {/* <br /> */}
+        <BrSp sp={sp3} />
+        {/* showWarning */}
+        {state1} <span className="token operator">:</span>{" "}
+        {/* <span className="token operator">!</span> */}
+        {fnVal1}
+        {/* {stVal1} */}
+        {/* <span className="token parameter">state</span>
+      <span className="token operator">.</span>showWarning */}
+        {/* <br /> */}
+      </>
+    );
+  }
+
   // доп в return
   let letConstRet;
   if (constRet) {
@@ -1083,7 +1092,79 @@ const ClCompLet = ({
   } else {
     letConstRet = <></>;
   }
-
+  // перем constructora
+  let letConstr;
+  if (state1 !== undefined) {
+    // LetStates = <></>;
+    letConstr = (
+      <>
+        <BrSp sp={sp1} />
+        <span className="token function">constructor</span>
+        <span className="token punctuation">(</span>
+        <span className="token parameter">props</span>
+        <span className="token punctuation">)</span>{" "}
+        <span className="token punctuation">&#123;</span>
+        <BrSp sp={sp2} />
+        <span className="token function">super</span>
+        <span className="token punctuation">(</span>
+        <span className="token parameter">props</span>
+        <span className="token punctuation">)</span>
+        <span className="token punctuation">;</span>
+        <BrSp sp={sp2} />
+        <span className="token parameter">this</span>
+        <span className="token operator">.</span>state{" "}
+        <span className="token operator">=</span>{" "}
+        <span className="token punctuation">&#123;</span>
+        {LetStates}
+        <span className="token punctuation">&#125;</span>
+        <span className="token punctuation">;</span>
+        <BrSp sp={sp2} />
+        <span className="token parameter">this</span>
+        <span className="token operator">.</span>
+        {fn1} <span className="token operator">=</span>{" "}
+        <span className="token parameter">this</span>
+        <span className="token operator">.</span>
+        <span className="token function">{fn1}</span>
+        <span className="token operator">.</span>
+        <span className="token function">bind</span>
+        <span className="token punctuation">(</span>
+        <span className="token parameter">this</span>
+        <span className="token punctuation">)</span>
+        <span className="token punctuation">;</span>
+        {letFn2}
+        <BrSp sp={sp1} />
+        <span className="token punctuation">&#125;</span>
+      </>
+    );
+  }
+  let letFn;
+  if (fn1) {
+    letFn = (
+      <>
+        <BrSp sp={sp1} />
+        <span className="token function">{fn1}</span>
+        <span className="token punctuation">(</span>
+        <span className="token parameter">{fnProp1}</span>
+        <span className="token punctuation">)</span>{" "}
+        <span className="token punctuation">&#123;</span>
+        <BrSp sp={sp2} />
+        {letFn1Body}
+        <BrSp sp={sp2} />
+        <span className="token punctuation">&#125;</span>
+        <span className="token punctuation">)</span>
+        <span className="token punctuation">;</span>
+        <BrSp sp={sp1} />
+        <span className="token punctuation">&#125;</span>
+        {/* <span className="token punctuation">)</span> */}
+        <br />
+        {/* <BrSp sp={sp2} /> */}
+        {letFnProp2}
+        <BrSp sp={sp1} />
+      </>
+    );
+  } else {
+    letFn = <>{"  "}</>;
+  }
   return (
     <>
       <span className="token keyword">class</span>{" "}
@@ -1093,51 +1174,13 @@ const ClCompLet = ({
       <span className="token tag">.</span>
       <span className="token class-name">Component</span>{" "}
       <span className="token punctuation">&#123;</span>
-      {/* <br /> */}
-      <BrSp sp={sp1} />
-      <span className="token function">constructor</span>
-      <span className="token punctuation">(</span>
-      <span className="token parameter">props</span>
-      <span className="token punctuation">)</span>{" "}
-      <span className="token punctuation">&#123;</span>
-      {/* <br /> */}
-      <BrSp sp={sp2} />
-      <span className="token function">super</span>
-      <span className="token punctuation">(</span>
-      <span className="token parameter">props</span>
-      <span className="token punctuation">)</span>
-      <span className="token punctuation">;</span>
-      {/* <br /> */}
-      <BrSp sp={sp2} />
-      <span className="token parameter">this</span>
-      <span className="token operator">.</span>state{" "}
-      <span className="token operator">=</span>{" "}
-      <span className="token punctuation">&#123;</span>
-      {LetStates}
-      <span className="token punctuation">&#125;</span>
-      <span className="token punctuation">;</span>
-      {/* <br /> */}
-      <BrSp sp={sp2} />
-      <span className="token parameter">this</span>
-      <span className="token operator">.</span>
-      {fn1} <span className="token operator">=</span>{" "}
-      <span className="token parameter">this</span>
-      <span className="token operator">.</span>
-      <span className="token function">{fn1}</span>
-      <span className="token operator">.</span>
-      <span className="token function">bind</span>
-      <span className="token punctuation">(</span>
-      <span className="token parameter">this</span>
-      <span className="token punctuation">)</span>
-      <span className="token punctuation">;</span>
-      {letFn2}
-      <BrSp sp={sp1} />
-      <span className="token punctuation">&#125;</span>
-      <br />
+      {letConstr}
       {/* <br /> */}
       {/* <br /> */}
-      <BrSp sp={sp1} />
-      <span className="token function">{fn1}</span>
+      {/* <br /> */}
+      {/* <BrSp sp={sp1} /> */}
+      {/* 121212 */}
+      {/* <span className="token function">{fn1}</span>
       <span className="token punctuation">(</span>
       <span className="token parameter">{fnProp1}</span>
       <span className="token punctuation">)</span>{" "}
@@ -1149,12 +1192,15 @@ const ClCompLet = ({
       <span className="token punctuation">)</span>
       <span className="token punctuation">;</span>
       <BrSp sp={sp1} />
-      <span className="token punctuation">&#125;</span>
+      <span className="token punctuation">&#125;</span> */}
       {/* <span className="token punctuation">)</span> */}
       <br />
       {/* <BrSp sp={sp2} /> */}
-      {letFnProp2}
-      <BrSp sp={sp1} />
+      {/* {letFnProp2} */}
+      {letFn}
+      {/* 232323 */}
+      {/* <BrSp sp={sp1} /> */}
+      {/* {"  "} */}
       <span className="token function">render</span>
       <span className="token punctuation">(</span>
       <span className="token punctuation">)</span>{" "}
