@@ -410,11 +410,7 @@ class Forms extends React.Component {
           >
             Формы
           </h3>
-          <p
-            ref={this.RefOpenDop}
-            style={{ display: "none" }}
-            className="_spoller"
-          >
+          <p ref={this.RefOpenDop} style={{ display: "none" }}>
             Элементы формы HTML работают немного иначе, чем другие элементы DOM
             в React, потому что элементы формы естественным образом сохраняют
             некоторое внутреннее состояние. Например, эта форма в простом HTML
@@ -489,11 +485,7 @@ class LiftingStateUp extends React.Component {
           >
             Подъем состояния вверх
           </h3>
-          <p
-            ref={this.RefOpenDop}
-            className="spoiler-body"
-            style={{ display: "none" }}
-          >
+          <p ref={this.RefOpenDop} style={{ display: "none" }}>
             Часто несколько компонентов должны отражать одни и те же
             изменяющиеся данные. Мы рекомендуем поднимать общее состояние до их
             ближайшего общего предка. Давайте посмотрим, как это работает в
@@ -515,6 +507,67 @@ class LiftingStateUp extends React.Component {
           <StateUpClComp />
         </div>
         <div className="LiftingStateUp__frame--">StateUp</div>
+      </div>
+    );
+  }
+}
+
+// Композиция против наследования =======================================================================================
+// !!! https://reactjs.org/docs/composition-vs-inheritance.html
+class CompositionVsInheritance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArrowAccord: true,
+    };
+    this.RefActivCl = React.createRef();
+    this.RefOpenDop = React.createRef();
+    this.RefOpenCont = React.createRef();
+  }
+  handleClickRef() {
+    this.RefActivCl.current.classList.toggle("_active");
+    this.RefOpenDop.current.classList.toggle("openDop");
+    this.RefOpenCont.current.classList.toggle("openCont");
+  }
+  render() {
+    return (
+      <div className="CompositionVsInheritance-- accordion">
+        <div className="CompositionVsInheritance__descript--">
+          <h3
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
+          >
+            Композиция против наследования
+          </h3>
+          <div ref={this.RefOpenDop} style={{ display: "none" }}>
+            <p>
+              React имеет мощную модель композиции, и мы рекомендуем
+              использовать композицию вместо наследования для повторного
+              использования кода между компонентами.
+            </p>
+            <p>
+              В этом разделе мы рассмотрим несколько проблем, с которыми
+              разработчики, плохо знакомые с React, часто обращаются к
+              наследованию, и покажем, как мы можем решить их с помощью
+              композиции.
+            </p>
+          </div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            // openArrowAccord={this.state.openArrowAccord}
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
+          />
+        </div>
+        <div
+          className="CompositionVsInheritance__content--"
+          ref={this.RefOpenCont}
+        ></div>
+        <div className="LiftingStateUp__frame--">CompositionVsInheritance</div>
       </div>
     );
   }
@@ -687,6 +740,7 @@ class ReactDocComponents extends React.Component {
           <ListsAndKeys />
           <Forms />
           <LiftingStateUp />
+          <CompositionVsInheritance />
         </div>
         <div className="ReactDocComponents__frame">
           {/* <div>ReactDoc.js</div> */}

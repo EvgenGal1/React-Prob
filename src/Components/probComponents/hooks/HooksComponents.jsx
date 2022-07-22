@@ -271,7 +271,7 @@ class HooksComponents extends React.Component {
     return (
       <div className="HooksComponents accordion">
         <div
-          className="HooksComponents__description"
+          className="HooksComponents__descript"
           ref={this.RefActivCl}
           onClick={() => {
             this.handleClickRef();

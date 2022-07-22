@@ -28,7 +28,7 @@ class WritFunctTransformClComp extends React.Component {
   render() {
     return (
       <div className="WritFunctTransformClComp">
-        <div className="WritFunctTransformClComp__description">
+        <div className="WritFunctTransformClComp__descript">
           <h3>Написание функций преобразования</h3>
           <p>
             Во-первых, мы напишем две функции для преобразования градусов
@@ -91,7 +91,7 @@ class WritFunctTransformClComp extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="WritFunctTransformClComp__description">
+        <div className="WritFunctTransformClComp__descript">
           <p>
             Эти две функции преобразуют числа. Мы напишем еще одну функцию,
             которая принимает строку <code>temperature</code> и
@@ -198,7 +198,7 @@ class WritFunctTransformClComp extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="WritFunctTransformClComp__description">
+        <div className="WritFunctTransformClComp__descript">
           <p>
             Например, <code>tryConvert('abc', toCelsius)</code> возвращает
             пустую строку а <code>tryConvert('10.22', toFahrenheit)</code>{" "}

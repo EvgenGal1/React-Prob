@@ -54,9 +54,9 @@
       // background: #5ff !important;
     }
     // отступы для div кросме последнего
-    // [class$="__description--"],
+    // [class$="__descript--"],
     // [class$="__content--"] {
-    [class*="__description---"],
+    [class*="__descript---"],
     [class*="__content---"] {
       width: 100%;
       padding: 10px 0px 0px;
@@ -68,11 +68,11 @@
         // padding: 0px 0px 10px;
       }
     }
-    [class*="__description---"]:first-child,
+    [class*="__descript---"]:first-child,
     [class*="__content---"]:first-child {
       // padding: 0px 0px 0px;
     }
-    [class*="__description---"]:last-child,
+    [class*="__descript---"]:last-child,
     [class*="__content---"]:last-child {
       padding: 0px 0px 10px;
     }
@@ -378,7 +378,7 @@
 .ConditionalRenderingClComp--- > div > div
 // [class$="ClComp---"] > div > div
 {
-  // [class$="__description--"] > div,
+  // [class$="__descript--"] > div,
   // [class$="__content--"] > div {
   width: 100%;
   padding: 10px 0px;

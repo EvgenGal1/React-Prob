@@ -286,8 +286,8 @@
   & > div {
     // &:not([class*="__descript"] > h3) {
     & > div[class$="__content"],
-    & > div[class$="__description"] div,
-    & > div[class$="__description"] p,
+    & > div[class$="__descript"] div,
+    & > div[class$="__descript"] p,
     & .temporary {
       // display: none;
     }
@@ -298,8 +298,8 @@
   & > div:link {
     // при
     & > div[class$="__content"],
-    & > div[class$="__description"] div,
-    & > div[class$="__description"] p,
+    & > div[class$="__descript"] div,
+    & > div[class$="__descript"] p,
     & .temporary {
       // display: block;
     }
@@ -309,8 +309,8 @@
 div[class$="__content"] {
   & > div {
     & > div[class$="__content--"],
-    & > div[class$="__description--"] div,
-    & > div[class$="__description--"] p,
+    & > div[class$="__descript--"] div,
+    & > div[class$="__descript--"] p,
     & .temporary {
       // display: none;
     }
@@ -319,8 +319,8 @@ div[class$="__content"] {
 div[class$="__content"] {
   & > div:hover {
     & > div[class$="__content--"],
-    & > div[class$="__description--"] div,
-    & > div[class$="__description--"] p,
+    & > div[class$="__descript--"] div,
+    & > div[class$="__descript--"] p,
     & .temporary {
       // display: block;
     }
@@ -332,7 +332,7 @@ div[class$="__content"] {
   display: none;
 }
 
-.LiftingStateUp__description--::after {
+.LiftingStateUp__descript--::after {
   content: "";
   position: absolute;
   top: 0;

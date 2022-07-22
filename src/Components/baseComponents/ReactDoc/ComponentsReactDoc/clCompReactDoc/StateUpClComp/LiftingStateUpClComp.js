@@ -27,7 +27,7 @@ class LiftingStateUpClComp extends React.Component {
   render() {
     return (
       <div className="LiftingStateUpClComp">
-        <div className="LiftingStateUpClComp__description">
+        <div className="LiftingStateUpClComp__descript">
           <h3>Подъем состояния вверх</h3>
           <p>
             В настоящее время оба <code>TemperatureInput</code> компонента
@@ -297,7 +297,7 @@ class LiftingStateUpClComp extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="LiftingStateUpClComp__description">
+        <div className="LiftingStateUpClComp__descript">
           <p>
             Теперь обратимся к компоненту <code>Calculator</code>.
           </p>
@@ -477,7 +477,7 @@ class LiftingStateUpClComp extends React.Component {
             // scaleNames={this.props.scaleNames}
           />
         </div>
-        <div className="LiftingStateUpClComp__description">
+        <div className="LiftingStateUpClComp__descript">
           <p>
             Теперь независимо от того, какой ввод вы редактируете,
             <code>this.state.temperature</code> и <code>this.state.scale</code>{" "}

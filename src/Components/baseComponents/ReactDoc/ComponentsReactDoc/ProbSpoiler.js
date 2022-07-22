@@ -162,7 +162,7 @@ class SpoilerLiftingStateUp extends React.Component {
   //}
   render() {
     // const nodeList = Array.from(document.querySelectorAll('[selector]'))
-    const spAfter = document.querySelectorAll("[LiftingStateUp__description]");
+    const spAfter = document.querySelectorAll("[LiftingStateUp__descript]");
     const spolerHeaders = Array.from(
       document.querySelectorAll("[data-name='spoiler-title']")
     );
@@ -423,7 +423,7 @@ class SpoilerTitle extends React.Component {
   render() {
     return (
       <div className="SpoilerTitle">
-        <div className="SpoilerTitle__description">SpoilerTitle</div>
+        <div className="SpoilerTitle__descript">SpoilerTitle</div>
         <div className="SpoilerTitle__content"></div>
       </div>
     );
@@ -454,7 +454,7 @@ class Foldable extends React.Component {
   render() {
     return (
       <div className="Foldable">
-        <div className="Foldable__description">Foldable_000</div>
+        <div className="Foldable__descript">Foldable_000</div>
         <div className="Foldable__content">
           <div className="foldable">
             <div className="header" onClick={this.toggleOpen}>
@@ -565,10 +565,10 @@ class SpoilerMy extends React.Component {
     };
     return (
       <div className="SpoilerMy">
-        <div className="SpoilerMy__description">
+        <div className="SpoilerMy__descript">
           <h1 onClick={this.onBtnClickHandler}>SpoilerMy</h1>
         </div>
-        <div className="SpoilerMy__description">
+        <div className="SpoilerMy__descript">
           <h1 onClick={this.onBtnClickHandler222}>SpoilerMy 222</h1>
         </div>
         <div className="SpoilerMy__content">

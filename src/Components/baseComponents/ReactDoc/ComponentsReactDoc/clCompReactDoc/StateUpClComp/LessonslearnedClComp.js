@@ -7,7 +7,7 @@ class LessonslearnedClComp extends React.Component {
   render() {
     return (
       <div className="LessonslearnedClComp">
-        <div className="LessonslearnedClComp__description">
+        <div className="LessonslearnedClComp__descript">
           <h3>Уроки выучены</h3>
           <p>
             Должен быть единый «источник правды» для любых данных, которые

@@ -27,7 +27,7 @@ class AddSecondEntryClComp extends React.Component {
   render() {
     return (
       <div className="AddSecondEntryClComp">
-        <div className="AddSecondEntryClComp__description">
+        <div className="AddSecondEntryClComp__descript">
           <h3>Добавление второго входа</h3>
           <p>
             Наше новое требование состоит в том, что в дополнение к вводу в
@@ -240,7 +240,7 @@ class AddSecondEntryClComp extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="AddSecondEntryClComp__description">
+        <div className="AddSecondEntryClComp__descript">
           <p>
             Теперь мы можем изменить <code>Calculator</code> рендеринг двух
             отдельных температурных входов:
@@ -306,7 +306,7 @@ class AddSecondEntryClComp extends React.Component {
             </code>
           </pre>
         </div>
-        <div className="AddSecondEntryClComp__description">
+        <div className="AddSecondEntryClComp__descript">
           <p>
             Теперь у нас есть два входа, но когда вы вводите температуру в один
             из них, другой не обновляется. Это противоречит нашему требованию:
