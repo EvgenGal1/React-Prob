@@ -21,7 +21,7 @@ import {
 } from "../../../../../../js/examples/ExpPreCode.js";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../../../../js/uiBlock/ArrowAccordion.js";
+import ArrowAccordion from "../../../../../../js/includes/ArrowAccordion.js";
 
 // ОБЩИЕ FN для всех Компонентов ----------------------------------------------------------------------------------
 // переключение кнп. принимает только boolen ?

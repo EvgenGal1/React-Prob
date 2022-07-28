@@ -7,7 +7,7 @@ import "./CommonTrifles.scss";
 // !!! по YT видео RED Group
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 
 // созд хук. в аргум. принимаем клвш.
 const useKeyPress = (keyTarget) => {

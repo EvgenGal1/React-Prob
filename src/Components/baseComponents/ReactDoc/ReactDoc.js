@@ -21,7 +21,7 @@ import FormsClComp from "./ComponentsReactDoc/clCompReactDoc/FormsClComp/FormsС
 import { StateUpClComp } from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 
 // пробы спойлера/аккардиона
 import ProbSpoiler from "./ComponentsReactDoc/ProbSpoiler.js";
@@ -147,7 +147,7 @@ class StateAndLifeCycle extends React.Component {
           <div
             ref={this.RefOpenCont}
             className="StateAndLifeCycle__content--"
-            // style={{ display: "none" }}
+          // style={{ display: "none" }}
           >
             {/* <Clock /> */}
             <StateAndLifeCycleClComp />
@@ -271,7 +271,7 @@ class ConditionalRendering extends React.Component {
           <div
             className="ConditionalRendering__content--"
             ref={this.RefOpenCont}
-            // style={{ display: "none" }}
+          // style={{ display: "none" }}
           >
             <ConditionalRenderingClComp />
           </div>
@@ -356,7 +356,7 @@ class ListsAndKeys extends React.Component {
           // data-name="spoiler-cont"
           ref={this.RefOpenCont}
           className="ListsAndKeys__content--"
-          // style={{ display: "none" }}
+        // style={{ display: "none" }}
         >
           {/* <Lists />
           <Keys /> */}
@@ -427,7 +427,7 @@ class Forms extends React.Component {
         <div
           ref={this.RefOpenCont}
           className="Forms__content--"
-          // style={{ display: "none" }}
+        // style={{ display: "none" }}
         >
           <FormsClComp />
         </div>
@@ -502,7 +502,7 @@ class LiftingStateUp extends React.Component {
         <div
           ref={this.RefOpenCont}
           className="LiftingStateUp__content--"
-          // style={{ display: "none" }}
+        // style={{ display: "none" }}
         >
           <StateUpClComp />
         </div>
@@ -725,7 +725,6 @@ class ReactDocComponents extends React.Component {
             RefOpenCont={this.RefOpenCont}
           />
         </div>
-
         <div className="ReactDocComponents__content" ref={this.RefOpenCont}>
           {/* <Spoiler />
           <SpoilerProb />

@@ -5,7 +5,7 @@ import "./PersistState.scss";
 // !!! https://blog.bitsrc.io/5-methods-to-persisting-state-between-page-reloads-in-react-8fc9abd3fa2f
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/uiBlock/ArrowAccordion.js";
+import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 
 // переменные как проба ----------------------------------------------------------------------------------
 const styles = {
