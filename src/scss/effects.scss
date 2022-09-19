@@ -257,10 +257,10 @@
   //   > div[class*="__content--"]:not([class^="countryflags"], [class^="clComp"], [class^="fnComp"], [class^="Keys"], [class^="Lists"], [class^="Forms"]),
   // div[class$="__content"],
   // div[class$="__content----"]:not([class^="Keys"], [class^="Lists"]) {
-  & > div[class$="__content--"],
   & > div[class$="__content"],
-  & > div[class$="__content----"],
-  & > div[class$="__content---"] {
+  & > div[class$="__content--"],
+  & > div[class$="__content---"],
+  & > div[class$="__content----"] {
     height: 0;
     visibility: hidden;
     opacity: 0;
@@ -268,12 +268,17 @@
     transition: all 0.2s ease-in;
     padding: 0px !important;
     border: 0px solid #ff0000;
+    // max-height: 0;
+    // overflow: hidden;
+    // transition: all 0.5s;
   }
   .openCont {
+    // & div[class$="__content openCont"] {
     visibility: visible;
     opacity: 1;
     transition: all 0.8s ease-in;
   }
+  // & div[class$="__content openDop"] {
   .openDop {
     display: none;
     display: inline-block !important;
