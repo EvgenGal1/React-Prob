@@ -4,12 +4,12 @@ import "./CommonTrifles.scss";
 
 // хук useKeyPress + отладка (нажатие на клвш., отслж., вывод)=======================================================================================
 // при нажатии опред. одиночных клвш. - вывод + шрифт к обозначению. е\и надо чтобы вывод отражался/мигал, то комит/разкомит useKeyPress.useEffect.keyup отрисовка мигает.
-// !!! по YT видео RED Group
+// !!! по YT видео RED Group или https://usehooks.com/useKeyPress/
 
 // подкл. UI блоков
 import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 
-// созд хук. в аргум. принимаем клвш.
+// созд хук. в аргум. принимаем клвш. (https://usehooks.com/useKeyPress/)
 const useKeyPress = (keyTarget) => {
   // состояние для отслеж нажат клвш
   const [isKeyPressed, setIsKeyPressed] = useState(false);
@@ -81,11 +81,17 @@ const Label = ({ value, isBold }) => (
 // https://github.com/Numel2020/useAllKeysPress объед неск клвш в один хук.
 
 // `нажаты клавиши`.
+// function areKeysPressed(keys = [], keysPressed = []) {
+// const AreKeysPressed = (keys = [], keysPressed = []) => {
 function areKeysPressed(keys = [], keysPressed = []) {
+  // Set - множество для хран. уник. значен. Элем. после итерации(перебора) добавл в нов. Set без возврата или пустой. Записали клвш по умолч.
   const required = new Set(keys);
+  // перебор keysPressed(useMultiKeyPress - хз, не понятно)
   for (var elem of keysPressed) {
+    // ~~~ не понятно - в клавш.по умолч удал. эл. из перребора
     required.delete(elem);
   }
+  // возвращ. (true?) если размер 0
   return required.size === 0;
 }
 
@@ -100,7 +106,8 @@ const MultiKeysPressed = ({ keys, keysPressed, emoji }) => {
 };
 
 // `использовать многоклавишное нажатие`.
-// ??? не знаю правильно ли раб. - при зажатых неск опред клвщ. е/и нажать одинарные опред. клвш. то вйдет контент
+// ??? не знаю правильно ли раб. - при зажатых неск опред клвщ. е/и нажать одинарные опред. клвш. то выйдет контент
+// const useMultiKeyPress = () => {
 function useMultiKeyPress() {
   // состояние для отслеж нажат клвш
   const [isKeyPressed, setIsKeyPressed] = useState(new Set([]));
@@ -153,6 +160,7 @@ function CountryFlags() {
   const foxPress = useKeyPress("f");
   // мнг. клвш. может быть ограничение на кол-во нажатых клавиш - https://gaming.stackexchange.com/questions/6669/how-do-i-remove-the-limit-on-pc-keyboard-button-presses
   const keysPressed = useMultiKeyPress();
+  // const hsrfPressed = AreKeysPressed(["q", "w", "e"], keysPressed);
   const hsrfPressed = areKeysPressed(["q", "w", "e"], keysPressed);
 
   return (
@@ -163,6 +171,22 @@ function CountryFlags() {
       <div className="countryflags__content--">
         <div className="countryflags__oneexp---">
           <div className="countryflags__oneexp_description---">
+            <div style={{ fontWeight: "bold", color: "red" }}>
+              Так же разобрать:
+              <p>https://realadmin.ru/coding/keyboard-js.html - просто</p>
+              <p>https://habr.com/ru/post/244041/ - просто</p>
+              <p>
+                https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/hooks/useAllKeysPress.js
+                - Несколько ключей по порядку(на основе прописанного)
+              </p>
+              <p>
+                https://codesandbox.io/s/multiple-keys-jhfdn - Несколько ключей
+              </p>
+              <p>
+                https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
+                - следить в комментах
+              </p>
+            </div>
             <div>
               Прослушивает НАжатии опред. одиночных клвш. - вывод + шрифт к
               обозначению.
@@ -179,6 +203,11 @@ function CountryFlags() {
             {isChinaPressed && <div>🇨🇳</div>}
             {isSouthKoreaPressed && <div>🇰🇷</div>}
             {/* {isAustraliaPressed && <div>🇦🇺</div>} */}
+            {/* <MultiKeysPressed
+              keys={["q", "w", "e"]}
+              keysPressed={keysPressed}
+              emoji="WIN"
+            /> */}
           </div>
         </div>
         <div className="countryflags__twoexp---">
@@ -201,12 +230,14 @@ function CountryFlags() {
               isBold={hsrfPressed}
             />
           </div>
+          Вместе q w e, отдельно h r f
           <div className="countryflags__twoexp_content---">
             {happyPress && "😊"}
             {/* {sadPress && "😢"} */}
             {robotPress && "🤖"}
             {foxPress && "🦊"}
             <br />
+            {/* // ~~~ не понятно - выводит WIN е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji */}
             <MultiKeysPressed
               keys={["q", "w", "e"]}
               keysPressed={keysPressed}
