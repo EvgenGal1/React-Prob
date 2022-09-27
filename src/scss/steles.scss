@@ -27,6 +27,8 @@
 .ReactDocComponents,
 .CommonTrifles,
 .HooksComponents,
+.ReactAccordionBox,
+.ReactAccordionUIComponent,
 .PersistState {
   font-size: inherit;
   // ^ Шрифт меняем ч/з свойство Адаптивный шрифт в @mixin adaptiv-font
@@ -212,6 +214,8 @@
 .ReactDocComponents,
 .CommonTrifles,
 .HooksComponents,
+// .ReactAccordionUIComponent,
+// .ReactAccordionBox ,
 .PersistState {
   // РАМКА С ЛЕВА ----------------------------------------------------------------------------------
   // &::before {

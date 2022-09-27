@@ -8,6 +8,8 @@ import ReactDoc from "./baseComponents/ReactDoc/ReactDoc.js";
 import CommonTrifles from "./probComponents/CommonTrifles/CommonTrifles.js";
 import HooksComponents from "./probComponents/hooks/HooksComponents.jsx";
 import PersistState from "./probComponents/PersistState/PersistState.js";
+import ReactAccordionBox from "./probComponents/Accordions/ReactAccordionBox";
+import ReactAccordionUIComponent from "./probComponents/Accordions/ReactAccordionUIComponent";
 
 // console.log("App 0");
 class GeneralComponents extends React.Component {
@@ -33,6 +35,10 @@ class GeneralComponents extends React.Component {
         <PersistState />
         <hr />
         <HooksComponents />
+        <hr />
+        <ReactAccordionBox />
+        <hr />
+        <ReactAccordionUIComponent />
         <hr />
         {/* 11111 */}
       </div>
