@@ -134,11 +134,11 @@ class PersistState extends React.Component {
       <div className="PersistState accordion">
         <div
           ref={this.RefActivCl}
+          className="PersistState__descript"
           onClick={() => {
             this.handleClickRef();
             this.toggleArrowAccord(this.openArrowAccord);
           }}
-          className="PersistState__descript"
         >
           <h3>Методы сохранения состояния между перезагрузками страницы</h3>
           <div style={{ display: "none" }} ref={this.RefOpenDop}>
