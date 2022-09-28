@@ -1,6 +1,6 @@
 import React from "react";
 // хук useDeferredValue
-import { useDeferredValue } from "react";
+// import { useDeferredValue } from "react";
 
 // данные приходяшие с сервера. используя пустой массив (е/и ничего не пришло) entities  рисуем разметку
 // ??? не раб. не знаю как передать состояние menuActive из fnComp Hooks в др fnComp Comment

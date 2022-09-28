@@ -6,7 +6,7 @@ import "./App.scss";
 import Vid from "./probComponents/VidYT/Vid.js";
 import ReactDoc from "./baseComponents/ReactDoc/ReactDoc.js";
 import CommonTrifles from "./probComponents/CommonTrifles/CommonTrifles.js";
-import HooksComponents from "./probComponents/hooks/HooksComponents.jsx";
+import HooksComponents from "../hooks/HooksComponents";
 import PersistState from "./probComponents/PersistState/PersistState.js";
 import ReactAccordionBox from "./probComponents/Accordions/ReactAccordionBox";
 import ReactAccordionUIComponent from "./probComponents/Accordions/ReactAccordionUIComponent";

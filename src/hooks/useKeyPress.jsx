@@ -2,7 +2,7 @@
 // при нажатии опред. одиночных клвш. - вывод + шрифт к обозначению. е\и надо чтобы вывод отражался/мигал, то комит/разкомит useKeyPress.useEffect.keyup отрисовка мигает.
 // !!! по YT видео RED Group или https://usehooks.com/useKeyPress/
 
-import React, { useState, useEffect } from "react";
+import { /* React, */ useState, useEffect } from "react";
 
 // созд хук. в аргум. принимаем клвш. (https://usehooks.com/useKeyPress/)
 // const useKeyPress = (keyTarget: string) => {

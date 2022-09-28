@@ -11,3 +11,510 @@
     }
   }
 }
+
+//  ----------------------------------------------------------------------------------
+@font-face {
+  font-family: "Segoe UI Local";
+  src: local("Segoe UI Light");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Local";
+  src: local("Segoe UI Semilight");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Local";
+  src: local("Segoe UI");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Local";
+  src: local("Segoe UI Semibold");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Web (West European)";
+  src: url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-light.woff2")
+      format("woff2"),
+    url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-light.woff")
+      format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Web (West European)";
+  src: url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semilight.woff2")
+      format("woff2"),
+    url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semilight.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Web (West European)";
+  src: url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-regular.woff2")
+      format("woff2"),
+    url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Web (West European)";
+  src: url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semibold.woff2")
+      format("woff2"),
+    url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semibold.woff")
+      format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI Web (West European)";
+  src: url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-bold.woff2")
+      format("woff2"),
+    url("https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-bold.woff")
+      format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* the construction of the grid */
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  grid-template-areas:
+    "header header header header"
+    "main main main main"
+    "footer footer footer footer";
+}
+
+/* .flex-wrapper {
+  display: flex;
+} */
+
+/* Area where keybuttons are kept */
+.flex-navigation {
+  // flex: 1;
+  // display: inline-flex;
+  // flex-flow: column wrap;
+  // order: 1;
+  // gap: 12px;
+}
+
+/* Area for displaying output */
+.flex-container {
+  flex: 3;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  order: 2;
+
+  /* Creates empty space */
+}
+.flex-container:after {
+  content: "";
+  flex: 1;
+}
+
+/*
+* Page Layout - HEADER
+*/
+header {
+  grid-area: header;
+  display: flex;
+}
+
+/*
+* spaces 'before' and 'after' help centralise the 'title'
+*/
+header:before {
+  content: "";
+  display: block;
+  flex: 2;
+}
+
+header:after {
+  content: "";
+  flex-grow: 2;
+}
+
+/*positioner for h1 and p header elements*/
+.title {
+  flex: 4;
+  padding-left: 25px;
+}
+
+header h1 {
+  margin-bottom: 0px;
+  font-size: 42px;
+}
+
+header p {
+  margin-top: 5px;
+  font-size: 22px;
+  font-variant: normal;
+  font-weight: 400;
+  color: #727271;
+  margin-right: 129px;
+}
+
+/*
+* Page Layout - MAIN
+*/
+main {
+  grid-area: main;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+footer {
+  grid-area: footer;
+  display: flex;
+  border-top: 1px solid #b2b3b3;
+}
+
+/* Область экрана монитора*/
+.flex-screen {
+  color: rgb(36, 18, 18);
+  font-weight: bold;
+  font-size: 3em;
+  font-size: 18px;
+  text-align: center;
+  flex: 2;
+  padding: 10px 20px;
+}
+
+/*Область связи - нижняя левая рука*/
+.flex-link {
+  /* background: rgb(253, 237, 11); */
+
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-end;
+}
+
+.flex-link h4 a {
+  color: #9d9e9e;
+  font-size: 1.3em;
+  margin-left: 50px;
+  margin-bottom: 24px;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.flex-link h4 a:hover {
+  color: #484b4b;
+
+  text-decoration: underline;
+}
+
+/*User input area - bottom center*/
+.flex-userInput {
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+}
+
+.flex-userInput h5 {
+  font-variant: normal;
+  font-weight: 400;
+  color: #9d9e9e;
+  padding: 15px 0 15px 0;
+  margin: 0.2em;
+}
+
+/* User indicators */
+#output {
+  /* background-color: #898989; */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 25px;
+}
+.output-item {
+  height: 50px;
+  width: 50px;
+  background-color: #d9dada;
+  border-radius: 10px;
+}
+.active {
+  background-color: #24be10;
+}
+
+.combine {
+  background-color: #e78b13;
+}
+
+/* logo and copyright area */
+.flex-copyright {
+  /* background: rgb(85, 66, 87); */
+
+  font-weight: bold;
+  font-size: 1em;
+
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ICONS */
+svg#useAllKeysPress-logo {
+  margin-right: 50px;
+}
+
+svg.keyBoard-key-normal {
+  align-self: flex-end;
+  height: 30px;
+}
+
+svg.keyBoard-key-large {
+  align-self: flex-end;
+  height: 100px;
+}
+svg.plus {
+  align-self: flex-end;
+  width: 25px;
+  height: 25px;
+}
+
+/* monitor display area 
+* add min height so that screen would remain
+* consistant size when 'on' and 'off'
+*/
+.monitor {
+  border-radius: 10px;
+  border: 1px solid #b2b3b3;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 10.6em;
+  box-shadow: 0px 0px 8px -1px rgba(153, 153, 153, 0.62);
+}
+.monitorOff {
+  content: "";
+  border-radius: 10px;
+  border: 2px solid #dbdbdb;
+  background-color: #fff;
+  min-height: 10.6em;
+}
+
+.monitorOff p {
+  margin: 10px;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.monitor-item {
+  flex: 1 0 calc(33.33%);
+}
+
+.letter-item {
+  align-self: flex-end;
+  padding-bottom: 10px;
+}
+
+.letter-item span {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 1.45em;
+}
+
+/**
+only used as display for image
+*/
+.jacksonFiveABC {
+  background-image: url("https://media.giphy.com/media/eiRbQcIn9USZ00DvVv/source.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.jacksonFiveSing {
+  background-image: url("https://media.giphy.com/media/PLMHpIDf7mEQE/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* the default size but will need to change
+* on small on smaller screens 
+*/
+.emoji {
+  font-size: 5em;
+  line-height: 1.7em;
+}
+
+/*
+*Input
+*/
+
+.numelInput {
+  display: flex;
+  padding-bottom: 25px;
+}
+
+.numelInput input {
+  width: 100%;
+  border-radius: 30px;
+  height: 70px;
+  background-color: #efefef;
+  flex: 1 0;
+  padding-left: 25px;
+  font-size: 0.5em;
+  font-weight: 100;
+  border: 0;
+  outline: 0;
+  color: rgb(27, 24, 24);
+}
+
+.numelInput input::placeholder {
+  color: rgb(177, 177, 177);
+}
+
+.numelInput input:hover::placeholder {
+  color: rgb(143, 183, 252);
+}
+
+.numelInput input:focus {
+  /* box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5); */
+  box-shadow: 0 0 0 4px rgba(255, 123, 0, 0.5);
+  outline: 0;
+}
+
+.numelInput input:hover {
+  background-color: rgb(200, 220, 255);
+  color: #2f7ad1;
+  cursor: pointer;
+}
+
+/* On screens that are 700px or less, set the layout as so. */
+@media screen and (max-width: 700px) {
+  .flex-navigation {
+    flex: 1 100%;
+    order: 2;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+    padding-bottom: 10px;
+    gap: 10px;
+  }
+
+  .flex-container {
+    flex: 1 100%;
+    order: 1;
+  }
+
+  .flex-container:after {
+    content: "";
+    flex: 0;
+  }
+
+  footer {
+    flex: 1 100%;
+    flex-flow: column;
+  }
+
+  .flex-link {
+    text-align: center;
+    justify-content: center;
+    order: 5;
+  }
+  .flex-link h4 a {
+    margin-left: 0px;
+  }
+
+  .flex-userInput {
+    order: 3;
+  }
+
+  .flex-copyright {
+    justify-content: center;
+    order: 4;
+  }
+
+  svg#useAllKeysPress-logo {
+    margin-right: 0px;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  header:before {
+    content: "";
+    flex: 0;
+  }
+
+  header:after {
+    content: "";
+    flex-grow: 0;
+  }
+
+  header p {
+    margin-right: 0px;
+  }
+
+  svg.keyBoard-key-normal {
+    align-self: flex-end;
+    width: 60px;
+    height: 60px;
+  }
+
+  svg.keyBoard-key-large {
+    align-self: flex-end;
+    height: 60px;
+  }
+
+  svg.plus {
+    align-self: center;
+    width: 60px;
+    height: 34px;
+  }
+
+  .title {
+    padding-left: 0px;
+  }
+
+  .monitor {
+    min-height: 6.6em;
+  }
+
+  .monitorOff {
+    min-height: 6.55em;
+  }
+
+  .monitorOff p {
+    font-size: 0.5em;
+  }
+
+  .emoji {
+    font-size: 3em;
+    line-height: 2.1em;
+  }
+
+  .numelInput input {
+    height: 40px;
+    font-size: 0.4em;
+  }
+}

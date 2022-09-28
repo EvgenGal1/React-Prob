@@ -1,0 +1,170 @@
+import { useState, useEffect, useRef } from "react";
+
+/**
+ * Пользовательский крючок для обнаружения, когда пользователь нажимает определенную клавишу или коллекцию клавиш
+ * @author Melvyn Phillips (Numel2020)
+ * @link https://github.com/Numel2020
+ * @param {object} -  Пользовательские параметры
+ * @returns {boolean} - Истинно возвращает матч.
+ */
+
+function useAllKeysPress(options) {
+  // убедитесь, что «параметры» это объект
+  if (!options || Object.keys(options).length === 0) {
+    throw new Error(`No object parameter found use: {userKeys: ... } `);
+  }
+
+  // Свойства «Параметры».
+  const userKeys = options.userKeys || null;
+  const order = options.order || false;
+  const ref = options.ref || window;
+
+  // Реагировать крючки.
+  const [keyPress, setKeyPress] = useState(false);
+  const [anyKeyPressed, setAnyKeyPressed] = useState([]); // новое с массивами
+
+  // Ссылка, чтобы определить, была ли уже нажата клавиша.
+  const prevKey = useRef("");
+
+  const settings = {
+    type: null,
+    objRef: ref,
+    downHandler: undefined,
+    upHandler: undefined,
+    useEffect: null,
+    output: null,
+  };
+
+  const setData = (settings) => {
+    // Убедитесь, что у нас есть свойство «пользователя»
+    if (userKeys) {
+      // Проверьте, является ли объект строкой, если это так
+      // «Опция» объект.
+      if (typeof userKeys === "string") {
+        settings.output = keyPress;
+        settings.downHandler = downHandler;
+        settings.upHandler = upHandler;
+        settings.useEffect = Init;
+        settings.type = "STRING";
+      }
+      // Проверьте, является ли объект массивом, если это так, добавьте свойства Multikeys
+      // «Опция» объект.
+      if (Array.isArray(userKeys)) {
+        settings.output = areKeysPressed(userKeys, anyKeyPressed);
+        settings.downHandler = downMultiHandler;
+        settings.upHandler = upMultiHandler;
+        settings.useEffect = Init;
+        settings.type = "ARRAY";
+      }
+      if (Number.isInteger(userKeys)) {
+        throw new Error(
+          `Invalid 'userKeys' property: must be {userKeys:'KEY'} or {userKeys:[KEY, ...]}`
+        );
+      }
+    } else {
+      throw new Error(
+        `Invalid 'userKeys' property: must be {userKeys:'KEY'} or {userKeys:[KEY, ...]}`
+      );
+    }
+
+    return settings;
+  };
+
+  const downHandler = ({ key }) => {
+    // Избежать этой функции, если эти два значения соответствуют
+    // (Доказательство, что клавиша уже нажата).
+    if (prevKey.current === userKeys) return;
+    if (key === userKeys) {
+      setKeyPress(true);
+      // Установите Prevkey для будущей ссылки.
+      prevKey.current = key;
+    }
+  };
+
+  const upHandler = ({ key }) => {
+    if (key === userKeys) {
+      setKeyPress(false);
+      // сбросить ценность предварительного
+      prevKey.current = "";
+    }
+  };
+
+  const downMultiHandler = ({ key, repeat }) => {
+    // Примечание: предотвращает запись двойного ключа в массиве
+    if (repeat) return;
+
+    setAnyKeyPressed((prevState) => [...prevState, key]);
+  };
+
+  const upMultiHandler = ({ key }) => {
+    // Примечание: необходимо снова позвонить в Set State из -за того, как работает состояние.
+    // В противном случае потребуется, чтобы функция спешилась и переоценивает, что в порядке.
+    setAnyKeyPressed((prevState) => [...prevState]);
+    setAnyKeyPressed((prevState) => [
+      ...prevState.filter((item) => item !== key),
+    ]);
+  };
+
+  const areKeysPressed = (keys = [], Pressed = []) => {
+    // Создать новый массив
+    const required = [...keys];
+
+    // Вернуть массив, который не имеет соответствующих предметов
+    // 'Нажал'
+    const anyOrder = required.filter((itemA) => {
+      return !Pressed.some((itemB) => itemB === itemA);
+    });
+
+    // Проверьте, что «клавиши» и «нажатые» соответствуют и что вход
+    // Записи «прессованных» одинаково в порядке.
+    const inOrder =
+      required.length === Pressed.length &&
+      required.every((value, index) => {
+        return value === Pressed[index];
+      });
+
+    let result;
+
+    // Если «Порядок» не был установлен, используйте расчет «А -А -А -ОРУК».
+    // В противном случае используйте расчет «inorder».
+    !order ? (result = anyOrder.length === 0) : (result = inOrder);
+
+    return result;
+  };
+
+  function Init() {
+    useEffect(() => {
+      // Если «ref» после инициализации имеет свойство «текущего», то это относится
+      // к указанному элементу, в этом случае «элемент» должен ссылаться на это.
+      // В противном случае продолжайте состояние по умолчанию (объект окна).
+      const element = ref.current ? ref.current : ref;
+
+      // Добавить слушателей событий
+      element.addEventListener("keydown", settings.downHandler);
+      // element.addEventListener("keyup", settings.upHandler);
+      //console.log('useAllKeyPress - hookAsMount');
+      return () => {
+        element.removeEventListener("keydown", settings.downHandler);
+        element.removeEventListener("keyup", settings.upHandler);
+        //console.log('useAllKeyPress - hookAsUnmount');
+      };
+    }, []); // Пустое массив гарантирует, что эффект работает только на креплении и разоблачении
+  }
+
+  /**
+   * Настройте объект «Настройки».
+   */
+  setData(settings);
+
+  /**
+   * Инициализировать слушателей событий
+   */
+  settings.useEffect();
+
+  /**
+   * Возвращает «логическое» значение с входов клавиатуры
+   */
+  return settings.output;
+}
+
+export { useAllKeysPress };

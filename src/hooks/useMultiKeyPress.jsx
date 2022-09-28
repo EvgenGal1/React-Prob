@@ -38,9 +38,9 @@ function areKeysPressed(keys = [], keysPressed = []) {
 }
 export { areKeysPressed };
 
-// `Нажатие нескольких клавиш`
+// `Многократное нажатие клавиш`
 // ~~~ не понятно - выводит "emoji" е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji
-const MultiKeysPressed = ({ keys, keysPressed, emoji }) => {
+const MultiKeyPress = ({ keys, keysPressed, emoji }) => {
   const arePressed = areKeysPressed(keys, keysPressed);
 
   if (arePressed) {
@@ -48,9 +48,9 @@ const MultiKeysPressed = ({ keys, keysPressed, emoji }) => {
   }
   return null;
 };
-export { MultiKeysPressed };
+export { MultiKeyPress };
 
-// `использовать многоклавишное нажатие`.
+// ХУК `использовать многоклавишное нажатие`.
 // ??? не знаю правильно ли раб. - при зажатых неск опред клвщ. е/и нажать одинарные опред. клвш. то вйдет контент
 // function useMultiKeyPress() {
 const useMultiKeyPress = () => {

@@ -1,7 +1,7 @@
 // Сбор Компонентов кода с hooks
 import React, { useState, useEffect, useTransition } from "react";
 import { Comments } from "./Comment.jsx";
-import Rendering from "../../miniBlocksComponents/Rendering.jsx";
+import Rendering from "../Components/miniBlocksComponents/Rendering.jsx";
 import "./hooks.scss";
 
 // <Конкурентный режим (задержка частей рендеринга)>˅=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=˅
@@ -9,7 +9,7 @@ import "./hooks.scss";
 // Конкурентный режим - при render, до отрисовки, загрузку можно разделять на мелкие (чанки) части (навроде асинхрона) для приостановки загрузки некоторых чанков. определять что сейчас важно/не важно загрузить.
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
+import ArrowAccordion from "../js/includes/ArrowAccordion.js";
 
 // Suspense (`приостановка`) =======================================================================================
 const Suspense = () => {
