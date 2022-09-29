@@ -30,6 +30,7 @@ function areKeysPressed(
 ) {
   // console.log("keysPressed : " + keysPressed);
   // console.log("keysPressed.length : " + keysPressed.length);
+
   // Коллекция клвш по умолч. Set - множество для хран. уник. значен. Элем. после итерации(перебора) добавл в нов. Set без возврата или пустой.
   const required = new Set(keys);
   // перебор нажатых клавиш. keysPressed ч/з хук useMultiKeyPress
@@ -87,7 +88,7 @@ const useMultiKeyPress = () => {
     // console.log("Mult setIsKeyPressed 1: " + setIsKeyPressed);
     window.addEventListener("keydown", downHandler);
     // отрисовка мигает т.к. есть слушатель отжатия. е/и убрать то будет нажата. t|b оставить то
-    // window.addEventListener("keyup", upHandler);
+    window.addEventListener("keyup", upHandler);
     // возвращ return для откл от слушателей
     return () => {
       window.removeEventListener("keydown", downHandler);

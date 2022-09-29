@@ -77,11 +77,6 @@ function OneKeysPress() {
         {isChinaPressed && <div>🇨🇳</div>}
         {isSouthKoreaPressed && <div>🇰🇷</div>}
         {/* {isAustraliaPressed && <div>🇦🇺</div>} */}
-        <MultiKeyPress
-          keys={["q", "w", "e"]}
-          keysPressed={keysPressed}
-          emoji="WIN"
-        />
       </div>
     </div>
   );
@@ -96,6 +91,9 @@ function MultiKeysPress() {
   // const sadPress = useKeyPress("v");
   const robotPress = useKeyPress("r");
   const foxPress = useKeyPress("f");
+  // не раб
+  // const keys = ["h", "s", "r", "f"];
+  // const [happyPress, /* sadPress, */ robotPress, foxPress] = useKeyPress(keys);
 
   const keysPressed = useMultiKeyPress();
   // const hsrfPressed = AreKeysPressed(["q", "w", "e"], keysPressed);
@@ -125,7 +123,7 @@ function MultiKeysPress() {
         <div className="countryflags__twoexp---">
           <div className="countryflags__twoexp_description---">
             {/* визуализация выделением */}
-            <Label value="Нажмите одиночные клавиши: " />
+            {/* <Label value="Нажмите одиночные клавиши: " />
             <Label value="h" isBold={happyPress} />
             <Label value="r" isBold={robotPress} />
             <Label value="f" isBold={foxPress} />
@@ -133,20 +131,26 @@ function MultiKeysPress() {
             <Label
               value="Нажмите клавиши вместе, потом одиночные: q + w + e"
               isBold={hsrfPressed}
-            />
+            /> */}
           </div>
           Вместе q w e, отдельно h r f
           <div className="countryflags__twoexp_content---">
-            {happyPress && "😊"}
             {/* {sadPress && "😢"} */}
+            {/* {happyPress && "😊"}
             {robotPress && "🤖"}
-            {foxPress && "🦊"}
+            {foxPress && "🦊"} */}
+            {happyPress && "h"}
+            {robotPress && "r"}
+            {foxPress && "f"}
+            {/* {(foxPress || happyPress || robotPress) && "l"} */}
             <br />
             {/* // ~~~ не понятно - выводит WIN е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji */}
             <MultiKeyPress
               keys={["q", "w", "e"]}
               keysPressed={keysPressed}
-              emoji="WIN"
+              // emoji="WIN"
+              // emoji="WINasd"
+              stras="a"
             />
             {/* <useAllKeysPress
               // userKeys: ["a", "b", "c"],
@@ -179,7 +183,7 @@ function AllKeysPress() {
   const nkeyPress = useAllKeysPress({ userKeys: "n" });
   // const ukeyPress = useAllKeysPress({ userKeys: "u" });
 
-  // массив букв после хука
+  // массив букв после хука (возвращ true е/и переданные и нажатые равны)
   const combinePress = useAllKeysPress({
     // userKeys: ["a", "b", "c"],
     // userKeys: ["d", "o", "p", "m", "e", "n", "u"],
@@ -203,7 +207,7 @@ function AllKeysPress() {
 
   // СТАТУС. `любая нажатая клавиша` // ~~~ не понятно - пров. массив объ. и возвращ. true если есть input?
   const anyKeyPressed = inputs.some((item) => item.input === true);
-  // some - `немного` опред., возвращает ли fn callback - true, для эл. массива.
+  // some - `немного`. опред., возвращает ли fn callback - true, для эл. массива.
 
   // здесь false
   // console.log("anyKeyPressed : " + anyKeyPressed);
@@ -350,8 +354,8 @@ function AllKeysPress() {
         <p>выведение блоков по условим/операторам</p>
         <p>временно блокировал addEventListener("keyup" в хуке.</p>
         <p>
-          ч/з combinePress выводит по правильной последовательности, но сброс
-          после любых клавиш
+          ч/з <span>combinePress</span> выводит по правильной
+          последовательности, но сброс после любых клавиш
         </p>
         <p>
           ч/з anyKeyPressed (дложно быть true, но после объявления в cg - false.
@@ -362,20 +366,29 @@ function AllKeysPress() {
           перечитать/попробовать -
           https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
         </p>
+        <p style={{ fontWeight: "bold" }}>
+          попробовать подсчёт количества срабатываний combinePress (при вкл.
+          слушателе keyup). Т.е. на 1 доп state true, при 2 false и т.д.
+        </p>
         <br />
 
         <span>["d", "o", "p", "m", "n"]</span>
         <div>
-          {combinePress && (
-            <span style={{ marginRight: "5px" }}>На combinePress</span>
+          На combinePress
+          {combinePress ? (
+            <span> - НОРМ</span>
+          ) : (
+            <span style={{ color: "#8d0000" }}> - НЕ норм</span>
           )}
-          {combinePress ? <>- НОРМ</> : <span>НЕ норм combinePress</span>}
+          {/* {combinePress && <span style={{ marginRight: "5px" }}>{" "}- НОРМ</span>} */}
         </div>
         <div>
-          {anyKeyPressed && (
-            <span style={{ marginRight: "5px" }}>На anyKeyPressed</span>
+          На anyKeyPressed
+          {anyKeyPressed ? (
+            <span> - НОРМ</span>
+          ) : (
+            <span style={{ color: "#8b0000" }}> - НЕ норм</span>
           )}
-          {anyKeyPressed ? <>- НОРМ</> : <span>НЕ норм anyKeyPressed</span>}
         </div>
       </div>
     </div>
@@ -524,79 +537,100 @@ function ProbKeyFnComp() {
       }
       if (key1 && key2 && key3 && args.length === mass.length) {
         // func();
+        // console.log("1 : " + 1);
         setKeyCombin(true);
+        // document.removeEventListener("keydown", keyDown);
+        // document.removeEventListener("keyup", keyUp);
         key1 = null;
         key2 = null;
         key3 = null;
         mass = [];
+        // document.removeEventListener("keydown", keyDown);
+        // document.removeEventListener("keyup", keyUp);
+        // console.log("2 : " + 2);
       }
     }
 
     function keyUp(event) {
+      // console.log("3 : " + 3);
+      // document.removeEventListener("keydown", keyDown);
+      // document.removeEventListener("keyup", keyUp);
+      // console.log('key1 1: ' + key1);
       if (event.code !== code1 && event.code !== code2 && event.code !== code3)
         return;
+      // console.log('key1 2: ' + key1);
       key1 = null;
+      // console.log('key1 3: ' + key1);
       key2 = null;
       key3 = null;
       mass = [];
+      // console.log("4 : " + 4);
+      // document.removeEventListener("keydown", keyDown);
+      // document.removeEventListener("keyup", keyUp);
     }
   }
   runOnKeys3(() => alert("Привет!"), "KeyQ", "Period", "Comma"); // (сочетание - Q><)
+
+  // 4 ----------------------------------------------------------------------------------
+  const [keyWebDewN, setKeyWebDewN] = useState(false);
+  const [keyWebDewM, setKeyWebDewM] = useState(false);
+  function keyPressWebDew() {
+    let flag = false;
+    document.addEventListener("keydown", function clicked(event) {
+      if (event.code === "AltLeft") flag = true;
+      if (event.code === "KeyN" && flag) {
+        flag = false;
+        // console.log("work 1");
+        setKeyWebDewN(true);
+        // document.removeEventListener("keydown", clicked, false);
+      }
+    });
+
+    // попробовать e.shiftKey
+    document.addEventListener("keydown", function clicked2(event) {
+      // if (event.code === "AltLeft") {
+      if (event.altKey) {
+        document.addEventListener("keyup", function clicked2(event) {
+          // if (event.code === "KeyN") {
+          if (event.code === "KeyM") {
+            // ~~~ не понятно - в консоле по 5-10 вызовов повторных. хз отчего
+            // console.log("work 2");
+            setKeyWebDewM(true);
+          } else {
+            document.removeEventListener("keydown", clicked2, false);
+          }
+        });
+      }
+    });
+  }
+  keyPressWebDew();
+  // 5 ---------------------------------------------------------------------------------
+
+  // 6 ----------------------------------------------------------------------------------
+  const [keyWebDewArgs, setKeyWebDewArgs] = useState(false);
+  function runOnKeysArgs(func, ...args) {
+    let arr = [];
+    document.addEventListener("keyup", () => {
+      arr = [];
+    });
+    document.addEventListener("keydown", (event) => {
+      arr.push(event.code);
+      if (args.length === arr.length) {
+        for (let item of args) {
+          if (!arr.includes(item)) return;
+        }
+        // func();
+        setKeyWebDewArgs(true);
+        arr = [];
+      }
+    });
+  }
+  runOnKeysArgs(() => alert("Привет 7!"), "KeyQ", "KeyD");
+  //  ----------------------------------------------------------------------------------
+  //  ----------------------------------------------------------------------------------
   // document.onkeydown = function (event) {
   //   console.log(event);
   // };
-
-  // 4 ----------------------------------------------------------------------------------
-  let flag = false;
-  document.addEventListener("keydown", function clicked(event) {
-    if (event.code === "AltLeft") flag = true;
-    if (event.code === "KeyN" && flag) {
-      flag = false;
-      console.log("work 1");
-      // document.removeEventListener("keydown", clicked, false);
-    }
-  });
-
-  // попробовать e.shiftKey
-  document.addEventListener("keydown", function clicked2(event) {
-    // if (event.code === "AltLeft") {
-    if (event.altKey) {
-      document.addEventListener("keyup", function clicked2(event) {
-        // if (event.code === "KeyN") {
-        if (event.code === "KeyM") {
-          // ~~~ не понятно - в консоле по 5-10 вызовов повторных. хз отчего
-          console.log("work 2");
-        } else {
-          document.removeEventListener("keydown", clicked2, false);
-        }
-      });
-    }
-  });
-  // 5 ---------------------------------------------------------------------------------
-  document.addEventListener("keydown", function Prob2(e) {
-    //SHIFT + something
-    if (e.shiftKey) {
-      switch (e.code) {
-        case "KeyS":
-          // console.log('Shift + S');
-          alert("Shift + S");
-          break;
-      }
-    }
-
-    //CTRL + SHIFT + something
-    if (e.ctrlKey && e.shiftKey) {
-      switch (e.code) {
-        case "KeyS":
-          // console.log('CTRL + Shift + S');
-          alert("CTRL + Shift + S");
-          break;
-      }
-    }
-  });
-  //  ----------------------------------------------------------------------------------
-  //  ----------------------------------------------------------------------------------
-  //  ----------------------------------------------------------------------------------
   return (
     <div
       className="ProbKeyFnComp"
@@ -609,7 +643,7 @@ function ProbKeyFnComp() {
           вкл не задерживает состояние. при откл addEventListener("keyup",
           handleKeyUp) повторно клвш не срабатывают. никакой последовательности
         </p>
-        {backdropOpen && <p>Готово</p>}
+        Результат - {backdropOpen && <span>Готово</span>}
         <div></div>
       </div>
       <div className="2">
@@ -617,20 +651,37 @@ function ProbKeyFnComp() {
           Вывод блок по Q и S или Q и A. Нет послед-ти. Код на Set и Arrow.
           Проверка длины только у Arrow
         </p>
-        <div>{keySet && <p>Set</p>}</div>
-        <div>{keyArrow && <p>Arrow</p>}</div>
+        <div>Результат - {keySet && <span>Set</span>}</div>
+        <div>Результат - {keyArrow && <span>Arrow</span>}</div>
       </div>
       <div className="3" style={{ backgroundColor: "rgb(175 127 127)" }}>
         <p>
           Вывод блок по "Q", "Period", "Comma" (q., | йюб). Последовательность!
-          Проверка длины.
+          Проверка длины не очень точная.
         </p>
-        <div>{keyCombin && <p>йюб</p>}</div>
+        <p style={{ display: "none" }}>
+          С форума - https://learn.javascript.ru/keyboard-events
+          <br />
+          Код - https://plnkr.co/edit/O0Q4J2xsJckoA3el?preview
+        </p>
+        <div>Результат - {keyCombin && <span>йюб</span>}</div>
       </div>
       <div className="4">
-        <p></p>
+        <p>ALt + N и Alt + M</p>
+        <p style={{ display: "none" }}>
+          По видео - https://www.youtube.com/watch?v=wMiRpTC513M&t=141s
+        </p>
+        <div>Результат - {keyWebDewN && <span>ALt + N</span>}</div>
+        <div>Результат - {keyWebDewM && <span>ALt + M</span>}</div>
       </div>
       <div className="5" style={{ backgroundColor: "rgb(175 127 127)" }}>
+        <p>Мой будущий хук useMyKeyPress</p>
+      </div>
+      <div className="6">
+        <p>Вывод блок по "Q", "D". Нет Послед. Проверка длины.</p>
+        <div>Результат - {keyWebDewArgs && <span>QD</span>}</div>
+      </div>
+      <div className="7" style={{ backgroundColor: "rgb(175 127 127)" }}>
         <p></p>
       </div>
     </div>

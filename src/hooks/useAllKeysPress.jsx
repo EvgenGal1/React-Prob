@@ -1,3 +1,4 @@
+// !!! https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/App.js
 import { useState, useEffect, useRef } from "react";
 
 function useAllKeysPress(options) {
@@ -16,6 +17,7 @@ function useAllKeysPress(options) {
   // Реагировать крючки.
   const [keyPress, setKeyPress] = useState(false);
   const [anyKeyPressed, setAnyKeyPressed] = useState([]); // новое с массивами
+  // console.log("anyKeyPressed : " + anyKeyPressed); // нажимаемые клвш
 
   // Ссылка, чтобы определить, была ли уже нажата клавиша.
   const prevKey = useRef("");
@@ -30,6 +32,7 @@ function useAllKeysPress(options) {
   };
 
   const setData = (settings) => {
+    // console.log("3 : " + 3);
     // Убедитесь, что у нас есть свойство «пользователя»
     if (userKeys) {
       // Проверьте, является ли объект строкой, если это так
@@ -65,13 +68,23 @@ function useAllKeysPress(options) {
   };
 
   const downHandler = ({ key }) => {
+    // console.log("key 1: " + key);
     // Избежать этой функции, если эти два значения соответствуют
     // (Доказательство, что клавиша уже нажата).
+    // console.log("key : " + key);
+    // console.log("1 : " + 1);
     if (prevKey.current === userKeys) return;
+    // console.log("2 : " + 2);
+    // console.log("revKey  : " + prevKey);
+    // console.log("revKey.current  : " + prevKey.current);
+    // console.log("3 : " + 3);
     if (key === userKeys) {
+      // console.log("4 : " + 4);
+      // console.log("userKeys : " + userKeys);
       setKeyPress(true);
       // Установите Prevkey для будущей ссылки.
       prevKey.current = key;
+      // console.log("key 2: " + key);
     }
   };
 
@@ -84,6 +97,7 @@ function useAllKeysPress(options) {
   };
 
   const downMultiHandler = ({ key, repeat }) => {
+    // console.log("repeat : " + repeat);
     // Примечание: предотвращает запись двойного ключа в массиве
     if (repeat) return;
 
@@ -95,6 +109,7 @@ function useAllKeysPress(options) {
     // В противном случае потребуется, чтобы функция спешилась и переоценивает, что в порядке.
     setAnyKeyPressed((prevState) => [...prevState]);
     setAnyKeyPressed((prevState) => [
+      // console.log("prevState : " + prevState),
       ...prevState.filter((item) => item !== key),
     ]);
   };
@@ -102,22 +117,21 @@ function useAllKeysPress(options) {
   // `нажаты клавиши`
   const areKeysPressed = (
     keys = [], // массив клвш или 0 ?
-    Pressed = [] // сост ? anyKeyPressed `любая нажатая клавиша`
+    Pressed = [] // сост ? anyKeyPressed `любая нажатая клавиша`. в консоле - нажимаемые клвш
   ) => {
     // Создать новый массив
     const required = [...keys];
 
-    // Вернуть массив, который не имеет соответствующих предметов
-    // 'Нажал'
+    // любой порядок'/ Вернуть массив, который не имеет соответствующих предметов
     const anyOrder = required.filter((itemA) => {
       return !Pressed.some((itemB) => itemB === itemA);
     });
 
-    // Проверьте, что «клавиши» и «нажатые» соответствуют и что вход
-    // Записи «прессованных» одинаково в порядке.
+    // `порядок`. Проверяем, совпадают ли 'keys' и 'Pressed' и что входные записи для 'Pressed' идентичны по порядку.
     const inOrder =
       required.length === Pressed.length &&
       required.every((value, index) => {
+        // console.log("=== : ");
         return value === Pressed[index];
       });
 
@@ -126,12 +140,14 @@ function useAllKeysPress(options) {
     // Если «Порядок» не был установлен, используйте расчет «А -А -А -ОРУК».
     // В противном случае используйте расчет «inorder».
     !order ? (result = anyOrder.length === 0) : (result = inOrder);
-
+    // console.log("result : " + result);
     return result;
   };
 
   function Init() {
+    // console.log("1 : " + 1);
     useEffect(() => {
+      // console.log("2 : " + 2);
       // Если «ref» после инициализации имеет свойство «текущего», то это относится
       // к указанному элементу, в этом случае «элемент» должен ссылаться на это.
       // В противном случае продолжайте состояние по умолчанию (объект окна).

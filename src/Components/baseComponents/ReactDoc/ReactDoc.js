@@ -240,52 +240,50 @@ class ConditionalRendering extends React.Component {
 
   render() {
     return (
-      console.log("openAA CondRend state: " + this.state.openArrowAccord),
-      (
-        <div className="ConditionalRendering-- accordion">
-          <div className="ConditionalRendering__descript--">
-            <h3
-              onClick={() => {
-                this.handleClickRef();
-                // this.toggleArrowAccord(this.openArrowAccord);
-              }}
-              ref={this.RefActivCl}
-            >
-              Условный рендеринг
-            </h3>
-            <div ref={this.RefOpenDop} style={{ display: "none" }}>
-              Бывает нужно объяснить React, как состояние влияет на то, какие
-              компоненты требуется скрыть, а какие — отрендерить, и как именно.
-              В таких ситуациях используйте операторы (<code>if else</code>,{" "}
-              <code>&&</code>) JavaScript и/или тернарные операторы (
-              <code>if...else</code>, <code>condition ? true : false</code>).
-            </div>{" "}
-            <ArrowAccordion
-              RefActivCl={this.RefActivCl}
-              RefOpenDop={this.RefOpenDop}
-              RefOpenCont={this.RefOpenCont}
-            />
-          </div>
-          <div
-            className="ConditionalRendering__content--"
-            ref={this.RefOpenCont}
-            // style={{ display: "none" }}
+      // console.log("openAA CondRend state: " + this.state.openArrowAccord),
+      <div className="ConditionalRendering-- accordion">
+        <div className="ConditionalRendering__descript--">
+          <h3
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
           >
-            <ConditionalRenderingClComp />
-          </div>
-          <div
-            className="ConditionalRendering__descript--"
-            // ref={this.RefOpenDop}
-            style={{ display: "none" }}
-          >
-            Подробнее по ссылке{" "}
-            <code>https://reactjs.org/docs/ConditionalRendering.html</code>
-          </div>
-          <div className="ConditionalRendering__frame--">
-            ConditionalRendering
-          </div>
+            Условный рендеринг
+          </h3>
+          <div ref={this.RefOpenDop} style={{ display: "none" }}>
+            Бывает нужно объяснить React, как состояние влияет на то, какие
+            компоненты требуется скрыть, а какие — отрендерить, и как именно. В
+            таких ситуациях используйте операторы (<code>if else</code>,{" "}
+            <code>&&</code>) JavaScript и/или тернарные операторы (
+            <code>if...else</code>, <code>condition ? true : false</code>).
+          </div>{" "}
+          <ArrowAccordion
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
+          />
         </div>
-      )
+        <div
+          className="ConditionalRendering__content--"
+          ref={this.RefOpenCont}
+          // style={{ display: "none" }}
+        >
+          <ConditionalRenderingClComp />
+        </div>
+        <div
+          className="ConditionalRendering__descript--"
+          // ref={this.RefOpenDop}
+          style={{ display: "none" }}
+        >
+          Подробнее по ссылке{" "}
+          <code>https://reactjs.org/docs/ConditionalRendering.html</code>
+        </div>
+        <div className="ConditionalRendering__frame--">
+          ConditionalRendering
+        </div>
+      </div>
     );
   }
 }
