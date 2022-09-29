@@ -28,8 +28,8 @@ function areKeysPressed(
   keys = [], // массив переданых клвш.
   keysPressed = [] // массив нажатых клвш.
 ) {
-  console.log("keysPressed : " + keysPressed);
-  console.log("keysPressed.length : " + keysPressed.length);
+  // console.log("keysPressed : " + keysPressed);
+  // console.log("keysPressed.length : " + keysPressed.length);
   // Коллекция клвш по умолч. Set - множество для хран. уник. значен. Элем. после итерации(перебора) добавл в нов. Set без возврата или пустой.
   const required = new Set(keys);
   // перебор нажатых клавиш. keysPressed ч/з хук useMultiKeyPress
@@ -60,9 +60,8 @@ export { MultiKeyPress };
 const useMultiKeyPress = () => {
   // состояние для отслеж нажат клвш
   const [isKeyPressed, setIsKeyPressed] = useState(new Set([]));
-  console.log("Set : " + Set);
-  console.log("Set.length : " + Set.size);
-  console.log("1 : " + 1);
+  // console.log("Set : " + Set);
+  // console.log("Set.length : " + Set.size);
   // function downHandler({ key }): void {
   function downHandler({ key }) {
     // console.log("key Mult Down 0: " + key);
@@ -70,7 +69,7 @@ const useMultiKeyPress = () => {
     // `установить нажатую клавишу``клавиши нажаты``добавить``ключ`
     setIsKeyPressed(isKeyPressed.add(key));
 
-    console.log("Set.length 1: " + Set.size);
+    // console.log("Set.length 1: " + Set.size);
     // console.log("key Mult Down 1: " + key);
   }
 

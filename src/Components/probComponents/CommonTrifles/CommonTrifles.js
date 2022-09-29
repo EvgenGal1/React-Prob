@@ -166,13 +166,7 @@ function MultiKeysPress() {
 
 // последовательное нажатие нескольких клавиш ----------------------------------------------------------------------------------
 // !!! https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/App.js
-// class MultiKeysPressedSequen___QWER extends React.Component {
 function AllKeysPress() {
-  //constructor(props) {
-  //super(props);
-  //this.state = {  }
-  //}
-
   // перем бук после хука
   // const akeyPress = useAllKeysPress({ userKeys: "a" });
   // const bkeyPress = useAllKeysPress({ userKeys: "b" });
@@ -214,7 +208,114 @@ function AllKeysPress() {
   // здесь false
   // console.log("anyKeyPressed : " + anyKeyPressed);
 
-  // render() {
+  // доп визуал
+  // `Используйте всю клавиатуру`. // доп. визуал настройка с выводами заполн. Букв и Плюсов. можно без подсказок
+  function UseAllKeypad({
+    inputs, // вход.данн. масс.объ.
+    type = "single", // передаётся multi
+  }) {
+    // ~~~ не понятно - singleKeyList не нужен ? Клавиши есть в Fragment
+    // Клавиши. `единый список ключей` - перебор, отправка props, возвр comp.svg Клавиши(цвет. по услов.)
+    const singleKeyList = inputs.map((item, index) => (
+      <Key name={item.key} item={item.input} key={index} />
+    ));
+
+    // Псюс в перем. `Мн.функ-ый список` - перебор, выбор след. плюса, возвр. comp.svg Плюс(цвет. по услов.)
+    const multiKeyList = inputs.map((item, index) => {
+      let plusItem = null;
+      // е/и index не равен длине массива -1
+      if (index !== inputs.length - 1) {
+        plusItem = <Plus item={item.input} />;
+      }
+
+      return (
+        <React.Fragment key={index}>
+          {/* Клавиши. // ~~~ не понятно - singleKeyList не нужен ? */}
+          <Key name={item.key} item={item.input} key={index} />
+          {/* UseAllKeypad 0 */}
+          {plusItem}
+          {/* UseAllKeypad 1 */}
+        </React.Fragment>
+      );
+    });
+
+    let selectedList = null;
+
+    // проверка на type. передаётся multi // ~~~ не понятно - singleKeyList не нужен ?
+    if (type === "single") {
+      selectedList = singleKeyList;
+    }
+
+    // проверка на type. передаётся multi
+    if (type === "multi") {
+      selectedList = multiKeyList;
+    }
+
+    return <div className="flex-navigation">{selectedList}</div>;
+  }
+
+  // доп. визуал настройка с выводами доп.букв, анимацией, смс. можно проще по усл.рендер
+  function Screen({
+    activate, // статус (true ?)
+    input, // вход.данн. (масс.объ.)
+    message = "",
+    combine = false,
+    type = "single", // передаётся jackson
+    // children, // ? хз зачем.2
+  }) {
+    let selectedList = null;
+    let className = "";
+    let monitorSatus = "";
+
+    // ? хз зачем.1 Вывод эможди?
+    // const singleInputItems = input.map(
+    //   (item, index) => item.input && <Emoji symbol={item.symbol} key={index} />
+    // );
+
+    // Доп.вывод букв ч/з Letter по условию | пример обнаружения множества ключей
+    const jacksonInputItems = input.map(
+      // true - е/и в перебраном item из props input (inputs[input]) есть значение (пр. akeyPress) то передача props в Letter
+      (item, index) => item.input && <Letter key={index} text={item.key} />
+    );
+
+    // е/и props type = single, то .monitorOff(ни одна из букв)
+    if (type === "single") {
+      // selectedList = singleInputItems; // ? хз зачем.1
+      className = "monitorOff";
+    }
+
+    // Счас jackson настр. по умолч. Е/и props type = jackson(умолч.), то .monitorOff(ни одна из букв) и .jacksonFiveSing(изо 1)
+    if (type === "jackson") {
+      selectedList = jacksonInputItems;
+      className = "monitorOff jacksonFiveSing";
+      monitorSatus = "jacksonFiveSing";
+    }
+
+    return (
+      <div className="flex-container">
+        <div className="flex-screen">
+          {/* {children} */} {/* // ? хз зачем.2 */}
+          {/* е/и есть props active(true в эл. массива), вывод div по классам с Буквами(1-3 букв) или СМС (0 букв) */}
+          {activate ? (
+            <div
+              className={
+                // е/и props `комбинировать` есть(ч/з хук Mul...Sequen) то .monitor(все букв) .jacksonFiveABC(смена на изо2)
+                combine ? "monitor jacksonFiveABC" : `monitor ${monitorSatus}`
+              }
+            >
+              {/* вывод.доп букв */}
+              {selectedList}
+            </div>
+          ) : (
+            <div className={className}>
+              <p>{message}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="AllKeysPress">
       <div className="AllKeysPress__descript">
@@ -264,157 +365,27 @@ function AllKeysPress() {
         <br />
 
         <span>["d", "o", "p", "m", "n"]</span>
-        {combinePress && <p>Норм combinePress</p>}
-        {combinePress ? (
-          <p>НОРМ 2 combinePress</p>
-        ) : (
-          <p>НЕ норм combinePress</p>
-        )}
-        {anyKeyPressed && <p>Норм anyKeyPressed</p>}
-        {anyKeyPressed ? (
-          <p>НОРМ 2 anyKeyPressed</p>
-        ) : (
-          <p>НЕ норм anyKeyPressed</p>
-        )}
+        <div>
+          {combinePress && (
+            <span style={{ marginRight: "5px" }}>На combinePress</span>
+          )}
+          {combinePress ? <>- НОРМ</> : <span>НЕ норм combinePress</span>}
+        </div>
+        <div>
+          {anyKeyPressed && (
+            <span style={{ marginRight: "5px" }}>На anyKeyPressed</span>
+          )}
+          {anyKeyPressed ? <>- НОРМ</> : <span>НЕ норм anyKeyPressed</span>}
+        </div>
       </div>
     </div>
   );
   // }
 }
 
-// доп визуал к AllKeysPress -----------------------------------------------------------------
-// `Используйте всю клавиатуру`. // доп. визуал настройка с выводами заполн. Букв и Плюсов. можно без подсказок
-function UseAllKeypad({
-  inputs, // вход.данн. масс.объ.
-  type = "single", // передаётся multi
-}) {
-  // ~~~ не понятно - singleKeyList не нужен ? Клавиши есть в Fragment
-  // Клавиши. `единый список ключей` - перебор, отправка props, возвр comp.svg Клавиши(цвет. по услов.)
-  const singleKeyList = inputs.map((item, index) => (
-    <Key name={item.key} item={item.input} key={index} />
-  ));
-
-  // Псюс в перем. `Мн.функ-ый список` - перебор, выбор след. плюса, возвр. comp.svg Плюс(цвет. по услов.)
-  const multiKeyList = inputs.map((item, index) => {
-    let plusItem = null;
-    // е/и index не равен длине массива -1
-    if (index !== inputs.length - 1) {
-      plusItem = <Plus item={item.input} />;
-    }
-
-    return (
-      <React.Fragment key={index}>
-        {/* Клавиши. // ~~~ не понятно - singleKeyList не нужен ? */}
-        <Key name={item.key} item={item.input} key={index} />
-        {/* UseAllKeypad 0 */}
-        {plusItem}
-        {/* UseAllKeypad 1 */}
-      </React.Fragment>
-    );
-  });
-
-  let selectedList = null;
-
-  // проверка на type. передаётся multi // ~~~ не понятно - singleKeyList не нужен ?
-  if (type === "single") {
-    selectedList = singleKeyList;
-  }
-
-  // проверка на type. передаётся multi
-  if (type === "multi") {
-    selectedList = multiKeyList;
-  }
-
-  return <div className="flex-navigation">{selectedList}</div>;
-}
-
-// доп. визуал настройка с выводами доп.букв, анимацией, смс. можно проще по усл.рендер
-function Screen({
-  activate, // статус (true ?)
-  input, // вход.данн. (масс.объ.)
-  message = "",
-  combine = false,
-  type = "single", // передаётся jackson
-  // children, // ? хз зачем.2
-}) {
-  let selectedList = null;
-  let className = "";
-  let monitorSatus = "";
-
-  // ? хз зачем.1 Вывод эможди?
-  // const singleInputItems = input.map(
-  //   (item, index) => item.input && <Emoji symbol={item.symbol} key={index} />
-  // );
-
-  // Доп.вывод букв ч/з Letter по условию | пример обнаружения множества ключей
-  const jacksonInputItems = input.map(
-    // true - е/и в перебраном item из props input (inputs[input]) есть значение (пр. akeyPress) то передача props в Letter
-    (item, index) => item.input && <Letter key={index} text={item.key} />
-  );
-
-  // е/и props type = single, то .monitorOff(ни одна из букв)
-  if (type === "single") {
-    // selectedList = singleInputItems; // ? хз зачем.1
-    className = "monitorOff";
-  }
-
-  // Счас jackson настр. по умолч. Е/и props type = jackson(умолч.), то .monitorOff(ни одна из букв) и .jacksonFiveSing(изо 1)
-  if (type === "jackson") {
-    selectedList = jacksonInputItems;
-    className = "monitorOff jacksonFiveSing";
-    monitorSatus = "jacksonFiveSing";
-  }
-
-  return (
-    <div className="flex-container">
-      <div className="flex-screen">
-        {/* {children} */} {/* // ? хз зачем.2 */}
-        {/* е/и есть props active(true в эл. массива), вывод div по классам с Буквами(1-3 букв) или СМС (0 букв) */}
-        {activate ? (
-          <div
-            className={
-              // е/и props `комбинировать` есть(ч/з хук Mul...Sequen) то .monitor(все букв) .jacksonFiveABC(смена на изо2)
-              combine ? "monitor jacksonFiveABC" : `monitor ${monitorSatus}`
-            }
-          >
-            {/* вывод.доп букв */}
-            {selectedList}
-          </div>
-        ) : (
-          <div className={className}>
-            <p>{message}</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-// доп визуал к AllKeysPress -----------------------------------------------------------------
-
 // Prob2();
 // PROBKEY ----------------------------------------------------------------------------------
 function ProbKeyFnComp() {
-  document.addEventListener("keydown", function Prob2(e) {
-    //SHIFT + something
-    if (e.shiftKey) {
-      switch (e.code) {
-        case "KeyS":
-          // console.log('Shift + S');
-          alert("Shift + S");
-          break;
-      }
-    }
-
-    //CTRL + SHIFT + something
-    if (e.ctrlKey && e.shiftKey) {
-      switch (e.code) {
-        case "KeyS":
-          // console.log('CTRL + Shift + S');
-          alert("CTRL + Shift + S");
-          break;
-      }
-    }
-  });
   // 1 ----------------------------------------------------------------------------------
   const [backdropOpen, setBackdropOpen] = useState(false);
   useEffect(() => {
@@ -521,7 +492,7 @@ function ProbKeyFnComp() {
   // runOnKeysArray(() => alert("Q и W по Arrow"), "KeyQ", "KeyW");
   runOnKeysArray();
 
-  // 3 ----------------------------------------------------------------------------------
+  // 3 доработать ---------------------------------------------------------------------------
   const [keyCombin, setKeyCombin] = useState(false);
   // const pressKeyCombin = runOnKeys3(["KeyQ", "Period"]);
   function runOnKeys3(func, code1, code2, code3) {
@@ -570,56 +541,59 @@ function ProbKeyFnComp() {
       mass = [];
     }
   }
-
-  // runOnKeys3(() => alert("Привет!"), "KeyQ", "Period", "Comma"); // (сочетание - Q><)
+  runOnKeys3(() => alert("Привет!"), "KeyQ", "Period", "Comma"); // (сочетание - Q><)
   // document.onkeydown = function (event) {
   //   console.log(event);
   // };
 
   // 4 ----------------------------------------------------------------------------------
-  function runOnKeys4(func, ...codes) {
-    // console.log("codes : " + codes);
-    console.log("codes.length : " + codes.length);
-    let allKeysDown = 0;
+  let flag = false;
+  document.addEventListener("keydown", function clicked(event) {
+    if (event.code === "AltLeft") flag = true;
+    if (event.code === "KeyN" && flag) {
+      flag = false;
+      console.log("work 1");
+      // document.removeEventListener("keydown", clicked, false);
+    }
+  });
 
-    document.addEventListener("keydown", (event) => {
-      for (let i of codes) {
-        console.log("event : " + event);
-        console.log("i : " + i);
-        // if (event.code === `Key${i}` && !event.repeat) allKeysDown++;
-        if (event.code == `Key${i}`) allKeysDown++;
-        console.log("event.code : " + event.code);
-        console.log("Key${i} : " + `Key${i}`);
-        console.log("allKeysDown1 : " + allKeysDown);
-      }
-
-      if (allKeysDown == codes.length) {
-        console.log("allKeysDown2 : " + allKeysDown);
-        func();
-        allKeysDown = 0;
-      }
-    });
-  }
-  // ??? не раб - перем allKeysDown++ не итерируется
-  // runOnKeys4(() => alert("Привет!"), "KeyU", "KeyT");
-  // 5 ---------------------------------------------------------------------------------
-  function runOnKeys5(func, ...args) {
-    let arr = [];
-    document.addEventListener("keyup", () => {
-      arr = [];
-    });
-    document.addEventListener("keydown", (event) => {
-      arr.push(event.code);
-      if (args.length == arr.length) {
-        for (let item of args) {
-          if (!arr.includes(item)) return;
+  // попробовать e.shiftKey
+  document.addEventListener("keydown", function clicked2(event) {
+    // if (event.code === "AltLeft") {
+    if (event.altKey) {
+      document.addEventListener("keyup", function clicked2(event) {
+        // if (event.code === "KeyN") {
+        if (event.code === "KeyM") {
+          // ~~~ не понятно - в консоле по 5-10 вызовов повторных. хз отчего
+          console.log("work 2");
+        } else {
+          document.removeEventListener("keydown", clicked2, false);
         }
-        func();
-        arr = [];
+      });
+    }
+  });
+  // 5 ---------------------------------------------------------------------------------
+  document.addEventListener("keydown", function Prob2(e) {
+    //SHIFT + something
+    if (e.shiftKey) {
+      switch (e.code) {
+        case "KeyS":
+          // console.log('Shift + S');
+          alert("Shift + S");
+          break;
       }
-    });
-  }
-  runOnKeys5(() => alert("Привет!"), "KeyU", "KeyT");
+    }
+
+    //CTRL + SHIFT + something
+    if (e.ctrlKey && e.shiftKey) {
+      switch (e.code) {
+        case "KeyS":
+          // console.log('CTRL + Shift + S');
+          alert("CTRL + Shift + S");
+          break;
+      }
+    }
+  });
   //  ----------------------------------------------------------------------------------
   //  ----------------------------------------------------------------------------------
   //  ----------------------------------------------------------------------------------

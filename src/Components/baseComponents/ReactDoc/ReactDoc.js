@@ -81,80 +81,78 @@ class StateAndLifeCycle extends React.Component {
 
   render() {
     return (
-      console.log("openAA StateAndLifeCycle: " + this.state.openArrowAccord),
-      (
-        <div className="StateAndLifeCycle-- accordion">
-          <div
-            // ref={this.RefActivCl}
-            // onClick={() => {
-            //   this.handleClickRef();
-            //   this.toggleArrowAccord(this.openArrowAccord);
-            // }}
-            className="StateAndLifeCycle__descript--"
+      // console.log("openAA StateAndLifeCycle: " + this.state.openArrowAccord),
+      <div className="StateAndLifeCycle-- accordion">
+        <div
+          // ref={this.RefActivCl}
+          // onClick={() => {
+          //   this.handleClickRef();
+          //   this.toggleArrowAccord(this.openArrowAccord);
+          // }}
+          className="StateAndLifeCycle__descript--"
+        >
+          <h3
+            onClick={() => {
+              this.handleClickRef();
+              // this.toggleArrowAccord(this.openArrowAccord);
+            }}
+            ref={this.RefActivCl}
           >
-            <h3
-              onClick={() => {
-                this.handleClickRef();
-                // this.toggleArrowAccord(this.openArrowAccord);
-              }}
-              ref={this.RefActivCl}
+            Состояние (state) и жизненный цикл (lifecycle)
+          </h3>
+          <div style={{ display: "none" }} ref={this.RefOpenDop}>
+            <div
+              // style={{ display: "none" }}
+              // ref={this.RefOpenDop}
+              className="StateAndLifeCycle--- temporary"
             >
-              Состояние (state) и жизненный цикл (lifecycle)
-            </h3>
-            <div style={{ display: "none" }} ref={this.RefOpenDop}>
-              <div
-                // style={{ display: "none" }}
-                // ref={this.RefOpenDop}
-                className="StateAndLifeCycle--- temporary"
-              >
-                <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ/СДЕЛАТЬ{" "}
-                <code style={{ color: "red" }}>!!!</code> ПРОДУМАТЬ НА COMP{" "}
-                <code>ArrowAccordion</code> ЛОГИКУ ЧТОБ МЕНЯЛИСЬ И СТРЕЛКИ
-                (ПЛАВНО) И ПУЛЬСАР (ВНИЗ/ВЕРХ).{" "}
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ/СДЕЛАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code> ПРОДУМАТЬ НА COMP{" "}
+              <code>ArrowAccordion</code> ЛОГИКУ ЧТОБ МЕНЯЛИСЬ И СТРЕЛКИ
+              (ПЛАВНО) И ПУЛЬСАР (ВНИЗ/ВЕРХ).{" "}
+              <div>
                 <div>
-                  <div>
-                    СЕЙЧАС, ПРИ ПЕРЕДАЧЕ В COMP <code>ArrowAccordion</code>:
-                  </div>
-                  <code>state</code> -{"  "}
-                  <code>
-                    openArrowAccord=&#123;this.state.openArrowAccord&#1256;
-                  </code>
-                  , COMP ЕЁ ВИДИТ И ВЫВОДИТ В ПУЛЬСАР ПОПЕРЕМЕННО 1ЫЙ/2ОЙ ВАРИК
-                  УСЛОВИЯ (ВНИЗ/ВВЕРХ - ᐁ/ᐃ). <code>!!!</code> НО ПЕРЕХОД
-                  СТРЕЛОК БЕЗ АНИМАЦИИ. В <code>StateAndLifeCycle</code>
+                  СЕЙЧАС, ПРИ ПЕРЕДАЧЕ В COMP <code>ArrowAccordion</code>:
                 </div>
-                <div>
-                  <code>fn</code> -{" "}
-                  <code>
-                    toggleArrowAccord=&#123;this.toggleArrowAccord&#1256;
-                  </code>
-                  , COMP ЕЁ НЕ ВИДИТ И ВЫВОДИТ ОДИН ВАРИК УСЛОВИЯ (ЛИБО ВНИЗ -
-                  ᐁ, ЛИБО ВВЕРХ - ᐃ). ЗАВИСИТ ОТ <code>state</code>. АНИМАЦИЯ
-                  ПЛАВНО. <code>!!!</code> НО ПУЛЬСАР В ОДНОМ ПОЛОЖЕНИИ. В{" "}
-                  <code>ConditionalRendering</code>
-                </div>
+                <code>state</code> -{"  "}
+                <code>
+                  openArrowAccord=&#123;this.state.openArrowAccord&#1256;
+                </code>
+                , COMP ЕЁ ВИДИТ И ВЫВОДИТ В ПУЛЬСАР ПОПЕРЕМЕННО 1ЫЙ/2ОЙ ВАРИК
+                УСЛОВИЯ (ВНИЗ/ВВЕРХ - ᐁ/ᐃ). <code>!!!</code> НО ПЕРЕХОД СТРЕЛОК
+                БЕЗ АНИМАЦИИ. В <code>StateAndLifeCycle</code>
               </div>
-              <p>Общее описание</p>
+              <div>
+                <code>fn</code> -{" "}
+                <code>
+                  toggleArrowAccord=&#123;this.toggleArrowAccord&#1256;
+                </code>
+                , COMP ЕЁ НЕ ВИДИТ И ВЫВОДИТ ОДИН ВАРИК УСЛОВИЯ (ЛИБО ВНИЗ - ᐁ,
+                ЛИБО ВВЕРХ - ᐃ). ЗАВИСИТ ОТ <code>state</code>. АНИМАЦИЯ ПЛАВНО.{" "}
+                <code>!!!</code> НО ПУЛЬСАР В ОДНОМ ПОЛОЖЕНИИ. В{" "}
+                <code>ConditionalRendering</code>
+              </div>
             </div>
-            <ArrowAccordion
-              // toggleArrowAccord={this.toggleArrowAccord}
-              // openArrowAccord={this.state.openArrowAccord}
-              RefActivCl={this.RefActivCl}
-              RefOpenDop={this.RefOpenDop}
-              RefOpenCont={this.RefOpenCont}
-            />
+            <p>Общее описание</p>
           </div>
-          <div
-            ref={this.RefOpenCont}
-            className="StateAndLifeCycle__content--"
-          // style={{ display: "none" }}
-          >
-            {/* <Clock /> */}
-            <StateAndLifeCycleClComp />
-          </div>
-          <div className="StateAndLifeCycle__frame--">StateAndLifeCycle</div>
+          <ArrowAccordion
+            // toggleArrowAccord={this.toggleArrowAccord}
+            // openArrowAccord={this.state.openArrowAccord}
+            RefActivCl={this.RefActivCl}
+            RefOpenDop={this.RefOpenDop}
+            RefOpenCont={this.RefOpenCont}
+          />
         </div>
-      )
+        <div
+          ref={this.RefOpenCont}
+          className="StateAndLifeCycle__content--"
+          // style={{ display: "none" }}
+        >
+          {/* <Clock /> */}
+          <StateAndLifeCycleClComp />
+        </div>
+        <div className="StateAndLifeCycle__frame--">StateAndLifeCycle</div>
+      </div>
     );
   }
 }
@@ -271,7 +269,7 @@ class ConditionalRendering extends React.Component {
           <div
             className="ConditionalRendering__content--"
             ref={this.RefOpenCont}
-          // style={{ display: "none" }}
+            // style={{ display: "none" }}
           >
             <ConditionalRenderingClComp />
           </div>
@@ -356,7 +354,7 @@ class ListsAndKeys extends React.Component {
           // data-name="spoiler-cont"
           ref={this.RefOpenCont}
           className="ListsAndKeys__content--"
-        // style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           {/* <Lists />
           <Keys /> */}
@@ -427,7 +425,7 @@ class Forms extends React.Component {
         <div
           ref={this.RefOpenCont}
           className="Forms__content--"
-        // style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           <FormsClComp />
         </div>
@@ -502,7 +500,7 @@ class LiftingStateUp extends React.Component {
         <div
           ref={this.RefOpenCont}
           className="LiftingStateUp__content--"
-        // style={{ display: "none" }}
+          // style={{ display: "none" }}
         >
           <StateUpClComp />
         </div>

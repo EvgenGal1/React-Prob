@@ -56,7 +56,7 @@ class CreateTempetCalcClComp extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = { temperature: "" };
-    console.log("this.props : " + this.props);
+    // console.log("this.props : " + this.props);
   }
   handleChange(e) {
     this.setState({ temperature: e.target.value });
