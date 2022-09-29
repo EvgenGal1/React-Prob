@@ -1,6 +1,10 @@
+/* eslint-disable default-case */
 import React from "react";
-// import { useDebugValue, useState, useEffect } from "react";
+import { useDebugValue, useState, useEffect } from "react";
 import "./CommonTrifles.scss";
+
+// 1
+// import Backdrop from "@mui/material/Backdrop";
 
 // hooks для KeyDown/KeyUp
 // одн клвш.
@@ -206,7 +210,9 @@ function AllKeysPress() {
   // СТАТУС. `любая нажатая клавиша` // ~~~ не понятно - пров. массив объ. и возвращ. true если есть input?
   const anyKeyPressed = inputs.some((item) => item.input === true);
   // some - `немного` опред., возвращает ли fn callback - true, для эл. массива.
-  console.log("anyKeyPressed : " + anyKeyPressed); // здесь false
+
+  // здесь false
+  // console.log("anyKeyPressed : " + anyKeyPressed);
 
   // render() {
   return (
@@ -229,7 +235,7 @@ function AllKeysPress() {
           проблема с длинным вводом при удержании клавиш. не все клвш. могут
           набратся. макс нашёл 5. по проблеме есть ссылка в коде
         </p>
-        <p>попробовать ввод - ljgvty. какие клавш не пересекаются</p>
+        <p>попробовать ввод - ljgvty. какие клвш не пересекаются</p>
         <p>
           При добавлен константы вызова хука useAllKeysPress в
           comp.MultiKeysPress, логика MultiKeyPress с клавишими qwe - сломалась.
@@ -250,6 +256,10 @@ function AllKeysPress() {
           ч/з anyKeyPressed (дложно быть true, но после объявления в cg - false.
           true при нажатии) усл.ренд. и/или операт. выводит блок. но по любому
           нажатию клав. из dopmn
+        </p>
+        <p>
+          перечитать/попробовать -
+          https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
         </p>
         <br />
 
@@ -272,7 +282,7 @@ function AllKeysPress() {
   // }
 }
 
-//  ----------------------------------------------------------------------------------
+// доп визуал к AllKeysPress -----------------------------------------------------------------
 // `Используйте всю клавиатуру`. // доп. визуал настройка с выводами заполн. Букв и Плюсов. можно без подсказок
 function UseAllKeypad({
   inputs, // вход.данн. масс.объ.
@@ -379,7 +389,295 @@ function Screen({
     </div>
   );
 }
-//  ----------------------------------------------------------------------------------
+// доп визуал к AllKeysPress -----------------------------------------------------------------
+
+// Prob2();
+// PROBKEY ----------------------------------------------------------------------------------
+function ProbKeyFnComp() {
+  document.addEventListener("keydown", function Prob2(e) {
+    //SHIFT + something
+    if (e.shiftKey) {
+      switch (e.code) {
+        case "KeyS":
+          // console.log('Shift + S');
+          alert("Shift + S");
+          break;
+      }
+    }
+
+    //CTRL + SHIFT + something
+    if (e.ctrlKey && e.shiftKey) {
+      switch (e.code) {
+        case "KeyS":
+          // console.log('CTRL + Shift + S');
+          alert("CTRL + Shift + S");
+          break;
+      }
+    }
+  });
+  // 1 ----------------------------------------------------------------------------------
+  const [backdropOpen, setBackdropOpen] = useState(false);
+  useEffect(() => {
+    // Ключи, которые необходимо нажать одновременно, чтобы переменная «фонаропопена», чтобы быть «истинной»
+    const keysArr = ["ControlLeft", "ShiftLeft", "AltLeft"];
+    const keysMap = {};
+    let backdropOpenLocal = false;
+
+    const keydownEvent = "keydown";
+    const keyupEvent = "keyup";
+
+    const checkKeys = () => {
+      const keysArePressed = keysArr.every(
+        (value) => keysMap[value] === keydownEvent
+      );
+      if (keysArePressed !== backdropOpenLocal) {
+        backdropOpenLocal = keysArePressed;
+        setBackdropOpen(keysArePressed);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      const keyCode = event.code;
+      if (keysArr.includes(keyCode) && keysMap[keyCode] !== keydownEvent) {
+        keysMap[keyCode] = keydownEvent;
+      }
+      checkKeys();
+    };
+
+    const handleKeyUp = (event) => {
+      const keyCode = event.code;
+      if (keysArr.includes(keyCode) && keysMap[keyCode] !== keyupEvent) {
+        keysMap[keyCode] = keyupEvent;
+      }
+      checkKeys();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    // document.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
+  // 2 Set ----------------------------------------------------------------------------------
+  const [keySet, setKeySet] = useState(false);
+  // const constRunOnKeysSet = function runOnKeysSet(func, ...codes) {
+  const runOnKeysSet = function runOnKeysSet() {
+    let codes = ["KeyQ", "KeyS"];
+    let pressed = new Set();
+
+    document.addEventListener("keydown", function (event) {
+      pressed.add(event.code);
+
+      for (let code of codes) {
+        // все ли клавиши из набора нажаты?
+        if (!pressed.has(code)) {
+          return;
+        }
+      }
+      pressed.clear();
+      // func();
+      setKeySet(true);
+    });
+
+    document.addEventListener("keyup", function (event) {
+      pressed.delete(event.code);
+    });
+  };
+  // constRunOnKeysSet(() => alert("Q и W по Set"), "KeyQ", "KeyR");
+  runOnKeysSet();
+
+  // 2 Arrow ---------------------------------------------------------------------------------
+  const [keyArrow, setKeyArrow] = useState(false);
+  // function runOnKeysArray(func, ...codes) {
+  // `запустить на массиве клавиш`
+  function runOnKeysArray() {
+    let codes = ["KeyQ", "KeyA"];
+    var keyDownKeys = new Array();
+    document.body.addEventListener("keydown", function (event) {
+      var e = event.code;
+      if (codes.includes(e) && !keyDownKeys.includes(e)) keyDownKeys.push(e);
+      if (equalArrays(keyDownKeys, codes)) {
+        // func();
+        setKeyArrow(true);
+        keyDownKeys = new Array();
+      }
+    });
+    document.body.addEventListener("keyup", function (event) {
+      var e = event.code;
+      var index = keyDownKeys.indexOf(e);
+      if (index > -1) keyDownKeys.splice(index, 1);
+    });
+  }
+
+  // `равные массивы`
+  function equalArrays(arr1, arr2) {
+    for (const i of arr2) if (!arr1.includes(i)) return false;
+    for (const i of arr1) if (!arr2.includes(i)) return false;
+    return true;
+  }
+  // runOnKeysArray(() => alert("Q и W по Arrow"), "KeyQ", "KeyW");
+  runOnKeysArray();
+
+  // 3 ----------------------------------------------------------------------------------
+  const [keyCombin, setKeyCombin] = useState(false);
+  // const pressKeyCombin = runOnKeys3(["KeyQ", "Period"]);
+  function runOnKeys3(func, code1, code2, code3) {
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
+    // window.addEventListener("keyup", upHandel);
+
+    let key1,
+      key2,
+      key3 = null;
+
+    let args = [code1, code2, code3];
+    let mass = [];
+
+    function keyDown(event) {
+      // if (event.code !== code1 && event.code !== code2 && event.code !== code3) {
+      //   key1 = null; key2 = null; key3 = null; }
+      if (event.code === code1) {
+        key1 = event.code;
+        mass.push(event.code === code1);
+      }
+      if (event.code === code2 && key1) {
+        key2 = event.code;
+        mass.push(event.code);
+      }
+      if (event.code === code3 && key1 && key2) {
+        key3 = event.code;
+        mass.push(event.code);
+      }
+      if (key1 && key2 && key3 && args.length === mass.length) {
+        // func();
+        setKeyCombin(true);
+        key1 = null;
+        key2 = null;
+        key3 = null;
+        mass = [];
+      }
+    }
+
+    function keyUp(event) {
+      if (event.code !== code1 && event.code !== code2 && event.code !== code3)
+        return;
+      key1 = null;
+      key2 = null;
+      key3 = null;
+      mass = [];
+    }
+  }
+
+  // runOnKeys3(() => alert("Привет!"), "KeyQ", "Period", "Comma"); // (сочетание - Q><)
+  // document.onkeydown = function (event) {
+  //   console.log(event);
+  // };
+
+  // 4 ----------------------------------------------------------------------------------
+  function runOnKeys4(func, ...codes) {
+    // console.log("codes : " + codes);
+    console.log("codes.length : " + codes.length);
+    let allKeysDown = 0;
+
+    document.addEventListener("keydown", (event) => {
+      for (let i of codes) {
+        console.log("event : " + event);
+        console.log("i : " + i);
+        // if (event.code === `Key${i}` && !event.repeat) allKeysDown++;
+        if (event.code == `Key${i}`) allKeysDown++;
+        console.log("event.code : " + event.code);
+        console.log("Key${i} : " + `Key${i}`);
+        console.log("allKeysDown1 : " + allKeysDown);
+      }
+
+      if (allKeysDown == codes.length) {
+        console.log("allKeysDown2 : " + allKeysDown);
+        func();
+        allKeysDown = 0;
+      }
+    });
+  }
+  // ??? не раб - перем allKeysDown++ не итерируется
+  // runOnKeys4(() => alert("Привет!"), "KeyU", "KeyT");
+  // 5 ---------------------------------------------------------------------------------
+  function runOnKeys5(func, ...args) {
+    let arr = [];
+    document.addEventListener("keyup", () => {
+      arr = [];
+    });
+    document.addEventListener("keydown", (event) => {
+      arr.push(event.code);
+      if (args.length == arr.length) {
+        for (let item of args) {
+          if (!arr.includes(item)) return;
+        }
+        func();
+        arr = [];
+      }
+    });
+  }
+  runOnKeys5(() => alert("Привет!"), "KeyU", "KeyT");
+  //  ----------------------------------------------------------------------------------
+  //  ----------------------------------------------------------------------------------
+  //  ----------------------------------------------------------------------------------
+  return (
+    <div
+      className="ProbKeyFnComp"
+      style={{ visibility: "visible", opacity: "1" }}
+    >
+      {/* https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript */}
+      <div className="1" style={{ backgroundColor: "rgb(175 127 127)" }}>
+        <p>Вывод блок по "ControlLeft", "ShiftLeft", "AltLeft"</p>
+        <p>
+          вкл не задерживает состояние. при откл addEventListener("keyup",
+          handleKeyUp) повторно клвш не срабатывают. никакой последовательности
+        </p>
+        {backdropOpen && <p>Готово</p>}
+        <div></div>
+      </div>
+      <div className="2">
+        <p>
+          Вывод блок по Q и S или Q и A. Нет послед-ти. Код на Set и Arrow.
+          Проверка длины только у Arrow
+        </p>
+        <div>{keySet && <p>Set</p>}</div>
+        <div>{keyArrow && <p>Arrow</p>}</div>
+      </div>
+      <div className="3" style={{ backgroundColor: "rgb(175 127 127)" }}>
+        <p>
+          Вывод блок по "Q", "Period", "Comma" (q., | йюб). Последовательность!
+          Проверка длины.
+        </p>
+        <div>{keyCombin && <p>йюб</p>}</div>
+      </div>
+      <div className="4">
+        <p></p>
+      </div>
+      <div className="5" style={{ backgroundColor: "rgb(175 127 127)" }}>
+        <p></p>
+      </div>
+    </div>
+  );
+}
+
+class ProbKeyClComp extends React.Component {
+  //constructor(props) {
+  //super(props);
+  //this.state = {  }
+  //}
+  render() {
+    return (
+      <div className="ProbKeyClComp">
+        <div className="ProbKeyClComp__descript"></div>
+        <div className="ProbKeyClComp__content"></div>
+      </div>
+    );
+  }
+}
+// PROBKEY ----------------------------------------------------------------------------------
 
 // покл. в общий Компонент и импорт  =======================================================================================
 class CommonTrifles extends React.Component {
@@ -443,7 +741,12 @@ class CommonTrifles extends React.Component {
             openArrowAccord={this.state.openArrowAccord}
           />
         </div>
-        <div ref={this.RefOpenCont} className="CommonTrifles__content">
+        <div
+          ref={this.RefOpenCont}
+          className="CommonTrifles__content"
+          // временно классы
+          style={{ visibility: "visible", opacity: "1", height: "auto" }}
+        >
           <div style={{ background: "red", color: "block" }}>
             Так же разобрать:
             <p>https://realadmin.ru/coding/keyboard-js.html - просто</p>
@@ -463,6 +766,8 @@ class CommonTrifles extends React.Component {
           <OneKeysPress />
           <MultiKeysPress />
           <AllKeysPress />
+          <ProbKeyFnComp />
+          <ProbKeyClComp />
           {/* <UseAllKeypad inputs={inputs} type={"multi"}/> */}
         </div>
         <div className="CommonTrifles__frame">CommonTrifles.js</div>

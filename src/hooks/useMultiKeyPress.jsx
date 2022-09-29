@@ -22,18 +22,22 @@ const Label = ({ value, isBold }) => (
 );
 export { Label };
 
-// `нажаты клавиши`.
-// function areKeysPressed(keys = [], keysPressed = []) {
+// `нажаты клавиши`. true е/и переданные и нажатые клвш. совпадают
 // const AreKeysPressed = (keys = [], keysPressed = []) => {
-function areKeysPressed(keys = [], keysPressed = []) {
-  // Set - множество для хран. уник. значен. Элем. после итерации(перебора) добавл в нов. Set без возврата или пустой. Записали клвш по умолч.
+function areKeysPressed(
+  keys = [], // массив переданых клвш.
+  keysPressed = [] // массив нажатых клвш.
+) {
+  console.log("keysPressed : " + keysPressed);
+  console.log("keysPressed.length : " + keysPressed.length);
+  // Коллекция клвш по умолч. Set - множество для хран. уник. значен. Элем. после итерации(перебора) добавл в нов. Set без возврата или пустой.
   const required = new Set(keys);
-  // перебор keysPressed(useMultiKeyPress - хз, не понятно)
+  // перебор нажатых клавиш. keysPressed ч/з хук useMultiKeyPress
   for (var elem of keysPressed) {
-    // ~~~ не понятно - в клавш.по умолч удал. эл. из перребора
+    // из коллекции переданых удаляем нажатые клвш.
     required.delete(elem);
   }
-  // возвращ. (true?) если размер 0
+  // возвращ. true если размер 0 (нажатые нашлись в коллекции переданных)
   return required.size === 0;
 }
 export { areKeysPressed };
@@ -56,12 +60,17 @@ export { MultiKeyPress };
 const useMultiKeyPress = () => {
   // состояние для отслеж нажат клвш
   const [isKeyPressed, setIsKeyPressed] = useState(new Set([]));
-
+  console.log("Set : " + Set);
+  console.log("Set.length : " + Set.size);
+  console.log("1 : " + 1);
   // function downHandler({ key }): void {
   function downHandler({ key }) {
     // console.log("key Mult Down 0: " + key);
+
     // `установить нажатую клавишу``клавиши нажаты``добавить``ключ`
     setIsKeyPressed(isKeyPressed.add(key));
+
+    console.log("Set.length 1: " + Set.size);
     // console.log("key Mult Down 1: " + key);
   }
 
@@ -79,7 +88,7 @@ const useMultiKeyPress = () => {
     // console.log("Mult setIsKeyPressed 1: " + setIsKeyPressed);
     window.addEventListener("keydown", downHandler);
     // отрисовка мигает т.к. есть слушатель отжатия. е/и убрать то будет нажата. t|b оставить то
-    window.addEventListener("keyup", upHandler);
+    // window.addEventListener("keyup", upHandler);
     // возвращ return для откл от слушателей
     return () => {
       window.removeEventListener("keydown", downHandler);
