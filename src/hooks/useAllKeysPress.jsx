@@ -1,17 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-/**
- * Пользовательский крючок для обнаружения, когда пользователь нажимает определенную клавишу или коллекцию клавиш
- * @author Melvyn Phillips (Numel2020)
- * @link https://github.com/Numel2020
- * @param {object} -  Пользовательские параметры
- * @returns {boolean} - Истинно возвращает матч.
- */
-
 function useAllKeysPress(options) {
   // убедитесь, что «параметры» это объект
   if (!options || Object.keys(options).length === 0) {
-    throw new Error(`No object parameter found use: {userKeys: ... } `);
+    throw new Error(
+      `Параметр объекта не найден использование: {userkeys: ...}`
+    );
   }
 
   // Свойства «Параметры».
@@ -97,7 +91,7 @@ function useAllKeysPress(options) {
   };
 
   const upMultiHandler = ({ key }) => {
-    // Примечание: необходимо снова позвонить в Set State из -за того, как работает состояние.
+    // Примечание: необходимо снова позвонить в Set State из-за того, как работает состояние.
     // В противном случае потребуется, чтобы функция спешилась и переоценивает, что в порядке.
     setAnyKeyPressed((prevState) => [...prevState]);
     setAnyKeyPressed((prevState) => [
@@ -105,7 +99,11 @@ function useAllKeysPress(options) {
     ]);
   };
 
-  const areKeysPressed = (keys = [], Pressed = []) => {
+  // `нажаты клавиши`
+  const areKeysPressed = (
+    keys = [], // массив клвш или 0 ?
+    Pressed = [] // сост ? anyKeyPressed `любая нажатая клавиша`
+  ) => {
     // Создать новый массив
     const required = [...keys];
 
@@ -141,7 +139,7 @@ function useAllKeysPress(options) {
 
       // Добавить слушателей событий
       element.addEventListener("keydown", settings.downHandler);
-      // element.addEventListener("keyup", settings.upHandler);
+      element.addEventListener("keyup", settings.upHandler);
       //console.log('useAllKeyPress - hookAsMount');
       return () => {
         element.removeEventListener("keydown", settings.downHandler);

@@ -19,8 +19,9 @@ import { Key, Plus, /* Emoji, */ Letter } from "./utilities";
 // подкл. UI блоков
 import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 // ^ мнг. клвш. может быть ограничение на кол-во нажатых клавиш - https://gaming.stackexchange.com/questions/6669/how-do-i-remove-the-limit-on-pc-keyboard-button-presses
+// общ. разработка - https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
 
-// хук useKeyPress + отладка (нажатие на клвш., отслж., вывод)=======================================================================================
+// хук useKeyPress + отладка (нажатие на клвш., отслж., вывод)--------------------------------------------------------------------
 // при нажатии опред. одиночных клвш. - вывод + шрифт к обозначению. е\и надо чтобы вывод отражался/мигал, то комит/разкомит useKeyPress.useEffect.keyup отрисовка мигает.
 // !!! по YT видео RED Group или https://usehooks.com/useKeyPress/
 // * перенесён в hooks/useKeyPress
@@ -82,106 +83,10 @@ function OneKeysPress() {
   );
 }
 
-// попытка перейти на fnComp
-// class OneKeysPressS extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       openArrowAccord: true,
-//     };
-//     this.RefActivCl = React.createRef();
-//     this.RefOpenDop = React.createRef();
-//     this.RefOpenCont = React.createRef();
-//   }
-//   handleClickRef() {
-//     this.RefActivCl.current.classList.toggle("_active");
-//     this.RefOpenDop.current.classList.toggle("openDop");
-//     this.RefOpenCont.current.classList.toggle("openCont");
-//     // this.setState((prevState) => ({
-//     //   openArrowAccord: !prevState.openArrowAccord,
-//     // }));
-//   }
-//   toggleArrowAccord = () => {
-//     this.setState((prevState) => ({
-//       openArrowAccord: !prevState.openArrowAccord,
-//     }));
-//   };
-
-//   render() {
-//     // const isJapanPressed = useKeyPress("j");
-//     // const isChinaPressed = useKeyPress("c");
-//     // const isSouthKoreaPressed = useKeyPress("k");
-//     // const isAustraliaPressed = useKeyPress("a");
-//     return (
-//       //  ----------------------------------------------------------------------------------
-//       <div className="OneKeysPress---">
-//         <div
-//           className="OneKeysPress__descript--"
-//           ref={this.RefActivCl}
-//           onClick={() => {
-//             this.handleClickRef();
-//             this.toggleArrowAccord(this.openArrowAccord);
-//           }}
-//         >
-//           <div
-//             className="temporary"
-//             style={{ display: "none" }}
-//             ref={this.RefOpenDop}
-//             //  style={{ fontWeight: "bold", color: "red" }}
-//           >
-//             Так же разобрать:
-//             <p>https://realadmin.ru/coding/keyboard-js.html - просто</p>
-//             <p>https://habr.com/ru/post/244041/ - просто</p>
-//             <p>
-//               https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/hooks/useAllKeysPress.js
-//               - Несколько ключей по порядку(на основе прописанного)
-//             </p>
-//             <p>
-//               https://codesandbox.io/s/multiple-keys-jhfdn - Несколько ключей
-//             </p>
-//             <p>
-//               https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
-//               - следить в комментах
-//             </p>
-//           </div>
-//           <div>
-//             Прослушивает НАжатии опред. одиночных клвш. - вывод + шрифт к
-//             обозначению.
-//           </div>
-//           <div>
-//             Е\и надо чтобы вывод отражался/мигал, то комит/разкомит
-//             useKeyPress.useEffect.keyup отрисовка мигает.
-//           </div>
-//           <p>Нажмите клавиши 'J', 'C', 'K'</p>
-//           <ArrowAccordion
-//             // toggleArrowAccord={this.toggleArrowAccord}
-//             openArrowAccord={this.state.openArrowAccord}
-//           />
-//         </div>
-//         <div ref={this.RefOpenCont} className="OneKeysPress__content--">
-//           {/* простановка условия. при нажатой клвш выйдет И div */}
-//           {/* {isJapanPressed && <div>🇯🇵</div>}
-//           {isChinaPressed && <div>🇨🇳</div>}
-//           {isSouthKoreaPressed && <div>🇰🇷</div>}
-//           {isAustraliaPressed && <div>🇦🇺</div>}
-//           <MultiKeysPressed
-//               keys={["q", "w", "e"]}
-//               keysPressed={keysPressed}
-//               emoji="WIN"
-//             /> */}
-//         </div>
-//       </div>
-//       //  ----------------------------------------------------------------------------------
-//     );
-//   }
-// }
-
-// fn()useMultiKeyPress (нажатие неск клавиш)----------------------------------------------------------------------------------
-// при зажатии неск-их опред. клвш. одновременно И нажатии одиночных опред. клвш. - вывод + шрифт к обозначению. Е\и надо чтобы вывод отражался/мигал, то комит/разкомит useMultiKeyPress.useEffect.keyup отрисовка мигает.
+// fn()useMultiKeyPress (нажатие неск клавиш)--------------------------------------------------------------------
+// хук при зажатии неск-их опред. клвш. одновременно И нажатии одиночных опред. клвш. - вывод + шрифт к обозначению. Е\и надо чтобы вывод отражался/мигал, то комит/разкомит useMultiKeyPress.useEffect.keyup отрисовка мигает.
 // !!! написано на основе - https://codesandbox.io/s/y3qzyr3lrz?file=/src/use-multi-key-press.js
-// общ. разработка - https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
 // * перенесён в hooks useMultiKeyPress
-// отрисовка MultiKeysPress ----------------------------------------------------------------------------------
 function MultiKeysPress() {
   const happyPress = useKeyPress("h");
   // const sadPress = useKeyPress("v");
@@ -215,6 +120,7 @@ function MultiKeysPress() {
       <div className="MultiKeysPress__content--">
         <div className="countryflags__twoexp---">
           <div className="countryflags__twoexp_description---">
+            {/* визуализация выделением */}
             <Label value="Нажмите одиночные клавиши: " />
             <Label value="h" isBold={happyPress} />
             <Label value="r" isBold={robotPress} />
