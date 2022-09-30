@@ -73,11 +73,16 @@ function useAllKeysPress(options) {
     // (Доказательство, что клавиша уже нажата).
     // console.log("key : " + key);
     // console.log("1 : " + 1);
+    // console.log("prevKey.current " + prevKey.current);
+    // console.log("key 1 : " + key);
+    // console.log("userKeys 1 " + userKeys);
     if (prevKey.current === userKeys) return;
     // console.log("2 : " + 2);
     // console.log("revKey  : " + prevKey);
     // console.log("revKey.current  : " + prevKey.current);
     // console.log("3 : " + 3);
+    // console.log("key 3 : " + key);
+    // console.log("userKeys 3 : " + userKeys);
     if (key === userKeys) {
       // console.log("4 : " + 4);
       // console.log("userKeys : " + userKeys);
@@ -97,20 +102,24 @@ function useAllKeysPress(options) {
   };
 
   const downMultiHandler = ({ key, repeat }) => {
-    // console.log("repeat : " + repeat);
+    // console.log("repeat 0: " + repeat);
     // Примечание: предотвращает запись двойного ключа в массиве
     if (repeat) return;
 
+    // console.log("repeat 1: " + repeat);
     setAnyKeyPressed((prevState) => [...prevState, key]);
   };
 
   const upMultiHandler = ({ key }) => {
+    // console.log("upMulti 0");
     // Примечание: необходимо снова позвонить в Set State из-за того, как работает состояние.
     // В противном случае потребуется, чтобы функция спешилась и переоценивает, что в порядке.
     setAnyKeyPressed((prevState) => [...prevState]);
+    // console.log("upMulti 1");
     setAnyKeyPressed((prevState) => [
       // console.log("prevState : " + prevState),
       ...prevState.filter((item) => item !== key),
+      // console.log("upMulti 2"),
     ]);
   };
 
@@ -131,7 +140,7 @@ function useAllKeysPress(options) {
     const inOrder =
       required.length === Pressed.length &&
       required.every((value, index) => {
-        // console.log("=== : ");
+        // console.log("===== : ");
         return value === Pressed[index];
       });
 
@@ -140,6 +149,7 @@ function useAllKeysPress(options) {
     // Если «Порядок» не был установлен, используйте расчет «А -А -А -ОРУК».
     // В противном случае используйте расчет «inorder».
     !order ? (result = anyOrder.length === 0) : (result = inOrder);
+    // console.log("result : " + result);
     // console.log("result : " + result);
     return result;
   };

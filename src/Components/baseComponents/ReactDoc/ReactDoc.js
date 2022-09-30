@@ -4,7 +4,7 @@ import React from "react";
 import "./ReactDoc.scss";
 
 // доп хуки
-import ReactSpoiler from "react-spoiler";
+// import ReactSpoiler from "react-spoiler";
 // !!! не раб - npm ERR! Не удалось разрешить зависимость: Peer React@"^16.8.6" от use spoiler@1.0.0
 // import { useSpoiler } from "use-spoiler";
 

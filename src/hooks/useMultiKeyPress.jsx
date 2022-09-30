@@ -40,7 +40,7 @@ function areKeysPressed(
   // пробы др цикла------------------------------------------------------------
   const requireds = new Set(keys);
   for (let required of requireds) {
-    // все ли клавиши из набора нажаты?
+    // е/ не все клавиши из набора нажаты?
     if (!keysPressed.has(required)) {
       return;
     }

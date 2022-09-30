@@ -142,6 +142,7 @@ function runOnKeysArgs(func, ...args) {
 //
 //
 // SET
+// const [keySet, setKeySet] = useState(false);
 // const constRunOnKeysSet = function runOnKeysSet(func, ...codes) {
 const runOnKeysSet = function runOnKeysSet() {
   let codes = ["KeyQ", "KeyS"];
@@ -151,20 +152,26 @@ const runOnKeysSet = function runOnKeysSet() {
     pressed.add(event.code);
 
     for (let code of codes) {
-      // все ли клавиши из набора нажаты?
+      // е/и не все клавиши из набора нажаты
       if (!pressed.has(code)) {
         return;
       }
     }
-    pressed.clear();
-    // func();
-    // setKeySet(true);
+    // + проверка на длину
+    if (pressed.size === codes.length) {
+      pressed.clear();
+      // func();
+      // console.log("true : " + true);
+      // setKeySet(true);
+    }
   });
 
   document.addEventListener("keyup", function (event) {
     pressed.delete(event.code);
   });
 };
+// constRunOnKeysSet(() => alert("Q и W по Set"), "KeyQ", "KeyR");
+// runOnKeysSet();
 //
 //
 //
@@ -235,7 +242,7 @@ export { myAreKeysPressed };
 // ХУК `использовать многоклавишное нажатие`.
 // ??? не знаю правильно ли раб. - при зажатых неск опред клвщ. е/и нажать одинарные опред. клвш. то вйдет контент
 // function useMultiKeyPress() {
-const useMyKeyPress = (mathFor, key1, key2, key3) => {
+const useMyKeyPress1 = (mathFor, key1, key2, key3) => {
   // const useMyKeyPress = (func, key1, key2, key3) => {
   // состояние для отслеж нажат клвш
   // const [isKeyPressedSet, setIsKeyPressedSet] = useState(new Set([]));
@@ -257,8 +264,8 @@ const useMyKeyPress = (mathFor, key1, key2, key3) => {
     // ??? не раб - massArr.push(event.key) - сильно быстро добывляет?
     // massArr.push(event.key);
     // massSet.add(event.key);
-    console.log("massArr.length 0: " + massArr.length);
-    console.log("massSet.size 0: " + massSet.size);
+    // console.log("massArr.length 0: " + massArr.length);
+    // console.log("massSet.size 0: " + massSet.size);
     // console.log("event : " + event);
     // console.log("event.key : " + event.key);
     // console.log("2 : " + 2);
@@ -272,7 +279,7 @@ const useMyKeyPress = (mathFor, key1, key2, key3) => {
       massArr.push(event.key === key1);
       // massSet.add(event.key);
 
-      console.log("massArr.length 1: " + massArr.length);
+      // console.log("massArr.length 1: " + massArr.length);
       // console.log("massSet.size 1: " + massSet.size);
       // console.log("massArr 1: " + massArr);
     }
@@ -282,16 +289,16 @@ const useMyKeyPress = (mathFor, key1, key2, key3) => {
       massArr.push(event.key === key2);
       // massSet.add(event.key);
 
-      console.log("massArr.length 2: " + massArr.length);
+      // console.log("massArr.length 2: " + massArr.length);
       // console.log("massSet.size 2: " + massSet.size);
     }
     if (event.key === key3 && eKey1 && eKey2) {
-      console.log("key3 : " + key3);
+      // console.log("key3 : " + key3);
       eKey3 = event.key;
       massArr.push(event.key === key3);
       // massSet.add(event.key);
 
-      console.log("massArr.length 3: " + massArr.length);
+      // console.log("massArr.length 3: " + massArr.length);
       // console.log("massSet.size 3: " + massSet.size);
     }
     if (
@@ -304,9 +311,9 @@ const useMyKeyPress = (mathFor, key1, key2, key3) => {
       // JSON.stringify(args) === JSON.stringify(massArr)
       // args.length === (massArr.length || massSet.size)
     ) {
-      console.log("key 3 =  : ");
+      // console.log("key 3 =  : ");
 
-      console.log("massArr.length =: " + massArr.length);
+      // console.log("massArr.length =: " + massArr.length);
       // console.log("massSet.size =: " + massSet.size);
       // func();
       // console.log("setStMyKeyPress 0: " + setStMyKeyPress);
@@ -348,6 +355,60 @@ const useMyKeyPress = (mathFor, key1, key2, key3) => {
       // window.removeEventListener("keydown", downHandler);
       document.removeEventListener("keydown", downHandler);
       // window.removeEventListener("keyup", upHandler);
+      document.removeEventListener("keyup", upHandler);
+    };
+  }, []); // Пустой массив гарантирует, что эффект работает только при монтаже и демонтаже
+
+  // console.log("isKeyPressed 2: " + isKeyPressed);
+  return isKeyPressedArr;
+  // return isKeyPressedSet;
+  // return isKeyPressedArr || isKeyPressedSet;
+};
+
+const useMyKeyPress = (mathFor, key1, key2, key3) => {
+  const [isKeyPressedSet, setIsKeyPressedSet] = useState(false);
+  const [isKeyPressedArr, setIsKeyPressedArr] = useState(false);
+
+  let eKey1,
+    eKey2,
+    eKey3 = null;
+
+  let massSet = new Set();
+  let massArr = [];
+
+  let args = [key1, key2, key3];
+
+  function downHandler(event) {
+    // 2
+    let codes = ["KeyQ", "KeyS"];
+    // let pressed = new Set();
+    // document.addEventListener("keydown", function (event) {
+    // pressed.add(event.code);
+    // for (let code of codes) {
+    //   if (!pressed.has(code)) {
+    //     return;
+    //   }
+    // }
+    // if (pressed.size === codes.length) {
+    //   pressed.clear();
+    // }
+    // 3
+    //   keys = [], // массив переданых клвш.
+    // mykeysPressed = [] // массив нажатых клвш.
+    //   const required = new Set(keys);
+    // for (var elem of mykeysPressed) {
+    //   required.delete(elem);
+    // }
+    // return required.size === 0;
+  }
+
+  const upHandler = (event) => {};
+
+  useEffect(() => {
+    document.addEventListener("keydown", downHandler);
+    document.addEventListener("keyup", upHandler);
+    return () => {
+      document.removeEventListener("keydown", downHandler);
       document.removeEventListener("keyup", upHandler);
     };
   }, []); // Пустой массив гарантирует, что эффект работает только при монтаже и демонтаже

@@ -194,8 +194,6 @@ function AllKeysPress() {
 
   // массив букв после хука (возвращ true е/и переданные и нажатые равны)
   const combinePress = useAllKeysPress({
-    // userKeys: ["a", "b", "c"],
-    // userKeys: ["d", "o", "p", "m", "e", "n", "u"],
     userKeys: ["d", "o", "p", "m", "n"],
     order: true,
   });
@@ -218,8 +216,101 @@ function AllKeysPress() {
   const anyKeyPressed = inputs.some((item) => item.input === true);
   // some - `немного`. опред., возвращает ли fn callback - true, для хоть одного эл. массива.
 
-  // здесь false
-  // console.log("anyKeyPressed : " + anyKeyPressed);
+  // пробы отслеживать true в combinePress ----------------------------------------------------
+  const [provCombinePress, setProvCombinePress] = useState(
+    false
+    // true
+    // true ? true : false
+    // true ? false : false
+    // false ? false : true
+  );
+  const [isCountqwe, setIsCountqwe] = useState(false);
+  // console.log("isCount 0: " + isCount);
+  // const [isCount, setIsCount] = useState(false);
+  // const [isCount, setIsCount] = useState([0]);
+  // const [isCount, setIsCount] = useState(new Set([]));
+  // const [isCount, setIsCount] = useState(new Arrw([]));
+  // let copyIsCount = Object.assign([], isCount);
+  const fnIsCount = (provCombinePress, copyIsCount) => {
+    if (provCombinePress) {
+      // setIsCountqwe(true);
+      // console.log("isCount 1: " + isCountqwe);
+      // console.log("provCombinePress : " + provCombinePress);
+      // copyIsCount++;
+      // setIsCount(copyIsCount + 1);
+      // console.log("copyIsCount 2: " + copyIsCount);
+      // console.log("copyIsCount.length 2: " + copyIsCount.length);
+    }
+  };
+  // fnIsCount(provCombinePress /* copyIsCountqwe */);
+
+  const fnComb = (provCombinePress, copyIsCount) => {
+    if (combinePress === true) {
+      setProvCombinePress(true);
+      // console.log("combinePress 1: " + combinePress);
+      // console.log("provCombinePress 1: " + provCombinePress);
+    }
+  };
+  // fnComb(combinePress /* copyIsCountqwe */);
+
+  // console.log("copyIsCount 0: " + isCount);
+  console.log("combinePress 0: " + combinePress);
+  console.log("provCombinePress 0: " + provCombinePress);
+  useEffect(() => {
+    // console.log("setProvCombinePress 01: " + setProvCombinePress);
+    // console.log("combinePress 01: " + combinePress);
+    if (combinePress === true) {
+      setProvCombinePress(true);
+      console.log("combinePress 1: " + combinePress);
+      console.log("provCombinePress 1: " + provCombinePress);
+      // console.log("provCombinePress true: " + provCombinePress);
+      // fnProvCombinePress(provCombinePress, copyIsCount);
+      // copyIsCount.push(1);
+      // setIsCount(true);
+      // console.log("isCount 1: " + isCount);
+      // console.log("copyIsCount 1: " + copyIsCount);
+      // console.log("copyIsCount.length 1: " + copyIsCount.length);
+      // 0
+      // const [arr, setValue] = useState(['Тише', 'мыши']);
+      // let copy = Object.assign([], arr);
+      // copy.push('кот');
+      // copy.push('на');
+      // copy.push('крыше');
+      // setValue(copy);
+      // setCount(count + 1);
+      // setIsCount(isCount.push(true));
+      // setIsCount(isCount.add(true));
+      // setIsCount(isCount.add(true));
+      // setIsCount(isCount + 1); // бесконечно добавл
+      // console.log("isCount.lenght : " + isCount.length);
+      // console.log("isCount.size : " + isCount.size);
+      // console.log("count : " + count);
+      // console.log("count.lenght : " + count.lenght);
+      // 1 все элементы в массиве - четные числа:
+      //   var containsEvenNums = function(numArray) {
+      //     return numArray.some(function(element) {
+      //         return element % 2 === 0;
+      //     });
+      // };
+      // 2 содержит ли массив четное число
+      //       let arr = [2, 4, 6, 8];
+      // let result = arr.every(elem => elem % 2 == 0);
+      // console.log(result);
+      // ...
+      // n % 2 == 0;
+      // var b = a.filter((_, index)=>index%2!=0).concat(a.filter((_, index)=>index%2==0));
+      // const even = n => !(n % 2);
+      // if (props.number % 2 == 0) {
+      //   description = <strong>чётным</strong>;
+      // } else {
+      //   description = <i>нечётным</i>;
+      // }
+      // Ожидается, что назначение или функциональный вызов и вместо этого увидел выражение
+      // setSetProvCombinePress((prevState) => !prevState);
+    }
+  }, [combinePress, provCombinePress /* isCount, setIsCount, copyIsCount */]);
+
+  // ProvCombinePress();
 
   // доп визуал
   // `Используйте всю клавиатуру`. // доп. визуал настройка с выводами заполн. Букв и Плюсов. можно без подсказок
@@ -379,6 +470,21 @@ function AllKeysPress() {
           попробовать подсчёт количества срабатываний combinePress (при вкл.
           слушателе keyup). Т.е. на 1 доп state true, при 2 false и т.д.
         </p>
+        <p>
+          подсчёт не проходит. е/и true от fn combinePress в useffect
+          дублировать в useState (хаписывается) и там же в отдельном useState
+          хранить счётчик, то выдаёт ошибку бесконечного рендера.
+        </p>
+        <p>
+          массив так же не проходит. его стайт и изменение даже через копию,
+          уходят в бесконечное добавление.
+        </p>
+        <p>
+          временно на выводимый блок ч/з state provCombinePress (true от
+          combinePress) навесил на блок onclick.false. provCombinePress
+          изначально срабат. так же и combinePress, но т.к. отдельно поместил в
+          useStete, то окл не происходит.
+        </p>
         <br />
 
         <span>["d", "o", "p", "m", "n"]</span>
@@ -389,12 +495,26 @@ function AllKeysPress() {
           ) : (
             <span style={{ color: "#8d0000" }}> - НЕ норм</span>
           )}
-          {/* {combinePress && <span style={{ marginRight: "5px" }}>{" "}- НОРМ</span>} */}
         </div>
         <div>
           На anyKeyPressed
           {anyKeyPressed ? (
             <span> - НОРМ</span>
+          ) : (
+            <span style={{ color: "#8b0000" }}> - НЕ норм</span>
+          )}
+        </div>
+        <div>
+          На setProvCombinePress
+          {provCombinePress ? (
+            <span
+              onClick={() => {
+                setProvCombinePress(false);
+              }}
+            >
+              {" "}
+              - НОРМ
+            </span>
           ) : (
             <span style={{ color: "#8b0000" }}> - НЕ норм</span>
           )}
@@ -464,14 +584,18 @@ function ProbKeyFnComp() {
       pressed.add(event.code);
 
       for (let code of codes) {
-        // все ли клавиши из набора нажаты?
+        // е/и не все клавиши из набора нажаты
         if (!pressed.has(code)) {
           return;
         }
       }
-      pressed.clear();
-      // func();
-      setKeySet(true);
+      // + проверка на длину
+      if (pressed.size === codes.length) {
+        pressed.clear();
+        // func();
+        // console.log("true : " + true);
+        setKeySet(true);
+      }
     });
 
     document.addEventListener("keyup", function (event) {
@@ -645,9 +769,9 @@ function ProbKeyFnComp() {
   runOnKeysArgs(() => alert("Привет 6 Q D!"), "KeyQ", "KeyD");
   //  ------------------------------------------------------------------------
   //  ------------------------------------------------------------------------
-  document.onkeydown = function (event) {
-    console.log(event);
-  };
+  // document.onkeydown = function (event) {
+  //   console.log(event);
+  // };
   return (
     <div
       className="ProbKeyFnComp"

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // import ClockClComp from "./ClockClComp.js";
 
 // доп хуки
-import ReactSpoiler from "react-spoiler";
+// import ReactSpoiler from "react-spoiler";
 // !!! не раб - npm ERR! Не удалось разрешить зависимость: Peer React@"^16.8.6" от use spoiler@1.0.0
 // import { useSpoiler } from "use-spoiler";
 
@@ -236,7 +236,8 @@ class SpoilerLiftingStateUp extends React.Component {
 //  ----------------------------------------------------------------------------------
 
 //  ----------------------------------------------------------------------------------
-<ReactSpoiler
+{
+  /* <ReactSpoiler
   // show="true"
   show="false"
   tag="span" //решает тип визуализированного элемента
@@ -250,7 +251,8 @@ class SpoilerLiftingStateUp extends React.Component {
   <p>p</p>
   <br />
   <span>span</span>
-</ReactSpoiler>;
+</ReactSpoiler>; */
+}
 //  ----------------------------------------------------------------------------------
 
 //  ----------------------------------------------------------------------------------
@@ -808,7 +810,7 @@ class ProbSpoiler extends React.Component {
           <AppAccordion />
           <Spoiler />
           <SpoilerLiftingStateUp />
-          <ReactSpoiler />
+          {/* <ReactSpoiler /> */}
           <SpoilerProb />
           <SpoilerTitle />
           <Foldable />
