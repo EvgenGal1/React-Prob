@@ -28,28 +28,44 @@ function areKeysPressed(
   keys = [], // массив переданых клвш.
   keysPressed = [] // массив нажатых клвш.
 ) {
-  // console.log("keysPressed : " + keysPressed);
-  // console.log("keysPressed.length : " + keysPressed.length);
-
   // Коллекция клвш по умолч. Set - множество для хран. уник. значен. Элем. после итерации(перебора) добавл в нов. Set без возврата или пустой.
-  const required = new Set(keys);
-  // перебор нажатых клавиш. keysPressed ч/з хук useMultiKeyPress
-  for (var elem of keysPressed) {
-    // из коллекции переданых удаляем нажатые клвш.
-    required.delete(elem);
+  // const required = new Set(keys);
+  // // перебор нажатых клавиш. keysPressed ч/з хук useMultiKeyPress
+  // for (var elem of keysPressed) {
+  //   // из коллекции переданых удаляем нажатые клвш.
+  //   required.delete(elem);
+  // }
+  // // возвращ. true если размер 0 (нажатые нашлись в коллекции переданных)
+  // return required.size === 0;
+  // пробы др цикла------------------------------------------------------------
+  const requireds = new Set(keys);
+  for (let required of requireds) {
+    // все ли клавиши из набора нажаты?
+    if (!keysPressed.has(required)) {
+      return;
+    }
   }
-  // возвращ. true если размер 0 (нажатые нашлись в коллекции переданных)
-  return required.size === 0;
+  requireds.clear();
+  return true;
+  // пробы др цикла------------------------------------------------------------
 }
 export { areKeysPressed };
 
 // `Многократное нажатие клавиш`
 // ~~~ не понятно - выводит "emoji" е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji
-const MultiKeyPress = ({ keys, keysPressed, emoji }) => {
+const MultiKeyPress = ({
+  keys,
+  keysPressed,
+  // emoji
+  props,
+}) => {
+  // console.log("props : " + props);
   const arePressed = areKeysPressed(keys, keysPressed);
 
   if (arePressed) {
-    return emoji;
+    // return emoji;
+    // console.log("props : " + props);
+    return props;
   }
   return null;
 };
@@ -60,32 +76,20 @@ export { MultiKeyPress };
 // function useMultiKeyPress() {
 const useMultiKeyPress = () => {
   // состояние для отслеж нажат клвш
-  const [isKeyPressed, setIsKeyPressed] = useState(new Set([]));
-  // console.log("Set : " + Set);
-  // console.log("Set.length : " + Set.size);
+  const [isKeyPressedMult, setIsKeyPressed] = useState(new Set([]));
+  // console.log("isKeyPressedMult : " + isKeyPressedMult.size);
   // function downHandler({ key }): void {
   function downHandler({ key }) {
-    // console.log("key Mult Down 0: " + key);
-
     // `установить нажатую клавишу``клавиши нажаты``добавить``ключ`
-    setIsKeyPressed(isKeyPressed.add(key));
-
-    // console.log("Set.length 1: " + Set.size);
-    // console.log("key Mult Down 1: " + key);
+    setIsKeyPressed(isKeyPressedMult.add(key));
   }
 
   const upHandler = ({ key }) => {
-    // console.log("key Mult Up 0: " + key);
-    isKeyPressed.delete(key);
-    setIsKeyPressed(isKeyPressed);
-    // console.log("key Mult Up 1: " + key);
+    isKeyPressedMult.delete(key);
+    setIsKeyPressed(isKeyPressedMult);
   };
 
-  // console.log("Mult isKeyPressed 0: " + isKeyPressed);
-  // console.log("Mult setIsKeyPressed 0: " + setIsKeyPressed);
   useEffect(() => {
-    // console.log("Mult isKeyPressed 1: " + isKeyPressed);
-    // console.log("Mult setIsKeyPressed 1: " + setIsKeyPressed);
     window.addEventListener("keydown", downHandler);
     // отрисовка мигает т.к. есть слушатель отжатия. е/и убрать то будет нажата. t|b оставить то
     window.addEventListener("keyup", upHandler);
@@ -96,7 +100,7 @@ const useMultiKeyPress = () => {
     };
   }, []); // Пустой массив гарантирует, что эффект работает только при монтаже и демонтаже
 
-  return isKeyPressed;
+  return isKeyPressedMult;
 };
 
 export { useMultiKeyPress };

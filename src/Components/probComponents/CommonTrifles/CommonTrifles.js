@@ -19,13 +19,19 @@ import {
 // послед. клвш.
 import { useAllKeysPress } from "../../../hooks/useAllKeysPress";
 import { Key, Plus, /* Emoji, */ Letter } from "./utilities";
+// мой хук
+import {
+  useMyKeyPress,
+  myAreKeysPressed,
+  MyMultiKeyPress,
+} from "../../../hooks/useMyKeyPress";
 
 // подкл. UI блоков
 import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 // ^ мнг. клвш. может быть ограничение на кол-во нажатых клавиш - https://gaming.stackexchange.com/questions/6669/how-do-i-remove-the-limit-on-pc-keyboard-button-presses
 // общ. разработка - https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
 
-// хук useKeyPress + отладка (нажатие на клвш., отслж., вывод)--------------------------------------------------------------------
+// хук useKeyPress + отладка (нажатие на клвш., отслж., вывод) --------------------------------
 // при нажатии опред. одиночных клвш. - вывод + шрифт к обозначению. е\и надо чтобы вывод отражался/мигал, то комит/разкомит useKeyPress.useEffect.keyup отрисовка мигает.
 // !!! по YT видео RED Group или https://usehooks.com/useKeyPress/
 // * перенесён в hooks/useKeyPress
@@ -82,7 +88,7 @@ function OneKeysPress() {
   );
 }
 
-// fn()useMultiKeyPress (нажатие неск клавиш)--------------------------------------------------------------------
+// fn()useMultiKeyPress (нажатие неск клавиш)--------------------------------------------------
 // хук при зажатии неск-их опред. клвш. одновременно И нажатии одиночных опред. клвш. - вывод + шрифт к обозначению. Е\и надо чтобы вывод отражался/мигал, то комит/разкомит useMultiKeyPress.useEffect.keyup отрисовка мигает.
 // !!! написано на основе - https://codesandbox.io/s/y3qzyr3lrz?file=/src/use-multi-key-press.js
 // * перенесён в hooks useMultiKeyPress
@@ -96,7 +102,6 @@ function MultiKeysPress() {
   // const [happyPress, /* sadPress, */ robotPress, foxPress] = useKeyPress(keys);
 
   const keysPressed = useMultiKeyPress();
-  // const hsrfPressed = AreKeysPressed(["q", "w", "e"], keysPressed);
   const hsrfPressed = areKeysPressed(["q", "w", "e"], keysPressed);
 
   // const combinePress = useAllKeysPress({
@@ -105,7 +110,8 @@ function MultiKeysPress() {
   //   userKeys: ["d", "o", "p", "m", "n"],
   //   order: true,
   // });
-
+  // console.log("happyPress : " + happyPress);
+  // console.log("keysPressed : " + keysPressed);
   return (
     <div className="MultiKeysPress--">
       <div className="MultiKeysPress__descript--">
@@ -136,22 +142,25 @@ function MultiKeysPress() {
           Вместе q w e, отдельно h r f
           <div className="countryflags__twoexp_content---">
             {/* {sadPress && "😢"} */}
-            {/* {happyPress && "😊"}
+            {happyPress && "😊"}
             {robotPress && "🤖"}
-            {foxPress && "🦊"} */}
-            {happyPress && "h"}
+            {foxPress && "🦊"}
+            {/* {happyPress && "h"}
             {robotPress && "r"}
-            {foxPress && "f"}
+            {foxPress && "f"} */}
             {/* {(foxPress || happyPress || robotPress) && "l"} */}
             <br />
             {/* // ~~~ не понятно - выводит WIN е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji */}
-            <MultiKeyPress
-              keys={["q", "w", "e"]}
-              keysPressed={keysPressed}
-              // emoji="WIN"
-              // emoji="WINasd"
-              stras="a"
-            />
+            <div>
+              <MultiKeyPress
+                keys={["q", "w", "e"]}
+                keysPressed={keysPressed}
+                // emoji="WIN"
+                // emoji="WINasd"
+                props="a"
+                // props={<p>a</p>}
+              />
+            </div>
             {/* <useAllKeysPress
               // userKeys: ["a", "b", "c"],
               // userKeys: ["d", "o", "p", "m", "e", "n", "u"],
@@ -168,7 +177,7 @@ function MultiKeysPress() {
   // }
 }
 
-// последовательное нажатие нескольких клавиш ----------------------------------------------------------------------------------
+// последовательное нажатие нескольких клавиш ------------------------------------------------
 // !!! https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/App.js
 function AllKeysPress() {
   // перем бук после хука
@@ -207,7 +216,7 @@ function AllKeysPress() {
 
   // СТАТУС. `любая нажатая клавиша` // ~~~ не понятно - пров. массив объ. и возвращ. true если есть input?
   const anyKeyPressed = inputs.some((item) => item.input === true);
-  // some - `немного`. опред., возвращает ли fn callback - true, для эл. массива.
+  // some - `немного`. опред., возвращает ли fn callback - true, для хоть одного эл. массива.
 
   // здесь false
   // console.log("anyKeyPressed : " + anyKeyPressed);
@@ -396,10 +405,9 @@ function AllKeysPress() {
   // }
 }
 
-// Prob2();
-// PROBKEY ----------------------------------------------------------------------------------
+// PROBKEY ------------------------------------------------------------------------
 function ProbKeyFnComp() {
-  // 1 ----------------------------------------------------------------------------------
+  // 1 ------------------------------------------------------------------------
   const [backdropOpen, setBackdropOpen] = useState(false);
   useEffect(() => {
     // Ключи, которые необходимо нажать одновременно, чтобы переменная «фонаропопена», чтобы быть «истинной»
@@ -445,7 +453,7 @@ function ProbKeyFnComp() {
     };
   }, []);
 
-  // 2 Set ----------------------------------------------------------------------------------
+  // 2 Set ------------------------------------------------------------------------
   const [keySet, setKeySet] = useState(false);
   // const constRunOnKeysSet = function runOnKeysSet(func, ...codes) {
   const runOnKeysSet = function runOnKeysSet() {
@@ -473,7 +481,7 @@ function ProbKeyFnComp() {
   // constRunOnKeysSet(() => alert("Q и W по Set"), "KeyQ", "KeyR");
   runOnKeysSet();
 
-  // 2 Arrow ---------------------------------------------------------------------------------
+  // 2 Arrow -----------------------------------------------------------------------
   const [keyArrow, setKeyArrow] = useState(false);
   // function runOnKeysArray(func, ...codes) {
   // `запустить на массиве клавиш`
@@ -505,7 +513,7 @@ function ProbKeyFnComp() {
   // runOnKeysArray(() => alert("Q и W по Arrow"), "KeyQ", "KeyW");
   runOnKeysArray();
 
-  // 3 доработать ---------------------------------------------------------------------------
+  // 3 доработать -----------------------------------------------------------------
   const [keyCombin, setKeyCombin] = useState(false);
   // const pressKeyCombin = runOnKeys3(["KeyQ", "Period"]);
   function runOnKeys3(func, code1, code2, code3) {
@@ -571,7 +579,7 @@ function ProbKeyFnComp() {
   }
   runOnKeys3(() => alert("Привет!"), "KeyQ", "Period", "Comma"); // (сочетание - Q><)
 
-  // 4 ----------------------------------------------------------------------------------
+  // 4 ------------------------------------------------------------------------
   const [keyWebDewN, setKeyWebDewN] = useState(false);
   const [keyWebDewM, setKeyWebDewM] = useState(false);
   function keyPressWebDew() {
@@ -604,9 +612,18 @@ function ProbKeyFnComp() {
     });
   }
   keyPressWebDew();
-  // 5 ---------------------------------------------------------------------------------
-
-  // 6 ----------------------------------------------------------------------------------
+  // 5 -----------------------------------------------------------------------
+  const mykeysPressed = useMyKeyPress();
+  const [myStKeyPress, setStMyKeyPress] = useState(false);
+  // console.log("setStMyKeyPress нач: " + setStMyKeyPress);
+  // useMyKeyPress(() => setStMyKeyPress, "KeyQ", "Period", "Comma");
+  // useMyKeyPress(() => alert("Привет 5 'z', 'c', 'b'!"), "z", "c", "b");
+  // useMyKeyPress(() => setStMyKeyPress, "z", "c", "b");
+  // console.log("setStMyKeyPress посл: " + setStMyKeyPress);
+  // const foxPress = useKeyPress("f");
+  const myKnpKeyPressArr = useMyKeyPress(() => "mathArr", "z", "c", "b");
+  // const myKnpKeyPressSet = useMyKeyPress(() => "mathSet", "z", "c", "b");
+  // 6 ------------------------------------------------------------------------
   const [keyWebDewArgs, setKeyWebDewArgs] = useState(false);
   function runOnKeysArgs(func, ...args) {
     let arr = [];
@@ -625,12 +642,12 @@ function ProbKeyFnComp() {
       }
     });
   }
-  runOnKeysArgs(() => alert("Привет 7!"), "KeyQ", "KeyD");
-  //  ----------------------------------------------------------------------------------
-  //  ----------------------------------------------------------------------------------
-  // document.onkeydown = function (event) {
-  //   console.log(event);
-  // };
+  runOnKeysArgs(() => alert("Привет 6 Q D!"), "KeyQ", "KeyD");
+  //  ------------------------------------------------------------------------
+  //  ------------------------------------------------------------------------
+  document.onkeydown = function (event) {
+    console.log(event);
+  };
   return (
     <div
       className="ProbKeyFnComp"
@@ -676,6 +693,21 @@ function ProbKeyFnComp() {
       </div>
       <div className="5" style={{ backgroundColor: "rgb(175 127 127)" }}>
         <p>Мой будущий хук useMyKeyPress</p>
+        <p>Вывод по - "z", "c", "b"</p>
+        <p>Ещё много дораб. Оч мн. лишнего кода.</p>
+        <p>Проверка посед. Не на всех клвш отраб</p>
+        <p>Проверка дляны. Не всегда отраб</p>
+        <p>Раб на Arrow. На Set падает в ошб</p>
+        {/* {foxPress && "🦊"}
+        <MyMultiKeyPress
+          keys={["q", "w", "e"]}
+          mykeysPressed={mykeysPressed}
+          // emoji="WIN"
+          setStMyKeyPress={setStMyKeyPress}
+        /> */}
+        {/* <div>Результат - {myStKeyPress && <span>Мой</span>}</div> */}
+        <div>Результат - {myKnpKeyPressArr && <span>Мой</span>}</div>
+        {/* <div>Результат - {myKnpKeyPressSet && <span>Мой</span>}</div> */}
       </div>
       <div className="6">
         <p>Вывод блок по "Q", "D". Нет Послед. Проверка длины.</p>

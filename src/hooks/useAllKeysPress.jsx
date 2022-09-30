@@ -122,7 +122,7 @@ function useAllKeysPress(options) {
     // Создать новый массив
     const required = [...keys];
 
-    // любой порядок'/ Вернуть массив, который не имеет соответствующих предметов
+    // любой порядок'. Вернуть массив, который не имеет соответствующих предметов
     const anyOrder = required.filter((itemA) => {
       return !Pressed.some((itemB) => itemB === itemA);
     });
