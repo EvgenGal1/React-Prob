@@ -1,0 +1,5 @@
+https://usehooks.com/
+https://proglib.io/p/15-kastomnyh-hukov-dlya-oblegcheniya-komponentov-react-2021-08-11
+https://usehooks.com/useDarkMode/
+https://codesandbox.io/s/p33j1m0mxj?file=/src/index.js
+https://usehooks.com/useLocalStorage

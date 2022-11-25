@@ -61,6 +61,7 @@ class StateAndLifeCycle extends React.Component {
     super(props);
     this.state = {
       // this.state = JSON.parse(window.localStorage.getItem("openArrowAccord")) || {
+      // openArrowAccord: true,
       openArrowAccord: true,
     };
     this.RefActivCl = React.createRef();
@@ -137,7 +138,7 @@ class StateAndLifeCycle extends React.Component {
           </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            // openArrowAccord={this.state.openArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
             RefActivCl={this.RefActivCl}
             RefOpenDop={this.RefOpenDop}
             RefOpenCont={this.RefOpenCont}
@@ -221,7 +222,7 @@ class ConditionalRendering extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // openArrowAccord: true,
+      openArrowAccord: true,
     };
     this.RefActivCl = React.createRef();
     this.RefOpenDop = React.createRef();
@@ -260,6 +261,7 @@ class ConditionalRendering extends React.Component {
             <code>if...else</code>, <code>condition ? true : false</code>).
           </div>{" "}
           <ArrowAccordion
+            openArrowAccord={this.state.openArrowAccord}
             RefActivCl={this.RefActivCl}
             RefOpenDop={this.RefOpenDop}
             RefOpenCont={this.RefOpenCont}
@@ -342,7 +344,7 @@ class ListsAndKeys extends React.Component {
           </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            // openArrowAccord={this.state.openArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
             RefActivCl={this.RefActivCl}
             RefOpenDop={this.RefOpenDop}
             RefOpenCont={this.RefOpenCont}
@@ -414,7 +416,7 @@ class Forms extends React.Component {
           </p>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            // openArrowAccord={this.state.openArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
             RefActivCl={this.RefActivCl}
             RefOpenDop={this.RefOpenDop}
             RefOpenCont={this.RefOpenCont}
@@ -489,7 +491,7 @@ class LiftingStateUp extends React.Component {
           </p>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            // openArrowAccord={this.state.openArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
             RefActivCl={this.RefActivCl}
             RefOpenDop={this.RefOpenDop}
             RefOpenCont={this.RefOpenCont}
@@ -553,7 +555,7 @@ class CompositionVsInheritance extends React.Component {
           </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
-            // openArrowAccord={this.state.openArrowAccord}
+            openArrowAccord={this.state.openArrowAccord}
             RefActivCl={this.RefActivCl}
             RefOpenDop={this.RefOpenDop}
             RefOpenCont={this.RefOpenCont}

@@ -285,7 +285,7 @@ class HooksComponents extends React.Component {
             сейчас важно/не важно загрузить.
           </p>
           <ArrowAccordion
-            // toggleArrowAccord={this.toggleArrowAccord}
+            toggleArrowAccord={this.toggleArrowAccord}
             openArrowAccord={this.state.openArrowAccord}
           />
         </div>

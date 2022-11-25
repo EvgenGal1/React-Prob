@@ -28,6 +28,7 @@ import {
 
 // подкл. UI блоков
 import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
+import { ArrowAccordionFnComp } from "../../../js/includes/ArrowAccordion.jsx";
 // ^ мнг. клвш. может быть ограничение на кол-во нажатых клавиш - https://gaming.stackexchange.com/questions/6669/how-do-i-remove-the-limit-on-pc-keyboard-button-presses
 // общ. разработка - https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
 
@@ -36,6 +37,12 @@ import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
 // !!! по YT видео RED Group или https://usehooks.com/useKeyPress/
 // * перенесён в hooks/useKeyPress
 function OneKeysPress() {
+  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  // для управ с h1
+  const handleClickRef = () => {
+    setOpenArrowAccord(!openArrowAccord);
+  };
+
   const isJapanPressed = useKeyPress("j");
   const isChinaPressed = useKeyPress("c");
   const isSouthKoreaPressed = useKeyPress("k");
@@ -44,39 +51,36 @@ function OneKeysPress() {
   const keysPressed = useMultiKeyPress();
 
   return (
-    <div className="OneKeysPress---">
-      <div
-        className="OneKeysPress__descript--"
-        // ref={this.RefActivCl}
-        // onClick={() => {
-        //   this.handleClickRef();
-        //   this.toggleArrowAccord(this.openArrowAccord);
-        // }}
-      >
-        <h1>хук keysPressed для обработки зажатия одной клавиш</h1>
-        <div
-        // className="temporary"
-        // style={{ display: "none" }}
-        // ref={this.RefOpenDop}
-        //  style={{ fontWeight: "bold", color: "red" }}
-        ></div>
-        <div>
-          Прослушивает НАжатии опред. одиночных клвш. - вывод + шрифт к
-          обозначению.
+    <div className="OneKeysPress--- accordion">
+      <div className="OneKeysPress__descript--">
+        <h1
+          className={openArrowAccord ? "_active" : ""}
+          // для управ с h1
+          // onClick={() => {handleClickRef();}}
+        >
+          Одиночное нажатие клавиши
+        </h1>
+        <div className={openArrowAccord ? "openDop" : ""}>
+          <h2>хук keysPressed для обработки зажатия одной клавиш</h2>
+          <div>
+            Прослушивает НАжатии опред. одиночных клвш. - вывод + шрифт к
+            обозначению.
+          </div>
+          <div>
+            Е\и надо чтобы вывод отражался/мигал, то комит/разкомит
+            useKeyPress.useEffect.keyup отрисовка мигает.
+          </div>
+          <p>Нажмите клавиши 'J', 'C', 'K'</p>
         </div>
-        <div>
-          Е\и надо чтобы вывод отражался/мигал, то комит/разкомит
-          useKeyPress.useEffect.keyup отрисовка мигает.
-        </div>
-        <p>Нажмите клавиши 'J', 'C', 'K'</p>
-        {/* <ArrowAccordion
-          // toggleArrowAccord={this.toggleArrowAccord}
-          openArrowAccord={this.state.openArrowAccord}
-        /> */}
+        <ArrowAccordionFnComp
+          openArrowAccord={openArrowAccord}
+          setOpenArrowAccord={setOpenArrowAccord}
+        />
       </div>
       <div
-        // ref={this.RefOpenCont}
-        className="OneKeysPress__content--"
+        className={`OneKeysPress__content--${
+          openArrowAccord ? " openCont" : ""
+        }`}
       >
         {/* простановка условия. при нажатой клвш выйдет И div */}
         {isJapanPressed && <div>🇯🇵</div>}
@@ -84,6 +88,7 @@ function OneKeysPress() {
         {isSouthKoreaPressed && <div>🇰🇷</div>}
         {/* {isAustraliaPressed && <div>🇦🇺</div>} */}
       </div>
+      <div className="OneKeysPress__frame--">OneKeysPress</div>
     </div>
   );
 }
@@ -171,7 +176,7 @@ function MultiKeysPress() {
           </div>
         </div>
       </div>
-      <div className="countryflags__frame--">CountryFlags</div>
+      <div className="MultiKeysPress__frame--">MultiKeysPress</div>
     </div>
   );
   // }
@@ -254,15 +259,15 @@ function AllKeysPress() {
   // fnComb(combinePress /* copyIsCountqwe */);
 
   // console.log("copyIsCount 0: " + isCount);
-  console.log("combinePress 0: " + combinePress);
-  console.log("provCombinePress 0: " + provCombinePress);
+  // console.log("combinePress 0: " + combinePress);
+  // console.log("provCombinePress 0: " + provCombinePress);
   useEffect(() => {
     // console.log("setProvCombinePress 01: " + setProvCombinePress);
     // console.log("combinePress 01: " + combinePress);
     if (combinePress === true) {
       setProvCombinePress(true);
-      console.log("combinePress 1: " + combinePress);
-      console.log("provCombinePress 1: " + provCombinePress);
+      // console.log("combinePress 1: " + combinePress);
+      // console.log("provCombinePress 1: " + provCombinePress);
       // console.log("provCombinePress true: " + provCombinePress);
       // fnProvCombinePress(provCombinePress, copyIsCount);
       // copyIsCount.push(1);
@@ -926,7 +931,7 @@ class CommonTrifles extends React.Component {
           ref={this.RefOpenCont}
           className="CommonTrifles__content"
           // временно классы
-          style={{ visibility: "visible", opacity: "1", height: "auto" }}
+          // style={{ visibility: "visible", opacity: "1", height: "auto" }}
         >
           <div style={{ background: "red", color: "block" }}>
             Так же разобрать:
