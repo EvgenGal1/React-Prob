@@ -99,21 +99,21 @@ export const Letter = (props) => {
 };
 
 // ? хз зачем.1
-// export function Emoji(props) {
-//   return (
-//     <div className="monitor-item">
-//       <span
-//         className="emoji"
-//         role="img"
-//         aria-label={props.label ? props.label : ""}
-//         aria-hidden={props.label ? "false" : "true"}
-//       >
-//         {props.symbol}
-//       </span>
-//     </div>
-//   );
-// }
-// export default Emoji;
+export function Emoji(props) {
+  return (
+    <div className="monitor-item">
+      <span
+        className="emoji"
+        role="img"
+        aria-label={props.label ? props.label : ""}
+        aria-hidden={props.label ? "false" : "true"}
+      >
+        {props.symbol}
+      </span>
+    </div>
+  );
+}
+export default Emoji;
 
 const css = `
 .fil4 {

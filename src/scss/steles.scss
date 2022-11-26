@@ -194,11 +194,14 @@
       .countryflags__twoexp_content--- {
         display: block;
         // width: 350px;
-        min-height: 14px;
         // background: #1ff;
         margin: 0 auto;
+        padding: 0;
         background: #fff2dd;
         text-align: center;
+        &:has(p, div, span) {
+          // min-height: 14px;
+        }
       }
       .countryflags {
         &-12,

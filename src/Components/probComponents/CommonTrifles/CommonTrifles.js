@@ -15,7 +15,7 @@ import {
 } from "../../../hooks/useMultiKeyPress.jsx";
 // послед. клвш.
 import { useAllKeysPress } from "../../../hooks/useAllKeysPress";
-import { Key, Plus, /* Emoji, */ Letter } from "./utilities";
+import { Key, Plus, Emoji, Letter } from "./utilities";
 // мой хук
 import {
   useMyKeyPress,
@@ -125,7 +125,7 @@ function MultiKeysPress() {
   return (
     <div className="MultiKeysPress-- accordion">
       <div className="MultiKeysPress__descript--">
-        <h3
+        <h1
           className={openArrowAccord ? "_active" : ""}
           // для управ с h1
           onClick={() => {
@@ -133,7 +133,7 @@ function MultiKeysPress() {
           }}
         >
           useMultiKeyPress для обработки зажатия многих клавиш
-        </h3>
+        </h1>
         <div className={openArrowAccord ? "openDop" : ""}>
           <p>
             Прослушивает ЗАжатии неск-их опред. клвш. одновременно И НАжатии
@@ -183,9 +183,9 @@ function MultiKeysPress() {
               <MultiKeyPress
                 keys={["q", "w", "e"]}
                 keysPressed={keysPressed}
-                // emoji="WIN"
+                emoji="WIN"
                 // emoji="WINasd"
-                props="a"
+                // props="a"
                 // props={<p>a</p>}
               />
             </div>
@@ -845,7 +845,7 @@ function ProbKeyFnComp() {
         >
           Различные пробы ч/з state, хуки, и пр.
         </h1>
-        {/* <div className={openArrowAccord ? "openDop" : ""}></div> */}
+        <div className={openArrowAccord ? "openDop" : ""}></div>
         <ArrowAccordionFnComp
           openArrowAccord={openArrowAccord}
           setOpenArrowAccord={setOpenArrowAccord}

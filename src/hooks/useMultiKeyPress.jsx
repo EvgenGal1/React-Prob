@@ -53,19 +53,14 @@ export { areKeysPressed };
 
 // `Многократное нажатие клавиш`
 // ~~~ не понятно - выводит "emoji" е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji
-const MultiKeyPress = ({
-  keys,
-  keysPressed,
-  // emoji
-  props,
-}) => {
+const MultiKeyPress = ({ keys, keysPressed, emoji, props }) => {
   // console.log("props : " + props);
   const arePressed = areKeysPressed(keys, keysPressed);
 
   if (arePressed) {
     // return emoji;
     // console.log("props : " + props);
-    return props;
+    return props || emoji;
   }
   return null;
 };
