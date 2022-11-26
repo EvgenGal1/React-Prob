@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+
 import { ArrowAccordionFnComp } from "../../../miniBlocksComponents/includes/ArrowAccordion.jsx";
+
+import { LSfromUH } from './LSfromUH';
 
 export const LocalStorage = () => {
   const [openArrowAccord, setOpenArrowAccord] = useState(false);
@@ -14,8 +17,8 @@ export const LocalStorage = () => {
           onClick={() => {
             handleClickRef();
           }}
-        >LocalStorage</h1>
-        <div className={openArrowAccord ? "openDop" : ""}>123</div>
+        >Сохранение в LocalStorage</h1>
+        <div className={openArrowAccord ? "openDop" : ""}></div>
         <ArrowAccordionFnComp
           openArrowAccord={openArrowAccord}
           setOpenArrowAccord={setOpenArrowAccord}
@@ -23,7 +26,7 @@ export const LocalStorage = () => {
       </div>
       <div
         className={`LocalStorage__content--${openArrowAccord ? " openCont" : ""
-          }`}>321</div>
+          }`}><LSfromUH /></div>
     </div>
   );
 };

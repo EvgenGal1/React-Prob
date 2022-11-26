@@ -273,9 +273,20 @@
       // overflow: auto;
       // & div[class$="__content openDop"] {
       &.openDop {
+        width: 100%;
         height: auto;
         visibility: visible;
         opacity: 1;
+        background: #555555;
+        background: rgb(119, 119, 119);
+        background: linear-gradient(
+          90deg,
+          rgba(119, 119, 119, 1) 15%,
+          rgba(85, 85, 85, 1) 40%,
+          rgba(85, 85, 85, 1) 60%,
+          rgba(119, 119, 119, 1) 85%
+        );
+        border-radius: 15px;
         // padding-bottom: 10px;
         // padding: inherit;
         // margin: inherit;

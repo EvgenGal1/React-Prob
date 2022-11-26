@@ -75,8 +75,11 @@
       // padding: 0px 0px 0px;
     }
     [class*="__descript---"]:last-child,
+    // [class*="__content--"]:last-child,
     [class*="__content---"]:last-child {
       padding: 0px 0px 10px;
+    }
+    [class*="__content--"]:last-child {
     }
 
     .Lists__content--- > div {
@@ -109,12 +112,13 @@
       // @include adaptiv-value("padding-right", 32, 15, 1);
       // ^ 5 вар. ч/з Адаптивное св-во для Всех в @mixin adaptiv-value-all
       @include adaptiv-value-all("padding", 10, 0, 60, 25);
+      @include adaptiv-value("padding-bottom", 20, 5, 3);
     }
     // общие бл. 2ой влж (вложенности). vid-input, GreetingClComp__content,
     // & > div {
     // общие бл. 3ей влж. vid-input-1, GreetingClComp__content-1,
     // & > div {
-    & div[class$="__content---"] div[class*="descript"] {
+    & div[class*="__content--"] div[class*="descript"] {
       // padding-left: calc(100px + 580 * ((100vw - 320px) / 1600));
       // padding-right: calc(100px + 580 * ((100vw - 320px) / 1600));
       @include adaptiv-value("padding-left", 30, 5, 3);
@@ -183,9 +187,9 @@
     }
     // Именнованые бл. 3ой влж
     .OneKeysPress---,
-    .MultiKeysPress--,
-    .AllKeysPress--,
-    .ProbKeyFnComp-- {
+    .MultiKeysPress---,
+    .AllKeysPress---,
+    .ProbKeyFnComp--- {
       position: relative;
     }
     // Именнованые бл. 4ой влж (Цв.Поле 4ой влж) ----------------------------------------------------------------------------------
@@ -279,6 +283,7 @@
     //     }
     //   }
     // }
+    .ConditionalRenderingClComp__content---,
     .conditional-rendering__content,
     .StateAndLifeCycle__content,
     .countryflags__content,
@@ -286,12 +291,12 @@
       & > div {
         // & .conditional-rendering__content > div {
         &:nth-child(odd) {
-          background-color: #838383;
+          background-color: #cccccc;
           // padding: 10px 0 0;
           // background: yellow;
         }
         &:nth-child(even) {
-          background-color: #cccccc;
+          background-color: #838383;
           // padding: 10px 0 0;
           // background: coral;
         }
@@ -390,7 +395,9 @@
 // .Forms-- [class*="content--"] > div > div > div,
 .LiftingStateUp--  [class*="content--"] > div > div > div,
 .ConditionalRendering-- [class$="content--"] > div > div > div,
-.ConditionalRenderingClComp--- > div > div
+.ConditionalRenderingClComp--- > div > div,
+.PressKey-- > div[class*="content--"] > div,
+.LocalStorage-- > div[class*="content--"] > div
 // [class$="ClComp---"] > div > div
 {
   // [class$="__descript--"] > div,

@@ -35,7 +35,6 @@ import { ArrowAccordionFnComp } from "../../../miniBlocksComponents/includes/Arr
 // * перенесён в hooks/useKeyPress
 function OneKeysPress() {
   const [openArrowAccord, setOpenArrowAccord] = useState(false);
-  // для управ с h1
   const handleClickRef = () => {
     setOpenArrowAccord(!openArrowAccord);
   };
@@ -49,16 +48,15 @@ function OneKeysPress() {
 
   return (
     <div className="OneKeysPress--- accordion">
-      <div className="OneKeysPress__descript--">
-        <h1
+      <div className="OneKeysPress__descript---">
+        <h3
           className={openArrowAccord ? "_active" : ""}
-          // для управ с h1
           onClick={() => {
             handleClickRef();
           }}
         >
           useKeyPress - Одиночное нажатие клавиши
-        </h1>
+        </h3>
         <div className={openArrowAccord ? "openDop" : ""}>
           <h2>хук keysPressed для обработки зажатия одной клавиш</h2>
           <div>
@@ -77,7 +75,7 @@ function OneKeysPress() {
         />
       </div>
       <div
-        className={`OneKeysPress__content--${
+        className={`OneKeysPress__content---${
           openArrowAccord ? " openCont" : ""
         }`}
       >
@@ -98,7 +96,6 @@ function OneKeysPress() {
 // * перенесён в hooks useMultiKeyPress
 function MultiKeysPress() {
   const [openArrowAccord, setOpenArrowAccord] = useState(false);
-  // для управ с h1
   const handleClickRef = () => {
     setOpenArrowAccord(!openArrowAccord);
   };
@@ -123,17 +120,16 @@ function MultiKeysPress() {
   // console.log("happyPress : " + happyPress);
   // console.log("keysPressed : " + keysPressed);
   return (
-    <div className="MultiKeysPress-- accordion">
-      <div className="MultiKeysPress__descript--">
-        <h1
+    <div className="MultiKeysPress--- accordion">
+      <div className="MultiKeysPress__descript---">
+        <h3
           className={openArrowAccord ? "_active" : ""}
-          // для управ с h1
           onClick={() => {
             handleClickRef();
           }}
         >
           useMultiKeyPress для обработки зажатия многих клавиш
-        </h1>
+        </h3>
         <div className={openArrowAccord ? "openDop" : ""}>
           <p>
             Прослушивает ЗАжатии неск-их опред. клвш. одновременно И НАжатии
@@ -150,7 +146,7 @@ function MultiKeysPress() {
         />
       </div>
       <div
-        className={`MultiKeysPress__content--${
+        className={`MultiKeysPress__content---${
           openArrowAccord ? " openCont" : ""
         }`}
       >
@@ -209,7 +205,6 @@ function MultiKeysPress() {
 // !!! https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/App.js
 function AllKeysPress() {
   const [openArrowAccord, setOpenArrowAccord] = useState(false);
-  // для управ с h1
   const handleClickRef = () => {
     setOpenArrowAccord(!openArrowAccord);
   };
@@ -455,17 +450,16 @@ function AllKeysPress() {
   }
 
   return (
-    <div className="AllKeysPress-- accordion">
-      <div className="AllKeysPress__descript--">
-        <h1
+    <div className="AllKeysPress--- accordion">
+      <div className="AllKeysPress__descript---">
+        <h3
           className={openArrowAccord ? "_active" : ""}
-          // для управ с h1
           onClick={() => {
             handleClickRef();
           }}
         >
           useAllKeysPress - Последовательное нажатие определённых клавиш
-        </h1>
+        </h3>
         <div className={openArrowAccord ? "openDop" : ""}>
           {/* Подсказка. доп. визуал. выделен Буквы и Плюсов */}
           {/* <UseAllKeypad inputs={inputs} type={"multi"} /> */}
@@ -533,7 +527,7 @@ function AllKeysPress() {
         />
       </div>
       <div
-        className={`AllKeysPress__content--${
+        className={`AllKeysPress__content---${
           openArrowAccord ? " openCont" : ""
         }`}
       >
@@ -824,27 +818,25 @@ function ProbKeyFnComp() {
   // };
 
   const [openArrowAccord, setOpenArrowAccord] = useState(false);
-  // для управ с h1
   const handleClickRef = () => {
     setOpenArrowAccord(!openArrowAccord);
   };
 
   return (
     <div
-      className="ProbKeyFnComp-- accordion"
+      className="ProbKeyFnComp--- accordion"
       style={{ visibility: "visible", opacity: "1" }}
     >
       {/* https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript */}
-      <div className="ProbKeyClComp__descript--">
-        <h1
+      <div className="ProbKeyClComp__descript---">
+        <h3
           className={openArrowAccord ? "_active" : ""}
-          // для управ с h1
           onClick={() => {
             handleClickRef();
           }}
         >
           Различные пробы ч/з state, хуки, и пр.
-        </h1>
+        </h3>
         <div className={openArrowAccord ? "openDop" : ""}></div>
         <ArrowAccordionFnComp
           openArrowAccord={openArrowAccord}
@@ -852,7 +844,7 @@ function ProbKeyFnComp() {
         />
       </div>
       <div
-        className={`ProbKeyFnComp__content--${
+        className={`ProbKeyFnComp__content---${
           openArrowAccord ? " openCont" : ""
         }`}
       >
@@ -1034,7 +1026,7 @@ export class PressKey extends React.Component {
           <MultiKeysPress />
           <AllKeysPress />
           <ProbKeyFnComp />
-          <ProbKeyClComp />
+          {/* <ProbKeyClComp /> */}
           {/* <UseAllKeypad inputs={inputs} type={"multi"}/> */}
         </div>
         <div className="PressKey__frame--">PressKey.js</div>
