@@ -3,7 +3,7 @@ import React from "react";
 import "./ReactAccordionBox.scss";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
+import ArrowAccordion from "../../miniBlocksComponents/includes/ArrowAccordion.js";
 
 // !!! по примеры - https://reactjsexample.com/react-accordion-box/
 

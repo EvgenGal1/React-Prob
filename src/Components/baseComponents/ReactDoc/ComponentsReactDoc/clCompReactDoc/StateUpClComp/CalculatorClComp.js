@@ -15,9 +15,9 @@ import {
   ConstRoot,
   SelectLet,
   IfElse,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
-import ExpPreCode from "../../../../../../js/examples/ExpPreCode";
+import ExpPreCode from "../../../../../miniBlocksComponents/examples/ExpPreCode";
 import {
   scaleNames,
   toCelsius,

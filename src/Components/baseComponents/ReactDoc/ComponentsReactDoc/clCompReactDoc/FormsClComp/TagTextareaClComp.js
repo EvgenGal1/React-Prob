@@ -14,7 +14,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 class TagTextareaClComp extends React.Component {
   constructor(props) {

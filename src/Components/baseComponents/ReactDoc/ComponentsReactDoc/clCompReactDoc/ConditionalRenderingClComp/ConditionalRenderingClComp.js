@@ -19,7 +19,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 class ConditionalRenderingClComp extends React.Component {
   //constructor(props) {

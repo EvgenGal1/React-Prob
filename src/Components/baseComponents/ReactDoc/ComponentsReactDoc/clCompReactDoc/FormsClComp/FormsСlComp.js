@@ -22,7 +22,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 class FormsClComp extends React.Component {
   constructor(props) {

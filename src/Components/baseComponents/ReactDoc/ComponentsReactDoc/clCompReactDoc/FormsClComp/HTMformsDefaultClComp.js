@@ -14,7 +14,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 const HTMformsDefaultClComp = () => {
   return (

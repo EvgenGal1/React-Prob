@@ -14,7 +14,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 // Списки
 class ListsClComp extends React.Component {

@@ -13,7 +13,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 class ClockClComp extends React.Component {
   // Классовые компоненты всегда должны вызывать базовый конструктор с аргументом props.

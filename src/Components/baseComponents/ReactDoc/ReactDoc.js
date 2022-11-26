@@ -21,7 +21,7 @@ import FormsClComp from "./ComponentsReactDoc/clCompReactDoc/FormsClComp/FormsС
 import { StateUpClComp } from "./ComponentsReactDoc/clCompReactDoc/StateUpClComp/StateUpClComp.js";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
+import ArrowAccordion from "../../miniBlocksComponents/includes/ArrowAccordion.js";
 
 // пробы спойлера/аккардиона
 import ProbSpoiler from "./ComponentsReactDoc/ProbSpoiler.js";
@@ -41,7 +41,7 @@ import {
   ClCompLet,
   ConstRoot,
   SelectLet,
-} from "../../../js/examples/ExpPreCode.js";
+} from "../../miniBlocksComponents/examples/ExpPreCode.js";
 
 // !!! https://ru.reactjs.org/docs/components-and-props.
 // Компоненты и пропсы `Components and Props`=============================================================================

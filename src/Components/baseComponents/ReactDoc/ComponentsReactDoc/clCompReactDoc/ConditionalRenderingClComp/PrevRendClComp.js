@@ -18,10 +18,10 @@ import {
   ConstRoot,
   SelectLet,
   IfElse,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../../../../js/includes/ArrowAccordion.js";
+import ArrowAccordion from "../../../../../miniBlocksComponents/includes/ArrowAccordion.js";
 
 // ОБЩИЕ FN для всех Компонентов ----------------------------------------------------------------------------------
 // переключение кнп. принимает только boolen ?

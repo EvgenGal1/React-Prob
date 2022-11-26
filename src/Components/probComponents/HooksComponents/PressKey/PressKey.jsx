@@ -1,31 +1,31 @@
 /* eslint-disable default-case */
 import React from "react";
 import { useDebugValue, useState, useEffect } from "react";
-import "./CommonTrifles.scss";
+import "./PressKey.scss";
 
 // hooks для KeyDown/KeyUp
 // одн клвш.
-import { useKeyPress } from "../../../hooks/useKeyPress";
+import { useKeyPress } from "../../../../hooks/useKeyPress";
 // мн. клвш.
 import {
   useMultiKeyPress,
   areKeysPressed,
   MultiKeyPress,
   Label,
-} from "../../../hooks/useMultiKeyPress.jsx";
+} from "../../../../hooks/useMultiKeyPress.jsx";
 // послед. клвш.
-import { useAllKeysPress } from "../../../hooks/useAllKeysPress";
+import { useAllKeysPress } from "../../../../hooks/useAllKeysPress";
 import { Key, Plus, Emoji, Letter } from "./utilities";
 // мой хук
 import {
   useMyKeyPress,
   myAreKeysPressed,
   MyMultiKeyPress,
-} from "../../../hooks/useMyKeyPress";
+} from "../../../../hooks/useMyKeyPress";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../js/includes/ArrowAccordion.js";
-import { ArrowAccordionFnComp } from "../../../js/includes/ArrowAccordion.jsx";
+import ArrowAccordion from "../../../miniBlocksComponents/includes/ArrowAccordion.js";
+import { ArrowAccordionFnComp } from "../../../miniBlocksComponents/includes/ArrowAccordion.jsx";
 // ^ мнг. клвш. может быть ограничение на кол-во нажатых клавиш - https://gaming.stackexchange.com/questions/6669/how-do-i-remove-the-limit-on-pc-keyboard-button-presses
 // общ. разработка - https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
 
@@ -941,7 +941,7 @@ class ProbKeyClComp extends React.Component {
 // PROBKEY ----------------------------------------------------------------------------------
 
 // покл. в общий Компонент и импорт  =======================================================================================
-class CommonTrifles extends React.Component {
+export class PressKey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -967,8 +967,8 @@ class CommonTrifles extends React.Component {
 
   render() {
     return (
-      <div className="CommonTrifles-- accordion">
-        <div className="CommonTrifles__descript--">
+      <div className="PressKey-- accordion">
+        <div className="PressKey__descript--">
           <h1
             ref={this.RefActivCl}
             onClick={() => {
@@ -1010,7 +1010,7 @@ class CommonTrifles extends React.Component {
         </div>
         <div
           ref={this.RefOpenCont}
-          className="CommonTrifles__content--"
+          className="PressKey__content--"
           // временно классы
           // style={{ visibility: "visible", opacity: "1", height: "auto" }}
         >
@@ -1037,10 +1037,10 @@ class CommonTrifles extends React.Component {
           <ProbKeyClComp />
           {/* <UseAllKeypad inputs={inputs} type={"multi"}/> */}
         </div>
-        <div className="CommonTrifles__frame--">CommonTrifles.js</div>
+        <div className="PressKey__frame--">PressKey.js</div>
       </div>
     );
   }
 }
 
-export default CommonTrifles;
+// export default PressKey;

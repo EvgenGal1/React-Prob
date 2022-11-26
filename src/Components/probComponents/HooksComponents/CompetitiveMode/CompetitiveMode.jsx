@@ -1,19 +1,14 @@
 // Сбор Компонентов кода с hooks
 import React, { useState, useEffect, useTransition } from "react";
 import { Comments } from "./Comment.jsx";
-import Rendering from "../Components/miniBlocksComponents/Rendering.jsx";
-import "./hooks.scss";
-
-// подкл. др. HOOKS
-import CommonTrifles from "../Components/probComponents/CommonTrifles/CommonTrifles.js";
+import Rendering from "../../../miniBlocksComponents/Rendering.jsx";
 
 // подкл. UI блоков
-import ArrowAccordion from "../js/includes/ArrowAccordion.js";
-import { ArrowAccordionFnComp } from "../js/includes/ArrowAccordion.jsx";
+import ArrowAccordion from "../../../miniBlocksComponents/includes/ArrowAccordion.js";
+import { ArrowAccordionFnComp } from "../../../miniBlocksComponents/includes/ArrowAccordion.jsx";
 
 // <Конкурентный режим (задержка частей рендеринга)>˅=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=˅
 // !!! https://ru.reactjs.org/docs/concurrent-mode-reference.html
-// Конкурентный режим - при render, до отрисовки, загрузку можно разделять на мелкие (чанки) части (навроде асинхрона) для приостановки загрузки некоторых чанков. определять что сейчас важно/не важно загрузить.
 
 // Suspense (`приостановка`) =======================================================================================
 const Suspense = () => {
@@ -54,7 +49,6 @@ const Suspense = () => {
     </div>
   );
 };
-
 // SuspenseList (Список ожидания) =======================================================================================
 const SuspenseList = () => {
   return (
@@ -119,7 +113,6 @@ const SuspenseList = () => {
     </div>
   );
 };
-
 // хуки useTransition и useDefrredValue (`использовать переход` и `использовать отложенное значение`) =======================================================================================
 // !!! https://www.youtube.com/watch?v=QfIwLDy8j_U
 // *** хук useTransition - опред. что не/срочно отричовать (в этом примере) и позволяет не отражать состояние загрузки при обновл перед новым экраном. возвращает массив из двух элементов (isPending(boolin) - опред render из частей, startTransition(fn колбэк) - опред откладываемое сост). хук для fnCompon, метод startTransition для clCompon
@@ -243,7 +236,8 @@ function TransitionDefrred() {
   // }
 }
 
-const CompetitiveMode = () => {
+// подкл.всех Компонентов =======================================================================================
+export const CompetitiveMode = () => {
   const [openArrowAccord, setOpenArrowAccord] = useState(false);
   // для управ с h1
   const handleClickRef = () => {
@@ -284,46 +278,4 @@ const CompetitiveMode = () => {
     </div>
   );
 };
-
 //</Конкурентный режим (задержка частей рендеринга)>˄=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=˄
-
-// подкл.всех Компонентов hooks =======================================================================================
-const HooksComponents = () => {
-  const [openArrowAccord, setOpenArrowAccord] = useState(false);
-  // для управ с h1
-  const handleClickRef = () => {
-    setOpenArrowAccord(!openArrowAccord);
-  };
-  return (
-    <div className="HooksComponents accordion">
-      <div className="HooksComponents__descript">
-        <h1
-          className={openArrowAccord ? "_active" : ""}
-          // для управ с h1
-          onClick={() => {
-            handleClickRef();
-          }}
-        >
-          Различные HOOKИ
-        </h1>
-        <div className={openArrowAccord ? "openDop" : ""}>
-          Проверка различных hooks. Как встроеных, новых так и кастомных
-        </div>
-        <ArrowAccordionFnComp
-          openArrowAccord={openArrowAccord}
-          setOpenArrowAccord={setOpenArrowAccord}
-        />
-      </div>
-      <div
-        className={`HooksComponents__content${
-          openArrowAccord ? " openCont" : ""
-        }`}
-      >
-        <CompetitiveMode />
-        <CommonTrifles />
-      </div>
-      <div className="HooksComponents__frame">HooksComponents</div>
-    </div>
-  );
-};
-export default HooksComponents;

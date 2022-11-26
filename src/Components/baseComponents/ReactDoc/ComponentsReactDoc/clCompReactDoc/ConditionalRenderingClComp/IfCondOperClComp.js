@@ -18,10 +18,10 @@ import {
   ConstRoot,
   SelectLet,
   IfElse,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 // подкл. UI блоков
-import ArrowAccordion from "../../../../../../js/includes/ArrowAccordion.js";
+import ArrowAccordion from "../../../../../miniBlocksComponents/includes/ArrowAccordion.js";
 
 // Встроенный If-Else с условным оператором
 // const IfCondOperClComp = () => {

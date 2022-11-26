@@ -15,7 +15,7 @@ import {
   ConstRoot,
   SelectLet,
   IfElse,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 // let letConstFn;
 // if(this.props === "scaleNames"){

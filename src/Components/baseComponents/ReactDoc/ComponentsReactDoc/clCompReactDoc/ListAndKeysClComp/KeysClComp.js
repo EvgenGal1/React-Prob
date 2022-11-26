@@ -13,7 +13,7 @@ import {
   FuncNameProps,
   ClCompLet,
   ConstRoot,
-} from "../../../../../../js/examples/ExpPreCode.js";
+} from "../../../../../miniBlocksComponents/examples/ExpPreCode.js";
 
 function knpToggleClick44(event) {
   this.setState((state) => ({

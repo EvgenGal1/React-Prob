@@ -5,8 +5,8 @@ import "./App.scss";
 // import Plan from "./Plan/js/Plan.js";
 import Vid from "./probComponents/VidYT/Vid.js";
 import ReactDoc from "./baseComponents/ReactDoc/ReactDoc.js";
-import CommonTrifles from "./probComponents/CommonTrifles/CommonTrifles.js";
-import HooksComponents from "../hooks/HooksComponents";
+import PressKey from "./probComponents/HooksComponents/PressKey/PressKey.jsx";
+import HooksComponents from "./probComponents/HooksComponents/HooksComponents.jsx";
 import PersistState from "./probComponents/PersistState/PersistState.js";
 import ReactAccordionBox from "./probComponents/Accordions/ReactAccordionBox";
 import ReactAccordionUIComponent from "./probComponents/Accordions/ReactAccordionUIComponent";
@@ -30,7 +30,7 @@ class GeneralComponents extends React.Component {
         <hr />
         <ReactDoc />
         {/* <hr />
-        <CommonTrifles /> */}
+        <PressKey /> */}
         <hr />
         <PersistState />
         <hr />
