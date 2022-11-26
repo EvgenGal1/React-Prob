@@ -61,7 +61,7 @@
     [class*="__descript---"],
     [class*="__content---"] {
       width: 100%;
-      padding: 10px 0px 0px;
+      // padding: 10px 0px 0px;
       // border-radius: 15px;
       // box-shadow: 0 0 5px 5px rgb(34 60 80 / 20%);
       // margin-bottom: 2px;
@@ -181,6 +181,13 @@
         }
       }
     }
+    // Именнованые бл. 3ой влж
+    .OneKeysPress---,
+    .MultiKeysPress--,
+    .AllKeysPress--,
+    .ProbKeyFnComp-- {
+      position: relative;
+    }
     // Именнованые бл. 4ой влж (Цв.Поле 4ой влж) ----------------------------------------------------------------------------------
     & > div > div {
       .countryflags__oneexp_content---,
@@ -271,7 +278,8 @@
     // }
     .conditional-rendering__content,
     .StateAndLifeCycle__content,
-    .countryflags__content {
+    .countryflags__content,
+    .CommonTrifles__content-- {
       & > div {
         // & .conditional-rendering__content > div {
         &:nth-child(odd) {

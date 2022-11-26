@@ -3,9 +3,6 @@ import React from "react";
 import { useDebugValue, useState, useEffect } from "react";
 import "./CommonTrifles.scss";
 
-// 1
-// import Backdrop from "@mui/material/Backdrop";
-
 // hooks для KeyDown/KeyUp
 // одн клвш.
 import { useKeyPress } from "../../../hooks/useKeyPress";
@@ -56,9 +53,11 @@ function OneKeysPress() {
         <h1
           className={openArrowAccord ? "_active" : ""}
           // для управ с h1
-          // onClick={() => {handleClickRef();}}
+          onClick={() => {
+            handleClickRef();
+          }}
         >
-          Одиночное нажатие клавиши
+          useKeyPress - Одиночное нажатие клавиши
         </h1>
         <div className={openArrowAccord ? "openDop" : ""}>
           <h2>хук keysPressed для обработки зажатия одной клавиш</h2>
@@ -88,7 +87,7 @@ function OneKeysPress() {
         {isSouthKoreaPressed && <div>🇰🇷</div>}
         {/* {isAustraliaPressed && <div>🇦🇺</div>} */}
       </div>
-      <div className="OneKeysPress__frame--">OneKeysPress</div>
+      {/* <div className="OneKeysPress__frame--">OneKeysPress</div> */}
     </div>
   );
 }
@@ -98,6 +97,12 @@ function OneKeysPress() {
 // !!! написано на основе - https://codesandbox.io/s/y3qzyr3lrz?file=/src/use-multi-key-press.js
 // * перенесён в hooks useMultiKeyPress
 function MultiKeysPress() {
+  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  // для управ с h1
+  const handleClickRef = () => {
+    setOpenArrowAccord(!openArrowAccord);
+  };
+
   const happyPress = useKeyPress("h");
   // const sadPress = useKeyPress("v");
   const robotPress = useKeyPress("r");
@@ -118,23 +123,41 @@ function MultiKeysPress() {
   // console.log("happyPress : " + happyPress);
   // console.log("keysPressed : " + keysPressed);
   return (
-    <div className="MultiKeysPress--">
+    <div className="MultiKeysPress-- accordion">
       <div className="MultiKeysPress__descript--">
-        <h3>хук и fn() MultiKeyPress для обработки зажатия многих клавиш</h3>
-        <div>
-          Прослушивает ЗАжатии неск-их опред. клвш. одновременно И НАжатии
-          одиночных опред. клвш. - вывод + шрифт к обозначению
+        <h3
+          className={openArrowAccord ? "_active" : ""}
+          // для управ с h1
+          onClick={() => {
+            handleClickRef();
+          }}
+        >
+          useMultiKeyPress для обработки зажатия многих клавиш
+        </h3>
+        <div className={openArrowAccord ? "openDop" : ""}>
+          <p>
+            Прослушивает ЗАжатии неск-их опред. клвш. одновременно И НАжатии
+            одиночных опред. клвш. - вывод + шрифт к обозначению
+          </p>
+          <p>
+            Е\и надо чтобы вывод отражался/мигал, то комит/разкомит
+            useMultiKeyPress.useEffect.keyup отрисовка мигает.
+          </p>
         </div>
-        <div>
-          Е\и надо чтобы вывод отражался/мигал, то комит/разкомит
-          useMultiKeyPress.useEffect.keyup отрисовка мигает.
-        </div>
+        <ArrowAccordionFnComp
+          openArrowAccord={openArrowAccord}
+          setOpenArrowAccord={setOpenArrowAccord}
+        />
       </div>
-      <div className="MultiKeysPress__content--">
+      <div
+        className={`MultiKeysPress__content--${
+          openArrowAccord ? " openCont" : ""
+        }`}
+      >
         <div className="countryflags__twoexp---">
           <div className="countryflags__twoexp_description---">
             {/* визуализация выделением */}
-            {/* <Label value="Нажмите одиночные клавиши: " />
+            <Label value="Нажмите одиночные клавиши: " />
             <Label value="h" isBold={happyPress} />
             <Label value="r" isBold={robotPress} />
             <Label value="f" isBold={foxPress} />
@@ -142,7 +165,7 @@ function MultiKeysPress() {
             <Label
               value="Нажмите клавиши вместе, потом одиночные: q + w + e"
               isBold={hsrfPressed}
-            /> */}
+            />
           </div>
           Вместе q w e, отдельно h r f
           <div className="countryflags__twoexp_content---">
@@ -154,7 +177,7 @@ function MultiKeysPress() {
             {robotPress && "r"}
             {foxPress && "f"} */}
             {/* {(foxPress || happyPress || robotPress) && "l"} */}
-            <br />
+            {/* <br /> */}
             {/* // ~~~ не понятно - выводит WIN е/и зажаты все keys + в keysPressed(ч/з useMultiKeyPress) получ. (хз что?true?) + передали emoji */}
             <div>
               <MultiKeyPress
@@ -176,7 +199,7 @@ function MultiKeysPress() {
           </div>
         </div>
       </div>
-      <div className="MultiKeysPress__frame--">MultiKeysPress</div>
+      {/* <div className="MultiKeysPress__frame--">MultiKeysPress</div> */}
     </div>
   );
   // }
@@ -185,6 +208,12 @@ function MultiKeysPress() {
 // последовательное нажатие нескольких клавиш ------------------------------------------------
 // !!! https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/App.js
 function AllKeysPress() {
+  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  // для управ с h1
+  const handleClickRef = () => {
+    setOpenArrowAccord(!openArrowAccord);
+  };
+
   // перем бук после хука
   // const akeyPress = useAllKeysPress({ userKeys: "a" });
   // const bkeyPress = useAllKeysPress({ userKeys: "b" });
@@ -426,72 +455,88 @@ function AllKeysPress() {
   }
 
   return (
-    <div className="AllKeysPress">
-      <div className="AllKeysPress__descript">
-        <h1>Последовательное нажатие нескольких клавиш</h1>
+    <div className="AllKeysPress-- accordion">
+      <div className="AllKeysPress__descript--">
+        <h1
+          className={openArrowAccord ? "_active" : ""}
+          // для управ с h1
+          onClick={() => {
+            handleClickRef();
+          }}
+        >
+          useAllKeysPress - Последовательное нажатие определённых клавиш
+        </h1>
+        <div className={openArrowAccord ? "openDop" : ""}>
+          {/* Подсказка. доп. визуал. выделен Буквы и Плюсов */}
+          {/* <UseAllKeypad inputs={inputs} type={"multi"} /> */}
+          {/* Верный Вывод. доп. визуал. Экран, доб.нажат.буквы, смс */}
+          {/* <Screen
+            activate={anyKeyPressed}
+            input={inputs}
+            combine={combinePress}
+            type={"jackson"}
+            message={"Все, что вам нужно сделать, это повторить за мной !!"}
+          ></Screen> */}
+          <p>
+            проблема с длинным вводом при удержании клавиш. не все клвш. могут
+            набратся. макс нашёл 5. по проблеме есть ссылка в коде
+          </p>
+          <p>попробовать ввод - ljgvty. какие клвш не пересекаются</p>
+          <p>
+            При добавлен константы вызова хука useAllKeysPress в
+            comp.MultiKeysPress, логика MultiKeyPress с клавишими qwe -
+            сломалась. Теперь при выводятся при первом нажатии, без доп.кнп.
+          </p>
+          <p>
+            Сливать или модернизировать хуки Key, чтоб был последовательный,
+            фиксированный ввод с оставленым результатом. Можно и доп комбинации.
+            Назначить комбинации отмены
+          </p>
+          <p>выведение блоков по условим/операторам</p>
+          <p>временно блокировал addEventListener("keyup" в хуке.</p>
+          <p>
+            ч/з <span>combinePress</span> выводит по правильной
+            последовательности, но сброс после любых клавиш
+          </p>
+          <p>
+            ч/з anyKeyPressed (дложно быть true, но после объявления в cg -
+            false. true при нажатии) усл.ренд. и/или операт. выводит блок. но по
+            любому нажатию клав. из dopmn
+          </p>
+          <p>
+            перечитать/попробовать -
+            https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
+          </p>
+          <p style={{ fontWeight: "bold" }}>
+            попробовать подсчёт количества срабатываний combinePress (при вкл.
+            слушателе keyup). Т.е. на 1 доп state true, при 2 false и т.д.
+          </p>
+          <p>
+            подсчёт не проходит. е/и true от fn combinePress в useffect
+            дублировать в useState (хаписывается) и там же в отдельном useState
+            хранить счётчик, то выдаёт ошибку бесконечного рендера.
+          </p>
+          <p>
+            массив так же не проходит. его стайт и изменение даже через копию,
+            уходят в бесконечное добавление.
+          </p>
+          <p>
+            временно на выводимый блок ч/з state provCombinePress (true от
+            combinePress) навесил на блок onclick.false. provCombinePress
+            изначально срабат. так же и combinePress, но т.к. отдельно поместил
+            в useStete, то окл не происходит.
+          </p>
+        </div>
+        <ArrowAccordionFnComp
+          openArrowAccord={openArrowAccord}
+          setOpenArrowAccord={setOpenArrowAccord}
+        />
       </div>
-      <div className="AllKeysPress__content">
-        {/* Подсказка. доп. визуал. выделен Буквы и Плюсов */}
-        {/* <UseAllKeypad inputs={inputs} type={"multi"} /> */}
-        {/* Верный Вывод. доп. визуал. Экран, доб.нажат.буквы, смс */}
-        {/* <Screen
-          activate={anyKeyPressed}
-          input={inputs}
-          combine={combinePress}
-          type={"jackson"}
-          message={"Все, что вам нужно сделать, это повторить за мной !!"}
-        ></Screen> */}
-        <p>
-          проблема с длинным вводом при удержании клавиш. не все клвш. могут
-          набратся. макс нашёл 5. по проблеме есть ссылка в коде
-        </p>
-        <p>попробовать ввод - ljgvty. какие клвш не пересекаются</p>
-        <p>
-          При добавлен константы вызова хука useAllKeysPress в
-          comp.MultiKeysPress, логика MultiKeyPress с клавишими qwe - сломалась.
-          Теперь при выводятся при первом нажатии, без доп.кнп.
-        </p>
-        <p>
-          Сливать или модернизировать хуки Key, чтоб был последовательный,
-          фиксированный ввод с оставленым результатом. Можно и доп комбинации.
-          Назначить комбинации отмены
-        </p>
-        <p>выведение блоков по условим/операторам</p>
-        <p>временно блокировал addEventListener("keyup" в хуке.</p>
-        <p>
-          ч/з <span>combinePress</span> выводит по правильной
-          последовательности, но сброс после любых клавиш
-        </p>
-        <p>
-          ч/з anyKeyPressed (дложно быть true, но после объявления в cg - false.
-          true при нажатии) усл.ренд. и/или операт. выводит блок. но по любому
-          нажатию клав. из dopmn
-        </p>
-        <p>
-          перечитать/попробовать -
-          https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
-        </p>
-        <p style={{ fontWeight: "bold" }}>
-          попробовать подсчёт количества срабатываний combinePress (при вкл.
-          слушателе keyup). Т.е. на 1 доп state true, при 2 false и т.д.
-        </p>
-        <p>
-          подсчёт не проходит. е/и true от fn combinePress в useffect
-          дублировать в useState (хаписывается) и там же в отдельном useState
-          хранить счётчик, то выдаёт ошибку бесконечного рендера.
-        </p>
-        <p>
-          массив так же не проходит. его стайт и изменение даже через копию,
-          уходят в бесконечное добавление.
-        </p>
-        <p>
-          временно на выводимый блок ч/з state provCombinePress (true от
-          combinePress) навесил на блок onclick.false. provCombinePress
-          изначально срабат. так же и combinePress, но т.к. отдельно поместил в
-          useStete, то окл не происходит.
-        </p>
-        <br />
-
+      <div
+        className={`AllKeysPress__content--${
+          openArrowAccord ? " openCont" : ""
+        }`}
+      >
         <span>["d", "o", "p", "m", "n"]</span>
         <div>
           На combinePress
@@ -750,7 +795,7 @@ function ProbKeyFnComp() {
   // useMyKeyPress(() => setStMyKeyPress, "z", "c", "b");
   // console.log("setStMyKeyPress посл: " + setStMyKeyPress);
   // const foxPress = useKeyPress("f");
-  const myKnpKeyPressArr = useMyKeyPress(() => "mathArr", "z", "c", "b");
+  const myKnpKeyPressArr = useMyKeyPress(() => /* "mathArr", */ "z", "c", "b");
   // const myKnpKeyPressSet = useMyKeyPress(() => "mathSet", "z", "c", "b");
   // 6 ------------------------------------------------------------------------
   const [keyWebDewArgs, setKeyWebDewArgs] = useState(false);
@@ -777,73 +822,103 @@ function ProbKeyFnComp() {
   // document.onkeydown = function (event) {
   //   console.log(event);
   // };
+
+  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  // для управ с h1
+  const handleClickRef = () => {
+    setOpenArrowAccord(!openArrowAccord);
+  };
+
   return (
     <div
-      className="ProbKeyFnComp"
+      className="ProbKeyFnComp-- accordion"
       style={{ visibility: "visible", opacity: "1" }}
     >
       {/* https://translated.turbopages.org/proxy_u/en-ru.ru.a2f3a68f-6334556c-afe7adea-74722d776562/https/stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript */}
-      <div className="1" style={{ backgroundColor: "rgb(175 127 127)" }}>
-        <p>Вывод блок по "ControlLeft", "ShiftLeft", "AltLeft"</p>
-        <p>
-          вкл не задерживает состояние. при откл addEventListener("keyup",
-          handleKeyUp) повторно клвш не срабатывают. никакой последовательности
-        </p>
-        Результат - {backdropOpen && <span>Готово</span>}
-        <div></div>
+      <div className="ProbKeyClComp__descript--">
+        <h1
+          className={openArrowAccord ? "_active" : ""}
+          // для управ с h1
+          onClick={() => {
+            handleClickRef();
+          }}
+        >
+          Различные пробы ч/з state, хуки, и пр.
+        </h1>
+        {/* <div className={openArrowAccord ? "openDop" : ""}></div> */}
+        <ArrowAccordionFnComp
+          openArrowAccord={openArrowAccord}
+          setOpenArrowAccord={setOpenArrowAccord}
+        />
       </div>
-      <div className="2">
-        <p>
-          Вывод блок по Q и S или Q и A. Нет послед-ти. Код на Set и Arrow.
-          Проверка длины только у Arrow
-        </p>
-        <div>Результат - {keySet && <span>Set</span>}</div>
-        <div>Результат - {keyArrow && <span>Arrow</span>}</div>
-      </div>
-      <div className="3" style={{ backgroundColor: "rgb(175 127 127)" }}>
-        <p>
-          Вывод блок по "Q", "Period", "Comma" (q., | йюб). Последовательность!
-          Проверка длины не очень точная.
-        </p>
-        <p style={{ display: "none" }}>
-          С форума - https://learn.javascript.ru/keyboard-events
-          <br />
-          Код - https://plnkr.co/edit/O0Q4J2xsJckoA3el?preview
-        </p>
-        <div>Результат - {keyCombin && <span>йюб</span>}</div>
-      </div>
-      <div className="4">
-        <p>ALt + N и Alt + M</p>
-        <p style={{ display: "none" }}>
-          По видео - https://www.youtube.com/watch?v=wMiRpTC513M&t=141s
-        </p>
-        <div>Результат - {keyWebDewN && <span>ALt + N</span>}</div>
-        <div>Результат - {keyWebDewM && <span>ALt + M</span>}</div>
-      </div>
-      <div className="5" style={{ backgroundColor: "rgb(175 127 127)" }}>
-        <p>Мой будущий хук useMyKeyPress</p>
-        <p>Вывод по - "z", "c", "b"</p>
-        <p>Ещё много дораб. Оч мн. лишнего кода.</p>
-        <p>Проверка посед. Не на всех клвш отраб</p>
-        <p>Проверка дляны. Не всегда отраб</p>
-        <p>Раб на Arrow. На Set падает в ошб</p>
-        {/* {foxPress && "🦊"}
-        <MyMultiKeyPress
-          keys={["q", "w", "e"]}
-          mykeysPressed={mykeysPressed}
-          // emoji="WIN"
-          setStMyKeyPress={setStMyKeyPress}
-        /> */}
-        {/* <div>Результат - {myStKeyPress && <span>Мой</span>}</div> */}
-        <div>Результат - {myKnpKeyPressArr && <span>Мой</span>}</div>
-        {/* <div>Результат - {myKnpKeyPressSet && <span>Мой</span>}</div> */}
-      </div>
-      <div className="6">
-        <p>Вывод блок по "Q", "D". Нет Послед. Проверка длины.</p>
-        <div>Результат - {keyWebDewArgs && <span>QD</span>}</div>
-      </div>
-      <div className="7" style={{ backgroundColor: "rgb(175 127 127)" }}>
-        <p></p>
+      <div
+        className={`ProbKeyFnComp__content--${
+          openArrowAccord ? " openCont" : ""
+        }`}
+      >
+        <div className="1" style={{ backgroundColor: "rgb(175 127 127)" }}>
+          <p>Вывод блок по "ControlLeft", "ShiftLeft", "AltLeft"</p>
+          <p>
+            вкл не задерживает состояние. при откл addEventListener("keyup",
+            handleKeyUp) повторно клвш не срабатывают. никакой
+            последовательности
+          </p>
+          Результат - {backdropOpen && <span>Готово</span>}
+          <div></div>
+        </div>
+        <div className="2">
+          <p>
+            Вывод блок по Q и S или Q и A. Нет послед-ти. Код на Set и Arrow.
+            Проверка длины только у Arrow
+          </p>
+          <div>Результат - {keySet && <span>Set</span>}</div>
+          <div>Результат - {keyArrow && <span>Arrow</span>}</div>
+        </div>
+        <div className="3" style={{ backgroundColor: "rgb(175 127 127)" }}>
+          <p>
+            Вывод блок по "Q", "Period", "Comma" (q., | йюб).
+            Последовательность! Проверка длины не очень точная.
+          </p>
+          <p style={{ display: "none" }}>
+            С форума - https://learn.javascript.ru/keyboard-events
+            <br />
+            Код - https://plnkr.co/edit/O0Q4J2xsJckoA3el?preview
+          </p>
+          <div>Результат - {keyCombin && <span>йюб</span>}</div>
+        </div>
+        <div className="4">
+          <p>ALt + N и Alt + M</p>
+          <p style={{ display: "none" }}>
+            По видео - https://www.youtube.com/watch?v=wMiRpTC513M&t=141s
+          </p>
+          <div>Результат - {keyWebDewN && <span>ALt + N</span>}</div>
+          <div>Результат - {keyWebDewM && <span>ALt + M</span>}</div>
+        </div>
+        <div className="5" style={{ backgroundColor: "rgb(175 127 127)" }}>
+          <p>Мой будущий хук useMyKeyPress</p>
+          <p>Вывод по - "z", "c", "b"</p>
+          <p>Ещё много дораб. Оч мн. лишнего кода.</p>
+          <p>Проверка посед. Не на всех клвш отраб</p>
+          <p>Проверка дляны. Не всегда отраб</p>
+          <p>Раб на Arrow. На Set падает в ошб</p>
+          {/* {foxPress && "🦊"}
+          <MyMultiKeyPress
+            keys={["q", "w", "e"]}
+            mykeysPressed={mykeysPressed}
+            // emoji="WIN"
+            setStMyKeyPress={setStMyKeyPress}
+          /> */}
+          {/* <div>Результат - {myStKeyPress && <span>Мой</span>}</div> */}
+          <div>Результат - {myKnpKeyPressArr && <span>Мой</span>}</div>
+          {/* <div>Результат - {myKnpKeyPressSet && <span>Мой</span>}</div> */}
+        </div>
+        <div className="6">
+          <p>Вывод блок по "Q", "D". Нет Послед. Проверка длины.</p>
+          <div>Результат - {keyWebDewArgs && <span>QD</span>}</div>
+        </div>
+        <div className="7" style={{ backgroundColor: "rgb(175 127 127)" }}>
+          <p></p>
+        </div>
       </div>
     </div>
   );
@@ -892,35 +967,41 @@ class CommonTrifles extends React.Component {
 
   render() {
     return (
-      <div className="CommonTrifles accordion">
-        <div
-          className="CommonTrifles__descript"
-          ref={this.RefActivCl}
-          onClick={() => {
-            this.handleClickRef();
-            this.toggleArrowAccord(this.openArrowAccord);
-          }}
-        >
-          <h3>хук useKeyPress (+ fn()useMultiKeyPress) + отладка</h3>
-          <div
-            className="temporary"
-            style={{ display: "none" }}
-            ref={this.RefOpenDop}
+      <div className="CommonTrifles-- accordion">
+        <div className="CommonTrifles__descript--">
+          <h1
+            ref={this.RefActivCl}
+            onClick={() => {
+              this.handleClickRef();
+              this.toggleArrowAccord(this.openArrowAccord);
+            }}
           >
-            <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
-            <code style={{ color: "red" }}>!!!</code>
-            Написать код по считыванию нажатий на клавиши. Разные комбинации для
-            разных раскладок, экранов, свет.тем, доступов, активности и пр.
-            <p>Примеры комбин. наж. на клвш.:</p>
-            <p>
-              при EN расклд. - ",jkmit", + доб. цв.схема разных раскладок,
-              экранов, свет.тем, доступов, активности и пр.{" "}
-            </p>
-            <p>доступ в альбом при наборе имени альбома во вкладке альбомов</p>
-            <p>
-              запись в localStorage при наборе "localStorage+" и своего имени в
-              CamelCase(верблюжьем стиле)
-            </p>
+            Нажатие клавиш
+          </h1>
+          <div style={{ display: "none" }} ref={this.RefOpenDop}>
+            <p>хук useKeyPress - нажатие по одной клвш.</p>
+            <p>useMultiKeysPress - нажатие неск-их rkdi/ + с удержанием</p>
+            <p>useAllKeysPress - последовательное зажатие неск-их клавиш</p>
+            <p>ProbKeyFnComp - Различные пробы</p>
+            {/* <div className="temporary">
+              <code style={{ color: "red" }}>!!!</code> ДОРАБОТАТЬ{" "}
+              <code style={{ color: "red" }}>!!!</code>
+              Написать код по считыванию нажатий на клавиши. Разные комбинации
+              для разных раскладок, экранов, свет.тем, доступов, активности и
+              пр.
+              <p>Примеры комбин. наж. на клвш.:</p>
+              <p>
+                при EN расклд. - ",jkmit", + доб. цв.схема разных раскладок,
+                экранов, свет.тем, доступов, активности и пр.{" "}
+              </p>
+              <p>
+                доступ в альбом при наборе имени альбома во вкладке альбомов
+              </p>
+              <p>
+                запись в localStorage при наборе "localStorage+" и своего имени
+                в CamelCase(верблюжьем стиле)
+              </p>
+            </div> */}
           </div>
           <ArrowAccordion
             // toggleArrowAccord={this.toggleArrowAccord}
@@ -929,11 +1010,11 @@ class CommonTrifles extends React.Component {
         </div>
         <div
           ref={this.RefOpenCont}
-          className="CommonTrifles__content"
+          className="CommonTrifles__content--"
           // временно классы
           // style={{ visibility: "visible", opacity: "1", height: "auto" }}
         >
-          <div style={{ background: "red", color: "block" }}>
+          {/* <div style={{ background: "red", color: "block" }}>
             Так же разобрать:
             <p>https://realadmin.ru/coding/keyboard-js.html - просто</p>
             <p>https://habr.com/ru/post/244041/ - просто</p>
@@ -948,7 +1029,7 @@ class CommonTrifles extends React.Component {
               https://gist.github.com/gragland/b61b8f46114edbcf2a9e4bd5eb9f47f5
               - следить в комментах
             </p>
-          </div>
+          </div> */}
           <OneKeysPress />
           <MultiKeysPress />
           <AllKeysPress />
@@ -956,7 +1037,7 @@ class CommonTrifles extends React.Component {
           <ProbKeyClComp />
           {/* <UseAllKeypad inputs={inputs} type={"multi"}/> */}
         </div>
-        <div className="CommonTrifles__frame">CommonTrifles.js</div>
+        <div className="CommonTrifles__frame--">CommonTrifles.js</div>
       </div>
     );
   }

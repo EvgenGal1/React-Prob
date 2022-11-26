@@ -29,8 +29,8 @@ class GeneralComponents extends React.Component {
         {/* <ListComponent /> */}
         <hr />
         <ReactDoc />
-        <hr />
-        <CommonTrifles />
+        {/* <hr />
+        <CommonTrifles /> */}
         <hr />
         <PersistState />
         <hr />

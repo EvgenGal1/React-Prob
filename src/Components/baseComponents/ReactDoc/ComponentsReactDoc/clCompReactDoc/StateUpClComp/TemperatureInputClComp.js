@@ -56,26 +56,30 @@ class TemperatureInputClComp extends React.Component {
       <fieldset>
         <legend>Введите температуру в {scaleNames[scale]}:</legend>
         <input value={temperature} onChange={this.handleChange} />
-        <p
-          style={{
-            fontSize: "14px",
-            display: "block",
-            width: "100%",
-            height: "25px",
-          }}
-        >
-          {this.state.temperature}
-        </p>
-        <p
-          style={{
-            fontSize: "14px",
-            display: "block",
-            width: "100%",
-            height: "25px",
-          }}
-        >
-          {this.props.temperature}
-        </p>
+        {this.state.temperature && (
+          <p
+            style={{
+              fontSize: "14px",
+              display: "block",
+              width: "100%",
+              height: "25px",
+            }}
+          >
+            {this.state.temperature}
+          </p>
+        )}
+        {this.props.temperature && (
+          <p
+            style={{
+              fontSize: "14px",
+              display: "block",
+              width: "100%",
+              height: "25px",
+            }}
+          >
+            {this.props.temperature}
+          </p>
+        )}
       </fieldset>
     );
   }

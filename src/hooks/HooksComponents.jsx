@@ -4,12 +4,16 @@ import { Comments } from "./Comment.jsx";
 import Rendering from "../Components/miniBlocksComponents/Rendering.jsx";
 import "./hooks.scss";
 
-// <Конкурентный режим (задержка частей рендеринга)>˅=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=˅
-// !!! https://ru.reactjs.org/docs/concurrent-mode-reference.html
-// Конкурентный режим - при render, до отрисовки, загрузку можно разделять на мелкие (чанки) части (навроде асинхрона) для приостановки загрузки некоторых чанков. определять что сейчас важно/не важно загрузить.
+// подкл. др. HOOKS
+import CommonTrifles from "../Components/probComponents/CommonTrifles/CommonTrifles.js";
 
 // подкл. UI блоков
 import ArrowAccordion from "../js/includes/ArrowAccordion.js";
+import { ArrowAccordionFnComp } from "../js/includes/ArrowAccordion.jsx";
+
+// <Конкурентный режим (задержка частей рендеринга)>˅=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=˅
+// !!! https://ru.reactjs.org/docs/concurrent-mode-reference.html
+// Конкурентный режим - при render, до отрисовки, загрузку можно разделять на мелкие (чанки) части (навроде асинхрона) для приостановки загрузки некоторых чанков. определять что сейчас важно/не важно загрузить.
 
 // Suspense (`приостановка`) =======================================================================================
 const Suspense = () => {
@@ -128,9 +132,7 @@ const SuspenseList = () => {
 const filterBySearch = (entities, search) =>
   // проходит по entities(comments) и соедин. у каждого соед name и body. у резулта проверить includes что в seacrh
   entities.filter((item) => item.name.concat(item.body).includes(search));
-
 // `переход отложен`. при вводе в input, значение измен, фильтруются и идёт поиск ввода в общих commentах
-
 function TransitionDefrred() {
   // class TransitionDefrred extends React.Component {
   //  constructor(props) {
@@ -241,62 +243,87 @@ function TransitionDefrred() {
   // }
 }
 
+const CompetitiveMode = () => {
+  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  // для управ с h1
+  const handleClickRef = () => {
+    setOpenArrowAccord(!openArrowAccord);
+  };
+  return (
+    <div className="CompetitiveMode accordion">
+      <div className="CompetitiveMode__descript--">
+        <h3
+          className={openArrowAccord ? "_active" : ""}
+          // для управ с h1
+          onClick={() => {
+            handleClickRef();
+          }}
+        >
+          Конкурентный режим.
+        </h3>
+        <div className={openArrowAccord ? "openDop" : ""}>
+          При render, до отрисовки, загрузку можно разделять на мелкие части
+          (чанки) для приостановки загрузки некоторых чанков. Определять что
+          сейчас важно/не важно загрузить.
+        </div>
+        <ArrowAccordionFnComp
+          openArrowAccord={openArrowAccord}
+          setOpenArrowAccord={setOpenArrowAccord}
+        />
+      </div>
+      <div
+        className={`CompetitiveMode__content--${
+          openArrowAccord ? " openCont" : ""
+        }`}
+      >
+        <Suspense />
+        <SuspenseList />
+        <TransitionDefrred />
+      </div>
+      <div className="CompetitiveMode__frame--">CompetitiveMode</div>
+    </div>
+  );
+};
+
 //</Конкурентный режим (задержка частей рендеринга)>˄=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=˄
 
 // подкл.всех Компонентов hooks =======================================================================================
-class HooksComponents extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      openArrowAccord: true,
-    };
-    this.RefActivCl = React.createRef();
-    this.RefOpenDop = React.createRef();
-    this.RefOpenCont = React.createRef();
-  }
-  handleClickRef() {
-    this.RefActivCl.current.classList.toggle("_active");
-    this.RefOpenDop.current.classList.toggle("openDop");
-    this.RefOpenCont.current.classList.toggle("openCont");
-    // this.setState((prevState) => ({
-    //   openArrowAccord: !prevState.openArrowAccord,
-    // }));
-  }
-  toggleArrowAccord = () => {
-    this.setState((prevState) => ({
-      openArrowAccord: !prevState.openArrowAccord,
-    }));
+const HooksComponents = () => {
+  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  // для управ с h1
+  const handleClickRef = () => {
+    setOpenArrowAccord(!openArrowAccord);
   };
-  render() {
-    return (
-      <div className="HooksComponents accordion">
-        <div
-          className="HooksComponents__descript"
-          ref={this.RefActivCl}
+  return (
+    <div className="HooksComponents accordion">
+      <div className="HooksComponents__descript">
+        <h1
+          className={openArrowAccord ? "_active" : ""}
+          // для управ с h1
           onClick={() => {
-            this.handleClickRef();
-            this.toggleArrowAccord(this.openArrowAccord);
+            handleClickRef();
           }}
         >
-          <h3>Конкурентный режим.</h3>
-          <p style={{ display: "none" }} ref={this.RefOpenDop}>
-            При render, до отрисовки, загрузку можно разделять на мелкие части
-            (чанки) для приостановки загрузки некоторых чанков. Определять что
-            сейчас важно/не важно загрузить.
-          </p>
-          <ArrowAccordion
-            toggleArrowAccord={this.toggleArrowAccord}
-            openArrowAccord={this.state.openArrowAccord}
-          />
+          Различные HOOKИ
+        </h1>
+        <div className={openArrowAccord ? "openDop" : ""}>
+          Проверка различных hooks. Как встроеных, новых так и кастомных
         </div>
-        <div ref={this.RefOpenCont} className="HooksComponents__content">
-          <Suspense />
-          <SuspenseList />
-          <TransitionDefrred />
-        </div>
+        <ArrowAccordionFnComp
+          openArrowAccord={openArrowAccord}
+          setOpenArrowAccord={setOpenArrowAccord}
+        />
       </div>
-    );
-  }
-}
-
+      <div
+        className={`HooksComponents__content${
+          openArrowAccord ? " openCont" : ""
+        }`}
+      >
+        <CompetitiveMode />
+        <CommonTrifles />
+      </div>
+      <div className="HooksComponents__frame">HooksComponents</div>
+    </div>
+  );
+};
 export default HooksComponents;
