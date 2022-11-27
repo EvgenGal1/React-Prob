@@ -12,7 +12,7 @@ import { ArrowAccordionFnComp } from "../../miniBlocksComponents/includes/ArrowA
 
 // подкл.всех Компонентов hooks =======================================================================================
 const HooksComponents = () => {
-  const [openArrowAccord, setOpenArrowAccord] = useState(false);
+  const [openArrowAccord, setOpenArrowAccord] = useState(true); // временно на true
   // для управ с h1
   const handleClickRef = () => {
     setOpenArrowAccord(!openArrowAccord);

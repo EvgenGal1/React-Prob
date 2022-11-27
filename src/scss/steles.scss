@@ -77,7 +77,7 @@
     [class*="__descript---"]:last-child,
     // [class*="__content--"]:last-child,
     [class*="__content---"]:last-child {
-      padding: 0px 0px 10px;
+      // padding: 0px 0px 10px;
     }
     [class*="__content--"]:last-child {
     }
@@ -112,7 +112,9 @@
       // @include adaptiv-value("padding-right", 32, 15, 1);
       // ^ 5 вар. ч/з Адаптивное св-во для Всех в @mixin adaptiv-value-all
       @include adaptiv-value-all("padding", 10, 0, 60, 25);
-      @include adaptiv-value("padding-bottom", 20, 5, 3);
+      &:has(div[class*="openCont"]) {
+        @include adaptiv-value("padding-bottom", 25, 5, 3);
+      }
     }
     // общие бл. 2ой влж (вложенности). vid-input, GreetingClComp__content,
     // & > div {

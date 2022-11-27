@@ -961,7 +961,7 @@ export class PressKey extends React.Component {
     return (
       <div className="PressKey-- accordion">
         <div className="PressKey__descript--">
-          <h1
+          <h3
             ref={this.RefActivCl}
             onClick={() => {
               this.handleClickRef();
@@ -969,7 +969,7 @@ export class PressKey extends React.Component {
             }}
           >
             Нажатие клавиш
-          </h1>
+          </h3>
           <div style={{ display: "none" }} ref={this.RefOpenDop}>
             <p>хук useKeyPress - нажатие по одной клвш.</p>
             <p>useMultiKeysPress - нажатие неск-их rkdi/ + с удержанием</p>

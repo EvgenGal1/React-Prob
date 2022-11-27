@@ -48,7 +48,7 @@ pre {
 // div:not(pre code) { - двойное нет не раб
 // :is([class*="content"]) :is(pre) { - is не раб
 div[class*="content"]:last-child {
-  padding-bottom: 5px;
+  // padding-bottom: 5px;
 }
 plaintext {
   display: none;

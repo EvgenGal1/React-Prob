@@ -246,7 +246,7 @@ export const CompetitiveMode = () => {
   return (
     <div className="CompetitiveMode accordion">
       <div className="CompetitiveMode__descript--">
-        <h1
+        <h3
           className={openArrowAccord ? "_active" : ""}
           // для управ с h1
           onClick={() => {
@@ -254,7 +254,7 @@ export const CompetitiveMode = () => {
           }}
         >
           Конкурентный режим.
-        </h1>
+        </h3>
         <div className={openArrowAccord ? "openDop" : ""}>
           При render, до отрисовки, загрузку можно разделять на мелкие части
           (чанки) для приостановки загрузки некоторых чанков. Определять что
