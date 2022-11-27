@@ -2,6 +2,118 @@ import React, { useState } from 'react'
 import { useLocalStorageUH } from "../../../../hooks/useLocalStorageUH";
 import { ArrowAccordionFnComp } from "../../../miniBlocksComponents/includes/ArrowAccordion.jsx";
 
+// !!! https://www.mousedc.ru/learning/523-forma-dobavlenie-udalenie-izmenenie-element-steyt-react/
+// Удаление эл.
+function DelEl() {
+  const [arrDelEl, setArrDelEl] = useState(['Тише', 'мыши', 'кот', 'на', 'крыше']);
+  const [value, setValue] = useState('');
+
+  const result = arrDelEl.map((element, index) => {
+    return (
+      // <div>
+      <span
+        key={index}
+        onDoubleClick={() => remove(index)}
+        style={{ marginLeft: "5px" }}
+      >
+        {element}
+      </span>
+      // {/* </div> */}
+    )
+  });
+
+  function remove(index) {
+    setArrDelEl([...arrDelEl.slice(0, index), ...arrDelEl.slice(index + 1)]);
+  }
+
+  return (
+    <div className="DelEl">
+      <div>{result}</div>
+      <input value={value} onChange={event => setValue(event.target.value)} />
+      <button onClick={event => setArrDelEl([...arrDelEl, value])}>Добавить элемент</button>
+    </div>
+  )
+}
+
+// Изменить эл.
+function ChangeEl() {
+  const [arr, setArr] = useState(['Тише', 'мыши', 'кот', 'на', 'крыше']);
+  const [value, setValue] = useState('');
+  const [editIndex, setEditIndex] = useState(null);
+
+  const result = arr.map((element, index) => {
+    return (
+      <span
+        key={index}
+        onClick={() => edit(index)}
+        onDoubleClick={() => remove(index)}
+        style={{ marginLeft: "5px" }}
+      >
+        {element}
+      </span>
+    )
+  });
+
+  // редактирование элемента
+  function edit(index) {
+    console.log('index ', index);
+    console.log('editIndex ', editIndex);
+    console.log('value ', value);
+    setArr(
+      [
+        // ...arr.slice(0, editIndex),
+        ...arr.slice(0, editIndex),
+        // event.target.value,
+        value,
+        // ...arr.slice(editIndex + 1)
+        ...arr.slice(editIndex + 1)
+      ]
+    );
+  }
+
+  // завершение редактирования
+  function stopEdit() {
+    setEditIndex(null);
+  }
+
+  // удаление эл.
+  function remove(index) {
+    setArr([...arr.slice(0, index), ...arr.slice(index + 1)]);
+  }
+
+  // добавление элемента
+  function add() {
+    setArr([...arr, value]);
+  }
+
+  // изменение содержания поля input
+  function changeValue(event) {
+    setValue(event.target.value);
+  }
+
+  // поле и кнопка
+  let fields;
+
+  // для редактирования элемента
+  if (editIndex) {
+    fields = <div>
+      <input value={arr[editIndex]} onChange={edit} />
+      <button onClick={stopEdit}>Изменить элемент</button>
+    </div>;
+  } else {
+    // для добавления нового элемента
+    fields = <div>
+      <input value={value} onChange={changeValue} />
+      <button onClick={add}>Добавить элемент</button>
+    </div>;
+  }
+
+  return <div className="ChangeEl">
+    {result}
+    {fields}
+  </div>;
+}
+
 export const LSfromUH = () => {
   const [openArrowAccord, setOpenArrowAccord] = useState(true); // временно на true 
   const handleClickRef = () => {
@@ -62,6 +174,8 @@ export const LSfromUH = () => {
   console.log('arrObj 0 ', arrObj);
   return (
     <div className="LSfromUH--- accordion" style={{ position: "relative" }}>
+      <DelEl />
+      <ChangeEl />
       <div className="LSfromUH__descript---">
         <h3
           className={openArrowAccord ? "_active" : ""}
@@ -92,14 +206,48 @@ export const LSfromUH = () => {
           <button
             style={{ background: 'blue', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer' }}
             onClick={() => {
-              setArr([...arr, arr.length])
-            }}>+доп+</button>
+              // ДОБАВЛЕНИЕ
+              // setArr([...arr, arr.length])
+              // setArr([...arr.push("qw")])
+              // arr.push("+>") // запись в консоль. Вывод и LS - НЕТ
+              // setArr(arr.push("+>")) // в консоль 4 // ! ошб. arr.map is not a function 
+              // setArr([arr.push("+>")]) // в консоль сначала добав. 4. Вывод и LS - сразу 4, затем 2
+              // setArr([...arr.push("+>")]) // ничего // ! ошб. arr.push is not a function or its return value is not iterable
+              // setArr([...arr, arr.push("777")]) // в консоль сначала добав, потом счёт в предполед. Вывод и LS - добавл. счёт в конце, НЕ эл.
+              // setArr([arr, arr.push("777")]) // везде созд. подмассивы с эл. с счётом
+              // setArr.push("777") // ! ошб. setArr.push is not a function
+              setArr([...arr, "+>"]) // ^ добавл эл. в конце
+              // УДАЛЕНИЕ
+              // setArr([...arr, arr.shift()]) // добав. 0 в конце  
+              // const removeItem = (index) => {
+              // setArr([
+              //   ...arr.slice(0, 1),
+              //   ...arr.slice(1 + 1)
+              // ]);
+              // }
+              console.log('arr onClick ', arr);
+            }}
+            onDoubleClick={() => {
+              // ^ {/* измен.эл.масс.объ. */}
+              // добавить в конец
+              // arr.push("+>")
+              // setArr([...arr.push("Земля")]) // ["Меркурий", "Земля", "Марс"]
+              // console.log('arr onDoubleClick ', arr);
+              // добавим в начало 
+              // arr.unshift('Венера'); // ["Венера", "Меркурий", "Земля", "Марс"]
+              // удалим последний элемент
+              // arr.pop(); // ["Венера", "Меркурий", "Земля"]
+              // удалим первый элемент
+              // arr.shift();
+              // setArr([...arr, -arr.length])
+            }}
+          >+доп+</button>
           <div style={{
             display: "flex",
             justifyContent: "center"
           }}>
             {arr.map((ar) => (
-              <span key={ar} style={{ marginLeft: "5px" }}>{ar}</span>
+              <span key={Math.random().toString().substring(2, 7)} style={{ marginLeft: "5px" }}>{ar}</span>
             ))}
           </div>
         </div>
@@ -115,11 +263,8 @@ export const LSfromUH = () => {
             }}
             onClick={() => {
               // ^ {/* измен.эл.масс.объ. */}
-              // ^ 1) 
-              // eslint-disable-next-line no-self-assign
-              arrObj.forEach((aP) => aP.id === 1 ? aP.text = 'Другой text' : aP = aP) // ! ошб. 
-              // setArrObj(arrObj.forEach((aP) => aP?.id === 1 ? aP.text = 'Другой text' : aP = aP)) // ! ошб. Cannot read properties of undefined (reading 'map')
-              // setArrObj(...arrObj.forEach((aP) => aP?.id === 1 ? aP.text = 'Другой text' : aP = aP)) // ! ошб. arrObj.forEach(...) is not iterable (cannot read property undefined)
+              // ^ 1)  
+              arrObj.forEach((aP) => aP.id === 1 ? aP.text = 'Другой text' : aP = aP)
               setArrObj([...arrObj])
               console.log('arrObj onClick ', arrObj);
             }}
