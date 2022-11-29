@@ -289,7 +289,8 @@
     .conditional-rendering__content,
     .StateAndLifeCycle__content,
     .countryflags__content,
-    .PressKey__content-- {
+    .PressKey__content--,
+    .LSfromUH--- {
       & > div {
         // & .conditional-rendering__content > div {
         &:nth-child(odd) {
@@ -415,7 +416,9 @@
 .IfAnd__content---,
 .IfCondOper__content--- {
 }
-
+.LSfromUH--- > div {
+  padding: 15px 20px;
+}
 //  ----------------------------------------------------------------------------------
 
 // .StateAndLifeCycle__descript-- h3 {
