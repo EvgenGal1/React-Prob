@@ -290,7 +290,10 @@
     .StateAndLifeCycle__content,
     .countryflags__content,
     .PressKey__content--,
-    .LSfromUH--- {
+    .LSfromUH__content---,
+    .LSdiscord__content--,
+    .LSfromMN-- .BooksFC__content---,
+    .ToogleFC__content-- {
       & > div {
         // & .conditional-rendering__content > div {
         &:nth-child(odd) {
@@ -417,7 +420,7 @@
 .IfCondOper__content--- {
 }
 .LSfromUH--- > div {
-  padding: 15px 20px;
+  // padding: 15px 20px;
 }
 //  ----------------------------------------------------------------------------------
 
