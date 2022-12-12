@@ -1,0 +1,19 @@
+.LSfromMN-- {
+  .BooksFC--- {
+    width: 100%;
+    .BooksFC__content--- {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      .Book {
+        span {
+          display: inline-block;
+        }
+        button {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

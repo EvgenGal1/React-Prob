@@ -6,6 +6,7 @@ import "./hooks.scss";
 import { CompetitiveMode } from "./CompetitiveMode/CompetitiveMode";
 import { PressKey } from "./PressKey/PressKey.jsx";
 import { LocalStorage } from "./LocalStorage/LocalStorage.jsx";
+import { ToogleFC } from "./Toogle/ToggleFC";
 
 // подкл. UI блоков
 import { ArrowAccordionFnComp } from "../../miniBlocksComponents/includes/ArrowAccordion.jsx";
@@ -45,6 +46,7 @@ const HooksComponents = () => {
         <CompetitiveMode />
         <PressKey />
         <LocalStorage />
+        <ToogleFC />
       </div>
       <div className="HooksComponents__frame">HooksComponents</div>
     </div>
