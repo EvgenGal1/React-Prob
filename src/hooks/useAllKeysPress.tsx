@@ -1,7 +1,21 @@
 // !!! https://codesandbox.io/s/multiple-keys-in-order-vpovi?file=/src/App.js
 import { useState, useEffect, useRef } from "react";
 
-function useAllKeysPress(options) {
+interface UseAllKeysPressOptions {
+  userKeys: string | string[]; // Могут быть строки или массивы строк
+  order?: boolean;
+  ref?: React.RefObject<HTMLElement | Window>; // Допустили ссылку на элемент или окно
+}
+
+interface Settings {
+  output: boolean;
+  downHandler: (event: KeyboardEvent) => any;
+  upHandler: (event: KeyboardEvent) => any;
+  useEffect: () => void;
+  type: "STRING" | "ARRAY" | null;
+}
+
+function useAllKeysPress(options: UseAllKeysPressOptions) {
   // убедитесь, что «параметры» это объект
   if (!options || Object.keys(options).length === 0) {
     throw new Error(
@@ -12,26 +26,27 @@ function useAllKeysPress(options) {
   // Свойства «Параметры».
   const userKeys = options.userKeys || null;
   const order = options.order || false;
-  const ref = options.ref || window;
+  // const ref = options.ref || window;
+  const ref = useRef<HTMLElement>(null);
 
   // Реагировать крючки.
-  const [keyPress, setKeyPress] = useState(false);
-  const [anyKeyPressed, setAnyKeyPressed] = useState([]); // новое с массивами
+  const [keyPress, setKeyPress] = useState<boolean>(false);
+  const [anyKeyPressed, setAnyKeyPressed] = useState<string[]>([]); // новое с массивами
   // console.log("anyKeyPressed : " + anyKeyPressed); // нажимаемые клвш
 
   // Ссылка, чтобы определить, была ли уже нажата клавиша.
-  const prevKey = useRef("");
+  const prevKey = useRef<string>("");
 
-  const settings = {
+  const settings: Settings = {
     type: null,
-    objRef: ref,
-    downHandler: undefined,
-    upHandler: undefined,
-    useEffect: null,
-    output: null,
+    // objRef: ref,
+    downHandler: () => {},
+    upHandler: () => {},
+    useEffect: () => {},
+    output: false,
   };
 
-  const setData = (settings) => {
+  const setData = (settings: Settings) => {
     // console.log("3 : " + 3);
     // Убедитесь, что у нас есть свойство «пользователя»
     if (userKeys) {
@@ -46,14 +61,13 @@ function useAllKeysPress(options) {
       }
       // Проверьте, является ли объект массивом, если это так, добавьте свойства Multikeys
       // «Опция» объект.
-      if (Array.isArray(userKeys)) {
+      else if (Array.isArray(userKeys)) {
         settings.output = areKeysPressed(userKeys, anyKeyPressed);
         settings.downHandler = downMultiHandler;
         settings.upHandler = upMultiHandler;
         settings.useEffect = Init;
         settings.type = "ARRAY";
-      }
-      if (Number.isInteger(userKeys)) {
+      } else if (Number.isInteger(userKeys)) {
         throw new Error(
           `Invalid 'userKeys' property: must be {userKeys:'KEY'} or {userKeys:[KEY, ...]}`
         );
@@ -67,33 +81,18 @@ function useAllKeysPress(options) {
     return settings;
   };
 
-  const downHandler = ({ key }) => {
-    // console.log("key 1: " + key);
+  const downHandler = ({ key }: KeyboardEvent) => {
     // Избежать этой функции, если эти два значения соответствуют
     // (Доказательство, что клавиша уже нажата).
-    // console.log("key : " + key);
-    // console.log("1 : " + 1);
-    // console.log("prevKey.current " + prevKey.current);
-    // console.log("key 1 : " + key);
-    // console.log("userKeys 1 " + userKeys);
     if (prevKey.current === userKeys) return;
-    // console.log("2 : " + 2);
-    // console.log("revKey  : " + prevKey);
-    // console.log("revKey.current  : " + prevKey.current);
-    // console.log("3 : " + 3);
-    // console.log("key 3 : " + key);
-    // console.log("userKeys 3 : " + userKeys);
     if (key === userKeys) {
-      // console.log("4 : " + 4);
-      // console.log("userKeys : " + userKeys);
       setKeyPress(true);
       // Установите Prevkey для будущей ссылки.
       prevKey.current = key;
-      // console.log("key 2: " + key);
     }
   };
 
-  const upHandler = ({ key }) => {
+  const upHandler = ({ key }: KeyboardEvent) => {
     if (key === userKeys) {
       setKeyPress(false);
       // сбросить ценность предварительного
@@ -101,67 +100,59 @@ function useAllKeysPress(options) {
     }
   };
 
-  const downMultiHandler = ({ key, repeat }) => {
-    // console.log("repeat 0: " + repeat);
+  const downMultiHandler = ({
+    key,
+    repeat,
+  }: KeyboardEvent & { repeat?: boolean }) => {
     // Примечание: предотвращает запись двойного ключа в массиве
     if (repeat) return;
-
-    // console.log("repeat 1: " + repeat);
     setAnyKeyPressed((prevState) => [...prevState, key]);
   };
 
-  const upMultiHandler = ({ key }) => {
-    // console.log("upMulti 0");
+  const upMultiHandler = ({ key }: KeyboardEvent) => {
     // Примечание: необходимо снова позвонить в Set State из-за того, как работает состояние.
     // В противном случае потребуется, чтобы функция спешилась и переоценивает, что в порядке.
-    setAnyKeyPressed((prevState) => [...prevState]);
-    // console.log("upMulti 1");
-    setAnyKeyPressed((prevState) => [
-      // console.log("prevState : " + prevState),
-      ...prevState.filter((item) => item !== key),
-      // console.log("upMulti 2"),
-    ]);
+    setAnyKeyPressed((prevState) => prevState.filter((item) => item !== key));
   };
 
   // `нажаты клавиши`
   const areKeysPressed = (
-    keys = [], // массив клвш или 0 ?
-    Pressed = [] // сост ? anyKeyPressed `любая нажатая клавиша`. в консоле - нажимаемые клвш
-  ) => {
+    keys: string[], // массив клвш или 0 ?
+    pressed: string[] // сост ? anyKeyPressed `любая нажатая клавиша`. в консоле - нажимаемые клвш
+  ): boolean => {
     // Создать новый массив
     const required = [...keys];
 
     // любой порядок'. Вернуть массив, который не имеет соответствующих предметов
     const anyOrder = required.filter((itemA) => {
-      return !Pressed.some((itemB) => itemB === itemA);
+      !pressed.some((itemB) => itemB === itemA);
     });
 
     // `порядок`. Проверяем, совпадают ли 'keys' и 'Pressed' и что входные записи для 'Pressed' идентичны по порядку.
     const inOrder =
-      required.length === Pressed.length &&
+      required.length === pressed.length &&
       required.every((value, index) => {
-        // console.log("===== : ");
-        return value === Pressed[index];
+        value === pressed[index];
       });
 
-    let result;
+    // let result;
 
     // Если «Порядок» не был установлен, используйте расчет «А -А -А -ОРУК».
     // В противном случае используйте расчет «inorder».
-    !order ? (result = anyOrder.length === 0) : (result = inOrder);
-    // console.log("result : " + result);
-    // console.log("result : " + result);
-    return result;
+    return !order ? anyOrder.length === 0 : inOrder;
   };
 
   function Init() {
-    // console.log("1 : " + 1);
     useEffect(() => {
-      // console.log("2 : " + 2);
       // Если «ref» после инициализации имеет свойство «текущего», то это относится
       // к указанному элементу, в этом случае «элемент» должен ссылаться на это.
       // В противном случае продолжайте состояние по умолчанию (объект окна).
-      const element = ref.current ? ref.current : ref;
+      let element: any /* = ref.current ? ref.current : ref */;
+      if (ref.current instanceof HTMLElement) {
+        element = ref.current;
+      } else {
+        element = window; // или какую-то другую логику
+      }
 
       // Добавить слушателей событий
       element.addEventListener("keydown", settings.downHandler);
