@@ -135,8 +135,6 @@ function useAllKeysPress(options: UseAllKeysPressOptions) {
         value === pressed[index];
       });
 
-    // let result;
-
     // Если «Порядок» не был установлен, используйте расчет «А -А -А -ОРУК».
     // В противном случае используйте расчет «inorder».
     return !order ? anyOrder.length === 0 : inOrder;

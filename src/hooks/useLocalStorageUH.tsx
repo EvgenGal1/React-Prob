@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-// Hook с сайта https://usehooks.com/page/3
-export function useLocalStorageUH(key, initialValue) {
-  // Состояние для хранения нашего значения
-  // Передайте функцию начального состояния в useState, чтобы логика выполнялась только один раз
-  const [storedValue, setStoredValue] = useState(() => {
+// Типизация для хука useLocalStorageUH с сайта https://usehooks.com/page/3
+export function useLocalStorageUH<T>(
+  key: string,
+  initialValue: T
+): [T, (value: T | ((val: T) => T)) => void] {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     if (typeof window === "undefined") {
       return initialValue;
     }
@@ -20,7 +21,7 @@ export function useLocalStorageUH(key, initialValue) {
     }
   });
   // Возвратите обернутую версию функции установки useState, которая сохраняет новое значение в localStorage.
-  const setValue = (value) => {
+  const setValue = (value: T | ((val: T) => T)) => {
     try {
       // Разрешить значение быть функцией, чтобы у нас был тот же API, что и у useState
       const valueToStore =
@@ -36,5 +37,6 @@ export function useLocalStorageUH(key, initialValue) {
       console.log(error);
     }
   };
+
   return [storedValue, setValue];
 }
