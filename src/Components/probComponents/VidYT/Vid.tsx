@@ -1,25 +1,32 @@
 import React from "react";
-// import React, { Component } from "react";
-import VidInput1 from "./VidInput1.js";
-import VidInput2 from "./VidInput2.js";
-import VidButton1 from "./VidButton1.js";
-import VidButton2 from "./VidButton2.js";
-// ??? не раб - при подкл стилей сюда, не распознаёт переменные из App.scss ($md3NoErr 40стр.), даже если App.scss подкл в index.js
-// import "./Vid.scss";
 
 // !!! По видео - https://www.youtube.com/watch?v=-D4UMrcjreU
 // + доп из https://reactjs.org/docs/handling-events.html
 
+import VidInput1 from "./VidInput1";
+import VidInput2 from "./VidInput2";
+import VidButton1 from "./VidButton1";
+import VidButton2 from "./VidButton2";
 // подкл. UI блоков
 import ArrowAccordion from "../../miniBlocksComponents/includes/ArrowAccordion.js";
 
-class VidInput extends React.Component {
-  // export default class Vid extends Component {
-  constructor(props) {
+// ??? не раб - при подкл стилей сюда, не распознаёт переменные из App.scss ($md3NoErr 40стр.), даже если App.scss подкл в index.js
+// import "./Vid.scss";
+
+interface VidInputProps {
+  input: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface VidInputState {
+  inputValue: string;
+}
+
+class VidInput extends React.Component<VidInputProps, VidInputState> {
+  state: { inputValue: string };
+  constructor(props: VidInputProps) {
     super(props);
-    // какие-то значения
     this.state = {
-      // vid__input. изнач задаём пусто
       inputValue: "",
     };
     // ссылка на fn()
@@ -27,11 +34,14 @@ class VidInput extends React.Component {
   }
 
   // сама fn() `обработка изменений`
-  handleChange(event) {
+  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     // будем измен состоянием. `событие.цель.значение`. если понял по fn() принимает то что пишем (здесь пишем в input)
     this.setState({
       inputValue: event.target.value,
     });
+  }
+  setState(arg0: { inputValue: any }) {
+    throw new Error("Method not implemented.");
   }
 
   render() {
@@ -81,9 +91,26 @@ class VidInput extends React.Component {
   }
 }
 
-class VidButton extends React.Component {
+interface VidButtonState {
+  name: string;
+  wnames: string;
+  isToggleOn: boolean;
+}
+
+class VidButton extends React.Component<{}, VidButtonState> {
+  state: {
+    // VidButton1
+    name: string;
+    wnames: string;
+    //  VidButton2 на toggle
+    isToggleOn: boolean;
+  };
+  setState(arg0: { name: string; wnames: string }) {
+    throw new Error("Method not implemented.");
+  }
+
   // export default class Vid extends Component {
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
     // какие-то значения
     this.state = {
@@ -99,7 +126,7 @@ class VidButton extends React.Component {
   }
 
   // VidButton1. сама fn() `обновление данных`. входной парам value, его присваиваем к state компонента с помощью метода setState
-  updateData = (value, wvalues) => {
+  updateData = (value: string, wvalues: string) => {
     // будем измен состоянием setState по его значению
     this.setState({
       name: value,
@@ -191,6 +218,13 @@ class VidButton extends React.Component {
 }
 
 class Vid extends React.Component {
+  state: { openArrowAccord: boolean };
+  RefActivCl: any;
+  RefOpenDop: any;
+  RefOpenCont: any;
+  setState(arg0: (prevState: any) => { openArrowAccord: boolean }) {
+    throw new Error("Method not implemented.");
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -240,6 +274,9 @@ class Vid extends React.Component {
         <div className="Vid__frame">Vid.js</div>
       </div>
     );
+  }
+  openArrowAccord(openArrowAccord: any) {
+    throw new Error("Method not implemented.");
   }
 }
 
